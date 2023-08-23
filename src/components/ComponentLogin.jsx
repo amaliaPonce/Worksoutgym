@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { post } from '../api';
 import '../styles/login.css';
 
-
 function ComponentLogin() {
   const navigate = useNavigate();
 
@@ -61,7 +60,7 @@ function ComponentLogin() {
           autoComplete="current-password"
         />
         <button className="login-button" type="submit" disabled={isLoading}>
-          {isLoading ? 'Cargando...' : 'Iniciar Sesión'}
+          <span>{isLoading ? 'Cargando...' : 'Iniciar Sesión'}</span>
         </button>
         {error && <p className="login-error">{error}</p>}
         {isLoading && <p className="login-loading">Cargando...</p>}

@@ -1,19 +1,12 @@
-/* Variables de colores para uso general (ejemplo para gastarlas color: var(--background)*/
+@import './styles/variables.css';
 
-:root {
-  --fontFamily: 'Montserrat', sans-serif;
-  --colorFont: #383E56;
-  --White: antiquewhite;
-  --buttons:#556E53;
-  --containers: #29435C;
-  --background: #D1D4C9;
-  --title: #FB743E;
-}
 
 body {
   margin: 0;
   font-family: var(--fontFamily);
   background-color:var(--background);
 }
+
+
 
 
