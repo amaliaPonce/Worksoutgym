@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { post } from '../api';
+import '../styles/login.css';
+
 
 function ComponentLogin() {
   const navigate = useNavigate();
@@ -37,10 +39,11 @@ function ComponentLogin() {
   };
 
   return (
-    <div>
-      <h2>Iniciar Sesión</h2>
+    <div className="login-container">
+      <h2 className="login-title">Iniciar Sesión</h2>
       <form onSubmit={handleSubmit}>
         <input
+          className={`login-input ${error && 'error'}`}
           type="email"
           placeholder="Correo Electrónico"
           value={email}
@@ -49,6 +52,7 @@ function ComponentLogin() {
           autoComplete="username"
         />
         <input
+          className={`login-input ${error && 'error'}`}
           type="password"
           placeholder="Contraseña"
           value={password}
@@ -56,10 +60,11 @@ function ComponentLogin() {
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
         />
-        <button type="submit" disabled={isLoading}>
+        <button className="login-button" type="submit" disabled={isLoading}>
           {isLoading ? 'Cargando...' : 'Iniciar Sesión'}
         </button>
-        {error && <p>{error}</p>}
+        {error && <p className="login-error">{error}</p>}
+        {isLoading && <p className="login-loading">Cargando...</p>}
       </form>
     </div>
   );
