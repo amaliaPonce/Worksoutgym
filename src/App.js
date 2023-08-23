@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Home from './pages/Home';
-import Header from './components/Header';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import Home from "./pages/Home";
+import Header from "./components/Header";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
 
 function PrivateRoute({ element, authenticated }) {
   if (!authenticated) {
@@ -15,7 +20,8 @@ function PrivateRoute({ element, authenticated }) {
 }
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false); 
+  const [authenticated, setAuthenticated] = useState(true);
+  // esto tiene que estar en true para que Dashboard sea una ruta privada
 
   return (
     <Router>
@@ -25,19 +31,18 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route
             path="/login"
-            element={<Login setAuthenticated={setAuthenticated} />} 
+            element={<Login setAuthenticated={setAuthenticated} />}
           />
           <Route path="/register" element={<Register />} />
-          {/* <Route
-            path="/dashboard"
-            element={<PrivateRoute element={<Dashboard />} authenticated={authenticated} />}
-          /> */}
-
-          {/* Esto es incorrecto, cambiar por ruta anterior comentada */}
           <Route
             path="/dashboard"
-            element={<Dashboard />} />
-         
+            element={
+              <PrivateRoute
+                element={<Dashboard />}
+                authenticated={authenticated}
+              />
+            }
+          />
         </Routes>
       </div>
     </Router>
