@@ -1,7 +1,7 @@
 export const postExercise = async (ejercicio) => {
   // Exporta la función correctamente
   try {
-    const response = await fetch("/exercises/newExercises", {
+    const response = await fetch("/exercises", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
