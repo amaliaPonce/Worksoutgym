@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { toggleFavoriteExercise } from "../controllers/exerciseController";
+import { toggleFavoriteExercise } from "../hooks/FavFecth";
 
 function ExerciseItem({ exercise }) {
   const [isFavorite, setIsFavorite] = useState(false);

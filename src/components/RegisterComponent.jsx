@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function ComponentRegister() {
+function RegisterComponent() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -63,10 +63,10 @@ function ComponentRegister() {
         <button type="submit">Registrarse</button>
       </form>
       <p>
-        ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
+        ¿Ya tienes una cuenta? <Link to="/loginPage">Inicia sesión</Link>
       </p>
     </div>
   );
 }
 
-export default ComponentRegister;
+export default RegisterComponent;

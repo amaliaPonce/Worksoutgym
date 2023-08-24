@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function ExerciseList() {
+function ExerciseListComponent() {
   const [exercises, setExercises] = useState([]);
 
   useEffect(() => {
@@ -32,4 +32,4 @@ function ExerciseList() {
   );
 }
 
-export default ExerciseList;
+export default ExerciseListComponent;

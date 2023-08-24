@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { post } from "../api";
 import "../styles/login.css";
 
-function ComponentLogin() {
+function LoginComponent() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -69,4 +69,4 @@ function ComponentLogin() {
   );
 }
 
-export default ComponentLogin;
+export default LoginComponent;

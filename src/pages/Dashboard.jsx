@@ -1,11 +1,15 @@
 import React from "react";
-import ExerciseList from "../components/ExerciseList"; // Ajusta la ruta según la ubicación real del archivo
+import AdminPage from "./AdminDashboard";
+import ClientPage from "./ClientPage";
+import { useAuth } from "../context/AuthContext";
 
 function Dashboard() {
+  const { user } = useAuth();
+
   return (
     <div>
       <h2>Dashboard</h2>
-      <ExerciseList /> {/* Renderiza el componente ExerciseList aquí */}
+      {user && user.role === "admin" ? <AdminPage /> : <ClientPage />}
       {/* Otros componentes y contenido */}
     </div>
   );
