@@ -5,7 +5,8 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
+import  AdminComponent  from "./components/AdminComponent";
+import ClientComponent from "./components/ClientComponent";
 
 function PrivateRoute({ element, authenticated }) {
   if (!authenticated) {
@@ -22,27 +23,40 @@ function App() {
 
   return (
     <Router>
-      <div className="Rotes" >
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/login"
-            element={<Login setAuthenticated={setAuthenticated} />}
-          />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute
-              element={<Dashboard />}
-                authenticated={authenticated}
-              />
-            }
-          />
-        </Routes>
-      </div>
-    </Router>
+    <div className="Routes">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/login"
+          element={<Login setAuthenticated={setAuthenticated} />}
+        />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute
+              element={<ClientComponent />} // Usa tu componente para el dashboard de clientes
+              authenticated={authenticated}
+            />
+          }
+        />
+        <Route
+        // aqui falta tener los datos del admin por token
+          path="/admin"
+          element={
+            <PrivateRoute
+              element={<AdminComponent />} 
+              authenticated={authenticated}
+              roles={["admin"]} 
+              fallback={<Navigate to="/unauthorized" />} 
+            />
+          }
+        />
+      </Routes>
+    </div>
+  </Router>
+  
   );
 }
 
