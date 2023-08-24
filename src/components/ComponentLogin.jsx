@@ -1,34 +1,34 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { post } from '../api';
-import '../styles/login.css';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { post } from "../api";
+import "../styles/login.css";
 
 function ComponentLogin() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setError('');
+    setError("");
     setIsLoading(true);
 
     try {
-      const data = await post('http://localhost:8000/users/login', {
+      const data = await post("http://localhost:8000/users/login", {
         email,
         password,
       });
 
       console.log(data);
 
-      if (data.status === 'ok') {
-        navigate('/dashboard');
+      if (data.status === "ok") {
+        navigate("/dashboard");
       } else {
-        setError(data.message || 'Error al iniciar sesión');
+        setError(data.message || "Error al iniciar sesión");
       }
     } catch (error) {
       setError(error.message);
@@ -42,7 +42,7 @@ function ComponentLogin() {
       <h2 className="login-title">Iniciar Sesión</h2>
       <form onSubmit={handleSubmit}>
         <input
-          className={`login-input ${error && 'error'}`}
+          className={`login-input ${error && "error"}`}
           type="email"
           placeholder="Correo Electrónico"
           value={email}
@@ -51,7 +51,7 @@ function ComponentLogin() {
           autoComplete="username"
         />
         <input
-          className={`login-input ${error && 'error'}`}
+          className={`login-input ${error && "error"}`}
           type="password"
           placeholder="Contraseña"
           value={password}
@@ -60,7 +60,7 @@ function ComponentLogin() {
           autoComplete="current-password"
         />
         <button className="login-button" type="submit" disabled={isLoading}>
-          <span>{isLoading ? 'Cargando...' : 'Iniciar Sesión'}</span>
+          <span>{isLoading ? "Cargando..." : "Iniciar Sesión"}</span>
         </button>
         {error && <p className="login-error">{error}</p>}
         {isLoading && <p className="login-loading">Cargando...</p>}
