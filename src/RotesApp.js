@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Navigate, Routes } from "react-router-dom";
 import HomePage from "../src/pages/HomePage";
-import LoginComponent from "../src/components/LoginComponent";
-import RegisterComponent from "../src/components/RegisterComponent";
-import AdminComponent from "../src/components/AdminComponent";
-import ClientComponent from "../src/components/ClientComponent";
+import LoginPage from "../src/pages/LoginPage";
+import RegisterPage from "../src/pages/RegisterPage";
+import AdminPage from "../src/pages/AdminPage";
+import ClientPage from "../src/pages/ClientPage";
 
 function PrivateRoute({ element, authenticated }) {
   if (!authenticated) {
@@ -20,30 +20,33 @@ export function RoutesApp({ authenticated, setAuthenticated }) {
       <Route path="/" element={<HomePage />} />
       <Route
         path="/login"
-        element={<LoginComponent setAuthenticated={setAuthenticated} />}
+        element={<LoginPage setAuthenticated={setAuthenticated} />}
       />
-      <Route path="/register" element={<RegisterComponent />} />
+      <Route path="/register" element={<RegisterPage />} />
+
+      {/* Ruta genérica para usuarios autenticados */}
       <Route
-        path="/dashboard"
+        path="/*"
         element={
           <PrivateRoute
-            element={<ClientComponent />}
+            element={
+              authenticated ? (
+                // Redirige al usuario según su rol
+                authenticated.userRole === "admin" ? (
+                  <AdminPage />
+                ) : (
+                  <ClientPage />
+                )
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
             authenticated={authenticated}
-          />
-        }
-      />
-      <Route
-        path="/admin"
-        element={
-          <PrivateRoute
-            element={<AdminComponent />}
-            authenticated={authenticated}
-            roles={["admin"]}
-            fallback={<Navigate to="/unauthorized" />}
           />
         }
       />
     </Routes>
   );
 }
+
 export default RoutesApp;

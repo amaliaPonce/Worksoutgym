@@ -1,20 +1,17 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import { RoutesApp } from "./RotesApp";
+import React from 'react';
+import RotesApp from './RotesApp';
+import { BrowserRouter } from "react-router-dom";
+
+
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(true);
-
   return (
-    <Router>
-      <div className="Routes">
-        <RoutesApp
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
-        />
-      </div>
-    </Router>
+    <BrowserRouter>
+      <RotesApp />
+    </BrowserRouter>
+
   );
 }
 
 export default App;
+
