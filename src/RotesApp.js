@@ -6,47 +6,41 @@ import RegisterPage from "../src/pages/RegisterPage";
 import AdminPage from "../src/pages/AdminPage";
 import ClientPage from "../src/pages/ClientPage";
 
-function PrivateRoute({ element, authenticated }) {
-  if (!authenticated) {
-    return <Navigate to="/login" />;
-  }
-
-  return element;
-}
-
 export function RoutesApp({ authenticated, setAuthenticated }) {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route
         path="/login"
-        element={<LoginPage setAuthenticated={setAuthenticated} />}
+        element={
+          <LoginPage
+            setAuthenticated={setAuthenticated}
+            authenticated={authenticated}
+          />
+        }
       />
       <Route path="/register" element={<RegisterPage />} />
 
       {/* Ruta genérica para usuarios autenticados */}
       <Route
-        path="/*"
+        path="/dashboard"
         element={
-          <PrivateRoute
-            element={
-              authenticated ? (
-                // Redirige al usuario según su rol
-                authenticated.userRole === "admin" ? (
-                  <AdminPage />
-                ) : (
-                  <ClientPage />
-                )
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-            authenticated={authenticated}
-          />
+          authenticated ? (
+            authenticated.userRole === "admin" ? (
+              <AdminPage />
+            ) : (
+              <ClientPage />
+            )
+          ) : (
+            <Navigate to="/login" />
+          )
         }
       />
+
+      {/* Nuevas rutas para redireccionar a AdminPage y ClientPage */}
+      <Route path="/adminpage" element={<AdminPage />} />
+      <Route path="/clientpage" element={<ClientPage />} />
     </Routes>
   );
 }
-
 export default RoutesApp;

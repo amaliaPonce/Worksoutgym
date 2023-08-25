@@ -11,9 +11,7 @@ function LoginComponent() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleLogin = async () => {
     setError("");
     setIsLoading(true);
 
@@ -23,13 +21,16 @@ function LoginComponent() {
         password,
       });
 
-      console.log(data);
-
       if (data.status === "ok") {
-        navigate("/dashboard");
+        if (data.userRole === "admin") {
+          navigate("/adminpage"); // Redirige al usuario a "/adminpage"
+        } else if (data.userRole === "cliente") {
+          navigate("/clientpage"); // Redirige al usuario a "/clientpage"
+        }
       } else {
         setError(data.message || "Error al iniciar sesión");
       }
+      console.log(data);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -40,7 +41,7 @@ function LoginComponent() {
   return (
     <div className="login-container">
       <h2 className="login-title">Iniciar Sesión</h2>
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
           className={`login-input ${error && "error"}`}
           type="email"
@@ -59,7 +60,12 @@ function LoginComponent() {
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
         />
-        <button className="login-button" type="submit" disabled={isLoading}>
+        <button
+          className="login-button"
+          type="button" // Cambiar a type="button" para evitar el envío del formulario
+          disabled={isLoading}
+          onClick={handleLogin} // Manejar la autenticación en el evento click
+        >
           <span>{isLoading ? "Cargando..." : "Iniciar Sesión"}</span>
         </button>
         {error && <p className="login-error">{error}</p>}

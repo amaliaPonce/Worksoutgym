@@ -8,7 +8,7 @@ function ClientPage() {
   return (
     <div>
       <h2>ClientPage</h2>
-      {user && user.role === "client" && (
+      {user && user.role === "cliente" && (
         <div>
           <ClientComponent />
         </div>

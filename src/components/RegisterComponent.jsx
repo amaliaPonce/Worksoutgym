@@ -1,10 +1,13 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function RegisterComponent() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +26,9 @@ function RegisterComponent() {
       });
 
       if (response.ok) {
-        window.location.href = "/login";
+        // Registro exitoso, muestra mensaje y redirige a la página de inicio de sesión
+        setRegistrationSuccess(true);
+        navigate("/login");
       } else {
         console.error("Error en el registro");
       }
@@ -35,6 +40,9 @@ function RegisterComponent() {
   return (
     <div>
       <h2>Registrarse</h2>
+      {registrationSuccess && (
+        <p>¡Registro exitoso! Por favor, inicia sesión.</p>
+      )}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Nombre:</label>
@@ -63,7 +71,7 @@ function RegisterComponent() {
         <button type="submit">Registrarse</button>
       </form>
       <p>
-        ¿Ya tienes una cuenta? <Link to="/loginPage">Inicia sesión</Link>
+        ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
       </p>
     </div>
   );
