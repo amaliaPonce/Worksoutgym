@@ -1,10 +1,9 @@
-// En tu archivo de controladores en el frontend (por ejemplo, src/controllers/exerciseController.js)
 export const toggleFavoriteExercise = async (idExercise, isFavorite) => {
   try {
     const response = await fetch(
       `/api/exercises/favoriteExercises/${idExercise}`,
       {
-        method: isFavorite ? "DELETE" : "POST", // Usa DELETE para eliminar, POST para agregar
+        method: isFavorite ? "DELETE" : "POST",
         headers: {
           "Content-Type": "application/json",
         },

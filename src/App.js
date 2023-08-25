@@ -1,5 +1,5 @@
 import React from "react";
-import RotesApp from "./RotesApp";
+import RotesApp from "../src/routes/RoutesApp";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
