@@ -1,6 +1,6 @@
 import React from "react";
-import AdminPage from "./AdminDashboard";
-import ClientPage from "./ClientPage";
+import AdminPage from "../pages/AdminPage";
+import ClientPage from "../pages/ClientPage";
 import { useAuth } from "../context/AuthContext";
 
 function Dashboard() {
