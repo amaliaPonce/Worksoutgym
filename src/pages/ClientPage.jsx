@@ -4,11 +4,10 @@ import ClientComponent from "../components/ClientComponent";
 
 function ClientPage() {
   const { user } = useAuth();
-
   return (
     <div>
       <h2>ClientPage</h2>
-      {user && user.role === "cliente" && (
+      {user === "cliente" && (
         <div>
           <ClientComponent />
         </div>

@@ -17,7 +17,6 @@ function ExerciseItem({ exercise }) {
     // };
     // checkIfFavorite();
   }, [exercise.id]);
-
   const handleToggleFavorite = async () => {
     const result = await toggleFavoriteExercise(exercise.id, isFavorite);
     if (result.success) {
@@ -27,7 +26,6 @@ function ExerciseItem({ exercise }) {
       console.error(result.message);
     }
   };
-
   return (
     <div>
       <h3>{exercise.name}</h3>
@@ -38,5 +36,4 @@ function ExerciseItem({ exercise }) {
     </div>
   );
 }
-
 export default ExerciseItem;

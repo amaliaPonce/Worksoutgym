@@ -4,11 +4,10 @@ import AdminComponent from "../components/AdminComponent";
 
 function AdminPage() {
   const { user } = useAuth();
-
   return (
     <div>
       <h2>AdminPage</h2>
-      {user && user.role === "admin" && (
+      {user === "admin" && (
         <div>
           <AdminComponent />
         </div>
@@ -16,7 +15,4 @@ function AdminPage() {
     </div>
   );
 }
-
 export default AdminPage;
-
-// Esta es la página principal del usuario administrador

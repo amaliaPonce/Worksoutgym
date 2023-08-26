@@ -8,7 +8,6 @@ function AddExercise() {
     muscleGroup: "",
     // Agrega más propiedades si quieres añadir más cosas a los ejercicios 'ojo' hay que modificar también el backend y la base de datos
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEjercicio({
@@ -16,10 +15,8 @@ function AddExercise() {
       [name]: value,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await postExercise(ejercicio); // Usa la función importada para enviar la solicitud
       if (response.status === 201) {
@@ -33,7 +30,6 @@ function AddExercise() {
       console.error("Error de red", error);
     }
   };
-
   return (
     <div>
       <h2>Agregar Ejercicio de Gimnasio</h2>
@@ -70,5 +66,4 @@ function AddExercise() {
     </div>
   );
 }
-
 export default AddExercise;

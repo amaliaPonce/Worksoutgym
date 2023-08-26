@@ -6,12 +6,9 @@ function RegisterComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
-
   const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch("http://localhost:8000/users/register", {
         method: "POST",
@@ -24,7 +21,6 @@ function RegisterComponent() {
           password,
         }),
       });
-
       if (response.ok) {
         // Registro exitoso, muestra mensaje y redirige a la página de inicio de sesión
         setRegistrationSuccess(true);
@@ -36,7 +32,6 @@ function RegisterComponent() {
       console.error("Error en el registro", error);
     }
   };
-
   return (
     <div>
       <h2>Registrarse</h2>
@@ -76,5 +71,4 @@ function RegisterComponent() {
     </div>
   );
 }
-
 export default RegisterComponent;

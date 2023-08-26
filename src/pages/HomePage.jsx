@@ -6,7 +6,6 @@ function HomePage() {
   return (
     <div>
       <h1>🏋️‍♂️ WorksOutGym 🏋️‍♂️ </h1>
-
       <HeaderComponent />
       <FooterComponent />
     </div>

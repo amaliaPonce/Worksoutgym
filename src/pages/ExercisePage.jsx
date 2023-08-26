@@ -9,5 +9,4 @@ function ExercisePage() {
     </div>
   );
 }
-
 export default ExercisePage;

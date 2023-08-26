@@ -8,7 +8,6 @@ export const postExercise = async (ejercicio) => {
       },
       body: JSON.stringify(ejercicio),
     });
-
     return response; // Retorna la respuesta para manejarla en el componente
   } catch (error) {
     throw error;

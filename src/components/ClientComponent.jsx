@@ -1,25 +1,22 @@
 import React from "react";
-import { useAuth } from "../context/AuthContext";
-import FavExerciseComponent from "../components/FavExerciseComponent";
+//import FavExerciseComponent from "../components/FavExerciseComponent";
 import ExerciseListComponent from "../components/ExerciseListComponent";
-import { AuthProvider } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
 function ClientComponent() {
   const { user } = useAuth();
 
   return (
-    <AuthProvider>
-      <div>
-        <h2>Cliente</h2>
-        {user && user.role === "client" && (
-          <div>
-            {/* Mostrar funcionalidades para usuarios clientes */}
-            <FavExerciseComponent />
-            <ExerciseListComponent />
-          </div>
-        )}
-      </div>
-    </AuthProvider>
+    <div>
+      <h2>Cliente</h2>
+      {user === "client" && (
+        <div>
+          Perico
+          <ExerciseListComponent />
+          {/* <FavExerciseComponent /> */}
+        </div>
+      )}
+    </div>
   );
 }
 
