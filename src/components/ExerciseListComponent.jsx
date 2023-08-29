@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { postExercise } from "./../hooks/ExercisesFetch";
 
 function ExerciseListComponent() {
   const [exercises, setExercises] = useState([]);
 
   useEffect(() => {
-    fetch("/exercises")
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchExercises = async () => {
+      try {
+        const response = await fetch("/exercises/infoExercises");
+        if (!response.ok) {
+          throw new Error(
+            `Error en la solicitud: ${response.status} ${response.statusText}`
+          );
+        }
+        const data = await response.json();
         setExercises(data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error al obtener la lista de ejercicios", error);
-      });
+      }
+    };
+
+    fetchExercises();
   }, []);
 
   return (
@@ -20,14 +27,13 @@ function ExerciseListComponent() {
       <h2>Lista de Ejercicios</h2>
       <ul>
         {exercises.map((exercise) => (
-          <li key={exercise.id}>
+          <li key={exercise.data}>
             <h3>{exercise.name}</h3>
             <p>{exercise.description}</p>
             <p>Grupo Muscular: {exercise.muscleGroup}</p>
           </li>
         ))}
       </ul>
-      <button onClick={postExercise}>Publicar Ejercicio</button>
     </div>
   );
 }

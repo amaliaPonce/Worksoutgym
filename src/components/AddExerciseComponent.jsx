@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { postExercise } from "../hooks/ExercisesFetch";
+import { postExercise } from "../hooks/AddExercisesFetch";
 
 function AddExercise() {
   const [ejercicio, setEjercicio] = useState({
     name: "",
     description: "",
     muscleGroup: "",
-    // Agrega más propiedades si quieres añadir más cosas a los ejercicios 'ojo' hay que modificar también el backend y la base de datos
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,7 +59,6 @@ function AddExercise() {
             onChange={handleChange}
           />
         </div>
-        {/* Agrega más campos de formulario según las propiedades esperadas por el backend */}
         <button type="submit">Agregar Ejercicio</button>
       </form>
     </div>

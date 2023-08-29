@@ -1,8 +1,9 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext";
+import Accordion from "../components/Accordion";
 import ExerciseListComponent from "../components/ExerciseListComponent";
-//import FavExerciseComponent from "../components/FavExerciseComponent";
-
+import FavExerciseComponent from "../components/FavExerciseComponent";
+import AddExerciseComponent from "../components/AddExerciseComponent";
 function AdminComponent() {
   const { user } = useAuth();
 
@@ -10,11 +11,11 @@ function AdminComponent() {
     <div>
       <h2>Admin</h2>
       {user === "admin" && (
-        <div>
-          {/* Añadir aqui las funciones a las que tiene acceso el admin */}
+        <Accordion>
           <ExerciseListComponent />
-          {/* <FavExerciseComponent /> */}
-        </div>
+          <AddExerciseComponent />
+          <FavExerciseComponent />
+        </Accordion>
       )}
     </div>
   );
