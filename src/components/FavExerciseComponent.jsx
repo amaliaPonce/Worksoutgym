@@ -10,7 +10,7 @@ function ExerciseItem({ exercise }) {
     // Ejemplo:
     const checkIfFavorite = async () => {
       const response = await fetch(
-        `/api/exercises/favoriteExercises/${exercise.id}`
+        `/exercises/favoriteExercises/${exercise.id}`
       );
       if (response.ok) {
         const data = await response.json();

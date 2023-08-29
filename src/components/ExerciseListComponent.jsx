@@ -1,47 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function ExerciseListComponent() {
+// este import es la conexion al backend pero no devuelve los ejercicios
+import { post } from "../api";
+
+// Como hago para que esto me devuelva la lista de todos los ejercicios en un formato json que necesito
+// Necesito un Fetch que me retorne el array de ejercicios??
+const ExerciseListComponent = () => {
   const [exercises, setExercises] = useState([]);
-  const [showList, setShowList] = useState(false);
 
   useEffect(() => {
-    const fetchExercises = async () => {
-      try {
-        const response = await fetch("/exercises/getExercisess");
-        if (!response.ok) {
-          throw new Error(
-            `Error en la solicitud: ${response.status} ${response.statusText}`
-          );
-        }
-        const data = await response.json();
-        setExercises(data);
-      } catch (error) {
-        console.error("Error al obtener la lista de ejercicios", error);
-      }
-    };
-
-    fetchExercises();
+    post("/exercises/getExercises", {}).then((response) => {
+      setExercises(response.data);
+    });
   }, []);
-
+  // la primera parte del return me lo muestra pero no consigo que me devuelva los datos
   return (
     <div>
       <h2>Lista de Ejercicios</h2>
-      <button onClick={() => setShowList(!showList)}>
-        {showList ? "Ocultar Lista" : "Mostrar Lista"}
-      </button>
-      {showList && (
-        <ul>
-          {exercises.map((exercise) => (
-            <li key={exercise.id}>
-              <h3>{exercise.name}</h3>
-              <p>{exercise.description}</p>
-              <p>Grupo Muscular: {exercise.muscleGroup}</p>
-            </li>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Grupo Muscular</th>
+          </tr>
+        </thead>
+        <tbody>
+          {exercises.map((exercise, index) => (
+            <tr key={index}>
+              <td>{exercise.name}</td>
+              <td>{exercise.description}</td>
+              <td>{exercise.muscleGroup}</td>
+            </tr>
           ))}
-        </ul>
-      )}
+        </tbody>
+      </table>
     </div>
   );
-}
+};
 
 export default ExerciseListComponent;
