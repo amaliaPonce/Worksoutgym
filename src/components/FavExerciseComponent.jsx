@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { toggleFavoriteExercise } from "../hooks/FavFecth";
+import { FavoriteExercise } from "../hooks/FavFecth";
 
 function ExerciseItem({ exercise }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -8,17 +8,19 @@ function ExerciseItem({ exercise }) {
     // Aquí puedes verificar si el ejercicio es favorito para este usuario y actualizar isFavorite
     // Puedes hacer esto con una solicitud al backend cuando el componente se monte.
     // Ejemplo:
-    // const checkIfFavorite = async () => {
-    //   const response = await fetch(`/api/exercises/favoriteExercises/${exercise.id}`);
-    //   if (response.ok) {
-    //     const data = await response.json();
-    //     setIsFavorite(data.isFavorite); // Suponiendo que el backend devuelve información sobre si es favorito
-    //   }
-    // };
-    // checkIfFavorite();
+    const checkIfFavorite = async () => {
+      const response = await fetch(
+        `/api/exercises/favoriteExercises/${exercise.id}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setIsFavorite(data.isFavorite); // Suponiendo que el backend devuelve información sobre si es favorito
+      }
+    };
+    checkIfFavorite();
   }, [exercise.id]);
   const handleToggleFavorite = async () => {
-    const result = await toggleFavoriteExercise(exercise.id, isFavorite);
+    const result = await FavoriteExercise(exercise.id, isFavorite);
     if (result.success) {
       setIsFavorite(!isFavorite);
       console.log(result.message);

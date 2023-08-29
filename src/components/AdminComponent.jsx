@@ -1,4 +1,3 @@
-// components/AdminDashboard.js
 import React from "react";
 import { useAuth } from "../context/AuthContext";
 import ExerciseListComponent from "../components/ExerciseListComponent";
@@ -12,7 +11,6 @@ function AdminComponent() {
       <h2>Admin</h2>
       {user === "admin" && (
         <div>
-          Perico
           {/* Añadir aqui las funciones a las que tiene acceso el admin */}
           <ExerciseListComponent />
           {/* <FavExerciseComponent /> */}

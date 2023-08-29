@@ -1,5 +1,4 @@
 export const postExercise = async (ejercicio) => {
-  // Exporta la función correctamente
   try {
     const response = await fetch("/exercises", {
       method: "POST",
@@ -8,7 +7,13 @@ export const postExercise = async (ejercicio) => {
       },
       body: JSON.stringify(ejercicio),
     });
-    return response; // Retorna la respuesta para manejarla en el componente
+
+    if (!response.ok) {
+      const errorMessage = `Error en la solicitud: ${response.status} ${response.statusText}`;
+      throw new Error(errorMessage);
+    }
+    const responseData = await response.json();
+    return responseData;
   } catch (error) {
     throw error;
   }

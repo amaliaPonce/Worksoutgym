@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { postExercise } from "./../hooks/ExercisesFetch";
 
 function ExerciseListComponent() {
   const [exercises, setExercises] = useState([]);
 
   useEffect(() => {
-    // Aquí realizamos una solicitud GET a la API para obtener la lista de ejercicios.
-    fetch("/exercises/infoExercises")
+    fetch("/exercises")
       .then((response) => response.json())
       .then((data) => {
         setExercises(data);
@@ -24,10 +24,10 @@ function ExerciseListComponent() {
             <h3>{exercise.name}</h3>
             <p>{exercise.description}</p>
             <p>Grupo Muscular: {exercise.muscleGroup}</p>
-            {/* Agrega más información del ejercicio si es necesario */}
           </li>
         ))}
       </ul>
+      <button onClick={postExercise}>Publicar Ejercicio</button>
     </div>
   );
 }

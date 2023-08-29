@@ -1,4 +1,4 @@
-export const toggleFavoriteExercise = async (idExercise, isFavorite) => {
+export const FavoriteExercise = async (idExercise, isFavorite) => {
   try {
     const response = await fetch(
       `/api/exercises/favoriteExercises/${idExercise}`,
