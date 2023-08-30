@@ -9,10 +9,35 @@ const ExerciseListComponent = () => {
   const [exercises, setExercises] = useState([]);
 
   useEffect(() => {
-    post("/exercises/getExercises", {}).then((response) => {
-      setExercises(response.data);
-    });
+    const getEjercicios = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8000/exercises/listExercises"
+        );
+
+        if (!response.ok) {
+          // Manejo de errores de red
+          throw new Error(
+            `Error en la solicitud: ${response.status} ${response.statusText}`
+          );
+        }
+
+        const data = await response.json();
+        setExercises(data);
+        return data;
+      } catch (error) {
+        // Manejo de errores generales
+        throw new Error(`Error en la solicitud: ${error.message}`);
+      }
+    };
+
+    getEjercicios();
+
+    //  post("/exercises/getExercises", {}).then((response) => {
+    //    setExercises(response.data);
+    //  });
   }, []);
+
   // la primera parte del return me lo muestra pero no consigo que me devuelva los datos
   return (
     <div>
