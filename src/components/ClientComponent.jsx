@@ -1,6 +1,6 @@
 import React from "react";
 import FavExerciseComponent from "../components/FavExerciseComponent";
-import ExerciseListComponent from "../components/ExerciseListComponent";
+import ExerciseListComponent from "../components/admin/ExerciseListComponent";
 import { useAuth } from "../context/AuthContext";
 
 function ClientComponent() {

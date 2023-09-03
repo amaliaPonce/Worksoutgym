@@ -1,0 +1,60 @@
+/* Estilos para el componente AddNewExercise */
+.add-exercise {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #000000;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-exercise h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .add-exercise label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .add-exercise input[type="text"],
+  .add-exercise textarea,
+  .add-exercise input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .add-exercise textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+  }
+  
+  .add-exercise button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .add-exercise button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .add-exercise button:hover {
+    background-color: #0056b3;
+  }
+  
+  .add-exercise p {
+    color: #ff5722;
+    font-weight: bold;
+  }
+  

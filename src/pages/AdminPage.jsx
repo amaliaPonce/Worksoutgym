@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext";
-import AdminComponent from "../components/AdminComponent";
+import AdminComponent from "../components/admin/AdminComponent";
 
 function AdminPage() {
   const { user } = useAuth();

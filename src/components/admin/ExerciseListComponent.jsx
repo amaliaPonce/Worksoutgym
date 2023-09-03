@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ExercisePost from "./ExercisePostComponent";
+import "../../styles/exerciseList.css";
 
 function ExerciseListComponent() {
   const [exercises, setExercises] = useState([]);
@@ -44,7 +44,21 @@ function ExerciseListComponent() {
         <ul>
           {exercises.map((exercise) => (
             <li key={exercise.id}>
-              <ExercisePost exercise={exercise} />
+              <div className="exercise-info">
+                <div className="exercise-image">
+                  <img
+                    src={`http://localhost:8000/uploads/${exercise.photoName}`}
+                    alt={exercise.name}
+                  />
+                </div>
+                <div className="exercise-details">
+                  <strong>Nombre:</strong> {exercise.name}
+                  <br />
+                  <strong>Descripción:</strong> {exercise.description}
+                  <br />
+                  <strong>Grupo Muscular:</strong> {exercise.muscleGroup}
+                </div>
+              </div>
             </li>
           ))}
         </ul>
