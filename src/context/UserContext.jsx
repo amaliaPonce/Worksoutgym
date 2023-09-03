@@ -1,5 +1,3 @@
-// UserContext.js
-
 import React, { createContext, useContext, useState } from "react";
 
 export const UserContext = createContext();
@@ -12,10 +10,13 @@ export const UserProvider = ({ children }) => {
     };
   });
 
-  const setUserAndStorage = (newUser) => {
-    setUser(newUser);
-    if (newUser && newUser.token) {
-      localStorage.setItem("session", JSON.stringify({ token: newUser.token }));
+  const setUserAndStorage = (loginUser) => {
+    setUser(loginUser);
+    if (loginUser && loginUser.token) {
+      localStorage.setItem(
+        "session",
+        JSON.stringify({ token: loginUser.token })
+      );
     } else {
       localStorage.removeItem("session");
     }

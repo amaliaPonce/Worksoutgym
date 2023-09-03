@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { FavoriteExercise } from "../hooks/FavFecth";
+import { FavoriteExercise } from "../hooks/api";
 
 function ExerciseItem({ exercise }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    // Aquí puedes verificar si el ejercicio es favorito para este usuario y actualizar isFavorite
-    // Puedes hacer esto con una solicitud al backend cuando el componente se monte.
-    // Ejemplo:
     const checkIfFavorite = async () => {
       const response = await fetch(
         `/exercises/favoriteExercises/${exercise.id}`
       );
       if (response.ok) {
         const data = await response.json();
-        setIsFavorite(data.isFavorite); // Suponiendo que el backend devuelve información sobre si es favorito
+        setIsFavorite(data.isFavorite);
       }
     };
     checkIfFavorite();

@@ -17,12 +17,10 @@ function AddExercise() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await postExercise(ejercicio); // Usa la función importada para enviar la solicitud
+      const response = await postExercise(ejercicio);
       if (response.status === 201) {
-        // Verifica si la respuesta tiene el estado correcto
         console.log("Ejercicio agregado exitosamente");
       } else {
-        // Manejar errores, por ejemplo, mostrar un mensaje de error
         console.error("Error al agregar el ejercicio");
       }
     } catch (error) {

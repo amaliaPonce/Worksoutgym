@@ -1,38 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import React from "react";
+import { useExerciseList } from "./../hooks/api";
 
 const ExerciseListComponent = () => {
-  const [exercises, setExercises] = useState([]);
-  const { user } = useContext(UserContext);
-
-  useEffect(() => {
-    const getEjercicios = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:8000/exercises/listExercises",
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(
-            `Error en la solicitud: ${response.status} ${response.statusText}`
-          );
-        }
-
-        const data = await response.json();
-        setExercises(data);
-      } catch (error) {
-        // Manejo de errores generales
-        console.error(`Error en la solicitud: ${error.message}`);
-      }
-    };
-
-    getEjercicios();
-  }, [user]);
+  const exercises = useExerciseList();
 
   return (
     <div>
@@ -46,13 +16,19 @@ const ExerciseListComponent = () => {
           </tr>
         </thead>
         <tbody>
-          {exercises.map((exercise, index) => (
-            <tr key={index}>
-              <td>{exercise.name}</td>
-              <td>{exercise.description}</td>
-              <td>{exercise.muscleGroup}</td>
+          {Array.isArray(exercises) && exercises.length > 0 ? (
+            exercises.map((exercise, index) => (
+              <tr key={index}>
+                <td>{exercise.name}</td>
+                <td>{exercise.description}</td>
+                <td>{exercise.muscleGroup}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3">No hay ejercicios disponibles</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
