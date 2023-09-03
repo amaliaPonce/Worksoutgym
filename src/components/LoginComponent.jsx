@@ -11,7 +11,7 @@ function LoginComponent() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const { user, setUser } = useAuth();
+  const { setUser } = useAuth();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -29,8 +29,10 @@ function LoginComponent() {
       if (data.status === "ok") {
         if (data.data.userRole === "admin") {
           setUser("admin");
+          navigate("/adminpage"); // Mueve la navegación aquí
         } else if (data.data.userRole === "cliente") {
           setUser("cliente");
+          navigate("/clientpage"); // Mueve la navegación aquí
         }
       } else {
         setError(data.message || "Error al iniciar sesión");
@@ -43,13 +45,6 @@ function LoginComponent() {
     }
   };
 
-  console.log(">>>>", user);
-
-  if (user === "admin") {
-    navigate("/adminpage");
-  } else if (user === "cliente") {
-    navigate("/clientpage");
-  }
 
   return (
     <div className="login-container">
