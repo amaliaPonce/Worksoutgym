@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ExercisePost from "./ExercisePostComponent";
 
 function ExerciseListComponent() {
   const [exercises, setExercises] = useState([]);
@@ -7,7 +8,8 @@ function ExerciseListComponent() {
 
   useEffect(() => {
     // Tu token de autenticación (reemplázalo con tu token real)
-    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjkzNzM1ODY2LCJleHAiOjE2OTQzNDA2NjZ9.fD6ZvI_OtDIhFhsiWuazrUSMIltPl5fa_GGSAomipsw";
+    const accessToken =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjkzNzM3NTY4LCJleHAiOjE2OTQzNDIzNjh9.5vivRksfeqMRkMQwihd2Xf-JLMDpcL_IRQQMytExVJE";
 
     // Configura los encabezados de la solicitud con el token de autenticación
     const headers = {
@@ -26,7 +28,7 @@ function ExerciseListComponent() {
         return response.json();
       })
       .then((data) => {
-        setExercises(data.data); // Actualiza el estado con los datos recibidos
+        setExercises(data.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -43,24 +45,13 @@ function ExerciseListComponent() {
       ) : error ? (
         <p>Error: {error.message}</p>
       ) : exercises.length > 0 ? (
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Descripción</th>
-              <th>Grupo Muscular</th>
-            </tr>
-          </thead>
-          <tbody>
-            {exercises.map((exercise) => (
-              <tr key={exercise.id}>
-                <td>{exercise.name}</td>
-                <td>{exercise.description}</td>
-                <td>{exercise.muscleGroup}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <ul>
+          {exercises.map((exercise) => (
+            <li key={exercise.id}>
+              <ExercisePost exercise={exercise} />
+            </li>
+          ))}
+        </ul>
       ) : (
         <p>No hay ejercicios disponibles</p>
       )}
