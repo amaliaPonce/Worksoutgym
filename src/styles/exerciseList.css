@@ -1,0 +1,25 @@
+/* exerciseList.css */
+
+/* Estilo para los elementos de la lista */
+li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+  }
+  
+  /* Estilo para el nombre del ejercicio */
+  li strong:first-child {
+    font-weight: bold;
+  }
+  
+  /* Estilo para la descripción del ejercicio */
+  li strong:nth-child(2) {
+    color: #333;
+  }
+  
+  /* Estilo para el grupo muscular del ejercicio */
+  li strong:nth-child(3) {
+    color: #555;
+  }
+  

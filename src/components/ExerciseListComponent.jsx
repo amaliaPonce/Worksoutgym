@@ -7,16 +7,12 @@ function ExerciseListComponent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Tu token de autenticación (reemplázalo con tu token real)
     const accessToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjkzNzM3NTY4LCJleHAiOjE2OTQzNDIzNjh9.5vivRksfeqMRkMQwihd2Xf-JLMDpcL_IRQQMytExVJE";
-
-    // Configura los encabezados de la solicitud con el token de autenticación
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjkzNzM1ODY2LCJleHAiOjE2OTQzNDA2NjZ9.fD6ZvI_OtDIhFhsiWuazrUSMIltPl5fa_GGSAomipsw";
     const headers = {
-      Authorization: ` ${accessToken}`,
+      Authorization: `${accessToken}`,
     };
 
-    // Realiza la solicitud a la API con los encabezados
     fetch("http://localhost:8000/exercises/listExercises", {
       method: "GET",
       headers: headers,
