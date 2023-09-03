@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "../styles/register.css";
+
 
 function RegisterComponent() {
   const [name, setName] = useState("");
@@ -33,15 +35,16 @@ function RegisterComponent() {
     }
   };
   return (
-    <div>
-      <h2>Registrarse</h2>
+    <div className="register-container">
+      <h2 className="register-title">Regístrate</h2>
       {registrationSuccess && (
-        <p>¡Registro exitoso! Por favor, inicia sesión.</p>
+        <p className="register-subtitle">¡Registro exitoso! Por favor, inicia sesión.</p>
       )}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Nombre:</label>
           <input
+            className="register-input"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -50,6 +53,7 @@ function RegisterComponent() {
         <div>
           <label>Email:</label>
           <input
+            className="register-input"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -58,17 +62,17 @@ function RegisterComponent() {
         <div>
           <label>Contraseña:</label>
           <input
+            className="register-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit">Registrarse</button>
+        <button type="submit" className="register-button">Registrarse</button>
       </form>
-      <p>
-        ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
-      </p>
+     
     </div>
   );
 }
+
 export default RegisterComponent;
