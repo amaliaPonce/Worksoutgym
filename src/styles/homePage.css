@@ -2,18 +2,18 @@
 .banner {
   display: flex;
   align-items: center;
-  justify-content: center; 
-  height: 100vh; 
-  color: #000000; 
-  padding: 20px; 
-  overflow: hidden; 
+  justify-content: center;
+  height: 100vh;
+  color: #000000;
+  padding: 20px;
+  overflow: hidden;
 }
 
 /* Estilos para el texto en el banner */
 .banner-text {
   flex: 1;
   padding: 20px;
-  text-align: center; 
+  text-align: center;
 }
 
 .banner-title {
@@ -37,8 +37,8 @@
 .banner-button {
   display: inline-block;
   padding: 15px 30px;
-  background-color: #FF5722; 
-  color: #fff; 
+  background-color: #FF5722;
+  color: #fff;
   text-decoration: none;
   font-size: 24px;
   font-weight: bold;
@@ -47,21 +47,72 @@
 }
 
 .banner-button:hover {
-  background-color: #E64A19; 
+  background-color: #E64A19;
 }
 
 /* Estilos para el div de la imagen en el banner */
 .banner-image {
   flex: 1;
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
 }
 
 .banner-image img {
-  max-width: 60%; 
-  max-height: 80%; 
+  max-width: 60%;
+  max-height: 80%;
   width: auto;
   height: auto;
- 
+}
+
+/* Estilos para pantallas medianas (entre 768px y 1024px de ancho) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .banner-subtitle {
+    font-size: 36px; /* Ajusta el tamaño de la subtítulo en pantallas medianas */
+    padding: 10px 0; /* Ajusta el espaciado del subtítulo en pantallas medianas */
+  }
+}
+
+/* Estilos para pantallas pequeñas (menos de 768px de ancho) */
+@media (max-width: 768px) {
+  /* Ajustes para pantallas pequeñas */
+  .banner {
+    flex-direction: column-reverse; /* Coloca la imagen debajo del texto en pantallas pequeñas */
+    text-align: center; /* Centra el texto horizontalmente en pantallas pequeñas */
+    padding: 10px; /* Reduce el espaciado interior en pantallas pequeñas */
+  }
+
+  .banner-title {
+    font-size: 40px;
+  }
+
+  .banner-text {
+    padding: 10px;
+  }
+
+  .banner-subtitle {
+    font-size: 26px;
+    padding: 10px 0;
+  }
+
+  .banner-description {
+    font-size: 17px;
+  }
+
+  .banner-button {
+    padding: 10px 20px;
+    font-size: 15px;
+    margin-bottom:  20px;
+  }
+
+  .banner-image {
+    justify-content: center;
+  }
+
+  .banner-image img {
+    max-width: 100%;
+    max-height: 90%;
+    margin: 0;
+    padding: 0;
+  }
 }

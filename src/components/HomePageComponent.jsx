@@ -7,7 +7,7 @@ const HomePageComponent = () => {
     <div className="banner">
       <div className="banner-text">
         <h4 className="banner-title">Únete a nuestro Fitness Club</h4>
-        <h2 className="banner-subtitle">¡Suda, Sonríe <br /> y Repite!</h2>
+        <h2 className="banner-subtitle">¡Suda, Sonríe y Repite!</h2>
         <p className="banner-description">
           Descubre las mejores rutinas de ejercicios personalizadas para ti.
         </p>
