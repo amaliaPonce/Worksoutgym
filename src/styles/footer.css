@@ -1,0 +1,61 @@
+/* Estilos para el componente Footer */
+.footer {
+    background-color: #222;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .footer-section {
+    margin: 20px;
+  }
+  
+  /* Estilos para los enlaces */
+  .conocenos-link,
+  .footer-link {
+    color: #FF5722;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .conocenos-link:hover,
+  .footer-link:hover {
+    color: #E64A19;
+  }
+  
+  /* Estilos para el ícono de corazón */
+  .heart-icon {
+    color: #FF5722;
+  }
+
+  @media (max-width: 768px) {
+    .footer {
+      padding: 20px 0; /* Reduce el espacio interno superior e inferior */
+    }
+  
+    .footer-content {
+      flex-direction: column; /* Cambia la dirección de flex para dispositivos móviles */
+      align-items: center; /* Centra los elementos */
+    }
+  
+    .footer-section {
+      margin: 10px;
+    }
+  
+    /* Estilos adicionales para el enlace "Conócenos" en pantallas pequeñas */
+    .conocenos-link {
+      font-size: 18px;
+      padding: 8px 16px; 
+      margin: 10px 0; 
+    }
+  }
+  
+  

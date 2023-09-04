@@ -6,7 +6,7 @@ function Accordion({ children, title }) {
   return (
     <div className="accordion">
       <button onClick={() => setShow(!show)}>
-        {show ? 'Ocultar ' : 'Mostrar '}
+        {show ? 'Ocultar todo ' : 'Mostrar todo '}
         {title}
       </button>
       {show && children}

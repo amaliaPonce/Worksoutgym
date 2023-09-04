@@ -1,11 +1,10 @@
 import React from "react";
-import ExerciseListComponet from "../components/ExerciseListComponent";
+import ExerciseListComponent from "../components/admin/ExerciseListComponent";
 
 function ExercisePage() {
   return (
     <div>
-      <h1>Página de Ejercicios</h1>
-      <ExerciseListComponet />
+      <ExerciseListComponent />
     </div>
   );
 }

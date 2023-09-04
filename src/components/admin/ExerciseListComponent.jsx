@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import ExercisePost from "./ExercisePostComponent";
 import { AppContext } from "../context/AppContext";
 
 function ExerciseListComponent() {
   const [exercises, setExercises] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const { user } = useContext(AppContext);
 
   useEffect(() => {
@@ -15,7 +13,6 @@ function ExerciseListComponent() {
       Authorization: ` ${user.token}`,
     };
 
-    // Realiza la solicitud a la API con los encabezados
     fetch("http://localhost:8000/exercises/listExercises", {
       method: "GET",
       headers: headers,
@@ -47,7 +44,21 @@ function ExerciseListComponent() {
         <ul>
           {exercises.map((exercise) => (
             <li key={exercise.id}>
-              <ExercisePost exercise={exercise} />
+              <div className="exercise-info">
+                <div className="exercise-image">
+                  <img
+                    src={`http://localhost:8000/uploads/${exercise.photoName}`}
+                    alt={exercise.name}
+                  />
+                </div>
+                <div className="exercise-details">
+                  <strong>Nombre:</strong> {exercise.name}
+                  <br />
+                  <strong>Descripción:</strong> {exercise.description}
+                  <br />
+                  <strong>Grupo Muscular:</strong> {exercise.muscleGroup}
+                </div>
+              </div>
             </li>
           ))}
         </ul>
