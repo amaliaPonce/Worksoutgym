@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-
+import ExercisePostComponent from "./ExercisePostComponent";
 function ExerciseListComponent() {
   const [exercises, setExercises] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,21 +44,7 @@ function ExerciseListComponent() {
         <ul>
           {exercises.map((exercise) => (
             <li key={exercise.id}>
-              <div className="exercise-info">
-                <div className="exercise-image">
-                  <img
-                    src={`http://localhost:8000/uploads/${exercise.photoName}`}
-                    alt={exercise.name}
-                  />
-                </div>
-                <div className="exercise-details">
-                  <strong>Nombre:</strong> {exercise.name}
-                  <br />
-                  <strong>Descripción:</strong> {exercise.description}
-                  <br />
-                  <strong>Grupo Muscular:</strong> {exercise.muscleGroup}
-                </div>
-              </div>
+              <ExercisePostComponent exercise={exercise} />
             </li>
           ))}
         </ul>

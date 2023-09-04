@@ -1,5 +1,5 @@
 import React from "react";
-import ExerciseListComponent from "../components/admin/ExerciseListComponent";
+import ExerciseListComponent from "../components/users/ExerciseListComponent";
 
 function ExercisePage() {
   return (

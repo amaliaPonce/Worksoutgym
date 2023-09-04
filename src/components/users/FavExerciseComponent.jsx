@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../../context/AppContext";
 
 export const FavoriteExercise = async (idExercise, isFavorite, user) => {
   try {

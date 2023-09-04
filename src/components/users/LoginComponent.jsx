@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { post } from "../api";
-import "../styles/login.css";
-import { AppContext } from "../context/AppContext";
+import { post } from "../../api";
+import "../../styles/login.css";
+import { AppContext } from "../../context/AppContext";
 
 function LoginComponent() {
   const navigate = useNavigate();
@@ -11,7 +11,6 @@ function LoginComponent() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  // const [userRole, setUserRole] = useState("");
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -23,17 +22,14 @@ function LoginComponent() {
         email,
         password,
       });
-      //console.log(data);
 
       if (data.status === "ok") {
-        //setUserRole(data.data.userRole);
         login({ role: data.data.userRole, token: data.data.token });
         if (data.data.userRole === "admin") {
           navigate("/adminpage");
         } else if (data.data.userRole === "cliente") {
           navigate("/clientpage");
         }
-        //console.log(data.data.userRole);
       } else {
         setError(data.message || "Error al iniciar sesión");
       }

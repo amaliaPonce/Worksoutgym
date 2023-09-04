@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import RegisterComponent from "../components/RegisterComponent";
+import RegisterComponent from "../components/users/RegisterComponent";
 import "../styles/login.css";
 
 function RegisterPage() {

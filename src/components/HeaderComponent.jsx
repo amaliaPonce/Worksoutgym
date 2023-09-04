@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 import "../styles/header.css";
+import "../index.css"
 import logo from "../assets/logo.png"; // Importa la imagen del logotipo
 
 function HeaderComponent() {

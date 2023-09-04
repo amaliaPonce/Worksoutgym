@@ -4,7 +4,12 @@ const ExercisePostComponent = ({ exercise }) => {
   return (
     <div className="exercise-details">
       <p>ID: {exercise.id}</p>
-      <p>Nombre de la Foto: {exercise.photoName}</p>
+      <div className="exercise-image">
+                  <img
+                    src={`http://localhost:8000/uploads/${exercise.photoName}`}
+                    alt={exercise.name}
+                  />
+                </div>
       <p>
         <strong>Nombre:</strong> {exercise.name}
       </p>

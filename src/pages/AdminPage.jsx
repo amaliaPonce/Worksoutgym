@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
-import AdminComponent from "../components/admin/AdminComponent";
+import AdminComponent from "../components/users/AdminComponent";
 
 function AdminPage() {
   const { user } = useContext(AppContext);

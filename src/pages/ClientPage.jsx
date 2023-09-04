@@ -1,6 +1,6 @@
 import React from "react";
 import { AppContext } from "../context/AppContext";
-import ClientComponent from "../components/ClientComponent";
+import ClientComponent from "../components/users/ClientComponent";
 
 function ClientPage() {
   const { user } = AppContext();

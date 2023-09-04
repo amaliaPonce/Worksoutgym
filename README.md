@@ -64,3 +64,22 @@ rgb(197, 215, 189)
 rgb(159, 184, 173)
 rgb(56, 62, 86)
 rgb(251, 116, 62)
+
+// 
+BACKEND
+- Cerrar sesion 
+- Actualizar Postman
+- Otorgar perfil a otro administrador
+
+
+FRONTEND 
+- Implementar las siguientes funcionalidades: 
+
+Cerrar sesion
+Eliminar ejercicio
+Otorgar perfil a otro administrador
+Poner los componentes en sus page correspondiente
+Verificar que en listExercises se puede filtrar y si no crearlo (ExercisePost para el formato de mostrar)
+Recomendar ejercicios y mostrar lista de ejercicios recomendados
+info exercise (ExercisePost para el formato de mostrar)
+
