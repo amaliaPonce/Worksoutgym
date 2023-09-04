@@ -1,13 +1,14 @@
 import React from "react";
-import { useAuth } from "../context/AuthContext";
+import { AppContext } from "../context/AppContext";
 import ClientComponent from "../components/ClientComponent";
 
 function ClientPage() {
-  const { user } = useAuth();
+  const { user } = AppContext();
+
   return (
     <div>
       <h2>ClientPage</h2>
-      {user === "cliente" && (
+      {user.role === "cliente" && (
         <div>
           <ClientComponent />
         </div>

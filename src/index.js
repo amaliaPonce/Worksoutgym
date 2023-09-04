@@ -1,14 +1,20 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import reportWebVitals from "./reportWebVitals";
+import ReactDOM from "react-dom";
+import { AppProvider } from "./context/AppContext";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./RoutesApp";
 
-import Navigation from "./Navigation";
+const App = () => {
+  return (
+    <React.StrictMode>
+      <BrowserRouter>
+        <AppProvider>
+          <AppRoutes />
+        </AppProvider>
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+};
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <Navigation />
-  </React.StrictMode>
-);
-reportWebVitals();
+const root = document.getElementById("root");
+ReactDOM.render(<App />, root);

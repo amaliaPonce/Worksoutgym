@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import "../../styles/exerciseList.css";
+import React, { useState, useEffect, useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 function ExerciseListComponent() {
   const [exercises, setExercises] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { user } = useContext(AppContext);
 
   useEffect(() => {
-    const accessToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjkzNzM1ODY2LCJleHAiOjE2OTQzNDA2NjZ9.fD6ZvI_OtDIhFhsiWuazrUSMIltPl5fa_GGSAomipsw";
+    // Configura los encabezados de la solicitud con el token de autenticación
     const headers = {
-      Authorization: `${accessToken}`,
+      Authorization: ` ${user.token}`,
     };
 
     fetch("http://localhost:8000/exercises/listExercises", {
@@ -31,7 +31,7 @@ function ExerciseListComponent() {
         setError(error);
         setLoading(false);
       });
-  }, []);
+  }, [user.token]);
 
   return (
     <div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
-import "../styles/header.css"; 
+import "../styles/header.css";
 import logo from "../assets/logo.png"; // Importa la imagen del logotipo
 
 function HeaderComponent() {
@@ -13,7 +14,6 @@ function HeaderComponent() {
   return (
     <header className="header">
       <nav className="nav container">
-
         <Link to="/" className="nav__logo">
           <img src={logo} alt="Logo" />
         </Link>
