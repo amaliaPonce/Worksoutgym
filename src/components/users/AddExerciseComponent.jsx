@@ -5,22 +5,29 @@ function AddExercise() {
   const [ejercicio, setEjercicio] = useState({
     name: "",
     description: "",
-    muscleGroup: "",
+    muscleGroup: "", // Valor inicial vacío
   });
+
+  const [photo, setPhoto] = useState(null);
   const { user } = useContext(AppContext);
 
   useEffect(() => {
-    // Configura los encabezados de la solicitud con el token de autenticación
     const headers = {
       Authorization: ` ${user.token}`,
     };
 
     const postExercise = async () => {
       try {
-        const response = await fetch("/exercises/newExercise", {
+        const formData = new FormData();
+        formData.append("name", ejercicio.name);
+        formData.append("description", ejercicio.description);
+        formData.append("muscleGroup", ejercicio.muscleGroup);
+        formData.append("photo", photo);
+
+        const response = await fetch("http://localhost:8000/exercises/newExercise", {
           method: "POST",
-          headers,
-          body: JSON.stringify(ejercicio),
+          headers: headers,
+          body: formData,
         });
 
         if (!response.ok) {
@@ -29,7 +36,7 @@ function AddExercise() {
         }
 
         const responseData = await response.json();
-        if (responseData.status === 201) {
+        if (responseData.status === "ok") {
           console.log("Ejercicio agregado exitosamente");
         } else {
           console.error("Error al agregar el ejercicio");
@@ -39,11 +46,10 @@ function AddExercise() {
       }
     };
 
-    // Llama a la función postExercise cuando se actualice el estado del ejercicio
-    if (ejercicio.name && ejercicio.description && ejercicio.muscleGroup) {
+    if (ejercicio.name && ejercicio.description && ejercicio.muscleGroup && photo) {
       postExercise();
     }
-  }, [user, ejercicio]);
+  }, [user, ejercicio, photo]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,6 +57,11 @@ function AddExercise() {
       ...ejercicio,
       [name]: value,
     });
+  };
+
+  const handlePhotoChange = (e) => {
+    const selectedPhoto = e.target.files[0];
+    setPhoto(selectedPhoto);
   };
 
   return (
@@ -76,11 +87,23 @@ function AddExercise() {
         </div>
         <div>
           <label>Grupo Muscular:</label>
-          <input
-            type="text"
+          <select
             name="muscleGroup"
             value={ejercicio.muscleGroup}
             onChange={handleChange}
+          >
+            <option value="">Seleccionar</option>
+            <option value="Tren-superior">Tren-superior</option>
+            <option value="Tren-inferior">Tren-inferior</option>
+            <option value="core">core</option>
+          </select>
+        </div>
+        <div>
+          <label>Foto:</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handlePhotoChange}
           />
         </div>
         <button type="submit">Agregar Ejercicio</button>

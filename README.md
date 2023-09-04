@@ -83,3 +83,5 @@ Verificar que en listExercises se puede filtrar y si no crearlo (ExercisePost pa
 Recomendar ejercicios y mostrar lista de ejercicios recomendados
 info exercise (ExercisePost para el formato de mostrar)
 
+
+añadir nav de cliente y admin en sus respectivos dashboards

@@ -1,14 +1,17 @@
 import React from "react";
-import Accordion from "../Accordion";
-import ExercisePage from "../../pages/ExercisePage";
+
+import Sidebar from "../adminDashboard/Sidebar"; 
+import HeaderDashboard from "../adminDashboard/HeaderDashboard";
+import MainContent from "../adminDashboard/MainContent"; 
 
 function AdminComponent() {
   return (
     <div>
-      <h2>Admin</h2>
-      <Accordion>
-        <ExercisePage />
-      </Accordion>
+      <HeaderDashboard />
+      <div className="admin-container">
+        <Sidebar />
+        <MainContent />
+      </div>
     </div>
   );
 }
