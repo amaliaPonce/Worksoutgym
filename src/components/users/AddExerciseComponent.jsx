@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { Link } from "react-router-dom";
-
+import "../../styles/addExercise.css";
 function AddExercise() {
   const [ejercicio, setEjercicio] = useState({
     name: "",
@@ -31,11 +31,14 @@ function AddExercise() {
       formData.append("muscleGroup", ejercicio.muscleGroup);
       formData.append("photo", photo);
 
-      const response = await fetch("http://localhost:8000/exercises/newExercise", {
-        method: "POST",
-        headers: headers,
-        body: formData,
-      });
+      const response = await fetch(
+        "http://localhost:8000/exercises/newExercise",
+        {
+          method: "POST",
+          headers: headers,
+          body: formData,
+        }
+      );
 
       if (!response.ok) {
         const errorMessage = `Error en la solicitud: ${response.status} ${response.statusText}`;
@@ -72,40 +75,45 @@ function AddExercise() {
   };
 
   return (
-    <div>
-      <h2>Agregar Ejercicio de Gimnasio</h2>
+    <div className="add-exercise-container">
+      <h2 className="add-exercise-title">Agregar Ejercicio de Gimnasio</h2>
       {added ? (
         <div>
-          <p>Ejercicio agregado con éxito.</p>
-          <Link to="/adminPage">Agregar otro ejercicio</Link>
+          <p className="success-message">Ejercicio agregado con éxito.</p>
+          <Link to="/adminPage" className="return-link">
+            Agregar otro ejercicio
+          </Link>
         </div>
       ) : (
         <div>
-          <form onSubmit={handleAddExercise}>
-            {error && <p>Error: {error}</p>}
+          <form className="add-exercise-form" onSubmit={handleAddExercise}>
+            {error && <p className="error-message">Error: {error}</p>}
             <div>
-              <label>Nombre:</label>
+              <label className="add-exercise-label">Nombre:</label>
               <input
                 type="text"
                 name="name"
                 value={ejercicio.name}
                 onChange={handleChange}
+                className="add-exercise-input"
               />
             </div>
             <div>
-              <label>Descripción:</label>
+              <label className="add-exercise-label">Descripción:</label>
               <textarea
                 name="description"
                 value={ejercicio.description}
                 onChange={handleChange}
+                className="add-exercise-textarea"
               ></textarea>
             </div>
             <div>
-              <label>Grupo Muscular:</label>
+              <label className="add-exercise-label">Grupo Muscular:</label>
               <select
                 name="muscleGroup"
                 value={ejercicio.muscleGroup}
                 onChange={handleChange}
+                className="add-exercise-select"
               >
                 <option value="">Seleccionar</option>
                 <option value="Tren-superior">Tren-superior</option>
@@ -114,14 +122,21 @@ function AddExercise() {
               </select>
             </div>
             <div>
-              <label>Foto:</label>
+              <label className="add-exercise-label">Foto:</label>
               <input
+                id="file-input"
+                name="file"
                 type="file"
                 accept="image/*"
                 onChange={handlePhotoChange}
+                className="add-exercise-file-input"
               />
             </div>
-            <button type="submit" disabled={loading}>
+            <button
+              type="submit"
+              disabled={loading}
+              className="add-exercise-button"
+            >
               Agregar Ejercicio
             </button>
           </form>

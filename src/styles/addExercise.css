@@ -1,60 +1,146 @@
-/* Estilos para el componente AddNewExercise */
-.add-exercise {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #000000;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Estilos para pantallas grandes */
+.add-exercise-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--body-color);
+  font-family: var(--body-font);
+  color: var(--text-color);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.add-exercise-container {
+  max-width: 400px;
+  padding: 20px;
+  border-radius: var(--buttonBorderRadius);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.321);
+  background-color: var(--containers);
+  text-align: left;
+}
+
+.add-exercise-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.add-exercise-subtitle {
+  font-size: 16px;
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+.add-exercise-label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.add-exercise-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: var(--buttonBorderRadius);
+  font-size: 16px;
+  background-color: var(--containers);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.add-exercise-input:focus {
+  outline: none;
+  border-color: var(--container-color);
+  box-shadow: 0px 0px 6px rgba(238, 50, 50, 0.5);
+}
+
+.add-exercise-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px; 
+  border: none;
+  border-radius: var(--buttonBorderRadius);
+  font-size: 16px;
+  font-weight: bold;
+  background-color: var(--container-color);
+  color: var(--body-color);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-exercise-button:hover {
+  background-color: #d3e71b;
+}
+
+.add-exercise-signup {
+  font-size: 16px;
+  color: var(--container-color);
+  margin-top: 20px;
+}
+
+.add-exercise-signup a {
+  color: var(--container-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.add-exercise-signup a:hover {
+  color: #d3e71b;
+}
+/* Agrega estilos al botón de selección de archivo */
+
+#file-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: var(--buttonBorderRadius);
+  font-size: 16px;
+  background-color: var(--containers);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#file-input:focus {
+  outline: none;
+  border-color: var(--container-color);
+  box-shadow: 0px 0px 6px rgba(238, 50, 50, 0.5);
+}
+
+
+/* Estilos para pantallas medianas y pequeñas */
+@media screen and (max-width: 768px) {
+  .add-exercise-container {
+    max-width: 300px;
   }
-  
-  .add-exercise h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+
+  .add-exercise-title {
+    font-size: 20px;
   }
-  
-  .add-exercise label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
+
+  .add-exercise-subtitle {
+    font-size: 14px;
+    margin-bottom: 15px;
   }
-  
-  .add-exercise input[type="text"],
-  .add-exercise textarea,
-  .add-exercise input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+
+  .add-exercise-label {
+    font-size: 14px;
+    margin-bottom: 5px;
   }
+
   
-  .add-exercise textarea {
-    resize: vertical; /* Permite redimensionar verticalmente */
+
+  .add-exercise-input {
+    font-size: 16px;
+    padding: 8px;
   }
-  
-  .add-exercise button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+
+  .add-exercise-button {
+    font-size: 14px;
+    padding: 8px 12px;
   }
-  
-  .add-exercise button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+
+  .add-exercise-signup {
+    font-size: 14px;
   }
-  
-  .add-exercise button:hover {
-    background-color: #0056b3;
-  }
-  
-  .add-exercise p {
-    color: #ff5722;
-    font-weight: bold;
-  }
-  
+}
