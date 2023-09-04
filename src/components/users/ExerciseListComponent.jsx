@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import ExercisePostComponent from "./ExercisePostComponent";
+
 function ExerciseListComponent() {
   const [exercises, setExercises] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -42,21 +43,19 @@ function ExerciseListComponent() {
   return (
     <div>
       <h2>Lista de Ejercicios</h2>
-      {loading ? (
-        <p>Cargando...</p>
-      ) : error ? (
-        <p>Error: {error.message}</p>
-      ) : exercises.length > 0 ? (
-        <ul>
-          {exercises.map((exercise) => (
-            <li key={exercise.id}>
-              <ExercisePostComponent exercise={exercise} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No hay ejercicios disponibles</p>
-      )}
+      <div className="exercise-container">
+        {loading ? (
+          <p>Cargando...</p>
+        ) : error ? (
+          <p>Error: {error.message}</p>
+        ) : exercises.length > 0 ? (
+          exercises.map((exercise) => (
+            <ExercisePostComponent key={exercise.id} exercise={exercise} />
+          ))
+        ) : (
+          <p>No hay ejercicios disponibles</p>
+        )}
+      </div>
     </div>
   );
 }
