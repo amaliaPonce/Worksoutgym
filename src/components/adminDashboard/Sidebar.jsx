@@ -1,14 +1,22 @@
-import React from "react";
+import "../../styles/sidebar.css"
+import React, { useState } from "react";
+
 
 function Sidebar() {
+  const [isVisible, setIsVisible] = useState(true);
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isVisible ? "" : "hidden"}`}>
       <ul>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Estadísticas</a></li>
+        <li><a href="#">Ejercicios</a></li>
         <li><a href="#">Usuarios</a></li>
-        <li><a href="#">Configuración</a></li>
+        <li><a href="#">Administración</a></li>
       </ul>
+      <button onClick={toggleVisibility}>Toggle Sidebar</button>
     </aside>
   );
 }
