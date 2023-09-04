@@ -1,14 +1,21 @@
 import React from "react";
 
-const ExercisePost = ({ exercise }) => {
+const ExercisePostComponent = ({ exercise }) => {
   return (
-    <article>
+    <div className="exercise-details">
       <p>ID: {exercise.id}</p>
       <p>Nombre de la Foto: {exercise.photoName}</p>
-      <p>Descripción: {exercise.description}</p>
-      <p>Grupo Muscular: {exercise.muscleGroup}</p>
-    </article>
+      <p>
+        <strong>Nombre:</strong> {exercise.name}
+      </p>
+      <p>
+        <strong>Descripción:</strong> {exercise.description}
+      </p>
+      <p>
+        <strong>Grupo Muscular:</strong> {exercise.muscleGroup}
+      </p>
+    </div>
   );
 };
 
-export default ExercisePost;
+export default ExercisePostComponent;

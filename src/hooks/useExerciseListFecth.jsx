@@ -12,7 +12,7 @@ export const useExerciseList = () => {
           "http://localhost:8000/exercises/listExercises",
           {
             headers: {
-              Authorization: `Bearer ${user.token}`,
+              Authorization: ` ${user.token}`,
             },
           }
         );

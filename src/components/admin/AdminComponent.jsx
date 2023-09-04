@@ -1,6 +1,6 @@
 import React from "react";
-import Accordion from "../components/Accordion";
-import ExercisePage from "../components/ExerciseListComponent";
+import Accordion from "../Accordion";
+import ExercisePage from "../../pages/ExercisePage";
 
 function AdminComponent() {
   return (

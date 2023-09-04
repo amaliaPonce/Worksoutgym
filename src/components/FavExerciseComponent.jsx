@@ -1,8 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { FavoriteExercise } from "../hooks/api";
+import React, { useState, useEffect, useContext } from "react";
+import { AppContext } from "../context/AppContext";
+
+export const FavoriteExercise = async (idExercise, isFavorite, user) => {
+  try {
+    const headers = {
+      Authorization: ` ${user.token}`,
+    };
+
+    const response = await fetch(
+      `/api/exercises/favoriteExercises/${idExercise}`,
+      {
+        method: isFavorite ? "DELETE" : "POST",
+        headers,
+      }
+    );
+
+    if (response.ok) {
+      const message = isFavorite
+        ? "Ejercicio eliminado de favoritos"
+        : "Ejercicio añadido a favoritos";
+      return { success: true, message };
+    } else {
+      return { success: false, message: "Error al realizar la acción" };
+    }
+  } catch (error) {
+    return { success: false, message: "Error de red" };
+  }
+};
 
 function ExerciseItem({ exercise }) {
   const [isFavorite, setIsFavorite] = useState(false);
+  const { user } = useContext(AppContext);
 
   useEffect(() => {
     const checkIfFavorite = async () => {
@@ -16,8 +44,9 @@ function ExerciseItem({ exercise }) {
     };
     checkIfFavorite();
   }, [exercise.id]);
+
   const handleToggleFavorite = async () => {
-    const result = await FavoriteExercise(exercise.id, isFavorite);
+    const result = await FavoriteExercise(exercise.id, isFavorite, user.token);
     if (result.success) {
       setIsFavorite(!isFavorite);
       console.log(result.message);
@@ -25,6 +54,7 @@ function ExerciseItem({ exercise }) {
       console.error(result.message);
     }
   };
+
   return (
     <div>
       <h3>{exercise.name}</h3>
@@ -35,4 +65,5 @@ function ExerciseItem({ exercise }) {
     </div>
   );
 }
+
 export default ExerciseItem;
