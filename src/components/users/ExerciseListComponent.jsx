@@ -19,7 +19,13 @@ function ExerciseListComponent() {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          if (response.status === 401) {
+            throw new Error("No autorizado: Debes iniciar sesión.");
+          } else if (response.status === 404) {
+            throw new Error("Ejercicios no encontrados.");
+          } else {
+            throw new Error("Error de red: " + response.status + " " + response.statusText);
+          }
         }
         return response.json();
       })

@@ -7,8 +7,8 @@ function HeaderDashboard() {
       <nav>
         <ul>
           <li><a href="#">Inicio</a></li>
-          <li><a href="#">Usuarios</a></li>
-          <li><a href="#">Configuración</a></li>
+          <li><a href="#">Perfil</a></li>
+          <li><a href="#">Ejercicios Favoritos</a></li>
         </ul>
       </nav>
     </header>
