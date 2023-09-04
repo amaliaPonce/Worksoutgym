@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ExercisePost from "./ExercisePostComponent";
+import { AppContext } from "../context/AppContext";
 
 function ExerciseListComponent() {
   const [exercises, setExercises] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    // Tu token de autenticación (reemplázalo con tu token real)
-    const accessToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjkzNzM3NTY4LCJleHAiOjE2OTQzNDIzNjh9.5vivRksfeqMRkMQwihd2Xf-JLMDpcL_IRQQMytExVJE";
+  const { user } = useContext(AppContext);
 
+  useEffect(() => {
     // Configura los encabezados de la solicitud con el token de autenticación
     const headers = {
-      Authorization: ` ${accessToken}`,
+      Authorization: ` ${user.token}`,
     };
 
     // Realiza la solicitud a la API con los encabezados
@@ -35,7 +34,7 @@ function ExerciseListComponent() {
         setError(error);
         setLoading(false);
       });
-  }, []);
+  }, [user.token]);
 
   return (
     <div>

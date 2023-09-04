@@ -1,10 +1,10 @@
 import React from "react";
 import FavExerciseComponent from "../components/FavExerciseComponent";
 import ExerciseListComponent from "../components/ExerciseListComponent";
-import { useAuth } from "../context/AuthContext";
+import { AppProvider } from "../context/AppContext";
 
 function ClientComponent() {
-  const { user } = useAuth();
+  const { user } = AppProvider();
 
   return (
     <div>

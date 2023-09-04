@@ -1,21 +1,20 @@
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { post } from "../api";
 import "../styles/login.css";
-import { useAuth } from "./../context/AuthContext";
+import { AppContext } from "../context/AppContext";
 
 function LoginComponent() {
   const navigate = useNavigate();
-
+  const { login } = useContext(AppContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const { setUser } = useAuth();
+  // const [userRole, setUserRole] = useState("");
 
   const handleLogin = async (event) => {
     event.preventDefault();
-
     setError("");
     setIsLoading(true);
 
@@ -24,27 +23,26 @@ function LoginComponent() {
         email,
         password,
       });
-      console.log(data.data.userRole);
+      //console.log(data);
 
       if (data.status === "ok") {
+        //setUserRole(data.data.userRole);
+        login({ role: data.data.userRole, token: data.data.token });
         if (data.data.userRole === "admin") {
-          setUser("admin");
-          navigate("/adminpage"); // Mueve la navegación aquí
+          navigate("/adminpage");
         } else if (data.data.userRole === "cliente") {
-          setUser("cliente");
-          navigate("/clientpage"); // Mueve la navegación aquí
+          navigate("/clientpage");
         }
+        //console.log(data.data.userRole);
       } else {
         setError(data.message || "Error al iniciar sesión");
       }
-      console.log({ PRUEBA: data });
     } catch (error) {
       setError(error.message);
     } finally {
       setIsLoading(false);
     }
   };
-
 
   return (
     <div className="login-container">
