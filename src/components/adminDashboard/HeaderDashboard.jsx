@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/headerAdmin.css"
+import "../../styles/adminDashboard/headerAdmin.css"
 function HeaderDashboard() {
   return (
     <header className="header-dashboard">

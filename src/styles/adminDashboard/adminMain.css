@@ -1,0 +1,28 @@
+.app-container {
+    display: flex;
+    overflow-x: hidden; 
+    margin:50px;
+  }
+  
+  
+  .main-content {
+    margin-left: 125px;
+    padding: 20px; 
+    width: calc(100% - 125px); 
+    box-sizing: border-box; 
+  }
+  
+
+  .main-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .main-content p {
+    font-size: 16px;
+  }
+  
+  .main-content div {
+    margin-top: 20px;
+  }
+  

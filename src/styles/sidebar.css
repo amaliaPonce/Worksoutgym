@@ -1,50 +1,42 @@
 /* Estilos para el componente Sidebar */
-.sidebar.hidden {
-    display: none;
-  }
 .sidebar {
-    position: fixed; /* Fijar la posición del sidebar */
-    top: 0; /* Alinear el sidebar en la parte superior de la pantalla */
-    left: 0; /* Alinear el sidebar a la izquierda de la pantalla */
-    height: 100%; /* Establecer la altura al 100% para ocupar toda la altura */
-    background-color: #333; /* Color de fondo del sidebar */
-    width: 250px; /* Ancho del sidebar */
-    padding: 20px; /* Espaciado interior del sidebar */
-    z-index: 100; /* Asegurarse de que el sidebar esté por encima del contenido principal */
-  }
-  
-  /* Resto de los estilos son los mismos que en la respuesta anterior */
-  
-  
-  /* Estilos para la lista de elementos */
-  .sidebar ul {
-    list-style-type: none; /* Eliminar viñetas de la lista */
-    padding: 0; /* Eliminar el espaciado interior de la lista */
-  }
-  
-  /* Estilos para los elementos de la lista */
-  .sidebar li {
-    margin-bottom: 10px; /* Espaciado entre elementos de la lista */
-  }
-  
-  /* Estilos para los enlaces */
-  .sidebar a {
-    text-decoration: none; /* Eliminar subrayado en los enlaces */
-    color: #fff; /* Color del texto de los enlaces */
-    font-weight: bold; /* Texto en negrita */
-    display: block; /* Hacer que los enlaces ocupen todo el ancho */
-    padding: 10px 0; /* Espaciado vertical y horizontal de los enlaces */
-  }
-  
-  /* Estilos para los enlaces cuando se les pasa el mouse por encima */
-  .sidebar a:hover {
-    background-color: #555; /* Cambiar el fondo al pasar el mouse por encima */
-    border-left: 3px solid #ff5733; /* Agregar un borde izquierdo de color */
-  }
-  
-  /* Estilos para los enlaces activos (página actual) */
-  .sidebar a.active {
-    background-color: #ff5733; /* Cambiar el fondo del enlace activo */
-    color: #fff; /* Cambiar el color del texto del enlace activo */
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #333;
+  width: 150px; 
+  padding: 20px 0; 
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+}
+
+/* Estilos para los íconos */
+.sidebar i {
+  font-size: 24px;
+  margin-right: 10px; 
+}
+
+/* Estilos para los enlaces */
+.sidebar a {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center; 
+  padding: 10px 0;
+  font-size: 14px; 
+}
+
+/* Estilos para los enlaces cuando se les pasa el mouse por encima */
+.sidebar a:hover {
+  background-color: #555;
+  border-left: 3px solid #6912ff;
+}
+
+/* Estilos para los enlaces activos (página actual) */
+.sidebar a.active {
+  color: #fff;
+}
