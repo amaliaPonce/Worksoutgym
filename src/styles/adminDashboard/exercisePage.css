@@ -71,9 +71,12 @@
     transition: 0.2s;
     color: #ffffff;
   }
+  /* añadir  */
   .add-exercise-container {
     display: block;
-    width: 90%;
+    width: 80%;
+    overflow-x: hidden; 
+
 
   }
 
@@ -92,8 +95,8 @@
   }
 
   .add-exercise-input {
-    font-size: 16px;
-    padding: 8px;
+   
+
   }
 
   .add-exercise-button {
