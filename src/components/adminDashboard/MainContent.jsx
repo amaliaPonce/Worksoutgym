@@ -9,8 +9,7 @@ function MainContent() {
       <h2>Contenido Principal</h2>
       <p>Bienvenido al panel de administración. Aquí puedes ver estadísticas, gestionar usuarios y configurar tu aplicación.</p>
       <div>
-      <h2>Administrador</h2>
-     
+
         <ExercisePage /> 
         <AddExerciseComponent />
     

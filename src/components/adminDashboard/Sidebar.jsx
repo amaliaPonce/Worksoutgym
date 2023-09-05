@@ -1,4 +1,4 @@
-import "../../styles/sidebar.css";
+import "../../styles/adminDashboard/sidebar.css";
 import Logo from "../../assets/logo.png";
 
 const Sidebar = () => {
