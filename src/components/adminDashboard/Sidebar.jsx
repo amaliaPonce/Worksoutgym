@@ -1,28 +1,29 @@
-import "../../styles/adminDashboard/sidebar.css";
 import Logo from "../../assets/logo.png";
+import { Link } from "react-router-dom";
+import "../../styles/adminDashboard/sidebar.css";
 
 const Sidebar = () => {
   return (
     <aside className="aside">
-      <a href="#home" className="nav-logo">
+      <Link to="/" className="nav-logo">
         <img src={Logo} alt="" />
-      </a>
+      </Link>
       <nav className="nav">
         <ul className="nav-list">
           <li className="nav-item">
-            <a href="#ejercicios" className="nav-link">
+            <Link to="/main" className="nav-link">
               <i className="uil uil-fire"></i>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a href="#usuarios" className="nav-link">
+            <Link to="/main/add-exercise" className="nav-link">
               <i className="uil uil-user"></i>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a href="#administración" className="nav-link">
-              <i className="uil uil-setting"></i> 
-            </a>
+            <Link to="/administration" className="nav-link">
+              <i className="uil uil-setting"></i>
+            </Link>
           </li>
         </ul>
       </nav>

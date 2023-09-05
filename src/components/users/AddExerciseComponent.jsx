@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { Link } from "react-router-dom";
+import Accordion from "../Accordion"
 import "../../styles/addExercise.css";
+
 function AddExercise() {
   const [ejercicio, setEjercicio] = useState({
     name: "",
@@ -73,75 +75,76 @@ function AddExercise() {
     const selectedPhoto = e.target.files[0];
     setPhoto(selectedPhoto);
   };
-
   return (
     <div className="add-exercise-container">
-      <h2 className="add-exercise-title">Agregar Ejercicio de Gimnasio</h2>
-      {added ? (
-        <div>
-          <p className="success-message">Ejercicio agregado con éxito.</p>
-          <Link to="/adminPage" className="return-link">
-            Agregar otro ejercicio
-          </Link>
-        </div>
-      ) : (
-        <div>
-          <form className="add-exercise-form" onSubmit={handleAddExercise}>
-            {error && <p className="error-message">Error: {error}</p>}
-            <div>
-              <label className="add-exercise-label">Nombre:</label>
-              <input
-                type="text"
-                name="name"
-                value={ejercicio.name}
-                onChange={handleChange}
-                className="add-exercise-input"
-              />
-            </div>
-            <div>
-              <label className="add-exercise-label">Descripción:</label>
-              <textarea
-                name="description"
-                value={ejercicio.description}
-                onChange={handleChange}
-                className="add-exercise-textarea"
-              ></textarea>
-            </div>
-            <div>
-              <label className="add-exercise-label">Grupo Muscular:</label>
-              <select
-                name="muscleGroup"
-                value={ejercicio.muscleGroup}
-                onChange={handleChange}
-                className="add-exercise-select"
-              >
-                <option value="">Seleccionar</option>
-                <option value="Tren-superior">Tren-superior</option>
-                <option value="Tren-inferior">Tren-inferior</option>
-                <option value="core">core</option>
-              </select>
-            </div>
-            <div>
-              <label className="add-exercise-label">Foto:</label>
-              <input
-                id="file-input"
-                name="file"
-                type="file"
-                accept="image/*"
-                onChange={handlePhotoChange}
-                className="add-exercise-file-input"
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="add-exercise-button"
-            >
-              Agregar Ejercicio
-            </button>
-          </form>
-        </div>
-      )}
+      <Accordion title="Agregar Ejercicio">
+        {added ? (
+          <div>
+            <p className="success-message">Ejercicio agregado con éxito.</p>
+            <Link to="/adminPage" className="return-link">
+              Agregar otro ejercicio
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <form className="add-exercise-form" onSubmit={handleAddExercise}>
+              {error && <p className="error-message">Error: {error}</p>}
+              <div>
+                <label className="add-exercise-label">Nombre:</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={ejercicio.name}
+                  onChange={handleChange}
+                  className="add-exercise-input"
+                />
+              </div>
+              <div>
+                <label className="add-exercise-label">Descripción:</label>
+                <textarea
+                  name="description"
+                  value={ejercicio.description}
+                  onChange={handleChange}
+                  className="add-exercise-textarea"
+                ></textarea>
+              </div>
+              <div>
+                <label className="add-exercise-label">Grupo Muscular:</label>
+                <select
+                  name="muscleGroup"
+                  value={ejercicio.muscleGroup}
+                  onChange={handleChange}
+                  className="add-exercise-select"
+                >
+                  <option value="">Seleccionar</option>
+                  <option value="Tren-superior">Tren-superior</option>
+                  <option value="Tren-inferior">Tren-inferior</option>
+                  <option value="core">core</option>
+                </select>
+              </div>
+              <div>
+                <label className="add-exercise-label">Foto:</label>
+                <input
+                  id="file-input"
+                  name="file"
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePhotoChange}
+                  className="add-exercise-file-input"
+                />
+              </div>
+            </form>
+          </div>
+        )}
+      </Accordion>
+      <button
+        type="submit"
+        disabled={loading}
+        className="add-exercise-button"
+        onClick={handleAddExercise}
+      >
+        Agregar Ejercicio
+      </button>
     </div>
   );
 }

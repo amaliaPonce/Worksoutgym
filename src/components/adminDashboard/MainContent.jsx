@@ -1,22 +1,24 @@
 import React from "react";
-import ExercisePage from "../../pages/ExercisePage";
-import AddExerciseComponent from "../users/AddExerciseComponent"
-import "../../styles/adminDashboard/adminMain.css"
+import { Outlet } from "react-router-dom";
+import HeaderDashboard from "./HeaderDashboard";
+import Sidebar from "./Sidebar";
+
 function MainContent() {
   return (
     <div className="app-container">
-    <main className="main-content">
-      <h2>Contenido Principal</h2>
-      <p>Bienvenido al panel de administración. Aquí puedes ver estadísticas, gestionar usuarios y configurar tu aplicación.</p>
-      <div>
-
-        <ExercisePage /> 
-        <AddExerciseComponent />
-    
+      <HeaderDashboard />
+      <Sidebar />
+      <div className="content-container">
+        <main className="main-content">
+          <h2>Contenido Principal</h2>
+          <p>
+            Bienvenido al panel de administración. Aquí puedes ver estadísticas,
+            gestionar usuarios y configurar tu aplicación.
+          </p>
+          <Outlet />
+        </main>
+      </div>
     </div>
-    </main>
-    </div>
-
   );
 }
 

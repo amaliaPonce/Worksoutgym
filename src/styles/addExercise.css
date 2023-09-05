@@ -108,39 +108,4 @@
 }
 
 
-/* Estilos para pantallas medianas y pequeñas */
-@media screen and (max-width: 768px) {
-  .add-exercise-container {
-    max-width: 300px;
-  }
-
-  .add-exercise-title {
-    font-size: 20px;
-  }
-
-  .add-exercise-subtitle {
-    font-size: 14px;
-    margin-bottom: 15px;
-  }
-
-  .add-exercise-label {
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-
-  
-
-  .add-exercise-input {
-    font-size: 16px;
-    padding: 8px;
-  }
-
-  .add-exercise-button {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
-
-  .add-exercise-signup {
-    font-size: 14px;
-  }
-}
+/* Estilos para la versión móvil están en el css de exercisePage */
