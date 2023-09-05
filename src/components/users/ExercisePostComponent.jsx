@@ -4,12 +4,13 @@ import "../../styles/exerciseList.css";
 const ExercisePostComponent = ({ exercise }) => {
   return (
     <div className="exercise-card">
-      <div className="exercise-image">
+           <div className="exercise-image">
         <img
           src={`http://localhost:8000/uploads/${exercise.photoName}`}
           alt={exercise.name}
         />
       </div>
+
       <div className="exercise-details">
         <p className="exercise-title">
           <strong>ID:</strong> {exercise.id}
@@ -25,7 +26,7 @@ const ExercisePostComponent = ({ exercise }) => {
         </p>
       </div>
       <div className="exercise-arrow">
-        <i className='bx bx-arrow-to-right'></i>
+        <i className="bx bx-arrow-to-right"></i>
       </div>
     </div>
   );

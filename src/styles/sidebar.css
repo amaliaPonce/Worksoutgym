@@ -1,42 +1,59 @@
-/* Estilos para el componente Sidebar */
-.sidebar {
+/* Estilos generales del aside */
+.aside {
   position: fixed;
-  top: 0;
   left: 0;
-  height: 100%;
-  background-color: #333;
-  width: 150px; 
-  padding: 20px 0; 
-  z-index: 100;
+  top: 0;
+  background: var(--body-color);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  width: 100px; 
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
-  align-items: center;
+  justify-content: space-between;
 }
 
-/* Estilos para los íconos */
-.sidebar i {
-  font-size: 24px;
-  margin-right: 10px; 
+.nav-logo img {
+  max-width: 60px;
+  margin-top: 70px;
 }
 
-/* Estilos para los enlaces */
-.sidebar a {
+.nav-list {
+  list-style: none;
+}
+
+.nav-item {
+  margin-bottom: 0.5rem;
+}
+
+.nav-link {
   text-decoration: none;
-  color: #fff;
+  color: #000000;
   display: flex;
-  align-items: center; 
-  padding: 10px 0;
-  font-size: 14px; 
+  align-items: center;
+  margin-bottom: 40px; 
+
 }
 
-/* Estilos para los enlaces cuando se les pasa el mouse por encima */
-.sidebar a:hover {
-  background-color: #555;
-  border-left: 3px solid #6912ff;
+.nav-link i {
+  margin-right: 0.25rem;
+  font-size: 1.7rem;
 }
 
-/* Estilos para los enlaces activos (página actual) */
-.sidebar a.active {
-  color: #fff;
+@media (max-width: 768px) {
+  .aside {
+    width: 60px; /* Ajusta el ancho para pantallas pequeñas */
+  }
+  
+  .nav-logo img {
+    max-width: 40px; /* Ajusta el tamaño del logo para pantallas pequeñas */
+  }
+  
+  .nav-link {
+    margin-bottom: 20px; /* Ajusta el espacio entre elementos para pantallas pequeñas */
+  }
+  
+  .nav-link i {
+    font-size: 1.2rem; /* Ajusta el tamaño de fuente de los iconos para pantallas pequeñas */
+  }
 }
