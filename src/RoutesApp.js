@@ -9,7 +9,7 @@ import MainContent from "./components/adminDashboard/MainContent";
 import ExercisePage from "./pages/Dashboard/ExercisePage";
 import AddExerciseComponent from "./components/users/AddExerciseComponent";
 import UpdateExercise from "./components/users/UpdateExercise";
-
+import DeleteExercise from "./components/users/DeleteExercise";
 const RoutesApp = () => {
   return (
     <Routes>
@@ -25,6 +25,7 @@ const RoutesApp = () => {
         <Route index element={<ExercisePage />} />
         <Route path="add-exercise" element={<AddExerciseComponent />} />
         <Route path="update-exercise" element={<UpdateExercise />} /> 
+        <Route path="delete-exercise" element={<DeleteExercise />} />
 
       </Route>
     </Routes>

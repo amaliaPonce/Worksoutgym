@@ -3,6 +3,7 @@ import ExerciseListComponent from "../../components/users/ExerciseListComponent"
 import AddExercise from "../../components/users/AddExerciseComponent";
 import "../../styles/adminDashboard/exercisePage.css"
 import UpdateExercise from "../../components/users/UpdateExercise";
+import DeleteExercise from "../../components/users/DeleteExercise";
 
 
 function ExercisePage() {
@@ -11,6 +12,7 @@ function ExercisePage() {
       <ExerciseListComponent />
       <AddExercise />
       <UpdateExercise />
+      <DeleteExercise />
 
     </div>
   );
