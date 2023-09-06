@@ -6,13 +6,14 @@ import "../../styles/addExercise.css";
 function AddExercise() {
   const { user } = useContext(AppContext);
 
-  const [formState, setFormState] = useState({
+  const initialFormState = {
     name: "",
     description: "",
     muscleGroup: "",
     photo: null,
-  });
+  };
 
+  const [formState, setFormState] = useState(initialFormState);
   const [added, setAdded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -27,10 +28,7 @@ function AddExercise() {
 
     try {
       setLoading(true);
-
-      const headers = {
-        Authorization: `${user.token}`,
-      };
+      setError(null);
 
       const formData = new FormData();
       formData.append("name", formState.name);
@@ -42,21 +40,24 @@ function AddExercise() {
         "http://localhost:8000/exercises/newExercise",
         {
           method: "POST",
-          headers: headers,
+          headers: {
+            Authorization: `${user.token}`,
+          },
           body: formData,
         }
       );
 
       if (!response.ok) {
-        const errorMessage = `Error en la solicitud: ${response.status} ${response.statusText}`;
-        throw new Error(errorMessage);
+        throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
       }
 
       const responseData = await response.json();
       if (responseData.status === "ok") {
         console.log("Ejercicio agregado exitosamente");
         setAdded(true);
+        setFormState(initialFormState); // Reiniciar el formulario
         setTimeout(() => setAdded(false), 3000);
+        window.location.reload(); // Recargar la página después de 3 segundos
       } else {
         console.error("Error al agregar el ejercicio");
       }
@@ -150,9 +151,6 @@ function AddExercise() {
       {added ? (
         <div>
           <p className="success-message">Ejercicio agregado con éxito.</p>
-          <Link to="/adminPage" className="return-link">
-            Agregar otro ejercicio
-          </Link>
         </div>
       ) : null}
 
@@ -168,7 +166,6 @@ function AddExercise() {
       )}
     </div>
   );
-
 }
 
 export default AddExercise;
