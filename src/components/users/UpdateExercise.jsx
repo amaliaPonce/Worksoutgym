@@ -5,19 +5,22 @@ function UpdateExercise() {
   const { user } = useContext(AppContext);
   const [exerciseData, setExerciseData] = useState({
     id: "",
-    name: "", // Eliminamos el campo "Nombre de la Foto"
+    name: "",
     description: "",
-    muscleGroup: "", // Cambiamos el campo "muscleGroup" a un desplegable
+    muscleGroup: "",
+    photoName: null, // Inicializar con null en lugar de una cadena vacía
   });
 
   const [updateMessage, setUpdateMessage] = useState("");
   const [error, setError] = useState(null);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, files } = e.target;
+    const newValue = type === "file" ? files[0] : value;
+
     setExerciseData({
       ...exerciseData,
-      [name]: value,
+      [name]: newValue,
     });
   };
 
@@ -26,15 +29,25 @@ function UpdateExercise() {
       setError(null);
       const headers = {
         Authorization: user.token,
-        "Content-Type": "application/json",
       };
+
+      const formData = new FormData();
+      formData.append("id", exerciseData.id);
+      formData.append("name", exerciseData.name);
+      formData.append("description", exerciseData.description);
+      formData.append("muscleGroup", exerciseData.muscleGroup);
+
+      // Verificar si exerciseData.photoName es distinto de null antes de incluirlo
+      if (exerciseData.photoName !== null) {
+        formData.append("photoName", exerciseData.photoName);
+      }
 
       const response = await fetch(
         `http://localhost:8000/exercises/updateExerciseController/${exerciseData.id}`,
         {
           method: "PUT",
           headers: headers,
-          body: JSON.stringify(exerciseData),
+          body: formData,
         }
       );
 
@@ -46,11 +59,10 @@ function UpdateExercise() {
 
       setUpdateMessage("Ejercicio actualizado con éxito");
       setExerciseData({
-        id: "",
-        name: "", // Eliminamos el campo "Nombre de la Foto"
-        description: "",
-        muscleGroup: "", // Restablecemos el campo "muscleGroup"
+        ...exerciseData,
+        photoName: null, // Reiniciar el campo photoName
       });
+      setTimeout(() => setUpdateMessage(""), 3000);
     } catch (error) {
       setError(error.message);
     }
@@ -66,7 +78,13 @@ function UpdateExercise() {
         value={exerciseData.id}
         onChange={handleInputChange}
       />
-      {/* Eliminamos el campo "Nombre de la Foto" */}
+      <label>Nombre:</label>
+      <input
+        type="text"
+        name="name"
+        value={exerciseData.name}
+        onChange={handleInputChange}
+      />
       <label>Descripción:</label>
       <input
         type="text"
@@ -74,7 +92,6 @@ function UpdateExercise() {
         value={exerciseData.description}
         onChange={handleInputChange}
       />
-      {/* Cambiamos el campo "muscleGroup" a un desplegable */}
       <label>Grupo Muscular:</label>
       <select
         name="muscleGroup"
@@ -86,6 +103,13 @@ function UpdateExercise() {
         <option value="Tren-inferior">Tren inferior</option>
         <option value="core">Core</option>
       </select>
+      <label>Foto:</label>
+      <input
+        type="file"
+        name="photoName"
+        accept="image/*"
+        onChange={handleInputChange}
+      />
       <button onClick={handleUpdateExercise}>Actualizar Ejercicio</button>
       {updateMessage && <p>{updateMessage}</p>}
       {error && <p>Error: {error}</p>}

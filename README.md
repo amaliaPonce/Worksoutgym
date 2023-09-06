@@ -93,13 +93,13 @@ añadir nav de cliente y admin en sus respectivos dashboards
 
 ### **Endpoints de usuarios** 👥
 
--   **POST** - [/users/register] - Crea un nuevo usuario pidiendo todos los datos incluida la foto (body formData).
+-   **POST** - [/users/register] - Crea un nuevo usuario pidiendo todos los datos incluida la foto (body formData).✅
 
     -   Ruta para probar en Postman: http://localhost:8000/users/register
 
--   **POST** - [/users/login] - Logea a un usuario retornando un token, email, y rol.
+-   **POST** - [/users/login] - Logea a un usuario retornando un token, email, y rol. ✅
 
-    -   Ruta para probar en Postman: http://localhost:8000/users/login ✅
+    -   Ruta para probar en Postman: http://localhost:8000/users/login 
 
 -   **PUT** - [/users] - Devuelve los datos del usuario del token (TOKEN).
 
@@ -127,30 +127,34 @@ añadir nav de cliente y admin en sus respectivos dashboards
 
     -   Ruta para probar en Postman: http://localhost:8000/exercises/newExercises
 
--   **PUT** - [/exercises/updateExerciseController/:id] - Permite al administrador actualizar la información de un ejercicio (TOKEN). ✅
+-   **PUT** - [/exercises/updateExerciseController/:id] - Permite al administrador actualizar la información de un ejercicio (TOKEN). ✅ 
 
--   **DELETE** - [/exercises/deleteExercise/:id] - Permite al administrador eliminar un ejercicio (TOKEN admin)
+***----NOTA: NO PUEDO : ACTUALIZAR LA FOTO, SE ROMPE, 
+CUANDO DEJO UN CAMPO VACIO, SE VACIA EN MYSQL, SI NO SE MODIFICA NO DEBE CAMBIAR----***
+
+-   **DELETE** - [/exercises/deleteExercise/:id] - Permite al administrador eliminar un ejercicio (TOKEN admin) ✅
 
     -   Ejemplo de ruta para probar en Postman: http://localhost:8000/exercises/deleteExercise/8
 
--   **POST** - [/exercises/favoriteExercises/] - Permite a un usuario dar o quitar de favoritos a un ejercicio (tenerlo o no en preferidos). (TOKEN)
+-   **POST** - [/exercises/favoriteExercises/] - Permite a un usuario dar o quitar de favoritos a un ejercicio (tenerlo o no en preferidos). (TOKEN) ✅
 
     -   Ruta para probar en Postman: http://localhost:8000/exercises/favoriteExercises/
     -   Añade en Params `idExercise` y el valor de ID de MySQL.
 
 -   **GET** - [/exercises/listExercises] - Devuelve todos los ejercicios con diferentes métodos de filtrado o mostrarlos todos. (TOKEN)✅
 
+
     -   Ruta para probar en Postman:
-        -   http://localhost:8000/exercises/listExercises
-        -   http://localhost:8000/exercises/listExercises?favorites=true
-        -   http://localhost:8000/exercises/listExercises?name=Zancada&favorites=true
-        -   http://localhost:8000/exercises/listExercises?name=Sentadilla&favorites=true
+        -   http://localhost:8000/exercises/listExercises ✅
+        -   http://localhost:8000/exercises/listExercises?favorites=true ❌
+        -   http://localhost:8000/exercises/listExercises?name=Zancada ✅
+        -   http://localhost:8000/exercises/listExercises?name=Sentadilla&favorites=true ❌
 
--   **GET** - [/exercises/infoExercises/:id] - Retorna información de un ejercicio (incluida la descripción). (TOKEN)
+-   **GET** - [/exercises/infoExercises/:id] - Retorna información de un ejercicio (incluida la descripción). (TOKEN) ✅
 
-    -   Ruta para probar en Postman: http://localhost:8000/exercises/infoExercise/9 ✅
+    -   Ruta para probar en Postman: http://localhost:8000/exercises/infoExercise/9 
 
--   **GET** - [/exercises/favorite] - Retorna el listado de los ejercicios favoritos del usuario del token (TOKEN)
+-   **GET** - [/exercises/favorite] - Retorna el listado de los ejercicios favoritos del usuario del token (TOKEN) ✅
 
     -   Ruta para probar en Postman: http://localhost:8000/exercises/favorite
 
