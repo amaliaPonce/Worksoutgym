@@ -148,7 +148,7 @@ añadir nav de cliente y admin en sus respectivos dashboards
 
 -   **GET** - [/exercises/infoExercises/:id] - Retorna información de un ejercicio (incluida la descripción). (TOKEN)
 
-    -   Ruta para probar en Postman: http://localhost:8000/exercises/infoExercises/9
+    -   Ruta para probar en Postman: http://localhost:8000/exercises/infoExercise/9 ✅
 
 -   **GET** - [/exercises/favorite] - Retorna el listado de los ejercicios favoritos del usuario del token (TOKEN)
 
