@@ -154,6 +154,7 @@ añadir nav de cliente y admin en sus respectivos dashboards
 
     -   Ruta para probar en Postman: http://localhost:8000/exercises/favorite
 
+
 -   **GET** - [/exercises/recommended] - Devuelve una lista de ejercicios recomendados para el usuario actual. Esto se basa en su historial de ejercicios favoritos. (TOKEN)
 
 -   **POST** - [/exercises/recommendedExercises/:id] - Permite a un usuario marcar o desmarcar un ejercicio como recomendado. (TOKEN)

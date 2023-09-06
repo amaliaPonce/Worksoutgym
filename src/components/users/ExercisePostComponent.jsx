@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import "../../styles/exerciseList.css";
 import { AppContext } from "../../context/AppContext";
 import { FavoriteExercise } from "./FavExerciseComponent";
+
 const ExercisePostComponent = ({ exercise, isFavorite }) => {
   const { user } = useContext(AppContext);
   const [exerciseIsFavorite, setExerciseIsFavorite] = useState(isFavorite);
@@ -44,7 +46,11 @@ const ExercisePostComponent = ({ exercise, isFavorite }) => {
         </button>
       </div>
       <div className="exercise-arrow">
-        <i className="bx bx-arrow-to-right"></i>
+        {/* Usar Link para redirigir al detalle del ejercicio en el backend */}
+        <Link to={`/main/exercise-info/${exercise.id}`}>
+  <i className="bx bx-arrow-to-right"></i>
+</Link>
+
       </div>
     </div>
   );
