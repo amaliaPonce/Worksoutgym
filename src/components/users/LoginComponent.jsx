@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginService } from "../../servise/index";
+import { loginServise } from "../../service/index";
 import "../../styles/login.css";
 import { AppContext } from "../../context/AppContext";
 
@@ -18,7 +18,10 @@ function LoginComponent() {
     setIsLoading(true);
 
     try {
-      const data = await loginService(); // Usamos loginService en lugar de la función post
+      const data = await loginServise("http://localhost:8000/users/login", {
+        email,
+        password,
+      });
 
       if (data.status === "ok") {
         login({ role: data.data.userRole, token: data.data.token });
