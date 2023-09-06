@@ -8,6 +8,7 @@ import ClientPage from "./pages/ClientPage";
 import MainContent from "./components/adminDashboard/MainContent";
 import ExercisePage from "./pages/Dashboard/ExercisePage";
 import AddExerciseComponent from "./components/users/AddExerciseComponent";
+import UpdateExercise from "./components/users/UpdateExercise";
 
 const RoutesApp = () => {
   return (
@@ -23,6 +24,8 @@ const RoutesApp = () => {
       >
         <Route index element={<ExercisePage />} />
         <Route path="add-exercise" element={<AddExerciseComponent />} />
+        <Route path="update-exercise" element={<UpdateExercise />} /> 
+
       </Route>
     </Routes>
   );
