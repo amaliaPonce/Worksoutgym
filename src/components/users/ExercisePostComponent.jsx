@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "../../styles/exerciseList.css";
+import { AppContext } from "../../context/AppContext";
+import { FavoriteExercise } from "./FavExerciseComponent";
+const ExercisePostComponent = ({ exercise, isFavorite }) => {
+  const { user } = useContext(AppContext);
+  const [exerciseIsFavorite, setExerciseIsFavorite] = useState(isFavorite);
 
-const ExercisePostComponent = ({ exercise }) => {
+  const handleToggleFavorite = async () => {
+    const result = await FavoriteExercise(exercise.id, exerciseIsFavorite, user);
+    if (result.success) {
+      setExerciseIsFavorite(!exerciseIsFavorite);
+      console.log(result.message);
+    } else {
+      console.error(result.message);
+    }
+  };
+
   return (
     <div className="exercise-card">
-           <div className="exercise-image">
+      <div className="exercise-image">
         <img
           src={`http://localhost:8000/uploads/${exercise.photoName}`}
           alt={exercise.name}
@@ -24,6 +38,10 @@ const ExercisePostComponent = ({ exercise }) => {
         <p className="exercise-details">
           <strong>Grupo Muscular:</strong> {exercise.muscleGroup}
         </p>
+        {/* Botón de "Favorito" */}
+        <button onClick={handleToggleFavorite}>
+          {exerciseIsFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
+        </button>
       </div>
       <div className="exercise-arrow">
         <i className="bx bx-arrow-to-right"></i>

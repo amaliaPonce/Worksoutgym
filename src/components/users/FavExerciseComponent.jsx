@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 
+// Exportar FavoriteExercise como una función normal
 export const FavoriteExercise = async (idExercise, isFavorite, user) => {
   try {
     const headers = {
@@ -8,9 +9,9 @@ export const FavoriteExercise = async (idExercise, isFavorite, user) => {
     };
 
     const response = await fetch(
-      `/api/exercises/favoriteExercises/${idExercise}`,
+      `http://localhost:8000/exercises/favoriteExercise/?idExercise=${idExercise}`, // URL absoluta
       {
-        method: isFavorite ? "DELETE" : "POST",
+        method: isFavorite ? "POST" : "POST",
         headers,
       }
     );
@@ -35,7 +36,7 @@ function ExerciseItem({ exercise }) {
   useEffect(() => {
     const checkIfFavorite = async () => {
       const response = await fetch(
-        `/exercises/favoriteExercises/${exercise.id}`
+        `http://localhost:8000/exercises/favoriteExercise/?idExercise=${exercise.id}`, // URL absoluta
       );
       if (response.ok) {
         const data = await response.json();
@@ -46,7 +47,8 @@ function ExerciseItem({ exercise }) {
   }, [exercise.id]);
 
   const handleToggleFavorite = async () => {
-    const result = await FavoriteExercise(exercise.id, isFavorite, user.token);
+    // Llamar a FavoriteExercise como una función normal
+    const result = await FavoriteExercise(exercise.id, isFavorite, user);
     if (result.success) {
       setIsFavorite(!isFavorite);
       console.log(result.message);
