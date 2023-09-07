@@ -1,4 +1,4 @@
-// Conexión con el backend
+// Conexiones con el backend
 export const loginServise = async (url, body) => {
   try {
     const response = await fetch(url, {

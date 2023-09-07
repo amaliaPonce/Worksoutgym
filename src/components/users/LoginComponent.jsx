@@ -11,17 +11,19 @@ function LoginComponent() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
   const handleLogin = async (event) => {
     event.preventDefault();
     setError("");
     setIsLoading(true);
 
     try {
-      const data = await loginServise("http://localhost:8000/users/login", {
-        email,
-        password,
-      });
+      const data = await loginServise(
+        `${process.env.REACT_APP_BACKEND}/users/login`,
+        {
+          email,
+          password,
+        }
+      );
 
       if (data.status === "ok") {
         login({ role: data.data.userRole, token: data.data.token });
