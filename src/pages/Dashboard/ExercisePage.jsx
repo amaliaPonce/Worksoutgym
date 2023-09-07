@@ -1,20 +1,25 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import ExerciseListComponent from "../../components/users/ExerciseListComponent";
 import AddExercise from "../../components/users/AddExerciseComponent";
-import "../../styles/adminDashboard/exercisePage.css"
 import UpdateExercise from "../../components/users/UpdateExercise";
-import DeleteExercise from "../../components/users/DeleteExercise";
-import ListRecommendedExercisesComponent from "../../components/users/ListRecommendedExercisesComponent"
+import "../../styles/adminDashboard/exercisePage.css";
+
 function ExercisePage() {
   return (
-    <div className="exercise-page-container">
-      <ExerciseListComponent />
-      <AddExercise />
-      <UpdateExercise />
-      <DeleteExercise />
-      < ListRecommendedExercisesComponent />
-    {/* aquí importamos los componentes que queremos que se vean en el main de ejercicios */}
-    </div>
+    <Router>
+      <div className="exercise-page-container">
+        <Link to="/list">Lista de ejercicios</Link>
+        <Link to="/add">Añadir ejercicio</Link>
+        <Link to="/update">Editar ejercicio</Link>
+      </div>
+      <Routes>
+        <Route path="/list" element={<ExerciseListComponent />} />
+        <Route path="/add" element={<AddExercise />} />
+        <Route path="/update" element={<UpdateExercise />} />
+      </Routes>
+    </Router>
   );
 }
+
 export default ExercisePage;

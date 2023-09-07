@@ -1,8 +1,7 @@
 import React from "react";
-
-import Sidebar from "../adminDashboard/Sidebar"; 
+import Sidebar from "../adminDashboard/Sidebar";
 import HeaderDashboard from "../adminDashboard/HeaderDashboard";
-import MainContent from "../adminDashboard/MainContent"; 
+import MainContent from "../adminDashboard/MainContent";
 
 function AdminComponent() {
   return (

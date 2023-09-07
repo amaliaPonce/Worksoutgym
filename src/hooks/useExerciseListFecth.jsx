@@ -1,21 +1,22 @@
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import { useState, useContext } from "react";
+import { AppContext } from "../context/AppContext";
+import useEffect from "./useFetch";
 
 export const useExerciseList = () => {
   const [exercises, setExercises] = useState([]);
-  const { user } = useContext(UserContext);
+  const { user } = useContext(AppContext);
 
   useEffect(() => {
     const getExercises = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:8000/exercises/listExercises",
-          {
-            headers: {
-              Authorization: ` ${user.token}`,
-            },
-          }
-        );
+        const baseUrl = process.env.REACT_APP_BACKEND;
+        const relativeUrl = "/exercises/listExercises";
+        const url = `${baseUrl}${relativeUrl}`;
+        const response = await fetch(url, {
+          headers: {
+            Authorization: ` ${user.token}`,
+          },
+        });
 
         if (!response.ok) {
           throw new Error(

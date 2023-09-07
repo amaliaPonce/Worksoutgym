@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import { Link } from "react-router-dom";
 import "../../styles/addExercise.css";
+import { AddExerciseService } from "../../service/index";
 
 function AddExercise() {
   const { user } = useContext(AppContext);
@@ -36,28 +36,14 @@ function AddExercise() {
       formData.append("muscleGroup", formState.muscleGroup);
       formData.append("photo", formState.photo);
 
-      const response = await fetch(
-        "http://localhost:8000/exercises/newExercise",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `${user.token}`,
-          },
-          body: formData,
-        }
-      );
+      const result = await AddExerciseService(user.token, formData);
 
-      if (!response.ok) {
-        throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
-      }
-
-      const responseData = await response.json();
-      if (responseData.status === "ok") {
+      if (result.status === "ok") {
         console.log("Ejercicio agregado exitosamente");
         setAdded(true);
-        setFormState(initialFormState); // Reiniciar el formulario
+        setFormState(initialFormState);
         setTimeout(() => setAdded(false), 3000);
-        window.location.reload(); // Recargar la página después de 3 segundos
+        window.location.reload();
       } else {
         console.error("Error al agregar el ejercicio");
       }
@@ -100,6 +86,7 @@ function AddExercise() {
                 value={formState.name}
                 onChange={handleInputChange}
                 className="add-exercise-input"
+                required
               />
             </div>
             <div className="form-group">
@@ -112,6 +99,7 @@ function AddExercise() {
                 value={formState.description}
                 onChange={handleInputChange}
                 className="add-exercise-textarea"
+                required
               ></textarea>
             </div>
             <div className="form-group">
@@ -124,6 +112,7 @@ function AddExercise() {
                 value={formState.muscleGroup}
                 onChange={handleInputChange}
                 className="add-exercise-select"
+                required
               >
                 <option value="">Seleccionar</option>
                 <option value="Tren-superior">Tren-superior</option>
@@ -142,6 +131,7 @@ function AddExercise() {
                 accept="image/*"
                 onChange={handleInputChange}
                 className="add-exercise-file-input"
+                required
               />
             </div>
           </form>

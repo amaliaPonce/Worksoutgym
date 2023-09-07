@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
+import FavoriteExercises from "../../service/index";
 
 function FavoriteExercisesComponent() {
   const { user } = useContext(AppContext);
@@ -9,34 +10,19 @@ function FavoriteExercisesComponent() {
   const [showAccordion, setShowAccordion] = useState(false);
 
   useEffect(() => {
-    const fetchFavoriteExercises = async () => {
+    const loadFavoriteExercises = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        const headers = {
-          Authorization: user.token,
-        };
+        const result = await FavoriteExercises(user.token);
 
-        const response = await fetch("http://localhost:8000/exercises/favorite", {
-          method: "GET",
-          headers: headers,
-        });
-
-        if (!response.ok) {
-          if (response.status === 401) {
-            throw new Error("No autorizado: Debes iniciar sesión.");
-          } else if (response.status === 404) {
-            throw new Error("Ejercicios favoritos no encontrados.");
-          } else {
-            throw new Error(
-              "Error de red: " + response.status + " " + response.statusText
-            );
-          }
+        if (result.success) {
+          setFavoriteExercises(result.data);
+        } else {
+          throw new Error(result.message);
         }
 
-        const data = await response.json();
-        setFavoriteExercises(data.data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -44,11 +30,7 @@ function FavoriteExercisesComponent() {
       }
     };
 
-    // Llamar a fetchFavoriteExercises inicialmente
-    fetchFavoriteExercises();
-
-    // Comenta o elimina el código relacionado con el intervalo y setInterval
-
+    loadFavoriteExercises();
   }, [user.token]);
 
   return (

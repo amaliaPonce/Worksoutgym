@@ -11,6 +11,7 @@ function LoginComponent() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
   const handleLogin = async (event) => {
     event.preventDefault();
     setError("");

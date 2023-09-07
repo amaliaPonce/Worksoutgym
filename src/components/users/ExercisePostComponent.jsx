@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import "../../styles/exerciseList.css";
 import { AppContext } from "../../context/AppContext";
 import { FavoriteExercise } from "./FavExerciseComponent";
@@ -9,12 +8,33 @@ const ExercisePostComponent = ({ exercise, isFavorite }) => {
   const [exerciseIsFavorite, setExerciseIsFavorite] = useState(isFavorite);
 
   const handleToggleFavorite = async () => {
-    const result = await FavoriteExercise(exercise.id, exerciseIsFavorite, user);
+    const result = await FavoriteExercise(
+      exercise.id,
+      exerciseIsFavorite,
+      user
+    );
     if (result.success) {
       setExerciseIsFavorite(!exerciseIsFavorite);
       console.log(result.message);
     } else {
       console.error(result.message);
+    }
+  };
+
+  const handleDeleteExercise = async () => {
+    try {
+    } catch (error) {
+      console.error("Error al eliminar el ejercicio:", error.message);
+    }
+  };
+
+  const handleToggleRecommendation = async () => {
+    try {
+    } catch (error) {
+      console.error(
+        "Error al marcar/desmarcar como recomendado:",
+        error.message
+      );
     }
   };
 
@@ -40,17 +60,17 @@ const ExercisePostComponent = ({ exercise, isFavorite }) => {
         <p className="exercise-details">
           <strong>Grupo Muscular:</strong> {exercise.muscleGroup}
         </p>
-        {/* Botón de "Favorito" */}
         <button onClick={handleToggleFavorite}>
           {exerciseIsFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
         </button>
-      </div>
-      <div className="exercise-arrow">
-        {/* Usar Link para redirigir al detalle del ejercicio en el backend */}
-        <Link to={`/main/exercise-info/${exercise.id}`}>
-  <i className="bx bx-arrow-to-right"></i>
-</Link>
 
+        <button onClick={handleDeleteExercise}>Eliminar Ejercicio</button>
+
+        <button onClick={handleToggleRecommendation}>
+          {exercise.isRecommended
+            ? "Desmarcar como recomendado"
+            : "Marcar como recomendado"}
+        </button>
       </div>
     </div>
   );

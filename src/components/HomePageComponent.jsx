@@ -1,6 +1,6 @@
-import React from 'react';
-import '../styles/homePage.css'; 
-import FamiliaImage from '../assets/familia.png';
+import React from "react";
+import "../styles/homePage.css";
+import FamiliaImage from "../assets/familia.png";
 
 const HomePageComponent = () => {
   return (
@@ -11,10 +11,7 @@ const HomePageComponent = () => {
         <p className="banner-description">
           Descubre las mejores rutinas de ejercicios personalizadas para ti.
         </p>
-        <a
-          className="banner-button"
-          href="#exercises"
-        >
+        <a className="banner-button" href="#exercises">
           Explora los Ejercicios
         </a>
       </div>
