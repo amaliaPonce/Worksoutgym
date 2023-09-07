@@ -146,9 +146,9 @@ CUANDO DEJO UN CAMPO VACIO, SE VACIA EN MYSQL, SI NO SE MODIFICA NO DEBE CAMBIAR
 
     -   Ruta para probar en Postman:
         -   http://localhost:8000/exercises/listExercises ✅
-        -   http://localhost:8000/exercises/listExercises?favorites=true ❌
+        -   http://localhost:8000/exercises/listExercises?favorites=true ✅
         -   http://localhost:8000/exercises/listExercises?name=Zancada ✅
-        -   http://localhost:8000/exercises/listExercises?name=Sentadilla&favorites=true ❌
+        -   http://localhost:8000/exercises/listExercises?name=Sentadilla&favorites=true ✅
 
 -   **GET** - [/exercises/infoExercises/:id] - Retorna información de un ejercicio (incluida la descripción). (TOKEN) ✅
 
