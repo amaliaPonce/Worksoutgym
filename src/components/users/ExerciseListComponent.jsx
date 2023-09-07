@@ -1,4 +1,3 @@
-// ExerciseListComponent.js
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { AppContext } from "../../context/AppContext";
 import ExercisePostComponent from "./ExercisePostComponent";
@@ -11,8 +10,9 @@ function ExerciseListComponent() {
   const [error, setError] = useState(null);
   const [filterName, setFilterName] = useState("");
   const [filterMuscleGroup, setFilterMuscleGroup] = useState("");
-  
-  const fetchExercises = useCallback(async (filterFavorites) => {
+  const [filterFavorites, setFilterFavorites] = useState(false);
+
+  const fetchExercises = useCallback(async () => {
     setLoading(true);
     setError(null);
 
@@ -21,12 +21,10 @@ function ExerciseListComponent() {
         Authorization: user.token,
       };
 
-      // Construir la URL de la solicitud con los filtros de nombre y grupo muscular
       let url = `http://localhost:8000/exercises/listExercises?name=${filterName}&muscleGroup=${filterMuscleGroup}`;
 
-      // Agregar el filtro de favoritos si está habilitado
       if (filterFavorites) {
-        url += "&favorite=1";
+          url += "&is_favorite=1";
       }
 
       const response = await fetch(url, {
@@ -38,7 +36,7 @@ function ExerciseListComponent() {
         if (response.status === 401) {
           throw new Error("No autorizado: Debes iniciar sesión.");
         } else if (response.status === 404) {
-          throw Error("Ejercicios no encontrados.");
+          throw new Error("Ejercicios no encontrados.");
         } else {
           throw new Error(
             "Error de red: " + response.status + " " + response.statusText
@@ -53,22 +51,20 @@ function ExerciseListComponent() {
       setError(error);
       setLoading(false);
     }
-  }, [user.token, filterName, filterMuscleGroup]);
+  }, [user.token, filterName, filterMuscleGroup, filterFavorites]);
 
   useEffect(() => {
     const fetchAndSetExercises = async () => {
-      await fetchExercises(false); // No filtrar favoritos por defecto
+      await fetchExercises();
     };
 
     fetchAndSetExercises();
-  }, [user.token, filterName, filterMuscleGroup, fetchExercises]);
+  }, [user.token, filterName, filterMuscleGroup, filterFavorites, fetchExercises]);
 
-  // Función para manejar cambios en el filtro de nombre
   const handleFilterNameChange = (e) => {
     setFilterName(e.target.value);
   };
 
-  // Función para manejar cambios en el filtro de grupo muscular
   const handleFilterMuscleGroupChange = (e) => {
     setFilterMuscleGroup(e.target.value);
   };
@@ -100,6 +96,15 @@ function ExerciseListComponent() {
             <option value="core">Core</option>
           </select>
         </div>
+        <div>
+          <label htmlFor="filterFavorites">Mostrar Favoritos:</label>
+          <input
+            type="checkbox"
+            id="filterFavorites"
+            checked={filterFavorites}
+            onChange={() => setFilterFavorites(!filterFavorites)}
+          />
+        </div>
       </div>
 
       <div className="exercise-container">
@@ -125,10 +130,8 @@ function ExerciseListComponent() {
           <p>No hay ejercicios disponibles</p>
         )}
       </div>
-      
-      
+
       <FavoriteExercisesComponent />
-      
     </div>
   );
 }
