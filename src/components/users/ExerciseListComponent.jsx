@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { useExerciseList } from "../../hooks/useExerciseListFecth";
+import ExercisePostComponent from "./ExercisePostComponent";
 
 function ExerciseListComponent() {
   const { user } = useContext(AppContext);
@@ -12,11 +13,7 @@ function ExerciseListComponent() {
 
       <div className="exercise-container">
         {exercises.map((exercise) => (
-          <div key={exercise.id}>
-            <h3>{exercise.name}</h3>
-            <p>Descripción: {exercise.description}</p>
-            <p>Grupo Muscular: {exercise.muscleGroup}</p>
-          </div>
+          <ExercisePostComponent key={exercise.id} exercise={exercise} />
         ))}
       </div>
     </div>

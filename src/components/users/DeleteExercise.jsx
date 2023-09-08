@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
+import { deleteExerciseService } from "../../service/index";
 
 function DeleteExercise() {
   const { user } = useContext(AppContext);
@@ -15,31 +16,18 @@ function DeleteExercise() {
   const handleDeleteExercise = async () => {
     try {
       setError(null);
-      const headers = {
-        Authorization: user.token,
-      };
 
-      const response = await fetch(
-        `http://localhost:8000/exercises/deleteExercise/${exerciseId}`,
-        {
-          method: "DELETE",
-          headers: headers,
-        }
-      );
+      const result = await deleteExerciseService(exerciseId, user.token);
 
-      if (!response.ok) {
-        throw new Error(
-          "Error de red: " + response.status + " " + response.statusText
-        );
+      if (result.success) {
+        setDeleteMessage("Ejercicio eliminado con éxito");
+        setExerciseId("");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } else {
+        setError("Error al eliminar el ejercicio: " + result.message);
       }
-
-      setDeleteMessage("Ejercicio eliminado con éxito");
-      setExerciseId(""); // Limpiamos el campo de ID
-
-      // Recargar la página después de un breve retraso
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000); // 1000 milisegundos (1 segundo)
     } catch (error) {
       setError("Error al eliminar el ejercicio: " + error.message);
     }
@@ -49,11 +37,7 @@ function DeleteExercise() {
     <div>
       <h2>Eliminar Ejercicio</h2>
       <label>ID del Ejercicio a Eliminar:</label>
-      <input
-        type="text"
-        value={exerciseId}
-        onChange={handleInputChange}
-      />
+      <input type="text" value={exerciseId} onChange={handleInputChange} />
       <button onClick={handleDeleteExercise}>Eliminar Ejercicio</button>
       {deleteMessage && <p>{deleteMessage}</p>}
       {error && <p>Error: {error}</p>}

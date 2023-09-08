@@ -1,12 +1,14 @@
 import React from "react";
 
-const ExerciseFavoriteToggle = ({ idExercise, isFavorite, markFavorite }) => {
+const ExerciseFavoriteComponent = ({
+  idExercise,
+  isFavorite,
+  markFavorite,
+}) => {
   const toggleFavorite = async () => {
     const result = await markFavorite(idExercise, !isFavorite);
     if (result.success) {
-      // Manejar aquí la lógica después de marcar o desmarcar como favorito
     } else {
-      // Manejar aquí la lógica si ocurre un error
     }
   };
 
@@ -19,4 +21,4 @@ const ExerciseFavoriteToggle = ({ idExercise, isFavorite, markFavorite }) => {
   );
 };
 
-export default ExerciseFavoriteToggle;
+export default ExerciseFavoriteComponent;

@@ -1,30 +1,15 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
-import useEffect from "./useFetch";
+import { ExercisesService } from "../service/index";
 
 export const useExerciseList = () => {
   const [exercises, setExercises] = useState([]);
   const { user } = useContext(AppContext);
 
   useEffect(() => {
-    const getExercises = async () => {
+    const fetchExercises = async () => {
       try {
-        const baseUrl = process.env.REACT_APP_BACKEND;
-        const relativeUrl = "/exercises/listExercises";
-        const url = `${baseUrl}${relativeUrl}`;
-        const response = await fetch(url, {
-          headers: {
-            Authorization: ` ${user.token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(
-            `Error en la solicitud: ${response.status} ${response.statusText}`
-          );
-        }
-
-        const data = await response.json();
+        const data = await ExercisesService(user.token);
         setExercises(data);
       } catch (error) {
         // Manejo de errores generales
@@ -32,7 +17,7 @@ export const useExerciseList = () => {
       }
     };
 
-    getExercises();
+    fetchExercises();
   }, [user]);
 
   return exercises;

@@ -45,7 +45,12 @@ export const ExercisesService = async (userToken) => {
     throw new Error(`Error en la solicitud: ${error.message}`);
   }
 };
-export const MarkRecommended = async (idExercise, isRecommended, user) => {
+
+export const MarkRecommendedService = async (
+  idExercise,
+  isRecommended,
+  user
+) => {
   try {
     const baseUrl = process.env.REACT_APP_BACKEND;
     const relativeUrl = `/exercises/recommendedExercise/?idExercise=${idExercise}`;
@@ -74,7 +79,7 @@ export const MarkRecommended = async (idExercise, isRecommended, user) => {
     return { success: false, message: "Error de red" };
   }
 };
-export const markFavorite = async (idExercise, isFavorite, user) => {
+export const markFavoriteService = async (idExercise, isFavorite, user) => {
   try {
     const baseUrl = process.env.REACT_APP_BACKEND;
     const relativeUrl = `/exercises/favoriteExercise/?idExercise=${idExercise}`;
@@ -103,7 +108,7 @@ export const markFavorite = async (idExercise, isFavorite, user) => {
     return { success: false, message: "Error de red" };
   }
 };
-export const FavoriteExercises = async (userToken) => {
+export const FavoriteExercisesService = async (userToken) => {
   try {
     const baseUrl = process.env.REACT_APP_BACKEND_URL;
     const relativeUrl = "/exercises/favorite";
@@ -159,5 +164,29 @@ export const AddExerciseService = async (userToken, formData) => {
     return data;
   } catch (error) {
     throw new Error(`Error en la solicitud: ${error.message}`);
+  }
+};
+
+export const deleteExerciseService = async (exerciseId, userToken) => {
+  try {
+    const baseUrl = process.env.REACT_APP_BACKEND;
+    const relativeUrl = `/exercises/deleteExercise/${exerciseId}`;
+    const url = `${baseUrl}${relativeUrl}`;
+    const headers = {
+      Authorization: userToken,
+    };
+
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: headers,
+    });
+
+    if (response.ok) {
+      return { success: true };
+    } else {
+      return { success: false, message: "Error al eliminar el ejercicio" };
+    }
+  } catch (error) {
+    return { success: false, message: "Error de red" };
   }
 };

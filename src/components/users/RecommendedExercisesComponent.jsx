@@ -1,6 +1,6 @@
 import React from "react";
 
-const ExerciseRecommendationToggle = ({
+const RecommendedExerciseComponent = ({
   idExercise,
   isRecommended,
   markExercise,
@@ -23,4 +23,4 @@ const ExerciseRecommendationToggle = ({
   );
 };
 
-export default ExerciseRecommendationToggle;
+export default RecommendedExerciseComponent;

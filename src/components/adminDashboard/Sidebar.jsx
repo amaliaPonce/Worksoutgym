@@ -16,7 +16,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/main/add-exercise" className="nav-link">
+            <Link to="/main/exercisePage" className="nav-link">
               <i className="uil uil-user"></i>
             </Link>
           </li>
