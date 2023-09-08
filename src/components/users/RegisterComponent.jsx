@@ -1,45 +1,37 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/register.css";
+import { registerService } from "../../service/index";
 
+import "../../styles/register.css";
 
 function RegisterComponent() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/users/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
-      });
-      if (response.ok) {
-        // Registro exitoso, muestra mensaje y redirige a la página de inicio de sesión
-        setRegistrationSuccess(true);
-        navigate("/login");
-      } else {
-        console.error("Error en el registro");
-      }
+      await registerService({ email, password });
+      setRegistrationSuccess(true);
+      navigate("/login");
     } catch (error) {
-      console.error("Error en el registro", error);
+      setError(error.message);
     }
   };
+
   return (
     <div className="register-container">
       <h2 className="register-title">Regístrate</h2>
       {registrationSuccess && (
-        <p className="register-subtitle">¡Registro exitoso! Por favor, inicia sesión.</p>
+        <p className="register-subtitle">
+          ¡Registro exitoso! Por favor, inicia sesión.
+        </p>
       )}
+      {error && <p className="register-error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Nombre:</label>
@@ -68,9 +60,10 @@ function RegisterComponent() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="register-button">Registrarse</button>
+        <button type="submit" className="register-button">
+          Registrarse
+        </button>
       </form>
-     
     </div>
   );
 }

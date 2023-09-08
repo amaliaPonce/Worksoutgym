@@ -5,6 +5,8 @@ import { markFavoriteService } from "../../service/index";
 import { MarkRecommendedService } from "../../service/index";
 import { deleteExerciseService } from "../../service/index";
 
+// Para admin
+
 const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   const { user } = useContext(AppContext);
   const [exerciseIsFavorite, setExerciseIsFavorite] = useState(isFavorite);

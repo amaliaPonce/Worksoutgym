@@ -9,13 +9,13 @@ function ExercisePage() {
       <nav>
         <ul>
           <li>
-            <Link to="add-exercise">Añadir ejercicio</Link>
+            <Link to="/AddExerciseComponent">Añadir ejercicio</Link>
           </li>
           <li>
-            <Link to="update-exercise">Editar ejercicio</Link>
+            <Link to="/UpdateExercise">Editar ejercicio</Link>
           </li>
           <li>
-            <Link to="delete-exercise">Eliminar ejercicio</Link>
+            <Link to="/DeleteExercise">Eliminar ejercicio</Link>
           </li>
         </ul>
       </nav>

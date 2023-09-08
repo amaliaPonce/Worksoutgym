@@ -18,13 +18,7 @@ function LoginComponent() {
     setIsLoading(true);
 
     try {
-      const data = await loginServise(
-        `${process.env.REACT_APP_BACKEND}/users/login`,
-        {
-          email,
-          password,
-        }
-      );
+      const data = await loginServise({ email, password });
 
       if (data.status === "ok") {
         login({ role: data.data.userRole, token: data.data.token });

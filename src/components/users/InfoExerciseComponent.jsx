@@ -1,55 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { useExercise } from "../hooks/useExercise";
 import { AppContext } from "../../context/AppContext";
 
-function ExerciseInfoPage() {
+function ExerciseInfo() {
   const { user } = useContext(AppContext);
   const { id } = useParams();
-  const [exercise, setExercise] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchExerciseInfo = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const headers = {
-          Authorization: user.token,
-        };
-
-        const response = await fetch(
-          `http://localhost:8000/exercises/infoExercise/${id}`,
-          {
-            method: "GET",
-            headers: headers,
-          }
-        );
-
-        if (!response.ok) {
-          if (response.status === 401) {
-            throw new Error("No autorizado: Debes iniciar sesión.");
-          } else if (response.status === 404) {
-            throw new Error("Ejercicio no encontrado.");
-          } else {
-            throw new Error(
-              "Error de red: " + response.status + " " + response.statusText
-            );
-          }
-        }
-
-        const data = await response.json();
-        setExercise(data.data[0]);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
-      }
-    };
-
-    fetchExerciseInfo();
-  }, [user.token, id]);
+  const { exercise, loading, error } = useExercise(id, user.token);
 
   return (
     <div>
@@ -80,4 +37,4 @@ function ExerciseInfoPage() {
   );
 }
 
-export default ExerciseInfoPage;
+export default ExerciseInfo;

@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
+import useExercise from "../../hooks/useExercise";
+import { updateExerciseService } from "../../service/index";
 
 function UpdateExercise() {
   const { user } = useContext(AppContext);
@@ -8,11 +10,17 @@ function UpdateExercise() {
     name: "",
     description: "",
     muscleGroup: "",
-    photoName: null, // Inicializar con null en lugar de una cadena vacía
+    photoName: null,
   });
 
   const [updateMessage, setUpdateMessage] = useState("");
   const [error, setError] = useState(null);
+
+  const {
+    exercise,
+    loading: exerciseLoading,
+    error: exerciseError,
+  } = useExercise(exerciseData.id);
 
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -27,9 +35,6 @@ function UpdateExercise() {
   const handleUpdateExercise = async () => {
     try {
       setError(null);
-      const headers = {
-        Authorization: user.token,
-      };
 
       const formData = new FormData();
       formData.append("id", exerciseData.id);
@@ -37,18 +42,14 @@ function UpdateExercise() {
       formData.append("description", exerciseData.description);
       formData.append("muscleGroup", exerciseData.muscleGroup);
 
-      // Verificar si exerciseData.photoName es distinto de null antes de incluirlo
       if (exerciseData.photoName !== null) {
         formData.append("photoName", exerciseData.photoName);
       }
 
-      const response = await fetch(
-        `http://localhost:8000/exercises/updateExerciseController/${exerciseData.id}`,
-        {
-          method: "PUT",
-          headers: headers,
-          body: formData,
-        }
+      const response = await updateExerciseService(
+        exerciseData.id,
+        user.token,
+        formData
       );
 
       if (!response.ok) {
@@ -60,7 +61,7 @@ function UpdateExercise() {
       setUpdateMessage("Ejercicio actualizado con éxito");
       setExerciseData({
         ...exerciseData,
-        photoName: null, // Reiniciar el campo photoName
+        photoName: null,
       });
       setTimeout(() => setUpdateMessage(""), 3000);
     } catch (error) {
@@ -113,6 +114,27 @@ function UpdateExercise() {
       <button onClick={handleUpdateExercise}>Actualizar Ejercicio</button>
       {updateMessage && <p>{updateMessage}</p>}
       {error && <p>Error: {error}</p>}
+      {exerciseLoading ? (
+        <p>Cargando información del ejercicio...</p>
+      ) : exerciseError ? (
+        <p>Error al cargar información del ejercicio: {exerciseError}</p>
+      ) : exercise ? (
+        <div>
+          <h2>Detalles del Ejercicio</h2>
+          <p>
+            <strong>ID:</strong> {exercise.id}
+          </p>
+          <p>
+            <strong>Nombre:</strong> {exercise.name}
+          </p>
+          <p>
+            <strong>Descripción:</strong> {exercise.description}
+          </p>
+          <p>
+            <strong>Grupo Muscular:</strong> {exercise.muscleGroup}
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }

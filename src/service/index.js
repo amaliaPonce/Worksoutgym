@@ -1,63 +1,137 @@
-// Conexiones con el backend
-export const loginServise = async (url, body) => {
-  try {
-    const response = await fetch(url, {
+export const getUserDataService = async (id) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/${id}`);
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};
+
+export const registerService = async ({ email, password }) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/users/register`,
+    {
       method: "POST",
+      body: JSON.stringify({ email, password }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
-    });
+    }
+  );
 
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+};
+
+export const loginServise = async (body) => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND}/users/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    );
     if (!response.ok) {
-      // Manejo de errores de red
       throw new Error(
         `Error en la solicitud: ${response.status} ${response.statusText}`
       );
     }
-
     const data = await response.json();
     return data;
   } catch (error) {
-    // Manejo de errores generales
     throw new Error(`Error en la solicitud: ${error.message}`);
   }
 };
 
 export const ExercisesService = async (userToken) => {
-  try {
-    const baseUrl = process.env.REACT_APP_BACKEND;
-    const relativeUrl = "/exercises/listExercises";
-    const url = `${baseUrl}${relativeUrl}`;
-    const response = await fetch(url, {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/exercises/listExercises`,
+    {
+      method: "GET",
       headers: {
         Authorization: ` ${userToken}`,
       },
-    });
-    if (!response.ok) {
-      throw new Error(
-        `Error en la solicitud: ${response.status} ${response.statusText}`
-      );
     }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    throw new Error(`Error en la solicitud: ${error.message}`);
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
   }
+
+  return json.data;
+};
+export const filterExercisesService = async (
+  userToken,
+  name,
+  muscleGroup,
+  favorite,
+  recommended
+) => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND}/exercises/filterExercises/`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: ` ${userToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(name, muscleGroup, favorite, recommended),
+      }
+    );
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.message);
+    }
+
+    return json.data;
+  } catch (error) {
+    return { status: "error", message: "Error de red" };
+  }
+};
+
+export const infoExercisesService = async (id, userToken) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/exercises/infoExercise/${id}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: ` ${userToken}`,
+      },
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
 };
 
 export const MarkRecommendedService = async (
   idExercise,
   isRecommended,
-  user
+  userToken
 ) => {
   try {
-    const baseUrl = process.env.REACT_APP_BACKEND;
-    const relativeUrl = `/exercises/recommendedExercise/?idExercise=${idExercise}`;
-    const url = `${baseUrl}${relativeUrl}`;
+    const url = `${process.env.REACT_APP_BACKEND}/exercises/recommendedExercise/?idExercise=${idExercise}`;
 
     const headers = {
-      Authorization: ` ${user.token}`,
+      Authorization: ` ${userToken}`,
     };
 
     const method = isRecommended ? "POST" : "DELETE";
@@ -79,14 +153,16 @@ export const MarkRecommendedService = async (
     return { success: false, message: "Error de red" };
   }
 };
-export const markFavoriteService = async (idExercise, isFavorite, user) => {
-  try {
-    const baseUrl = process.env.REACT_APP_BACKEND;
-    const relativeUrl = `/exercises/favoriteExercise/?idExercise=${idExercise}`;
-    const url = `${baseUrl}${relativeUrl}`;
 
+export const markFavoriteService = async (
+  idExercise,
+  isFavorite,
+  userToken
+) => {
+  try {
+    const url = `${process.env.REACT_APP_BACKEND}/exercises/favoriteExercise/?idExercise=${idExercise}`;
     const headers = {
-      Authorization: ` ${user.token}`,
+      Authorization: ` ${userToken}`,
     };
 
     const method = isFavorite ? "DELETE" : "POST";
@@ -108,9 +184,10 @@ export const markFavoriteService = async (idExercise, isFavorite, user) => {
     return { success: false, message: "Error de red" };
   }
 };
+
 export const FavoriteExercisesService = async (userToken) => {
   try {
-    const baseUrl = process.env.REACT_APP_BACKEND_URL;
+    const baseUrl = process.env.REACT_APP_BACKEND;
     const relativeUrl = "/exercises/favorite";
     const url = `${baseUrl}${relativeUrl}`;
 
@@ -141,52 +218,60 @@ export const FavoriteExercisesService = async (userToken) => {
     return { success: false, message: "Error de red" };
   }
 };
+
 export const AddExerciseService = async (userToken, formData) => {
-  try {
-    const baseUrl = process.env.REACT_APP_BACKEND;
-    const relativeUrl = "/exercises/newExercise";
-    const url = `${baseUrl}${relativeUrl}`;
-    const response = await fetch(url, {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/exercises/listExercises`,
+    {
       method: "POST",
       headers: {
         Authorization: ` ${userToken}`,
       },
       body: formData,
-    });
-
-    if (!response.ok) {
-      throw new Error(
-        `Error en la solicitud: ${response.status} ${response.statusText}`
-      );
     }
+  );
+  const json = await response.json();
 
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    throw new Error(`Error en la solicitud: ${error.message}`);
+  if (!response.ok) {
+    throw new Error(json.message);
   }
+
+  return json.data;
 };
 
 export const deleteExerciseService = async (exerciseId, userToken) => {
-  try {
-    const baseUrl = process.env.REACT_APP_BACKEND;
-    const relativeUrl = `/exercises/deleteExercise/${exerciseId}`;
-    const url = `${baseUrl}${relativeUrl}`;
-    const headers = {
-      Authorization: userToken,
-    };
-
-    const response = await fetch(url, {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/exercises/deleteExercise/:id`,
+    {
       method: "DELETE",
-      headers: headers,
-    });
-
-    if (response.ok) {
-      return { success: true };
-    } else {
-      return { success: false, message: "Error al eliminar el ejercicio" };
+      headers: {
+        Authorization: ` ${userToken}`,
+      },
     }
-  } catch (error) {
-    return { success: false, message: "Error de red" };
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
   }
+
+  return json.data;
+};
+export const updateExerciseService = async (exerciseId, userToken) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/exercises/updateExerciseController/:id`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: ` ${userToken}`,
+      },
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
 };

@@ -42,8 +42,6 @@ function AddExercise() {
         console.log("Ejercicio agregado exitosamente");
         setAdded(true);
         setFormState(initialFormState);
-        setTimeout(() => setAdded(false), 3000);
-        window.location.reload();
       } else {
         console.error("Error al agregar el ejercicio");
       }
