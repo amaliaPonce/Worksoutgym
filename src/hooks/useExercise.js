@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { infoExercisesService } from "../service/index";
 
-const useExercise = (id) => {
+const useExercise = (id, token) => {
   const [exercise, setExercise] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -10,7 +10,7 @@ const useExercise = (id) => {
     const loadExercise = async () => {
       try {
         setLoading(true);
-        const data = await infoExercisesService(id);
+        const data = await infoExercisesService(id, token);
 
         setExercise(data);
       } catch (error) {
@@ -21,7 +21,7 @@ const useExercise = (id) => {
     };
 
     loadExercise();
-  }, [id]);
+  }, [id, token]);
 
   return { exercise, error, loading };
 };

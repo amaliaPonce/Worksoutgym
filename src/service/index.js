@@ -128,7 +128,7 @@ export const MarkRecommendedService = async (
   userToken
 ) => {
   try {
-    const url = `${process.env.REACT_APP_BACKEND}/exercises/recommendedExercise/?idExercise=${idExercise}`;
+    const url = `${process.env.REACT_APP_BACKEND}/exercises/recommendedExercise/${idExercise}`;
 
     const headers = {
       Authorization: ` ${userToken}`,
@@ -160,7 +160,7 @@ export const markFavoriteService = async (
   userToken
 ) => {
   try {
-    const url = `${process.env.REACT_APP_BACKEND}/exercises/favoriteExercise/?idExercise=${idExercise}`;
+    const url = `${process.env.REACT_APP_BACKEND}/exercises/favoriteExercise/${idExercise}`;
     const headers = {
       Authorization: ` ${userToken}`,
     };
@@ -221,7 +221,7 @@ export const FavoriteExercisesService = async (userToken) => {
 
 export const AddExerciseService = async (userToken, formData) => {
   const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/exercises/listExercises`,
+    `${process.env.REACT_APP_BACKEND}/exercises/newExercise`,
     {
       method: "POST",
       headers: {
@@ -238,10 +238,9 @@ export const AddExerciseService = async (userToken, formData) => {
 
   return json.data;
 };
-
 export const deleteExerciseService = async (exerciseId, userToken) => {
   const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/exercises/deleteExercise/:id`,
+    `${process.env.REACT_APP_BACKEND}/exercises/deleteExercise/${exerciseId}`,
     {
       method: "DELETE",
       headers: {
@@ -259,7 +258,7 @@ export const deleteExerciseService = async (exerciseId, userToken) => {
 };
 export const updateExerciseService = async (exerciseId, userToken) => {
   const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/exercises/updateExerciseController/:id`,
+    `${process.env.REACT_APP_BACKEND}/exercises/updateExerciseController/${exerciseId}`,
     {
       method: "PUT",
       headers: {

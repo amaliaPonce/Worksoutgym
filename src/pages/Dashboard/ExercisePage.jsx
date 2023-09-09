@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import ExerciseListComponent from "../../components/users/ExerciseListComponent";
 import "../../styles/adminDashboard/exercisePage.css";
 
@@ -9,17 +9,24 @@ function ExercisePage() {
       <nav>
         <ul>
           <li>
-            <Link to="/AddExerciseComponent">Añadir ejercicio</Link>
+            <Link to="/main/exercisePage/AddExerciseComponent">
+              <p>Añadir ejercicio</p>
+            </Link>
           </li>
           <li>
-            <Link to="/UpdateExercise">Editar ejercicio</Link>
+            <Link to="/main/exercisePage/UpdateExercise">
+              <p>Editar ejercicio</p>
+            </Link>
           </li>
           <li>
-            <Link to="/DeleteExercise">Eliminar ejercicio</Link>
+            <Link to="/main/exercisePage/InfoExerciseComponent">
+              <p>Información del ejercicio</p>
+            </Link>
           </li>
         </ul>
       </nav>
       <hr />
+      <Outlet />
       <ExerciseListComponent />
     </div>
   );

@@ -57,9 +57,10 @@ function ExerciseFilter() {
             onChange={(e) => setMuscleGroup(e.target.value)}
           >
             <option value="">Seleccione un grupo muscular</option>
-            <option value="Tren-superior">Tren-superior</option>
-            <option value="Tren-inferior">Tren-inferior</option>
+            <option value="Tren superior">Tren superior</option>
+            <option value="Tren inferior">Tren inferior</option>
             <option value="core">Core</option>
+            <option value="Full body">Full body</option>
           </select>
         </div>
         <div className="exercise-container">

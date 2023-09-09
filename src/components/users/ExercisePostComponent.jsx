@@ -3,9 +3,6 @@ import "../../styles/exerciseList.css";
 import { AppContext } from "../../context/AppContext";
 import { markFavoriteService } from "../../service/index";
 import { MarkRecommendedService } from "../../service/index";
-import { deleteExerciseService } from "../../service/index";
-
-// Para admin
 
 const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   const { user } = useContext(AppContext);
@@ -28,19 +25,6 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
       }
     } catch (error) {
       console.error("Error al marcar/desmarcar como favorito:", error.message);
-    }
-  };
-
-  const handleDeleteExercise = async () => {
-    try {
-      const result = await deleteExerciseService(exercise.id, user.token);
-      if (result.success) {
-        console.log("Ejercicio eliminado con éxito");
-      } else {
-        console.error(result.message);
-      }
-    } catch (error) {
-      console.error("Error al eliminar el ejercicio:", error.message);
     }
   };
 
@@ -69,7 +53,7 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
     <div className="exercise-card">
       <div className="exercise-image">
         <img
-          src={`http://localhost:8000/uploads/${exercise.photoName}`}
+          src={`${process.env.REACT_APP_BACKEND}/uploads/${exercise.photoName}`}
           alt={exercise.name}
         />
       </div>
@@ -90,9 +74,6 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
         <button onClick={handleToggleFavorite}>
           {exerciseIsFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
         </button>
-
-        <button onClick={handleDeleteExercise}>Eliminar Ejercicio</button>
-
         <button onClick={handleToggleRecommendation}>
           {exerciseIsRecommended
             ? "Desmarcar como recomendado"

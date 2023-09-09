@@ -9,7 +9,7 @@ import MainContent from "./components/adminDashboard/MainContent";
 import ExercisePage from "./pages/Dashboard/ExercisePage";
 import AddExerciseComponent from "./components/users/AddExerciseComponent";
 import UpdateExercise from "./components/users/UpdateExercise";
-import DeleteExercise from "./components/users/DeleteExercise";
+import InfoExerciseComponet from "./components/users/InfoExerciseComponent";
 
 const RoutesApp = () => {
   return (
@@ -19,19 +19,19 @@ const RoutesApp = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/clientpage" element={<ClientPage />} />
       <Route path="/adminpage" element={<AdminPage />} />
+      <Route
+        path="/main/exercisePage/AddExerciseComponent"
+        element={<AddExerciseComponent />}
+      />
       <Route path="/main" element={<MainContent />}>
         <Route path="/main/exercisePage" element={<ExercisePage />}>
-          <Route
-            path="/main/exercisePage/AddExerciseComponent"
-            element={<AddExerciseComponent />}
-          />
           <Route
             path="/main/exercisePage/UpdateExercise"
             element={<UpdateExercise />}
           />
           <Route
             path="/main/exercisePage/DeleteExercise"
-            element={<DeleteExercise />}
+            element={<InfoExerciseComponet />}
           />
         </Route>
       </Route>

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { ExercisesService } from "../../service/index";
+import ExercisePostComponent from "./ExercisePostComponent";
 
 function ExerciseListComponent() {
   const { user } = useContext(AppContext);
@@ -26,26 +27,14 @@ function ExerciseListComponent() {
       <div className="exercise-container">
         {exercises.map((exercise) => (
           <div className="exercise-card" key={exercise.id}>
-            <div className="exercise-image">
-              <img
-                src={`http://localhost:8000/uploads/${exercise.photoName}`}
-                alt={exercise.name}
-              />
-            </div>
-            <div className="exercise-details">
-              <p>
-                <strong>ID:</strong> {exercise.id}
-              </p>
-              <p>
-                <strong>Nombre:</strong> {exercise.name}
-              </p>
-              <p className="exercise-details">
-                <strong>Descripción:</strong> {exercise.description}
-              </p>
-              <p className="exercise-details">
-                <strong>Grupo Muscular:</strong> {exercise.muscleGroup}
-              </p>
-            </div>
+            <ExercisePostComponent
+              exercise={{
+                ...exercise.data,
+                photoName: exercise.photoName,
+              }}
+              isFavorite={exercise.isFavorite}
+              isRecommended={exercise.isRecommended}
+            />
           </div>
         ))}
       </div>
