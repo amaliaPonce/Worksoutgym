@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import FavoriteExercises from "../../service/index";
+import { getFavoriteExercisesService } from "../../service/index";
+
 
 function FavoriteExercisesComponent() {
-  const { user } = useContext(AppContext);
+  const { id, userToken } = useContext(AppContext);
   const [favoriteExercises, setFavoriteExercises] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -15,7 +16,7 @@ function FavoriteExercisesComponent() {
       setError(null);
 
       try {
-        const result = await FavoriteExercises(user.token);
+        const result = await getFavoriteExercisesService(id, userToken);
 
         if (result.success) {
           setFavoriteExercises(result.data);
@@ -31,7 +32,7 @@ function FavoriteExercisesComponent() {
     };
 
     loadFavoriteExercises();
-  }, [user.token]);
+  }, [id, userToken]);
 
   return (
     <div>
