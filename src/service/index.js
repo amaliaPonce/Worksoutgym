@@ -131,7 +131,7 @@ export const MarkRecommendedService = async (
     const url = `${process.env.REACT_APP_BACKEND}/exercises/recommendedExercise/?idExercise=${idExercise}`;
 
     const headers = {
-      Authorization: ` ${user.Token}`,
+      Authorization: ` ${user.token}`,
     };
 
     const method = isRecommended ? "POST" : "POST";
