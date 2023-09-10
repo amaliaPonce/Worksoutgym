@@ -125,16 +125,16 @@ export const infoExercisesService = async (id, userToken) => {
 export const MarkRecommendedService = async (
   idExercise,
   isRecommended,
-  userToken
+  user
 ) => {
   try {
-    const url = `${process.env.REACT_APP_BACKEND}/exercises/recommendedExercise/${idExercise}`;
+    const url = `${process.env.REACT_APP_BACKEND}/exercises/recommendedExercise/?idExercise=${idExercise}`;
 
     const headers = {
-      Authorization: ` ${userToken}`,
+      Authorization: ` ${user.Token}`,
     };
 
-    const method = isRecommended ? "POST" : "DELETE";
+    const method = isRecommended ? "POST" : "POST";
 
     const response = await fetch(url, {
       method,
@@ -154,18 +154,14 @@ export const MarkRecommendedService = async (
   }
 };
 
-export const markFavoriteService = async (
-  idExercise,
-  isFavorite,
-  userToken
-) => {
+export const markFavoriteService = async (idExercise, isFavorite, user) => {
   try {
-    const url = `${process.env.REACT_APP_BACKEND}/exercises/favoriteExercise/${idExercise}`;
+    const url = `${process.env.REACT_APP_BACKEND}/exercises/favoriteExercise/?idExercise=${idExercise}`;
     const headers = {
-      Authorization: ` ${userToken}`,
+      Authorization: `${user.token}`,
     };
 
-    const method = isFavorite ? "DELETE" : "POST";
+    const method = isFavorite ? "POST" : "POST";
 
     const response = await fetch(url, {
       method,
@@ -185,14 +181,12 @@ export const markFavoriteService = async (
   }
 };
 
-export const FavoriteExercisesService = async (userToken) => {
+export const FavoriteExercisesService = async (user) => {
   try {
-    const baseUrl = process.env.REACT_APP_BACKEND;
-    const relativeUrl = "/exercises/favorite";
-    const url = `${baseUrl}${relativeUrl}`;
+    const url = `${process.env.REACT_APP_BACKEND}/exercises/favorite`;
 
     const headers = {
-      Authorization: ` ${userToken}`,
+      Authorization: ` ${user.Token}`,
     };
 
     const response = await fetch(url, {

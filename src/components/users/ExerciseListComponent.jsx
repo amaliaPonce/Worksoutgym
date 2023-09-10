@@ -29,7 +29,10 @@ function ExerciseListComponent() {
           <div className="exercise-card" key={exercise.id}>
             <ExercisePostComponent
               exercise={{
-                ...exercise.data,
+                id: exercise.id,
+                name: exercise.name,
+                description: exercise.description,
+                muscleGroup: exercise.muscleGroup,
                 photoName: exercise.photoName,
               }}
               isFavorite={exercise.isFavorite}

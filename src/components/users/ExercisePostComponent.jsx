@@ -32,7 +32,7 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
     try {
       const result = await MarkRecommendedService(
         exercise.id,
-        !exercise.isRecommended,
+        exerciseIsRecommended,
         user
       );
       if (result.success) {

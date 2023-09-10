@@ -11,6 +11,8 @@ import AddExerciseComponent from "./components/users/AddExerciseComponent";
 import UpdateExercise from "./components/users/UpdateExercise";
 import InfoExerciseComponet from "./components/users/InfoExerciseComponent";
 
+// Si queremos que las rutas se abran en una pagina nueva tienen que estar fuera del padre.
+
 const RoutesApp = () => {
   return (
     <Routes>
@@ -23,17 +25,16 @@ const RoutesApp = () => {
         path="/main/exercisePage/AddExerciseComponent"
         element={<AddExerciseComponent />}
       />
+      <Route
+        path="/main/exercisePage/UpdateExercise"
+        element={<UpdateExercise />}
+      />
+      <Route
+        path="/main/exercisePage/DeleteExercise"
+        element={<InfoExerciseComponet />}
+      />
       <Route path="/main" element={<MainContent />}>
-        <Route path="/main/exercisePage" element={<ExercisePage />}>
-          <Route
-            path="/main/exercisePage/UpdateExercise"
-            element={<UpdateExercise />}
-          />
-          <Route
-            path="/main/exercisePage/DeleteExercise"
-            element={<InfoExerciseComponet />}
-          />
-        </Route>
+        <Route path="/main/exercisePage" element={<ExercisePage />}></Route>
       </Route>
     </Routes>
   );
