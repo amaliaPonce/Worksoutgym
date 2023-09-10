@@ -78,6 +78,7 @@ function UpdateExercise() {
         name="id"
         value={exerciseData.id}
         onChange={handleInputChange}
+        required
       />
       <label>Nombre:</label>
       <input
@@ -85,6 +86,7 @@ function UpdateExercise() {
         name="name"
         value={exerciseData.name}
         onChange={handleInputChange}
+        required
       />
       <label>Descripción:</label>
       <input
@@ -92,12 +94,14 @@ function UpdateExercise() {
         name="description"
         value={exerciseData.description}
         onChange={handleInputChange}
+        required
       />
       <label>Grupo Muscular:</label>
       <select
         name="muscleGroup"
         value={exerciseData.muscleGroup}
         onChange={handleInputChange}
+        required
       >
         <option value="">Seleccione un grupo muscular</option>
         <option value="Tren superior">Tren superior</option>
@@ -111,6 +115,7 @@ function UpdateExercise() {
         name="photoName"
         accept="image/*"
         onChange={handleInputChange}
+        required
       />
       <button onClick={handleUpdateExercise}>Actualizar Ejercicio</button>
       {updateMessage && <p>{updateMessage}</p>}
