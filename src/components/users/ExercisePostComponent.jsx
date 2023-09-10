@@ -3,12 +3,14 @@ import "../../styles/exerciseList.css";
 import { AppContext } from "../../context/AppContext";
 import { markFavoriteService } from "../../service/index";
 import { MarkRecommendedService } from "../../service/index";
+import { useNavigate } from "react-router-dom";
 
 const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   const { user } = useContext(AppContext);
   const [exerciseIsFavorite, setExerciseIsFavorite] = useState(isFavorite);
   const [exerciseIsRecommended, setExerciseIsRecommended] =
     useState(isRecommended);
+  const navigate = useNavigate();
 
   const handleToggleFavorite = async () => {
     try {
@@ -78,6 +80,11 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
           {exerciseIsRecommended
             ? "Desmarcar como recomendado"
             : "Marcar como recomendado"}
+        </button>
+        <button
+          onClick={() => navigate(`/ruta-a-exercise-info/${exercise.id}`)}
+        >
+          Ver detalles
         </button>
       </div>
     </div>

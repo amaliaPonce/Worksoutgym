@@ -22,6 +22,11 @@ const RoutesApp = () => {
       <Route path="/clientpage" element={<ClientPage />} />
       <Route path="/adminpage" element={<AdminPage />} />
       <Route
+        path="/ruta-a-exercise-info/:id"
+        element={<InfoExerciseComponet />}
+      />
+
+      <Route
         path="/main/exercisePage/AddExerciseComponent"
         element={<AddExerciseComponent />}
       />
