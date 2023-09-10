@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import Button from "../Button";
 
 function LogOutSesion() {
   const { logout } = useContext(AppContext);
@@ -13,7 +14,7 @@ function LogOutSesion() {
 
   return (
     <div>
-      <button onClick={handleLogout}>Cerrar Sesión</button>
+      <Button handleClick={handleLogout}>Cerrar Sesión</Button>
     </div>
   );
 }

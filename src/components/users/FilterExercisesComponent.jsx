@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { filterExercisesService } from "../../service/index";
-
+import Button from "../Button";
 function ExerciseFilter() {
   const { user } = useContext(AppContext);
   const [name, setName] = useState("");
@@ -79,7 +79,7 @@ function ExerciseFilter() {
             onChange={() => setRecommended(!recommended)}
           />
         </div>
-        <button onClick={handleFilter}>Filtrar</button>
+        <Button handleClick={handleFilter}>Filtrar</Button>
       </div>
 
       {loading && <p>Cargando...</p>}

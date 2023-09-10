@@ -4,7 +4,7 @@ import { AppContext } from "../../context/AppContext";
 import { markFavoriteService } from "../../service/index";
 import { MarkRecommendedService } from "../../service/index";
 import { useNavigate } from "react-router-dom";
-
+import Button from "../Button";
 const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   const { user } = useContext(AppContext);
   const [exerciseIsFavorite, setExerciseIsFavorite] = useState(isFavorite);
@@ -73,19 +73,19 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
         <p className="exercise-details">
           <strong>Grupo Muscular:</strong> {exercise.muscleGroup}
         </p>
-        <button onClick={handleToggleFavorite}>
+        <Button handleClick={handleToggleFavorite}>
           {exerciseIsFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
-        </button>
-        <button onClick={handleToggleRecommendation}>
+        </Button>
+        <Button handleClick={handleToggleRecommendation}>
           {exerciseIsRecommended
             ? "Desmarcar como recomendado"
             : "Marcar como recomendado"}
-        </button>
-        <button
-          onClick={() => navigate(`/ruta-a-exercise-info/${exercise.id}`)}
+        </Button>
+        <Button
+          handleClick={() => navigate(`/ruta-a-exercise-info/${exercise.id}`)}
         >
           Ver detalles
-        </button>
+        </Button>
       </div>
     </div>
   );

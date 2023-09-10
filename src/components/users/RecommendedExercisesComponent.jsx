@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { MarkRecommendedService } from "../../service/index";
-
+import Button from "../Button";
 const RecommendedExerciseComponent = ({ exercise }) => {
   const [isRecommended, setIsRecommended] = useState(false);
   const { user } = useContext(AppContext);
@@ -51,11 +51,11 @@ const RecommendedExerciseComponent = ({ exercise }) => {
 
   return (
     <div>
-      <button onClick={handleToggleRecommendation}>
+      <Button handleClick={handleToggleRecommendation}>
         {isRecommended
           ? "Desmarcar como recomendado"
           : "Marcar como recomendado"}
-      </button>
+      </Button>
     </div>
   );
 };

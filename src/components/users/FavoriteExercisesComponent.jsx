@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import FavoriteExercises from "../../service/index";
+import Button from "../Button";
 
 function FavoriteExercisesComponent() {
   const { user } = useContext(AppContext);
@@ -43,9 +44,9 @@ function FavoriteExercisesComponent() {
         <p>Error: {error.message}</p>
       ) : (
         <div>
-          <button onClick={() => setShowAccordion(!showAccordion)}>
+          <Button handleClick={() => setShowAccordion(!showAccordion)}>
             {showAccordion ? "Ocultar Favoritos" : "Mostrar Favoritos"}
-          </button>
+          </Button>
           {showAccordion && (
             <div>
               {favoriteExercises.length > 0 ? (

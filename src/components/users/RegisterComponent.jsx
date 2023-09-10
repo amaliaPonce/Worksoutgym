@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerService } from "../../service/index";
-
+import Button from "../Button";
 import "../../styles/register.css";
 
 function RegisterComponent() {
@@ -40,6 +40,7 @@ function RegisterComponent() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
         </div>
         <div>
@@ -49,6 +50,7 @@ function RegisterComponent() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
         <div>
@@ -58,11 +60,12 @@ function RegisterComponent() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
-        <button type="submit" className="register-button">
+        <Button handleClick="submit" className="register-button">
           Registrarse
-        </button>
+        </Button>
       </form>
     </div>
   );
