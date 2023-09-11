@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerService } from "../../service/index";
-import Button from "../Button";
 import "../../styles/register.css";
 
 function RegisterComponent() {
@@ -63,9 +62,9 @@ function RegisterComponent() {
             required
           />
         </div>
-        <Button handleClick="submit" className="register-button">
+        <button type="submit" className="register-button">
           Registrarse
-        </Button>
+        </button>
       </form>
     </div>
   );

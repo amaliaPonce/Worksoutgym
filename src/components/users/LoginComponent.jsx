@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { loginServise } from "../../service/index";
 import "../../styles/login.css";
 import { AppContext } from "../../context/AppContext";
-import Button from "../Button";
 function LoginComponent() {
   const navigate = useNavigate();
   const { login } = useContext(AppContext);
@@ -59,13 +58,9 @@ function LoginComponent() {
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
         />
-        <Button
-          handleClick="submit"
-          className="login-button"
-          disabled={isLoading}
-        >
+        <button type="submit" className="login-button" disabled={isLoading}>
           <span>{isLoading ? "Cargando..." : "Iniciar Sesión"}</span>
-        </Button>
+        </button>
         {error && <p className="login-error">{error}</p>}
         {isLoading && <p className="login-loading">Cargando...</p>}
       </form>
