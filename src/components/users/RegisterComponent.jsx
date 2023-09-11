@@ -15,7 +15,7 @@ function RegisterComponent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await registerService({ email, password });
+      await registerService(name, email, password);
       setRegistrationSuccess(true);
       navigate("/login");
     } catch (error) {
@@ -40,7 +40,6 @@ function RegisterComponent() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
           />
         </div>
         <div>
@@ -50,7 +49,6 @@ function RegisterComponent() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
         </div>
         <div>
@@ -60,10 +58,13 @@ function RegisterComponent() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
         </div>
-        <Button handleClick="submit" className="register-button">
+        <Button
+          handleClick={handleSubmit}
+          type="submit"
+          className="register-button"
+        >
           Registrarse
         </Button>
       </form>

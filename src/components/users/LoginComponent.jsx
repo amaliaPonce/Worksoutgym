@@ -60,7 +60,8 @@ function LoginComponent() {
           autoComplete="current-password"
         />
         <Button
-          handleClick="submit"
+          handleClick={handleLogin}
+          type="submit"
           className="login-button"
           disabled={isLoading}
         >

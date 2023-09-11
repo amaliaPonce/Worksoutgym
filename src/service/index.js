@@ -10,22 +10,25 @@ export const getUserDataService = async (id) => {
   return json.data;
 };
 
-export const registerService = async ({ email, password }) => {
-  const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/users/register`,
-    {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+export const registerService = async (name, email, password) => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND}/users/register`,
+      {
+        method: "POST",
+        body: JSON.stringify({ name, email, password }), // Incluye los datos en el cuerpo
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message);
     }
-  );
-
-  const json = await response.json();
-
-  if (!response.ok) {
-    throw new Error(json.message);
+  } catch (error) {
+    throw new Error("Error en el registro: " + error.message);
   }
 };
 
@@ -324,3 +327,4 @@ export const listUsersService = async (usertoken) => {
 
   return json.data;
 };
+
