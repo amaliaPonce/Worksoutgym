@@ -271,3 +271,60 @@ export const FavoriteExercisesService = async (user) => {
     return { success: false, message: "Error de red" };
   }
 };
+export const updateUserService = async (usertoken) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/users/profile`,
+
+    {
+      method: "PUT",
+      headers: {
+        Authorization: ` ${usertoken}`,
+      },
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};
+export const updateRolUserService = async (id, usertoken) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/users/updateUserRole/${id}`,
+
+    {
+      method: "PUT",
+      headers: {
+        Authorization: ` ${usertoken}`,
+      },
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};
+export const listUsersService = async (usertoken) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/users/listUsers/`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: ` ${usertoken}`,
+      },
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};
+
