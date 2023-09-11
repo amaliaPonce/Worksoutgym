@@ -47,7 +47,7 @@ const RoutesApp = () => {
           element={<InfoExerciseComponet />}
         />
         <Route
-          path="/main/exercisePage/ExerciseListComponen"
+          path="/main/exercisePage/ExerciseListComponent"
           element={<ExerciseListComponent />}
         />
       </Route>

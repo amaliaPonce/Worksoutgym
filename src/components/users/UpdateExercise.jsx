@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import useExercise from "../../hooks/useExercise";
 import { updateExerciseService } from "../../service/index";
-
+import Button from "../Button";
 function UpdateExercise() {
   const { user } = useContext(AppContext);
   const [exerciseData, setExerciseData] = useState({
@@ -117,7 +117,7 @@ function UpdateExercise() {
         onChange={handleInputChange}
         required
       />
-      <button onClick={handleUpdateExercise}>Actualizar Ejercicio</button>
+      <Button handleClick={handleUpdateExercise}>Actualizar Ejercicio</Button>
       {updateMessage && <p>{updateMessage}</p>}
       {error && <p>Error: {error}</p>}
       {exerciseLoading ? (
