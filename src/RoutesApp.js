@@ -6,11 +6,15 @@ import RegisterPage from "./pages/RegisterPage";
 import AdminPage from "./pages/AdminPage";
 import ClientPage from "./pages/ClientPage";
 import MainContent from "./components/adminDashboard/MainContent";
-import ExercisePage from "./pages/Dashboard/ExercisePage";
+import ExercisesPageUsers from "./pages/ClientDashboard/ExercisesPageUsers";
+
+import ExercisePage from "./pages/AdminDashboard/ExercisePage";
 import AddExerciseComponent from "./components/users/AddExerciseComponent";
 import UpdateExercise from "./components/users/UpdateExercise";
 import InfoExerciseComponet from "./components/users/InfoExerciseComponent";
 import ExerciseListComponent from "./components/users/ExerciseListComponent";
+import UserMainContent from "./components/userDashboard/UserMainContent";
+import FilterExercisesComponent from "./components/users/FilterExercisesComponent";
 
 // Si queremos que las rutas se abran en una pagina nueva tienen que estar fuera del padre.
 
@@ -46,6 +50,25 @@ const RoutesApp = () => {
           path="/main/exercisePage/ExerciseListComponen"
           element={<ExerciseListComponent />}
         />
+      </Route>
+
+      {/* Rutas privadas para clientes */}
+      <Route path="/clientpage" element={<ClientPage />}>
+        {/* Rutas dentro de clientpage */}
+        <Route
+          path="/clientpage/exercisesPageUsers"
+          element={<ExercisesPageUsers />}
+        />
+        <Route
+          path="/clientpage/exercisesPageUsers/ExerciseListComponent"
+          element={<ExerciseListComponent />}
+        />
+          <Route
+          path="/clientpage/exercisesPageUsers/FilterExercisesComponent"
+          element={<FilterExercisesComponent/>}
+        />
+  
+        <Route index element={<UserMainContent />} />
       </Route>
     </Routes>
   );

@@ -1,20 +1,16 @@
-import  { useContext } from "react";
-import FavExerciseComponent from "../../components/users/FavExerciseComponent";
-import ExerciseListComponent from "./ExerciseListComponent";
-import { AppContext } from "../../context/AppContext";
+import React from "react";
+import UserSidebar from "../userDashboard/UserSidebar";
+import HeaderDashboard from "../adminDashboard/HeaderDashboard";
+import UserMainContent from "../userDashboard/UserMainContent";
 
 function ClientComponent() {
-  const { user } = useContext(AppContext);
-
   return (
     <div>
-      <h2>Cliente</h2>
-      {user === "client" && (
-        <>
-          <ExerciseListComponent />
-          <FavExerciseComponent />
-        </>
-      )}
+      <HeaderDashboard />
+      <div className="client-container">
+        <UserSidebar />
+        <UserMainContent />
+      </div>
     </div>
   );
 }
