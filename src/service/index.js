@@ -234,12 +234,16 @@ export const updateExerciseService = async (exerciseId, userToken) => {
   return json.data;
 };
 
-export const FavoriteExercisesService = async (user) => {
+export const FavoriteExercisesService = async (userToken,user) => {
   try {
-    const url = `${process.env.REACT_APP_BACKEND}/exercises/favorite`;
+    if (!userToken) {
+      throw new Error("Usuario no autenticado.");
+    }
+
+    const url = `${process.env.REACT_APP_BACKEND}/exercises/filterExercises/${user.id}?favorite=true`;
 
     const headers = {
-      Authorization: ` ${user.token}`,
+      Authorization: ` ${userToken}`,
     };
 
     const response = await fetch(url, {
@@ -260,8 +264,8 @@ export const FavoriteExercisesService = async (user) => {
     }
 
     const data = await response.json();
-    return { success: true, data };
+    return data; // Devuelve solo los datos (la matriz de ejercicios)
   } catch (error) {
-    return { success: false, message: "Error de red" };
+    throw error; // Lanza el error para que el componente lo maneje
   }
 };

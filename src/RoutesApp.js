@@ -13,7 +13,6 @@ import AddExerciseComponent from "./components/users/AddExerciseComponent";
 import UpdateExercise from "./components/users/UpdateExercise";
 import InfoExerciseComponet from "./components/users/InfoExerciseComponent";
 import ExerciseListComponent from "./components/users/ExerciseListComponent";
-import FilterExercisesComponent from "./components/users/FilterExercisesComponent";
 
 const RoutesApp = () => {
   return (
@@ -21,6 +20,10 @@ const RoutesApp = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route
+        path="/ruta-a-exercise-info/:id"
+        element={<InfoExerciseComponet />}
+      />
       <Route path="/adminpage" element={<AdminPage />} />
         <Route path="/adminpage/exercises" element={<ExercisesPage />} />
 
