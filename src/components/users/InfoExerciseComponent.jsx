@@ -6,7 +6,7 @@ import { deleteExerciseService } from "../../service/index";
 import ExercisePostComponent from "./ExercisePostComponent";
 import Button from "../Button";
 
-function ExerciseInfo() {
+function InfoExerciseComponent() {
   const { user } = useContext(AppContext);
   const { id } = useParams();
   const { exercise, loading, error } = useExercise(id, user?.token);
@@ -49,4 +49,4 @@ function ExerciseInfo() {
   );
 }
 
-export default ExerciseInfo;
+export default InfoExerciseComponent;
