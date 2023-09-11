@@ -2,7 +2,7 @@ import React from "react";
 import HeaderDashboard from "../components/Dashboard/HeaderDashboard";
 import Sidebar from "../components/Dashboard/Sidebar";
 import ExerciseListComponent from "../components/users/ExerciseListComponent";
-import FilterExercisesComponent from "../components/users/FilterExercisesComponent";
+
 
 const ExercisesPage = () => {
   const pageStyle = {

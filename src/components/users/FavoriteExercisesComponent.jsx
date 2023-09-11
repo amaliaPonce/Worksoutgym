@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import FavoriteExercises from "../../service/index";
+import { FavoriteExercisesService } from "../../service/index";
 import Button from "../Button";
 
 

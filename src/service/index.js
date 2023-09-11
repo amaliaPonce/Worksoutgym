@@ -239,7 +239,7 @@ export const FavoriteExercisesService = async (user) => {
     const url = `${process.env.REACT_APP_BACKEND}/exercises/favorite`;
 
     const headers = {
-      Authorization: ` ${user.Token}`,
+      Authorization: ` ${user.token}`,
     };
 
     const response = await fetch(url, {
