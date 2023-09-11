@@ -14,7 +14,7 @@ import UpdateExercise from "./components/users/UpdateExercise";
 import InfoExerciseComponet from "./components/users/InfoExerciseComponent";
 import ExerciseListComponent from "./components/users/ExerciseListComponent";
 import UserMainContent from "./components/userDashboard/UserMainContent";
-import FavoriteExercisesComponent from "./components/users/FavoriteExercisesComponent";
+import FilterExercisesComponent from "./components/users/FilterExercisesComponent";
 
 // Si queremos que las rutas se abran en una pagina nueva tienen que estar fuera del padre.
 
@@ -64,8 +64,8 @@ const RoutesApp = () => {
           element={<ExerciseListComponent />}
         />
           <Route
-          path="/clientpage/exercisesPageUsers/FavoriteExercisesComponent"
-          element={<FavoriteExercisesComponent />}
+          path="/clientpage/exercisesPageUsers/FilterExercisesComponent"
+          element={<FilterExercisesComponent/>}
         />
   
         <Route index element={<UserMainContent />} />

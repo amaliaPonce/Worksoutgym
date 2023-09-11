@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import { getFavoriteExercisesService } from "../../service/index";
+import { FavoriteExercisesService } from "../../service/index";
 
 
 function FavoriteExercisesComponent() {
@@ -16,7 +16,7 @@ function FavoriteExercisesComponent() {
       setError(null);
 
       try {
-        const result = await getFavoriteExercisesService(id, userToken);
+        const result = await FavoriteExercisesService(id, userToken);
 
         if (result.success) {
           setFavoriteExercises(result.data);

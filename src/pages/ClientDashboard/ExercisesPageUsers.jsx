@@ -12,14 +12,13 @@ function ExercisesPageUsers() {
               <Link to="/clientpage/exercisesPageUsers/ExerciseListComponent">
                 <p>Lista de Ejercicios</p>
               </Link>
-              <Link to="/clientpage/exercisesPageUsers/FavoriteExercisesComponent">
-                <p>Ejercicios Favoritos</p>
+              <Link to="/clientpage/exercisesPageUsers/FilterExercisesComponent">
+                <p>Filtrar</p>
               </Link>
             </li>
           </ul>
         </nav>
         <hr />
-
         <Outlet />
       </div>
     </UserLayout>
