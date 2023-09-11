@@ -15,7 +15,7 @@ function RegisterComponent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await registerService({ email, password });
+      await registerService(name, email, password);
       setRegistrationSuccess(true);
       navigate("/login");
     } catch (error) {
