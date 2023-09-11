@@ -181,38 +181,6 @@ export const markFavoriteService = async (idExercise, isFavorite, user) => {
   }
 };
 
-export const FavoriteExercisesService = async (user) => {
-  try {
-    const url = `${process.env.REACT_APP_BACKEND}/exercises/favorite`;
-
-    const headers = {
-      Authorization: ` ${user.Token}`,
-    };
-
-    const response = await fetch(url, {
-      method: "GET",
-      headers: headers,
-    });
-
-    if (!response.ok) {
-      if (response.status === 401) {
-        throw new Error("No autorizado: Debes iniciar sesión.");
-      } else if (response.status === 404) {
-        throw new Error("Ejercicios favoritos no encontrados.");
-      } else {
-        throw new Error(
-          "Error de red: " + response.status + " " + response.statusText
-        );
-      }
-    }
-
-    const data = await response.json();
-    return { success: true, data };
-  } catch (error) {
-    return { success: false, message: "Error de red" };
-  }
-};
-
 export const AddExerciseService = async (userToken, formData) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/exercises/newExercise`,
@@ -267,4 +235,36 @@ export const updateExerciseService = async (exerciseId, userToken) => {
   }
 
   return json.data;
+};
+
+export const FavoriteExercisesService = async (user) => {
+  try {
+    const url = `${process.env.REACT_APP_BACKEND}/exercises/favorite`;
+
+    const headers = {
+      Authorization: ` ${user.Token}`,
+    };
+
+    const response = await fetch(url, {
+      method: "GET",
+      headers: headers,
+    });
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("No autorizado: Debes iniciar sesión.");
+      } else if (response.status === 404) {
+        throw new Error("Ejercicios favoritos no encontrados.");
+      } else {
+        throw new Error(
+          "Error de red: " + response.status + " " + response.statusText
+        );
+      }
+    }
+
+    const data = await response.json();
+    return { success: true, data };
+  } catch (error) {
+    return { success: false, message: "Error de red" };
+  }
 };
