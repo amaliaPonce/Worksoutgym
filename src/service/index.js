@@ -71,25 +71,21 @@ export const ExercisesService = async (userToken) => {
 
   return json.data;
 };
-export const filterExercisesService = async (
-  userToken,
-  name,
-  muscleGroup,
-  favorite,
-  recommended
-) => {
+
+export const filterExercisesService = async (userToken, filters) => {
   try {
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND}/exercises/filterExercises/`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: ` ${userToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(name, muscleGroup, favorite, recommended),
-      }
-    );
+    // Construye la URL con los parámetros de consulta
+    const queryParams = new URLSearchParams(filters);
+
+    const url = `${process.env.REACT_APP_BACKEND}/exercises/filterExercises/?${queryParams.toString()}`;
+
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: userToken,
+        "Content-Type": "application/json",
+      },
+    });
 
     const json = await response.json();
 
@@ -102,6 +98,7 @@ export const filterExercisesService = async (
     return { status: "error", message: "Error de red" };
   }
 };
+
 
 export const infoExercisesService = async (id, userToken) => {
   const response = await fetch(

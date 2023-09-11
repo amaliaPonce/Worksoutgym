@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
-import AdminComponent from "../components/users/AdminComponent";
+import HeaderDashboard from "../components/Dashboard/HeaderDashboard";
+import Sidebar from "../components/Dashboard/Sidebar";
+import MainContent from "../components/Dashboard/MainContent";
 
 function AdminPage() {
   const { user } = useContext(AppContext);
@@ -10,7 +12,10 @@ function AdminPage() {
       <h2>AdminPage</h2>
       {user.role === "admin" && (
         <div>
-          <AdminComponent />
+          <HeaderDashboard />
+          <h1>hola esto hay que quitarlo es para que baje el contenido</h1>
+          <MainContent />
+          <Sidebar />
         </div>
       )}
     </div>
