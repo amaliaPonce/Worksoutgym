@@ -1,21 +1,39 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
 import { updateUserService } from "../../service/index";
-import useUser from "../../hooks/useUser";
 import Button from "../Button";
 
 function EditProfile() {
   const { user, login } = useContext(AppContext);
-  const { user: userData, loading, error } = useUser(user.userId);
   const [formData, setFormData] = useState({
-    name: userData.name || "",
-    biography: userData.biography || "",
-    lastName: userData.lastName || "",
-    birthDate: userData.birthDate || "",
-    address: userData.address || "",
-    phone_number: userData.phone_number || "",
-    photo: userData.photo || "",
+    name: "",
+    biography: "",
+    lastName: "",
+    birthDate: "",
+    address: "",
+    phone_number: "",
+    photo: null,
   });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userData = await updateUserService(user.userId, user.token);
+        setFormData({
+          name: userData.name || "",
+          biography: userData.biography || "",
+          lastName: userData.lastName || "",
+          birthDate: userData.birthDate || "",
+          address: userData.address || "",
+          phone_number: userData.phone_number || "",
+          photo: null,
+        });
+      } catch (error) {
+        console.error("Error al obtener los datos del usuario:", error);
+      }
+    };
+    fetchUserData();
+  }, [user.userId, user.token]);
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -26,33 +44,28 @@ function EditProfile() {
       [name]: newValue,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const updatedUser = await updateUserService(user.token, formData);
+      const updatedUser = await updateUserService(
+        user.userId,
+        user.token,
+        formData
+      );
 
       login({ ...user, user: updatedUser });
+
       alert("Perfil actualizado con éxito.");
     } catch (error) {
       alert("Error al actualizar el perfil.");
       console.error("Error al actualizar el perfil:", error.message);
     }
   };
-
-  if (loading) {
-    return <div>Cargando...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   return (
-    <div>
+    <div className="user-card">
       <h2>Editar Perfil</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="user-title">
           <label>Nombre:</label>
           <input
             type="text"
@@ -61,7 +74,7 @@ function EditProfile() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="user-details">
           <label>Biografía:</label>
           <input
             type="text"
@@ -70,7 +83,7 @@ function EditProfile() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="user-details">
           <label>Apellidos:</label>
           <input
             type="text"
@@ -79,7 +92,7 @@ function EditProfile() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="user-details">
           <label>Fecha de cumpleaños:</label>
           <input
             type="text"
@@ -88,7 +101,7 @@ function EditProfile() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="user-details">
           <label>Dirección:</label>
           <input
             type="text"
@@ -97,7 +110,7 @@ function EditProfile() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="user-details">
           <label>Teléfono:</label>
           <input
             type="text"
@@ -106,7 +119,7 @@ function EditProfile() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="user-image">
           <label>Foto:</label>
           <input
             type="file"

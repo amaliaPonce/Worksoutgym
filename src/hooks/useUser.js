@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getUserDataService } from "../services";
+import { getUserDataService } from "../service/index";
 
 const useUser = (id) => {
   const [user, setUser] = useState([]);
