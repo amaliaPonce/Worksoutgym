@@ -1,43 +1,67 @@
-import React, { useContext, useState } from "react";
-import { AppContext } from "../../context/AppContext";
-import UpdateUserComponent from "../users/UpdateUserComponent";
-import UpdateUserRole from "../users/UpdateUserRole";
+import React, { useState } from "react";
 import Button from "../Button";
+import UpdateUserComponent from "../users/UpdateUserComponent";
+import UpdateUserRole from "../users/UpdateUserRol";
 
-function UserProfile() {
-  const { user } = useContext(AppContext);
-
+const UserPostComponent = ({ user }) => {
   const [isEditProfileVisible, setIsEditProfileVisible] = useState(false);
   const [isUserRoleFormVisible, setIsUserRoleFormVisible] = useState(false);
 
-  const handleToggleEditProfile = () => {
+  const handleToggleEditProfile = (userId) => {
     setIsEditProfileVisible(!isEditProfileVisible);
   };
 
-  const handleToggleUserRoleForm = () => {
+  const handleToggleUserRoleForm = (userId) => {
     setIsUserRoleFormVisible(!isUserRoleFormVisible);
   };
 
   return (
-    <div>
-      <h2>Perfil de Usuario</h2>
-      <Button handleClick={handleToggleEditProfile}>Editar Perfil</Button>
-      {isEditProfileVisible && <UpdateUserComponent />}
-
+    <div className="user-card">
+      <div className="user-image">
+        <img
+          src={`${process.env.REACT_APP_BACKEND}/uploads/${user.photo}`}
+          alt={user.name}
+        />
+      </div>
+      <div className="user-details">
+        <p className="user-title">
+          <strong>Nombre:</strong> {user.name}
+        </p>
+        <p className="user-details">
+          <strong>Biografía:</strong> {user.biography}
+        </p>
+        <p className="user-details">
+          <strong>Apellido:</strong> {user.lastName}
+        </p>
+        <p className="user-details">
+          <strong>Fecha de Nacimiento:</strong> {user.birthDate}
+        </p>
+        <p className="user-details">
+          <strong>Dirección:</strong> {user.address}
+        </p>
+        <p className="user-details">
+          <strong>Número de Teléfono:</strong> {user.phone_number}
+        </p>
+      </div>
+      <div>
+        <Button handleClick={() => handleToggleEditProfile(user.id)}>
+          Editar Perfil
+        </Button>
+        {isEditProfileVisible && <UpdateUserComponent userId={user.id} />}
+      </div>
       {user?.userRole === "admin" && (
         <div>
           <h3>Cambiar Rol</h3>
-          <buttButtonon handleClick={handleToggleUserRoleForm}>
+          <Button handleClick={() => handleToggleUserRoleForm(user.id)}>
             Cambiar Rol
-          </buttButtonon>
+          </Button>
         </div>
       )}
-
       {isUserRoleFormVisible && (
-        <UpdateUserRole userId={user.userId} userRole={user.userRole} />
+        <UpdateUserRole userId={user.id} userRole={user.userRole} />
       )}
     </div>
   );
-}
+};
 
-export default UserProfile;
+export default UserPostComponent;

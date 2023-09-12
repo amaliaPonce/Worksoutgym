@@ -38,10 +38,10 @@ function UpdateUserRole({ userId, userRole }) {
   };
 
   return (
-    <div>
+    <div className="user-details">
       <h2>Editar Rol de Usuario</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="user-details">
           <label>Usuario ID:</label>
           <input
             type="text"
@@ -50,7 +50,7 @@ function UpdateUserRole({ userId, userRole }) {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="user-details">
           <label>Nuevo Rol:</label>
           <select
             name="userRole"
