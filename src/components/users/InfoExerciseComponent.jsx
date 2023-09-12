@@ -16,7 +16,7 @@ function InfoExerciseComponent() {
   const handleDeleteExercise = async () => {
     try {
       await deleteExerciseService(id, user?.token);
-      navigate("/main/exercisePage");
+      navigate("/adminpage/exercises");
     } catch (error) {
       setErr(err.message);
     }
