@@ -10,7 +10,7 @@ import ClientPage from "./pages/ClientPage";
 import ExercisesPage from "./pages/ExercisesPage"
 
 import AddExerciseComponent from "./components/users/AddExerciseComponent";
-import UpdateExercise from "./components/users/UpdateExercise";
+import UpdateExerciseComponent from "./components/users/UpdateExerciseComponent";
 import InfoExerciseComponet from "./components/users/InfoExerciseComponent";
 import ExerciseListComponent from "./components/users/ExerciseListComponent";
 

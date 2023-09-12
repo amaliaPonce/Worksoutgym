@@ -3,7 +3,7 @@ import { AppContext } from "../../context/AppContext";
 import useExercise from "../../hooks/useExercise";
 import { updateExerciseService } from "../../service/index";
 import Button from "../Button";
-function UpdateExercise() {
+function UpdateExerciseComponent() {
   const { user } = useContext(AppContext);
   const [exerciseData, setExerciseData] = useState({
     id: "",
@@ -145,4 +145,4 @@ function UpdateExercise() {
   );
 }
 
-export default UpdateExercise;
+export default UpdateExerciseComponent;

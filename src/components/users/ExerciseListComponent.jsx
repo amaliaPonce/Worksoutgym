@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
-import { ExercisesService, FavoriteExercisesService } from "../../service/index";
+import { ExercisesService } from "../../service/index";
 import ExercisePostComponent from "./ExercisePostComponent";
 
 function ExerciseListComponent() {
@@ -15,8 +15,6 @@ function ExerciseListComponent() {
     recommended: false,
   });
 
-  const [userFavorites, setUserFavorites] = useState([]);
-
   useEffect(() => {
     const fetchExercises = async () => {
       try {
@@ -24,7 +22,7 @@ function ExerciseListComponent() {
         setError(null);
 
         const data = await ExercisesService(user.token);
-        console.log("Data from ExercisesService:", data); // Agregado para verificar los datos obtenidos
+        console.log("Data from ExercisesService:", data);
 
         const filteredExercises = data.filter((exercise) => {
           const nameMatch =
@@ -32,18 +30,21 @@ function ExerciseListComponent() {
             exercise.description.toLowerCase().includes(filters.name.toLowerCase());
           const muscleGroupMatch =
             filters.muscleGroup === "" ||
-            exercise.muscleGroup === filters.muscleGroup;
-          const favoriteMatch =
-            !filters.favorite || userFavorites.includes(exercise.id);
+            exercise.muscleGroup.toLowerCase() === filters.muscleGroup.toLowerCase();
           const recommendedMatch =
-            !filters.recommended || exercise.isRecommended === 1;
+            !filters.recommended || exercise.is_recommended;
+          const favoriteMatch =
+            !filters.favorite || exercise.is_favorite;
 
           return (
-            nameMatch && muscleGroupMatch && favoriteMatch && recommendedMatch
+            nameMatch &&
+            muscleGroupMatch &&
+            recommendedMatch &&
+            favoriteMatch
           );
         });
 
-        console.log("Filtered Exercises:", filteredExercises); // Agregado para verificar los ejercicios después del filtrado
+        console.log("Filtered Exercises:", filteredExercises);
 
         setExercises(filteredExercises);
         setLoading(false);
@@ -53,38 +54,9 @@ function ExerciseListComponent() {
       }
     };
 
-    const fetchUserFavorites = async () => {
-      try {
-        if (!user || !user.token || !user.id) {
-          throw new Error("Usuario no autenticado o datos de usuario incompletos.");
-        }
-    
-
-        const userFavoriteExercises = await FavoriteExercisesService(
-          user.token,
-          user
-        );
-        console.log(
-          "User Favorites from FavoriteExercisesService:",
-          userFavoriteExercises
-        ); // Agregado para verificar los favoritos del usuario
-        setUserFavorites(
-          userFavoriteExercises.map(
-            (favoriteExercise) => favoriteExercise.exercise_id
-          )
-        );
-      } catch (error) {
-        console.error(
-          "Error al obtener la lista de favoritos del usuario:",
-          error
-        );
-      }
-    };
-
-    console.log("Filters:", filters); // Agregado para verificar el estado de los filtros
+    console.log("Filters:", filters);
     fetchExercises();
-    fetchUserFavorites();
-  }, [user, filters, userFavorites]);
+  }, [user, filters]);
 
   const handleFilterChange = (e) => {
     const { name, value, type } = e.target;
@@ -95,7 +67,6 @@ function ExerciseListComponent() {
   return (
     <div>
       <h2>Lista de Ejercicios</h2>
-
       <div className="filter-form">
         <div>
           <label htmlFor="name">Filtrar por Nombre:</label>
@@ -122,22 +93,22 @@ function ExerciseListComponent() {
           </select>
         </div>
         <div>
-          <label htmlFor="favorite">Favoritos:</label>
-          <input
-            type="checkbox"
-            id="favorite"
-            name="favorite"
-            checked={filters.favorite}
-            onChange={handleFilterChange}
-          />
-        </div>
-        <div>
           <label htmlFor="recommended">Recomendados:</label>
           <input
             type="checkbox"
             id="recommended"
             name="recommended"
             checked={filters.recommended}
+            onChange={handleFilterChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="favorite">Favoritos:</label>
+          <input
+            type="checkbox"
+            id="favorite"
+            name="favorite"
+            checked={filters.favorite}
             onChange={handleFilterChange}
           />
         </div>
@@ -153,8 +124,7 @@ function ExerciseListComponent() {
             <div className="exercise-card" key={exercise.id}>
               <ExercisePostComponent
                 exercise={exercise}
-                isFavorite={userFavorites.includes(exercise.id)}
-                isRecommended={exercise.isRecommended}
+                isRecommended={exercise.is_recommended}
               />
             </div>
           ))

@@ -10,22 +10,25 @@ export const getUserDataService = async (id) => {
   return json.data;
 };
 
-export const registerService = async ({ email, password }) => {
-  const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/users/register`,
-    {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+export const registerService = async (name, email, password) => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND}/users/register`,
+      {
+        method: "POST",
+        body: JSON.stringify({ name, email, password }), // Incluye los datos en el cuerpo
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message);
     }
-  );
-
-  const json = await response.json();
-
-  if (!response.ok) {
-    throw new Error(json.message);
+  } catch (error) {
+    throw new Error("Error en el registro: " + error.message);
   }
 };
 
@@ -71,21 +74,25 @@ export const ExercisesService = async (userToken) => {
 
   return json.data;
 };
-
-export const filterExercisesService = async (userToken, filters) => {
+export const filterExercisesService = async (
+  userToken,
+  name,
+  muscleGroup,
+  favorite,
+  recommended
+) => {
   try {
-    // Construye la URL con los parámetros de consulta
-    const queryParams = new URLSearchParams(filters);
-
-    const url = `${process.env.REACT_APP_BACKEND}/exercises/filterExercises/?${queryParams.toString()}`;
-
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: userToken,
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND}/exercises/filterExercises/`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: ` ${userToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(name, muscleGroup, favorite, recommended),
+      }
+    );
 
     const json = await response.json();
 
@@ -98,7 +105,6 @@ export const filterExercisesService = async (userToken, filters) => {
     return { status: "error", message: "Error de red" };
   }
 };
-
 
 export const infoExercisesService = async (id, userToken) => {
   const response = await fetch(
@@ -234,20 +240,16 @@ export const updateExerciseService = async (exerciseId, userToken) => {
   return json.data;
 };
 
-export const FavoriteExercisesService = async (userToken,user) => {
+export const FavoriteExercisesService = async (user) => {
   try {
-    if (!userToken) {
-      throw new Error("Usuario no autenticado.");
-    }
-
-    const url = `${process.env.REACT_APP_BACKEND}/exercises/filterExercises/${user.id}?favorite=true`;
+    const url = `${process.env.REACT_APP_BACKEND}/exercises/favorite`;
 
     const headers = {
-      Authorization: ` ${userToken}`,
+      Authorization: ` ${user.token}`,
     };
 
     const response = await fetch(url, {
-      method: "GET",
+      method: "POST",
       headers: headers,
     });
 
@@ -264,8 +266,66 @@ export const FavoriteExercisesService = async (userToken,user) => {
     }
 
     const data = await response.json();
-    return data; // Devuelve solo los datos (la matriz de ejercicios)
+    return { success: true, data };
   } catch (error) {
-    throw error; // Lanza el error para que el componente lo maneje
+    return { success: false, message: "Error de red" };
   }
+};
+
+
+export const updateUserService = async (usertoken) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/users/profile`,
+
+    {
+      method: "PUT",
+      headers: {
+        Authorization: ` ${usertoken}`,
+      },
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};
+export const updateRolUserService = async (id, usertoken) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/users/updateUserRole/${id}`,
+
+    {
+      method: "PUT",
+      headers: {
+        Authorization: ` ${usertoken}`,
+      },
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};
+export const listUsersService = async (usertoken) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/users/listUsers/`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: ` ${usertoken}`,
+      },
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
 };
