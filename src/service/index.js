@@ -222,17 +222,24 @@ export const deleteExerciseService = async (exerciseId, userToken) => {
   return json.data;
 };
 export const updateExerciseService = async (exerciseId, userToken, exerciseData) => {
+  const formData = new FormData();
+  formData.append("id", exerciseData.id);
+  formData.append("name", exerciseData.name);
+  formData.append("description", exerciseData.description);
+  formData.append("muscleGroup", exerciseData.muscleGroup);
+  // Asegúrate de agregar todos los demás campos del formulario aquí
+
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/exercises/updateExerciseController/${exerciseId}`,
     {
       method: "PUT",
       headers: {
-        Authorization: `${userToken}`, 
-        "Content-Type": "application/json", 
+        Authorization: `${userToken}`,
       },
-      body: JSON.stringify(exerciseData),
+      body: formData,
     }
   );
+
   const json = await response.json();
 
   if (!response.ok) {
@@ -241,6 +248,7 @@ export const updateExerciseService = async (exerciseId, userToken, exerciseData)
 
   return json.data;
 };
+
 
 
 export const FavoriteExercisesService = async (user) => {
@@ -275,32 +283,26 @@ export const FavoriteExercisesService = async (user) => {
   }
 };
 
-export const updateUserService = async (id, usertoken) => {
-  try {
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND}/users/profile/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          Authorization: `${usertoken}`,
-        },
-      }
-    );
 
-    if (!response.ok) {
-      throw new Error(
-        `Error de red: ${response.status} ${response.statusText}`
-      );
+export const updateUserService = async (usertoken) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/users/profile`,
+
+    {
+      method: "PUT",
+      headers: {
+        Authorization: ` ${usertoken}`,
+      },
     }
+  );
+  const json = await response.json();
 
-    const json = await response.json();
-
-    return json.data;
-  } catch (error) {
-    throw new Error(`Error al actualizar el perfil: ${error.message}`);
+  if (!response.ok) {
+    throw new Error(json.message);
   }
-};
 
+  return json.data;
+};
 export const updateRolUserService = async (id, usertoken) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/users/updateUserRole/${id}`,
@@ -325,13 +327,6 @@ export const listUsersService = async (usertoken) => {
     `${process.env.REACT_APP_BACKEND}/users/listUsers/`,
     {
       method: "POST",
-
-export const getUserService = async (id, usertoken) => {
-  const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/users/profile/${id}`,
-    {
-      method: "GET",
-
       headers: {
         Authorization: ` ${usertoken}`,
       },

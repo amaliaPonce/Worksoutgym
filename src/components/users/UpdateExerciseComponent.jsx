@@ -1,41 +1,73 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import { updateExerciseService } from "../../service/index";
 
 function UpdateExerciseComponent() {
   const { user } = useContext(AppContext);
   const [exerciseData, setExerciseData] = useState({
-    id: "", // Agrega el campo 'id'
+    id: "", 
     name: "",
     description: "",
     muscleGroup: "",
-    // Agrega aquí más campos según sea necesario
+    photo: null,
   });
+  const [message, setMessage] = useState(""); // Nuevo estado para el mensaje
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setExerciseData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
     }));
   };
 
-  const handleUpdateExercise = async () => {
+  const handleFileChange = (e) => {
+    setExerciseData({
+      ...exerciseData,
+      photo: e.target.files[0],
+    });
+  };
+
+  const handleUpdateExercise = async (e) => {
+    e.preventDefault();
+
+    // Verificar si el campo 'muscleGroup' está vacío
+    if (!exerciseData.muscleGroup) {
+      setMessage("El campo Grupo Muscular es obligatorio."); // Actualiza el mensaje
+      return;
+    }
+
     try {
-      // Lógica para enviar los datos actualizados del ejercicio al servidor
-      const response = await updateExerciseService(user?.token, exerciseData);
-
-      if (response.status === "ok") {
-        // Actualizar el estado del ejercicio con los datos actualizados
-        setExerciseData(response.data);
-
-        alert("Ejercicio actualizado con éxito.");
-      } else {
-        throw new Error("No se recibieron datos válidos para el ejercicio actualizado");
+      const formData = new FormData();
+      formData.append("name", exerciseData.name);
+      formData.append("description", exerciseData.description);
+      formData.append("muscleGroup", exerciseData.muscleGroup);
+      if (exerciseData.photo) {
+        formData.append("photo", exerciseData.photo);
       }
+
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND}/exercises/updateExerciseController/${exerciseData.id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `${user.token}`,
+          },
+          body: formData,
+        }
+      );
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        throw new Error(json.message);
+      }
+
+      setMessage("Ejercicio actualizado con éxito."); // Actualiza el mensaje
+
+      // Recarga la página
+      window.location.reload();
     } catch (error) {
-      alert("Error al actualizar el ejercicio.");
+      setMessage("Error al actualizar el ejercicio."); // Actualiza el mensaje
       console.error("Error al actualizar el ejercicio:", error.message);
     }
   };
@@ -43,7 +75,11 @@ function UpdateExerciseComponent() {
   return (
     <div>
       <h2>Actualizar Ejercicio</h2>
-      <form>
+      
+      {/* Muestra el mensaje */}
+      {message && <p>{message}</p>}
+      
+      <form onSubmit={handleUpdateExercise}>
         <label>ID:</label>
         <input
           type="text"
@@ -66,14 +102,25 @@ function UpdateExerciseComponent() {
           onChange={handleChange}
         />
         <label>Grupo Muscular:</label>
-        <input
-          type="text"
+        <select
           name="muscleGroup"
           value={exerciseData.muscleGroup}
           onChange={handleChange}
+          required
+        >
+          <option value="">Seleccionar</option>
+          <option value="Tren superior">Tren superior</option>
+          <option value="Tren inferior">Tren inferior</option>
+          <option value="core">Core</option>
+          <option value="Full Body">Full Body</option>
+        </select>
+        <label>Foto:</label>
+        <input
+          type="file"
+          name="photo"
+          onChange={handleFileChange}
         />
-        {/* Agrega aquí más campos según sea necesario */}
-        <button onClick={handleUpdateExercise}>Actualizar Ejercicio</button>
+        <button type="submit">Actualizar Ejercicio</button>
       </form>
     </div>
   );
