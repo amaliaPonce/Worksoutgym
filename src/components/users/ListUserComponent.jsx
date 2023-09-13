@@ -16,6 +16,7 @@ function UserList() {
         }
 
         const userList = await listUsersService(user.token);
+        console.log("lista de usuarios from", userList);
         setUsers(userList);
         setError(null);
       } catch (error) {
