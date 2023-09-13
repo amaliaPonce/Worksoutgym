@@ -83,7 +83,7 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
             : "Marcar como recomendado"}
         </Button>
         <Button
-          handleClick={() => navigate(`/ruta-a-exercise-info/${exercise.id}`)}
+          handleClick={() => navigate(`/adminpage/exercises/${exercise.id}`)}
         >
           Ver detalles
         </Button>

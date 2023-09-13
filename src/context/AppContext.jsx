@@ -11,6 +11,8 @@ export const AppProvider = ({ children }) => {
     return {
       userRole: sessionData?.userRole || null,
       token: sessionData?.token || null,
+      id: sessionData?.id || null, 
+
     };
   });
 

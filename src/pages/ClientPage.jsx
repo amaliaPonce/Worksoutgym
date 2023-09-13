@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
-import Layout from "../components/userDashboard/UserLayout";
-import ClientComponent from "../components/users/ClientComponent";
+
+import ExerciseListComponent from "../components/users/ExerciseListComponent";
 
 function ClientPage() {
   const { user } = useContext(AppContext);
@@ -10,9 +10,9 @@ function ClientPage() {
     <div>
       <h2>ClientPage</h2>
       {user.role === "cliente" && (
-        <Layout>
-          <ClientComponent />
-        </Layout>
+        
+          <ExerciseListComponent />
+        
       )}
     </div>
   );

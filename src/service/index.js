@@ -221,14 +221,16 @@ export const deleteExerciseService = async (exerciseId, userToken) => {
 
   return json.data;
 };
-export const updateExerciseService = async (exerciseId, userToken) => {
+export const updateExerciseService = async (exerciseId, userToken, exerciseData) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/exercises/updateExerciseController/${exerciseId}`,
     {
       method: "PUT",
       headers: {
-        Authorization: ` ${userToken}`,
+        Authorization: `${userToken}`, 
+        "Content-Type": "application/json", 
       },
+      body: JSON.stringify(exerciseData),
     }
   );
   const json = await response.json();
@@ -240,16 +242,17 @@ export const updateExerciseService = async (exerciseId, userToken) => {
   return json.data;
 };
 
+
 export const FavoriteExercisesService = async (user) => {
   try {
     const url = `${process.env.REACT_APP_BACKEND}/exercises/favorite`;
 
     const headers = {
-      Authorization: ` ${user.Token}`,
+      Authorization: ` ${user.token}`,
     };
 
     const response = await fetch(url, {
-      method: "GET",
+      method: "POST",
       headers: headers,
     });
 
@@ -271,6 +274,7 @@ export const FavoriteExercisesService = async (user) => {
     return { success: false, message: "Error de red" };
   }
 };
+
 export const updateUserService = async (id, usertoken) => {
   try {
     const response = await fetch(
@@ -321,24 +325,13 @@ export const listUsersService = async (usertoken) => {
     `${process.env.REACT_APP_BACKEND}/users/listUsers/`,
     {
       method: "POST",
-      headers: {
-        Authorization: ` ${usertoken}`,
-      },
-    }
-  );
-  const json = await response.json();
 
-  if (!response.ok) {
-    throw new Error(json.message);
-  }
-
-  return json.data;
-};
 export const getUserService = async (id, usertoken) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/users/profile/${id}`,
     {
       method: "GET",
+
       headers: {
         Authorization: ` ${usertoken}`,
       },
