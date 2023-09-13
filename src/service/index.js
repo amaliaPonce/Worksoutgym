@@ -275,26 +275,32 @@ export const FavoriteExercisesService = async (user) => {
   }
 };
 
+export const updateUserService = async (id, usertoken) => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND}/users/profile/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `${usertoken}`,
+        },
+      }
+    );
 
-export const updateUserService = async (usertoken) => {
-  const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/users/profile`,
-
-    {
-      method: "PUT",
-      headers: {
-        Authorization: ` ${usertoken}`,
-      },
+    if (!response.ok) {
+      throw new Error(
+        `Error de red: ${response.status} ${response.statusText}`
+      );
     }
-  );
-  const json = await response.json();
 
-  if (!response.ok) {
-    throw new Error(json.message);
+    const json = await response.json();
+
+    return json.data;
+  } catch (error) {
+    throw new Error(`Error al actualizar el perfil: ${error.message}`);
   }
-
-  return json.data;
 };
+
 export const updateRolUserService = async (id, usertoken) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/users/updateUserRole/${id}`,
@@ -319,6 +325,13 @@ export const listUsersService = async (usertoken) => {
     `${process.env.REACT_APP_BACKEND}/users/listUsers/`,
     {
       method: "POST",
+
+export const getUserService = async (id, usertoken) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/users/profile/${id}`,
+    {
+      method: "GET",
+
       headers: {
         Authorization: ` ${usertoken}`,
       },
