@@ -3,6 +3,8 @@ import HeaderDashboard from "../components/Dashboard/HeaderDashboard";
 import Sidebar from "../components/Dashboard/Sidebar";
 import ExerciseListComponent from "../components/users/ExerciseListComponent";
 import AddExerciseComponent from "../components/users/AddExerciseComponent"
+import UpdateExerciseComponent from "../components/users/UpdateExerciseComponent"
+
 
 const ExercisesPage = () => {
   const pageStyle = {
@@ -18,6 +20,7 @@ const ExercisesPage = () => {
       <HeaderDashboard />
       <ExerciseListComponent />
       <AddExerciseComponent />
+      <UpdateExerciseComponent />
       <Sidebar />
     </div>
   );

@@ -54,8 +54,9 @@ function ExerciseListComponent() {
       }
     };
 
-    console.log("Filters:", filters);
+    
     fetchExercises();
+    
   }, [user, filters]);
 
   const handleFilterChange = (e) => {

@@ -221,14 +221,16 @@ export const deleteExerciseService = async (exerciseId, userToken) => {
 
   return json.data;
 };
-export const updateExerciseService = async (exerciseId, userToken) => {
+export const updateExerciseService = async (exerciseId, userToken, exerciseData) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/exercises/updateExerciseController/${exerciseId}`,
     {
       method: "PUT",
       headers: {
-        Authorization: ` ${userToken}`,
+        Authorization: `${userToken}`, 
+        "Content-Type": "application/json", 
       },
+      body: JSON.stringify(exerciseData),
     }
   );
   const json = await response.json();
@@ -239,6 +241,7 @@ export const updateExerciseService = async (exerciseId, userToken) => {
 
   return json.data;
 };
+
 
 export const FavoriteExercisesService = async (user) => {
   try {
