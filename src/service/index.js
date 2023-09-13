@@ -223,12 +223,28 @@ export const deleteExerciseService = async (exerciseId, userToken) => {
 };
 export const updateExerciseService = async (exerciseId, userToken, exerciseData) => {
   const formData = new FormData();
-  formData.append("id", exerciseData.id);
-  formData.append("name", exerciseData.name);
-  formData.append("description", exerciseData.description);
-  formData.append("muscleGroup", exerciseData.muscleGroup);
-  // Asegúrate de agregar todos los demás campos del formulario aquí
+  
+  
+  if (exerciseData.id !== null && exerciseData.id !== undefined) {
+    formData.append("id", exerciseData.id);
+  }
+  
 
+  if (exerciseData.name !== null && exerciseData.name !== undefined) {
+    formData.append("name", exerciseData.name);
+  }
+  
+ 
+  if (exerciseData.description !== null && exerciseData.description !== undefined) {
+    formData.append("description", exerciseData.description);
+  }
+  
+  
+  if (exerciseData.muscleGroup !== null && exerciseData.muscleGroup !== undefined) {
+    formData.append("muscleGroup", exerciseData.muscleGroup);
+  }
+  
+  
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/exercises/updateExerciseController/${exerciseId}`,
     {
@@ -248,7 +264,6 @@ export const updateExerciseService = async (exerciseId, userToken, exerciseData)
 
   return json.data;
 };
-
 
 
 export const FavoriteExercisesService = async (user) => {
