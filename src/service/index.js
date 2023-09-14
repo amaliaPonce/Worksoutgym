@@ -1,5 +1,5 @@
 export const getUserDataService = async (id) => {
-  const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/${id}`);
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${id}`);
 
   const json = await response.json();
 
@@ -373,7 +373,7 @@ export const listUsersService = async (usertoken) => {
 };
 export const getUserService = async (id, usertoken) => {
   const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/user/profile/${id}`,
+    `${process.env.REACT_APP_BACKEND}/users/profile/${id}`,
     {
       method: "GET",
       headers: {

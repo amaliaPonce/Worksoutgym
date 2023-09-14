@@ -28,17 +28,17 @@ function UserList() {
   }, [user]);
 
   return (
-    <div>
+    <section>
       <h3>Lista de Usuarios</h3>
       {error && <p>Error: {error}</p>}
-      <div className="user-container">
+      <ul className="user-container">
         {users.map((user) => (
-          <div className="user-card" key={user.id}>
+          <li className="user-card" key={user.id}>
             <UserPostComponent user={user} />
-          </div>
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
   );
 }
 

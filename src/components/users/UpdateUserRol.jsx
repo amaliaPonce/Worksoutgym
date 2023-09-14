@@ -48,6 +48,7 @@ function UpdateUserRole({ userId, userRole }) {
             name="userId"
             value={formData.userId}
             onChange={handleChange}
+            disabled
           />
         </div>
         <div className="user-details">

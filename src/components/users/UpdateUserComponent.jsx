@@ -2,20 +2,15 @@ import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
 import { updateUserService, getUserService } from "../../service/index";
 import Button from "../Button";
+import useUser from "../../hooks/useUser";
 
 // NO CONSIGO QUE LE LLEGUE EL ID 'UNDEFINE'
 
 function EditProfile() {
   const { user, login } = useContext(AppContext);
-  const [userData, setUserData] = useState({
-    name: user ? user.name : "",
-    biography: user ? user.biography : "",
-    lastName: user ? user.lastName : "",
-    birthDate: user ? user.birthDate : "",
-    address: user ? user.address : "",
-    phone_number: user ? user.phone_number : "",
-    photo: null,
-  });
+  const { userInfo } = useUser(user.id, user.token);
+  console.log("UserInfo", userInfo);
+  const [userData, setUserData] = useState(userInfo[0]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -27,7 +22,7 @@ function EditProfile() {
           throw new Error("Debes iniciar sesión para editar el perfil.");
         }
 
-        const userData = await getUserService(user.userId, user.token);
+        const userData = await getUserService(user.id, user.token);
         setUserData(userData);
         setLoading(false);
       } catch (error) {

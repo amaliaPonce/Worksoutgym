@@ -21,7 +21,11 @@ function LoginComponent() {
       const data = await loginServise({ email, password });
 
       if (data.status === "ok") {
-        login({ role: data.data.userRole, token: data.data.token });
+        login({
+          role: data.data.userRole,
+          token: data.data.token,
+          id: data.data.id,
+        });
         if (data.data.userRole === "admin") {
           navigate("/adminpage");
         } else if (data.data.userRole === "cliente") {
