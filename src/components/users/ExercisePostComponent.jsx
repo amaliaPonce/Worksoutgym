@@ -9,8 +9,7 @@ import Button from "../Button";
 const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   const { user } = useContext(AppContext);
   const [exerciseIsFavorite, setExerciseIsFavorite] = useState(isFavorite);
-  const [exerciseIsRecommended, setExerciseIsRecommended] =
-    useState(isRecommended);
+  const [exerciseIsRecommended, setExerciseIsRecommended] = useState(isRecommended);
   const navigate = useNavigate();
 
   const handleToggleFavorite = async () => {
@@ -53,15 +52,15 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   };
 
   return (
-    <div className="exercise-card">
-      <div className="exercise-image">
+    <section className="exercise-card">
+      <section className="exercise-image">
         <img
           src={`${process.env.REACT_APP_BACKEND}/uploads/${exercise.photoName}`}
           alt={exercise.name}
         />
-      </div>
+      </section>
 
-      <div className="exercise-details">
+      <section className="exercise-details">
         <p className="exercise-title">
           <strong>ID:</strong> {exercise.id}
         </p>
@@ -87,8 +86,8 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
         >
           Ver detalles
         </Button>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 };
 
