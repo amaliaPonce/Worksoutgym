@@ -51,6 +51,9 @@ function InfoExerciseComponent() {
       setErr(error.message);
     }
   };
+  const handleUpdateExercise = async () => {
+    
+  };
 
   if (err) return <p>{err}</p>;
 
@@ -62,6 +65,7 @@ function InfoExerciseComponent() {
         <p>Error: {error.message}</p>
       ) : exercise ? (
         <>
+
           <div>
             <h2>Detalles del Ejercicio</h2>
             <ExercisePostComponent

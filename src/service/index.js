@@ -1,5 +1,5 @@
 export const getUserDataService = async (id) => {
-  const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/${id}`);
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${id}`);
 
   const json = await response.json();
 
@@ -221,30 +221,35 @@ export const deleteExerciseService = async (exerciseId, userToken) => {
 
   return json.data;
 };
-export const updateExerciseService = async (exerciseId, userToken, exerciseData) => {
+export const updateExerciseService = async (
+  exerciseId,
+  userToken,
+  exerciseData
+) => {
   const formData = new FormData();
-  
-  
+
   if (exerciseData.id !== null && exerciseData.id !== undefined) {
     formData.append("id", exerciseData.id);
   }
-  
 
   if (exerciseData.name !== null && exerciseData.name !== undefined) {
     formData.append("name", exerciseData.name);
   }
-  
- 
-  if (exerciseData.description !== null && exerciseData.description !== undefined) {
+
+  if (
+    exerciseData.description !== null &&
+    exerciseData.description !== undefined
+  ) {
     formData.append("description", exerciseData.description);
   }
-  
-  
-  if (exerciseData.muscleGroup !== null && exerciseData.muscleGroup !== undefined) {
+
+  if (
+    exerciseData.muscleGroup !== null &&
+    exerciseData.muscleGroup !== undefined
+  ) {
     formData.append("muscleGroup", exerciseData.muscleGroup);
   }
-  
-  
+
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/exercises/updateExerciseController/${exerciseId}`,
     {
@@ -264,7 +269,6 @@ export const updateExerciseService = async (exerciseId, userToken, exerciseData)
 
   return json.data;
 };
-
 
 export const FavoriteExercisesService = async (user) => {
   try {
@@ -298,18 +302,29 @@ export const FavoriteExercisesService = async (user) => {
   }
 };
 
+export const updateUserService = async (userid, usertoken, userData) => {
+  const formData = new FormData();
+  formData.append("name", userData.name);
+  formData.append("biography", userData.biography);
+  formData.append("lastName", userData.lastName);
+  formData.append("birthDate", userData.birthDate);
+  formData.append("address", userData.address);
+  formData.append("phone_number", userData.phone_number);
+  if (userData.photo) {
+    formData.append("photo", userData.photo);
+  }
 
-export const updateUserService = async (usertoken) => {
   const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/users/profile`,
-
+    `${process.env.REACT_APP_BACKEND}/users/profile/${userid}`,
     {
       method: "PUT",
       headers: {
         Authorization: ` ${usertoken}`,
       },
+      body: formData,
     }
   );
+
   const json = await response.json();
 
   if (!response.ok) {
@@ -318,6 +333,7 @@ export const updateUserService = async (usertoken) => {
 
   return json.data;
 };
+
 export const updateRolUserService = async (id, usertoken) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/users/updateUserRole/${id}`,
@@ -349,6 +365,24 @@ export const listUsersService = async (usertoken) => {
   );
   const json = await response.json();
 
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};
+export const getUserService = async (id, usertoken) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/users/profile/${id}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: ` ${usertoken}`,
+      },
+    }
+  );
+  const json = await response.json();
+  console.log(id, usertoken);
   if (!response.ok) {
     throw new Error(json.message);
   }

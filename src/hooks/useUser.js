@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getUserDataService } from "../service/index";
+import { getUserService } from "../service/index";
 
-const useUser = (id) => {
-  const [user, setUser] = useState([]);
+const useUser = (id, token) => {
+  const [userInfo, setUserInfo] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -10,9 +10,9 @@ const useUser = (id) => {
     const loadUser = async () => {
       try {
         setLoading(true);
-        const data = await getUserDataService(id);
+        const data = await getUserService(id, token);
 
-        setUser(data);
+        setUserInfo(data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -21,9 +21,9 @@ const useUser = (id) => {
     };
 
     loadUser();
-  }, [id]);
+  }, [id, token]);
 
-  return { user, error, loading };
+  return { userInfo, error, loading };
 };
 
 export default useUser;

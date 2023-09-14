@@ -1,142 +1,138 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
-import { updateUserService } from "../../service/index";
+import { updateUserService, getUserService } from "../../service/index";
 import Button from "../Button";
+import useUser from "../../hooks/useUser";
 
 function EditProfile() {
   const { user, login } = useContext(AppContext);
-  const [formData, setFormData] = useState({
-    name: "",
-    biography: "",
-    lastName: "",
-    birthDate: "",
-    address: "",
-    phone_number: "",
-    photo: null,
-  });
+  const { userInfo } = useUser(user.id, user.token);
+  console.log("UserInfo", userInfo);
+  const [userData, setUserData] = useState(userInfo[0]);
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Obtener los datos del usuario al cargar el componente
     const fetchUserData = async () => {
       try {
-        const userData = await updateUserService(user.userId, user.token);
-        setFormData({
-          name: userData.name || "",
-          biography: userData.biography || "",
-          lastName: userData.lastName || "",
-          birthDate: userData.birthDate || "",
-          address: userData.address || "",
-          phone_number: userData.phone_number || "",
-          photo: null,
-        });
+        if (!user || !user.token) {
+          throw new Error("Debes iniciar sesión para editar el perfil.");
+        }
+
+        const userData = await getUserService(user.id, user.token);
+        setUserData(userData);
+        setLoading(false);
       } catch (error) {
-        console.error("Error al obtener los datos del usuario:", error);
+        setMessage(error.message);
+        setLoading(false);
       }
     };
+
     fetchUserData();
-  }, [user.userId, user.token]);
+  }, [user]);
 
   const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    const newValue = type === "file" ? files[0] : value;
+    const { name, value } = e.target;
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      [name]: value,
+    }));
+  };
 
-    setFormData({
-      ...formData,
-      [name]: newValue,
+  const handleFileChange = (e) => {
+    setUserData({
+      ...userData,
+      photo: e.target.files[0],
     });
   };
-  const handleSubmit = async (e) => {
+
+  const handleUpdateProfile = async (e) => {
     e.preventDefault();
+
+    if (!userData.name) {
+      setMessage("El campo Nombre es obligatorio.");
+      return;
+    }
+
     try {
       const updatedUser = await updateUserService(
         user.userId,
         user.token,
-        formData
+        userData
       );
 
+      setMessage("Perfil actualizado con éxito.");
       login({ ...user, user: updatedUser });
-
-      alert("Perfil actualizado con éxito.");
     } catch (error) {
-      alert("Error al actualizar el perfil.");
+      setMessage("Error al actualizar el perfil.");
       console.error("Error al actualizar el perfil:", error.message);
     }
   };
-  return (
-    <div className="user-card">
-      <h2>Editar Perfil</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="user-title">
-          <label>Nombre:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="user-details">
-          <label>Biografía:</label>
-          <input
-            type="text"
-            name="biography"
-            value={formData.biography}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="user-details">
-          <label>Apellidos:</label>
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="user-details">
-          <label>Fecha de cumpleaños:</label>
-          <input
-            type="text"
-            name="birthDate"
-            value={formData.birthDate}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="user-details">
-          <label>Dirección:</label>
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="user-details">
-          <label>Teléfono:</label>
-          <input
-            type="text"
-            name="phone_number"
-            value={formData.phone_number}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="user-image">
-          <label>Foto:</label>
-          <input
-            type="file"
-            name="photo"
-            accept="image/*"
-            onChange={handleChange}
-          />
-          {formData.photo && (
-            <img
-              src={URL.createObjectURL(formData.photo)}
-              alt="Foto de perfil"
-              style={{ maxWidth: "200px" }}
-            />
-          )}
-        </div>
 
-        <Button handleClick={handleSubmit} type="submit">
+  if (loading) {
+    return <p>Cargando...</p>;
+  }
+
+  return (
+    <div>
+      <h2>Editar Perfil</h2>
+      {message && <p>{message}</p>}
+
+      <form onSubmit={handleUpdateProfile}>
+        <label>Nombre:</label>
+        <input
+          type="text"
+          name="name"
+          value={userData.name}
+          onChange={handleChange}
+          required
+        />
+        <label>Biografía:</label>
+        <input
+          type="text"
+          name="biography"
+          value={userData.biography}
+          onChange={handleChange}
+        />
+        <label>Apellidos:</label>
+        <input
+          type="text"
+          name="lastName"
+          value={userData.lastName}
+          onChange={handleChange}
+        />
+        <label>Fecha de cumpleaños:</label>
+        <input
+          type="text"
+          name="birthDate"
+          value={userData.birthDate}
+          onChange={handleChange}
+        />
+        <label>Dirección:</label>
+        <input
+          type="text"
+          name="address"
+          value={userData.address}
+          onChange={handleChange}
+        />
+        <label>Teléfono:</label>
+        <input
+          type="text"
+          name="phone_number"
+          value={userData.phone_number}
+          onChange={handleChange}
+        />
+        <label>Foto:</label>
+        <input type="file" name="photo" onChange={handleFileChange} />
+        {userData.photo && (
+          <img
+            src={URL.createObjectURL(userData.photo)}
+            alt="Foto de perfil"
+            style={{ maxWidth: "200px" }}
+          />
+        )}
+        <Button handleClick={handleUpdateProfile} type="submit">
           Guardar Cambios
         </Button>
       </form>

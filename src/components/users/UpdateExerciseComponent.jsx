@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
 import { updateExerciseService } from "../../service/index";
+import Button from "../Button";
 
 function UpdateExerciseComponent() {
   const { user } = useContext(AppContext);
@@ -28,7 +29,10 @@ function UpdateExerciseComponent() {
           setExerciseData(currentExercise || {});
         } catch (error) {
           setMessage("Error al obtener los datos del ejercicio.");
-          console.error("Error al obtener los datos del ejercicio:", error.message);
+          console.error(
+            "Error al obtener los datos del ejercicio:",
+            error.message
+          );
         }
       };
 
@@ -149,12 +153,10 @@ function UpdateExerciseComponent() {
           <option value="Full Body">Full Body</option>
         </select>
         <label>Foto:</label>
-        <input
-          type="file"
-          name="photo"
-          onChange={handleFileChange}
-        />
-        <button type="submit">Actualizar Ejercicio</button>
+        <input type="file" name="photo" onChange={handleFileChange} />
+        <Button handleClick={handleUpdateExercise} type="submit">
+          Actualizar Ejercicio
+        </Button>
       </form>
     </div>
   );
