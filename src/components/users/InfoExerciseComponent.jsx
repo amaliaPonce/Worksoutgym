@@ -13,6 +13,10 @@ function InfoExerciseComponent() {
   const [err, setErr] = useState();
   const navigate = useNavigate();
 
+  console.log(user)
+
+  const [editMode, setEditMode] = useState(false);
+
   const handleDeleteExercise = async () => {
     try {
       await deleteExerciseService(id, user?.token);
@@ -20,6 +24,9 @@ function InfoExerciseComponent() {
     } catch (error) {
       setErr(err.message);
     }
+  };
+  const handleUpdateExercise = async () => {
+    
   };
 
   if (err) return <p>{err}</p>;
@@ -31,6 +38,7 @@ function InfoExerciseComponent() {
       ) : error ? (
         <p>Error: {error.message}</p>
       ) : exercise ? (
+        <>
         <div>
           <h2>Detalles del Ejercicio</h2>
           <ExercisePostComponent
@@ -39,9 +47,20 @@ function InfoExerciseComponent() {
             isRecommended={exercise.isRecommended}
           />
           {user?.role === "admin" && (
+            <>
             <Button handleClick={handleDeleteExercise}>Borrar ejercicio</Button>
+            <Button handleClick={() => {setEditMode(true)}}>Editar ejercicio</Button>
+            </>
           )}
         </div>
+        {editMode ? <form>
+          Formulario de edición
+          <fieldset>
+            <label htmlFor="title">Título</label>
+            <input type="text" defaultValue={exercise.name} />
+          </fieldset>
+        </form> : null}
+        </>
       ) : (
         <p>No se pudo cargar la información del ejercicio.</p>
       )}
