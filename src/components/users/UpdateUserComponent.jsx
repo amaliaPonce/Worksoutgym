@@ -4,8 +4,6 @@ import { updateUserService, getUserService } from "../../service/index";
 import Button from "../Button";
 import useUser from "../../hooks/useUser";
 
-// NO CONSIGO QUE LE LLEGUE EL ID 'UNDEFINE'
-
 function EditProfile() {
   const { user, login } = useContext(AppContext);
   const { userInfo } = useUser(user.id, user.token);
