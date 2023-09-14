@@ -64,16 +64,16 @@ function AddExercise() {
   };
 
   return (
-    <div className="add-exercise-container">
+    <>
       <button className="toggle-form-button" onClick={handleToggleForm}>
         {isFormOpen ? "Cerrar Formulario" : "Añadir Ejercicio"}
       </button>
 
       {isFormOpen && (
-        <div>
+        <section>
           <form className="add-exercise-form" onSubmit={handleAddExercise}>
             {error && <p className="error-message">Error: {error}</p>}
-            <div className="form-group">
+            <fieldset className="form-group">
               <label htmlFor="name" className="add-exercise-label">
                 Nombre:
               </label>
@@ -86,8 +86,8 @@ function AddExercise() {
                 className="add-exercise-input"
                 required
               />
-            </div>
-            <div className="form-group">
+            </fieldset>
+            <fieldset className="form-group">
               <label htmlFor="description" className="add-exercise-label">
                 Descripción:
               </label>
@@ -99,8 +99,8 @@ function AddExercise() {
                 className="add-exercise-textarea"
                 required
               ></textarea>
-            </div>
-            <div className="form-group">
+            </fieldset>
+            <fieldset className="form-group">
               <label htmlFor="muscleGroup" className="add-exercise-label">
                 Grupo Muscular:
               </label>
@@ -118,8 +118,8 @@ function AddExercise() {
                 <option value="core">Core</option>
                 <option value="Full body">Full body</option>
               </select>
-            </div>
-            <div className="form-group">
+            </fieldset>
+            <fieldset className="form-group">
               <label htmlFor="photo" className="add-exercise-label">
                 Foto:
               </label>
@@ -132,28 +132,22 @@ function AddExercise() {
                 className="add-exercise-file-input"
                 required
               />
-            </div>
+            </fieldset>
+            {added ? (
+              <p className="success-message">Ejercicio agregado con éxito.</p>
+            ) : (
+              <button
+                type="submit"
+                disabled={loading}
+                className="add-exercise-button"
+              >
+                {loading ? "Agregando..." : "Agregar Ejercicio"}
+              </button>
+            )}
           </form>
-        </div>
+        </section>
       )}
-
-      {added ? (
-        <div>
-          <p className="success-message">Ejercicio agregado con éxito.</p>
-        </div>
-      ) : null}
-
-      {isFormOpen && (
-        <button
-          type="submit"
-          disabled={loading}
-          className="add-exercise-button"
-          onClick={handleAddExercise}
-        >
-          {loading ? "Agregando..." : "Agregar Ejercicio"}
-        </button>
-      )}
-    </div>
+    </>
   );
 }
 

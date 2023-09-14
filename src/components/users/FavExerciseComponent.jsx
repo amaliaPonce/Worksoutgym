@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { markFavoriteService } from "../../service/index";
 import Button from "../Button";
+
 const ExerciseFavoriteComponent = ({ exercise }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const { user } = useContext(AppContext);
@@ -40,11 +41,11 @@ const ExerciseFavoriteComponent = ({ exercise }) => {
   };
 
   return (
-    <div>
+    <section>
       <Button handleClick={handleToggleFavorite}>
         {isFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
       </Button>
-    </div>
+    </section>
   );
 };
 

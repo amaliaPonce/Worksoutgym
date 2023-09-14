@@ -10,7 +10,7 @@ function InfoExerciseComponent() {
   const { user } = useContext(AppContext);
   const { id } = useParams();
   const { exercise, loading, error } = useExercise(id, user?.token);
-  const [err, setErr] = useState();
+  const [err, setErr] = useState(null);
   const navigate = useNavigate();
 
   const [editMode, setEditMode] = useState(false);
@@ -45,28 +45,26 @@ function InfoExerciseComponent() {
       console.log("Ejercicio actualizado:", exerciseData);
       setEditMode(false);
 
-      // Recargar la página después de actualizar el ejercicio
+      
       window.location.reload();
     } catch (error) {
       setErr(error.message);
     }
   };
-  const handleUpdateExercise = async () => {
-    
-  };
 
-  if (err) return <p>{err}</p>;
+  if (err) {
+    return <p>{err}</p>;
+  }
 
   return (
-    <div>
+    <section>
       {loading ? (
         <p>Cargando información del ejercicio...</p>
       ) : error ? (
         <p>Error: {error.message}</p>
       ) : exercise ? (
         <>
-
-          <div>
+          <section>
             <h2>Detalles del Ejercicio</h2>
             <ExercisePostComponent
               exercise={exercise}
@@ -79,9 +77,9 @@ function InfoExerciseComponent() {
                 <Button handleClick={() => setEditMode(true)}>Editar ejercicio</Button>
               </>
             )}
-          </div>
+          </section>
           {editMode ? (
-            <form>
+            <section>
               <h3>Formulario de edición</h3>
               <fieldset>
                 <label htmlFor="id">ID</label>
@@ -129,13 +127,13 @@ function InfoExerciseComponent() {
                 />
               </fieldset>
               <Button handleClick={handleUpdateExercise}>Guardar Cambios</Button>
-            </form>
+            </section>
           ) : null}
         </>
       ) : (
         <p>No se pudo cargar la información del ejercicio.</p>
       )}
-    </div>
+    </section>
   );
 }
 

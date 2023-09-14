@@ -22,7 +22,6 @@ function ExerciseListComponent() {
         setError(null);
 
         const data = await ExercisesService(user.token);
-        console.log("Data from ExercisesService:", data);
 
         const filteredExercises = data.filter((exercise) => {
           const nameMatch =
@@ -44,8 +43,6 @@ function ExerciseListComponent() {
           );
         });
 
-        console.log("Filtered Exercises:", filteredExercises);
-
         setExercises(filteredExercises);
         setLoading(false);
       } catch (error) {
@@ -54,7 +51,6 @@ function ExerciseListComponent() {
       }
     };
 
-    
     fetchExercises();
     
   }, [user, filters]);
@@ -66,10 +62,10 @@ function ExerciseListComponent() {
   };
 
   return (
-    <div>
+    <section>
       <h2>Lista de Ejercicios</h2>
-      <div className="filter-form">
-        <div>
+      <form className="filter-form">
+        <section>
           <label htmlFor="name">Filtrar por Nombre:</label>
           <input
             type="text"
@@ -78,8 +74,8 @@ function ExerciseListComponent() {
             value={filters.name}
             onChange={handleFilterChange}
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label htmlFor="muscleGroup">Filtrar por Grupo Muscular:</label>
           <select
             id="muscleGroup"
@@ -92,8 +88,8 @@ function ExerciseListComponent() {
             <option value="Tren inferior">Tren inferior</option>
             <option value="core">Core</option>
           </select>
-        </div>
-        <div>
+        </section>
+        <section>
           <label htmlFor="recommended">Recomendados:</label>
           <input
             type="checkbox"
@@ -102,8 +98,8 @@ function ExerciseListComponent() {
             checked={filters.recommended}
             onChange={handleFilterChange}
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label htmlFor="favorite">Favoritos:</label>
           <input
             type="checkbox"
@@ -112,28 +108,28 @@ function ExerciseListComponent() {
             checked={filters.favorite}
             onChange={handleFilterChange}
           />
-        </div>
-      </div>
+        </section>
+      </form>
 
-      <div className="exercise-container">
+      <section className="exercise-container">
         {loading ? (
           <p>Cargando...</p>
         ) : error ? (
           <p>Error: {error.message}</p>
         ) : exercises.length > 0 ? (
           exercises.map((exercise) => (
-            <div className="exercise-card" key={exercise.id}>
+            <section key={exercise.id} className="exercise-card">
               <ExercisePostComponent
                 exercise={exercise}
                 isRecommended={exercise.is_recommended}
               />
-            </div>
+            </section>
           ))
         ) : (
           <p>No hay ejercicios disponibles</p>
         )}
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }
 
