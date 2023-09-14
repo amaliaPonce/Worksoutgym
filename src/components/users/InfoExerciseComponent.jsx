@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useExercise from "../../hooks/useExercise";
 import { AppContext } from "../../context/AppContext";
-import { deleteExerciseService } from "../../service/index";
+import { deleteExerciseService, updateExerciseService } from "../../service/index";
 import ExercisePostComponent from "./ExercisePostComponent";
 import Button from "../Button";
 
@@ -13,20 +13,43 @@ function InfoExerciseComponent() {
   const [err, setErr] = useState();
   const navigate = useNavigate();
 
-  console.log(user)
-
   const [editMode, setEditMode] = useState(false);
+  const [exerciseData, setExerciseData] = useState({
+    id: exercise?.id || "",
+    name: exercise?.name || "",
+    description: exercise?.description || "",
+    muscleGroup: exercise?.muscleGroup || "",
+  });
+
+  useEffect(() => {
+    setExerciseData({
+      id: exercise?.id || "",
+      name: exercise?.name || "",
+      description: exercise?.description || "",
+      muscleGroup: exercise?.muscleGroup || "",
+    });
+  }, [exercise]);
 
   const handleDeleteExercise = async () => {
     try {
       await deleteExerciseService(id, user?.token);
       navigate("/adminpage/exercises");
     } catch (error) {
-      setErr(err.message);
+      setErr(error.message);
     }
   };
+
   const handleUpdateExercise = async () => {
-    
+    try {
+      await updateExerciseService(id, user?.token, exerciseData);
+      console.log("Ejercicio actualizado:", exerciseData);
+      setEditMode(false);
+
+      // Recargar la página después de actualizar el ejercicio
+      window.location.reload();
+    } catch (error) {
+      setErr(error.message);
+    }
   };
 
   if (err) return <p>{err}</p>;
@@ -39,27 +62,71 @@ function InfoExerciseComponent() {
         <p>Error: {error.message}</p>
       ) : exercise ? (
         <>
-        <div>
-          <h2>Detalles del Ejercicio</h2>
-          <ExercisePostComponent
-            exercise={exercise}
-            isFavorite={exercise.isFavorite}
-            isRecommended={exercise.isRecommended}
-          />
-          {user?.role === "admin" && (
-            <>
-            <Button handleClick={handleDeleteExercise}>Borrar ejercicio</Button>
-            <Button handleClick={() => {setEditMode(true)}}>Editar ejercicio</Button>
-            </>
-          )}
-        </div>
-        {editMode ? <form>
-          Formulario de edición
-          <fieldset>
-            <label htmlFor="title">Título</label>
-            <input type="text" defaultValue={exercise.name} />
-          </fieldset>
-        </form> : null}
+          <div>
+            <h2>Detalles del Ejercicio</h2>
+            <ExercisePostComponent
+              exercise={exercise}
+              isFavorite={exercise.isFavorite}
+              isRecommended={exercise.isRecommended}
+            />
+            {user?.role === "admin" && (
+              <>
+                <Button handleClick={handleDeleteExercise}>Borrar ejercicio</Button>
+                <Button handleClick={() => setEditMode(true)}>Editar ejercicio</Button>
+              </>
+            )}
+          </div>
+          {editMode ? (
+            <form>
+              <h3>Formulario de edición</h3>
+              <fieldset>
+                <label htmlFor="id">ID</label>
+                <input
+                  type="text"
+                  value={exerciseData.id}
+                  onChange={(e) =>
+                    setExerciseData({ ...exerciseData, id: e.target.value })
+                  }
+                />
+              </fieldset>
+              <fieldset>
+                <label htmlFor="name">Título</label>
+                <input
+                  type="text"
+                  value={exerciseData.name}
+                  onChange={(e) =>
+                    setExerciseData({ ...exerciseData, name: e.target.value })
+                  }
+                />
+              </fieldset>
+              <fieldset>
+                <label htmlFor="description">Descripción</label>
+                <textarea
+                  value={exerciseData.description}
+                  onChange={(e) =>
+                    setExerciseData({
+                      ...exerciseData,
+                      description: e.target.value,
+                    })
+                  }
+                />
+              </fieldset>
+              <fieldset>
+                <label htmlFor="muscleGroup">Grupo Muscular</label>
+                <input
+                  type="text"
+                  value={exerciseData.muscleGroup}
+                  onChange={(e) =>
+                    setExerciseData({
+                      ...exerciseData,
+                      muscleGroup: e.target.value,
+                    })
+                  }
+                />
+              </fieldset>
+              <Button handleClick={handleUpdateExercise}>Guardar Cambios</Button>
+            </form>
+          ) : null}
         </>
       ) : (
         <p>No se pudo cargar la información del ejercicio.</p>
