@@ -9,7 +9,8 @@ import Button from "../Button";
 const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   const { user } = useContext(AppContext);
   const [exerciseIsFavorite, setExerciseIsFavorite] = useState(isFavorite);
-  const [exerciseIsRecommended, setExerciseIsRecommended] = useState(isRecommended);
+  const [exerciseIsRecommended, setExerciseIsRecommended] =
+    useState(isRecommended);
   const navigate = useNavigate();
 
   const handleToggleFavorite = async () => {
@@ -82,7 +83,7 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
             : "Marcar como recomendado"}
         </Button>
         <Button
-          handleClick={() => navigate(`/adminpage/exercises/${exercise.id}`)}
+          handleClick={() => navigate(`/usersPage/exercises/${exercise.id}`)}
         >
           Ver detalles
         </Button>

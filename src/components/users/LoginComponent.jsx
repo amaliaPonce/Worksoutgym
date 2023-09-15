@@ -26,11 +26,7 @@ function LoginComponent() {
           token: data.data.token,
           id: data.data.id,
         });
-        if (data.data.userRole === "admin") {
-          navigate("/adminpage");
-        } else if (data.data.userRole === "cliente") {
-          navigate("/clientpage");
-        }
+        navigate("/usersPage");
       } else {
         setError(data.message || "Error al iniciar sesión");
       }
