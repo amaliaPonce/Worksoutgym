@@ -1,12 +1,11 @@
-
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  background-color: rgb(255, 255, 255);
-  margin-bottom: 60px; 
+  background-color: var(--body-color); /* Utiliza la variable --body-color */
+  margin-bottom: 60px;
 }
 
 .footer {
@@ -14,14 +13,12 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #333;
-  color: #fff;
+  background-color: var(--text-color-dark); /* Utiliza la variable --text-color-dark */
+  color: var(--container-color); /* Utiliza la variable --container-color */
   text-align: center;
   padding: 20px;
-  z-index: 2; 
-
+  z-index: var(--z-modal); /* Utiliza la variable --z-modal */
 }
-
 
 .home-content {
   display: grid;
@@ -38,16 +35,17 @@ body {
 }
 
 .home-title {
-  font-size: 36px;
-  margin-bottom: 0.5rem;
+  font-size: var(--h1-font-size);
+  margin: var(--mb-0-5) 0; 
 }
 
 .home-subtitle {
   position: relative;
-  font-size: 16px;
+  font-size: var(--medium-font-size); 
   padding-left: 2rem;
-  font-weight: normal;
+  font-weight: var(--font-normal); 
   margin: 5px;
+  color: var(--text-color-dark)
 }
 
 .home-subtitle::before {
@@ -73,7 +71,7 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-  margin: 0 auto; /* Centrar horizontalmente */
+  margin: 0 auto; 
 }
 
 .home-video {
@@ -92,17 +90,18 @@ body {
   display: inline-flex;
   align-items: center;
   margin: 10px;
-  background-color: gray;
+  background-color: var(--button-color);
 }
 
 .button-flex svg {
   margin-right: 5px;
-  width: 14px; 
+  width: 14px;
   height: 14px;
 }
+
 @media screen and (max-width: 768px) {
   .home-content {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     text-align: center;
   }
 
@@ -111,7 +110,7 @@ body {
   }
 
   .home-title {
-    font-size: 28px; 
+    font-size: var(--h1-font-size);
   }
 
   .home-description {
@@ -126,9 +125,8 @@ body {
   .button-flex {
     margin: 5px;
   }
-  
 
   body {
-    padding-bottom: 220px; 
+    padding-bottom: 220px;
   }
 }
