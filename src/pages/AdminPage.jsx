@@ -10,7 +10,7 @@ function AdminPage() {
   return (
     <div>
       <h2>AdminPage</h2>
-      {user.role === "admin" && (
+      {user && user.role === "admin" && (
         <div>
           <HeaderDashboard />
           <h1>hola esto hay que quitarlo es para que baje el contenido</h1>
