@@ -2,22 +2,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,600&family=Poppins:wght@300&family=Raleway:wght@100;300;700&family=Roboto:ital,wght@1,400;1,700&display=swap");
 
 :root {
+
   --header-height: 3rem;
-
-  --title-color: #333;
-  --title-color-dark: #111; 
-  --text-color: #666;
-  --body-color: #fff; 
-
-  --container-color: #545353; 
+  --title-color: #ffffff;
+  --title-color-dark: #000000;
+  --text-color:#9FB8AD ;
+  --text-color-dark: #383E56;
+  --button-color:#FB743E;
+  --body-color: #f0f0f0; 
+  --container-color: #ffffff; 
 
     /* Font and typography */
+
     --body-font: "Montserrat", sans-serif;
   
     /* .5rem = 8px | 1rem = 16px */
   
     --big-font-size: 3.5rem;
-    --h1-font-size: 2.25rem;
+    --h1-font-size: 2rem;
     --h2-font-size: 1.5rem;
     --h3-font-size: 1.25rem;
     --normal-font-size: 1rem;
@@ -72,7 +74,7 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--title-color);
+  
   font-weight: var(--font-semi-bold);
   
 }
@@ -87,6 +89,7 @@ a {
 /* Responsive typography */
 
   /* REUSABLE CSS CLASSES */
+
   .section {
     padding: 8rem 0 2rem;
 
@@ -148,11 +151,13 @@ a {
     margin-right: 10px; 
   }
   /* BREAKPOINTS */
+  
 /* For large devices */
+
   @media screen and (max-width: 992px) {
     :root {
       --big-font-size: 2.75rem;
-      --h1-font-size: 1.5rem;
+      --h1-font-size: 1rem;
       --h2-font-size: 1.25rem;
       --h3-font-size: 1rem;
       --normal-font-size: 0.938rem;
