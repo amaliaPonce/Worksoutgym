@@ -1,20 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import Button from "../Button";
-import UpdateUserComponent from "../users/UpdateUserComponent";
-import UpdateUserRole from "../users/UpdateUserRol";
 
-const UserPostComponent = ({ user }) => {
-  const [isEditProfileVisible, setIsEditProfileVisible] = useState(false);
-  const [isUserRoleFormVisible, setIsUserRoleFormVisible] = useState(false);
-
-  const handleToggleEditProfile = () => {
-    setIsEditProfileVisible(!isEditProfileVisible);
-  };
-
-  const handleToggleUserRoleForm = () => {
-    setIsUserRoleFormVisible(!isUserRoleFormVisible);
-  };
-
+const UserPostComponent = ({ user, handleToggleEditProfile, handleToggleUserRoleForm }) => {
   return (
     <div className="user-card">
       <div className="user-image">
@@ -29,35 +17,19 @@ const UserPostComponent = ({ user }) => {
         <p className="user-title">
           <strong>Nombre:</strong> {user ? user.name : ""}
         </p>
-        <p className="user-details">
-          <strong>Biografía:</strong> {user ? user.biography : ""}
-        </p>
-        <p className="user-details">
-          <strong>Apellido:</strong> {user ? user.lastName : ""}
-        </p>
-        <p className="user-details">
-          <strong>Fecha de Nacimiento:</strong> {user ? user.birthDate : ""}
-        </p>
-        <p className="user-details">
-          <strong>Dirección:</strong> {user ? user.address : ""}
-        </p>
-        <p className="user-details">
-          <strong>Número de Teléfono:</strong> {user ? user.phone_number : ""}
-        </p>
+     
       </div>
       <div>
-        <Button handleClick={handleToggleEditProfile}>Editar Perfil</Button>
-        {isEditProfileVisible && <UpdateUserComponent userId={user.id} />}
+        <Button handleClick={() => handleToggleEditProfile(user.id)}>Editar Perfil</Button>
+        {user.userRole === "admin" && (
+          <div>
+            <h3>Cambiar Rol</h3>
+            <Button handleClick={() => handleToggleUserRoleForm(user.id)}>Cambiar Rol</Button>
+          </div>
+        )}
+
+    <Link to={`/adminpage/profileUserPage/ProfileDetails/${user.id}`}>Ver Detalles del Usuario</Link>
       </div>
-      {user?.userRole === "admin" && (
-        <div>
-          <h3>Cambiar Rol</h3>
-          <Button handleClick={handleToggleUserRoleForm}>Cambiar Rol</Button>
-        </div>
-      )}
-      {isUserRoleFormVisible && (
-        <UpdateUserRole userId={user.id} userRole={user.userRole} />
-      )}
     </div>
   );
 };

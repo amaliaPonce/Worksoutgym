@@ -122,6 +122,7 @@ function ExerciseListComponent() {
               <ExercisePostComponent
                 exercise={exercise}
                 isRecommended={exercise.is_recommended}
+                isFavorite={exercise.is_favorite}
               />
             </section>
           ))

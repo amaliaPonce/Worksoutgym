@@ -11,6 +11,8 @@ import ExercisesPage from "./pages/ExercisesPage";
 
 import InfoExercisePage from "./pages/InfoExercisePage";
 
+import InfoUserPage from "./pages/InfoUserPage";
+
 const RoutesApp = () => {
   return (
     <Routes>
@@ -22,8 +24,10 @@ const RoutesApp = () => {
       <Route path="/adminpage/exercises" element={<ExercisesPage />} />
       <Route path="/adminpage/exercises/:id" element={<InfoExercisePage />} />
       <Route path="/adminpage/profileUserPage" element={<ProfileUserPage />} />
+      <Route path="/adminpage/profileUserPage/ProfileDetails/:id" element={<InfoUserPage />} />
 
       <Route path="/clientpage" element={<ClientPage />} />
+      
     </Routes>
   );
 };
