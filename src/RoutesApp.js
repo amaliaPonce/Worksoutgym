@@ -21,7 +21,7 @@ const RoutesApp = () => {
       <Route path="/adminpage/exercises" element={<ExercisesPage />} />
       <Route path="/adminpage/exercises/:id" element={<InfoExercisePage />} />
       <Route path="/adminpage/listUsers" element={<ListUserPage />} />
-      <Route path="/adminpage/infoUser/:id" element={<InfoUserPage />} />
+      <Route path="/adminpage/infoUser" element={<InfoUserPage />} />
 
       <Route path="/clientpage" element={<ClientPage />} />
     </Routes>

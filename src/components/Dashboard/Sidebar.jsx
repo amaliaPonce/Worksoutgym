@@ -21,7 +21,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/adminpage/infoUser/:id" className="nav-link">
+            <Link to="/adminpage/infoUser" className="nav-link">
               <i className="uil uil-setting"></i>
             </Link>
           </li>

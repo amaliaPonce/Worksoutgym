@@ -1,16 +1,17 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
-import { updateUserService, getUserService } from "../../service";
+import { updateUserService } from "../../service";
 import UserPostComponent from "./UserPostComponent";
 import Button from "../Button";
+import useUser from "../../hooks/useUser";
 
 function InfoUserComponent() {
   const { user } = useContext(AppContext);
   const { id } = useParams();
-  const [userData, setUserData] = useState(null);
+  const { userInfo, error, loading } = useUser(id || user.id, user.token);
+  const [userData, setUserData] = useState(userInfo[0]);
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(true);
   const [editMode, setEditMode] = useState(false);
   const [userProfileData, setUserProfileData] = useState({
     name: "",
@@ -23,29 +24,10 @@ function InfoUserComponent() {
   });
 
   useEffect(() => {
-    // Obtener los datos del usuario al cargar el componente
-    const fetchUserData = async () => {
-      try {
-        if (!user || !user.token) {
-          throw new Error("Debes iniciar sesión para editar el perfil.");
-        }
-
-        const fetchedUserData = await getUserService(id || user.id, user.token);
-
-        if (fetchedUserData.id === user.id) {
-          setEditMode(true);
-        }
-
-        setUserData(fetchedUserData);
-        setLoading(false);
-      } catch (error) {
-        setMessage(error.message);
-        setLoading(false);
-      }
-    };
-
-    fetchUserData();
-  }, [user, id]);
+    if (userInfo && userInfo.length > 0) {
+      setUserData(userInfo[0]);
+    }
+  }, [userInfo]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -84,8 +66,8 @@ function InfoUserComponent() {
     return <p>Cargando información del usuario...</p>;
   }
 
-  if (!userData) {
-    return <p>Error: Usuario no encontrado.</p>;
+  if (error) {
+    return <p>Error: {error.message}</p>;
   }
 
   return (
