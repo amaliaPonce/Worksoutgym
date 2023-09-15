@@ -1,26 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../../styles/adminDashboard/headerAdmin.css";
+import { AppContext } from "../../context/AppContext";
+import { useNavigate } from "react-router-dom"; // Importa useNavigate
 
 function HeaderDashboard() {
   const [menuActive, setMenuActive] = useState(false);
+  const { logout } = useContext(AppContext);
+  const navigate = useNavigate(); // Obtiene la función de navegación
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate("/"); // Redirige al usuario a la página principal
+  };
+
   return (
     <header className={`header-dashboard ${menuActive ? "menu-active" : ""}`}>
       <h1>Administrador</h1>
-      {/* Icono del menú solo visible en pantallas pequeñas */}
       <div className="menu-icon" onClick={toggleMenu}>
         ☰
       </div>
       <nav>
         <ul>
-          {/* Elementos de navegación */}
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Perfil</a></li>
-          <li><a href="#">Mis Favoritos</a></li>
+          <li>
+          
+            <button onClick={handleLogout}>Cerrar Sesión</button>
+          </li>
         </ul>
       </nav>
     </header>
