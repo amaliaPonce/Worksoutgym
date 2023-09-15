@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import HeaderDashboard from "../components/Dashboard/HeaderDashboard";
 import Sidebar from "../components/Dashboard/Sidebar";

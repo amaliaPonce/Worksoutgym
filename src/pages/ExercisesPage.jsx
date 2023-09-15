@@ -1,12 +1,13 @@
-import React from "react";
+import { useContext } from "react";
 import HeaderDashboard from "../components/Dashboard/HeaderDashboard";
 import Sidebar from "../components/Dashboard/Sidebar";
 import ExerciseListComponent from "../components/users/ExerciseListComponent";
-import AddExerciseComponent from "../components/users/AddExerciseComponent"
-
-
+import AddExerciseComponent from "../components/users/AddExerciseComponent";
+import { AppContext } from "../context/AppContext";
 
 const ExercisesPage = () => {
+  const { user } = useContext(AppContext);
+
   const pageStyle = {
     display: "flex",
     flexDirection: "column",
@@ -19,7 +20,7 @@ const ExercisesPage = () => {
     <div style={pageStyle}>
       <HeaderDashboard />
       <ExerciseListComponent />
-      <AddExerciseComponent />
+      {user.role === "admin" && <AddExerciseComponent />}
       <Sidebar />
     </div>
   );

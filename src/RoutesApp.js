@@ -3,15 +3,12 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import ProfileUserPage from "./pages/ProfileUserPage";
 import AdminPage from "./pages/AdminPage";
 import ClientPage from "./pages/ClientPage";
-
 import ExercisesPage from "./pages/ExercisesPage";
-
 import InfoExercisePage from "./pages/InfoExercisePage";
-
 import InfoUserPage from "./pages/InfoUserPage";
+import ListUserPage from "./pages/ListUserPage";
 
 const RoutesApp = () => {
   return (
@@ -23,11 +20,10 @@ const RoutesApp = () => {
       <Route path="/adminpage" element={<AdminPage />} />
       <Route path="/adminpage/exercises" element={<ExercisesPage />} />
       <Route path="/adminpage/exercises/:id" element={<InfoExercisePage />} />
-      <Route path="/adminpage/profileUserPage" element={<ProfileUserPage />} />
-      <Route path="/adminpage/profileUserPage/ProfileDetails/:id" element={<InfoUserPage />} />
+      <Route path="/adminpage/listUsers" element={<ListUserPage />} />
+      <Route path="/adminpage/infoUser/:id" element={<InfoUserPage />} />
 
       <Route path="/clientpage" element={<ClientPage />} />
-      
     </Routes>
   );
 };

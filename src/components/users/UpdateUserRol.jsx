@@ -1,16 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
 import { updateRolUserService } from "../../service/index";
 import Button from "../Button";
+import useUser from "../../hooks/useUser";
 
 function UpdateUserRole({ userId, userRole }) {
   const { user } = useContext(AppContext);
+  const { userInfo } = useUser(userId, user.token);
+
   const [formData, setFormData] = useState({
     userId: userId || "",
     userRole: userRole || "",
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  useEffect(() => {
+    setFormData({
+      userId: userInfo.id,
+      userRole: userInfo.userRole,
+    });
+  }, [userInfo]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

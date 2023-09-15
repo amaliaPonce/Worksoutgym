@@ -16,12 +16,12 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/adminpage/profileUserPage" className="nav-link">
+            <Link to="/adminpage/listUsers" className="nav-link">
               <i className="uil uil-user"></i>
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/adminpage/admins" className="nav-link">
+            <Link to="/adminpage/infoUser/:id" className="nav-link">
               <i className="uil uil-setting"></i>
             </Link>
           </li>
