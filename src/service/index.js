@@ -16,7 +16,7 @@ export const registerService = async (name, email, password) => {
       `${process.env.REACT_APP_BACKEND}/users/register`,
       {
         method: "POST",
-        body: JSON.stringify({ name, email, password }), // Incluye los datos en el cuerpo
+        body: JSON.stringify({ name, email, password }),
         headers: {
           "Content-Type": "application/json",
         },

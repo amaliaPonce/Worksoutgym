@@ -2,7 +2,10 @@ import { useContext, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useExercise from "../../hooks/useExercise";
 import { AppContext } from "../../context/AppContext";
-import { deleteExerciseService, updateExerciseService } from "../../service/index";
+import {
+  deleteExerciseService,
+  updateExerciseService,
+} from "../../service/index";
 import ExercisePostComponent from "./ExercisePostComponent";
 import Button from "../Button";
 
@@ -33,7 +36,7 @@ function InfoExerciseComponent() {
   const handleDeleteExercise = async () => {
     try {
       await deleteExerciseService(id, user?.token);
-      navigate("/adminpage/exercises");
+      navigate("/usersPage/exercises");
     } catch (error) {
       setErr(error.message);
     }
@@ -45,7 +48,6 @@ function InfoExerciseComponent() {
       console.log("Ejercicio actualizado:", exerciseData);
       setEditMode(false);
 
-      
       window.location.reload();
     } catch (error) {
       setErr(error.message);
@@ -73,8 +75,12 @@ function InfoExerciseComponent() {
             />
             {user?.role === "admin" && (
               <>
-                <Button handleClick={handleDeleteExercise}>Borrar ejercicio</Button>
-                <Button handleClick={() => setEditMode(true)}>Editar ejercicio</Button>
+                <Button handleClick={handleDeleteExercise}>
+                  Borrar ejercicio
+                </Button>
+                <Button handleClick={() => setEditMode(true)}>
+                  Editar ejercicio
+                </Button>
               </>
             )}
           </section>
@@ -126,7 +132,9 @@ function InfoExerciseComponent() {
                   }
                 />
               </fieldset>
-              <Button handleClick={handleUpdateExercise}>Guardar Cambios</Button>
+              <Button handleClick={handleUpdateExercise}>
+                Guardar Cambios
+              </Button>
             </section>
           ) : null}
         </>

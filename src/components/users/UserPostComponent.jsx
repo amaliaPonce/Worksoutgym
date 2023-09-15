@@ -1,8 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Button from "../Button";
-
-const UserPostComponent = ({ user, handleToggleEditProfile, handleToggleUserRoleForm }) => {
+const UserPostComponent = ({ user }) => {
   return (
     <div className="user-card">
       <div className="user-image">
@@ -17,18 +13,21 @@ const UserPostComponent = ({ user, handleToggleEditProfile, handleToggleUserRole
         <p className="user-title">
           <strong>Nombre:</strong> {user ? user.name : ""}
         </p>
-     
-      </div>
-      <div>
-        <Button handleClick={() => handleToggleEditProfile(user.id)}>Editar Perfil</Button>
-        {user.userRole === "admin" && (
-          <div>
-            <h3>Cambiar Rol</h3>
-            <Button handleClick={() => handleToggleUserRoleForm(user.id)}>Cambiar Rol</Button>
-          </div>
-        )}
-
-    <Link to={`/adminpage/profileUserPage/ProfileDetails/${user.id}`}>Ver Detalles del Usuario</Link>
+        <p className="user-title">
+          <strong>Apellido:</strong> {user ? user.lastName : ""}
+        </p>
+        <p className="user-title">
+          <strong>Fecha de Nacimiento:</strong> {user ? user.birthDate : ""}
+        </p>
+        <p className="user-title">
+          <strong>Dirección:</strong> {user ? user.address : ""}
+        </p>
+        <p className="user-title">
+          <strong>Teléfono:</strong> {user ? user.phone_number : ""}
+        </p>
+        <p className="user-title">
+          <strong>Biografía:</strong> {user ? user.biography : ""}
+        </p>
       </div>
     </div>
   );

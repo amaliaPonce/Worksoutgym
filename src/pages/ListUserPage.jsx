@@ -4,7 +4,7 @@ import Sidebar from "../components/Dashboard/Sidebar";
 import ListUserComponent from "../components/users/ListUserComponent";
 import { AppContext } from "../context/AppContext";
 
-const ProfileUserPage = () => {
+const ListUserPage = () => {
   const { user } = useContext(AppContext);
   const pageStyle = {
     display: "flex",
@@ -23,4 +23,4 @@ const ProfileUserPage = () => {
   );
 };
 
-export default ProfileUserPage;
+export default ListUserPage;

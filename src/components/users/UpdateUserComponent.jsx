@@ -7,7 +7,7 @@ import useUser from "../../hooks/useUser";
 function EditProfile() {
   const { user, login } = useContext(AppContext);
   const { userInfo } = useUser(user.id, user.token);
-  console.log("UserInfo", userInfo);
+  //console.log("UserInfo", userInfo);
   const [userData, setUserData] = useState(userInfo[0]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
