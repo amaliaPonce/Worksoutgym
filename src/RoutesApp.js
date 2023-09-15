@@ -12,13 +12,14 @@ import ExercisesPage from "./pages/ExercisesPage";
 import InfoExercisePage from "./pages/InfoExercisePage";
 
 import InfoUserPage from "./pages/InfoUserPage";
-
+import ConocenosPage from "./pages/ConocenosPage"
 const RoutesApp = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/aboutUs" element={<ConocenosPage />} />
 
       <Route path="/adminpage" element={<AdminPage />} />
       <Route path="/adminpage/exercises" element={<ExercisesPage />} />
