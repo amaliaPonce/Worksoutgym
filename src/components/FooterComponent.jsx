@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import "../styles/footer.css";
 
 function FooterComponent() {
@@ -12,9 +14,9 @@ function FooterComponent() {
         </div>
         <div className="footer-section">
           <p>
-            <a className="conocenos-link" href="/conocenos" target="_blank">
-              Conócenos
-            </a>
+          <Link className="conocenos-link" to="/aboutUs">
+  Conócenos
+</Link>
           </p>
         </div>
         <div className="footer-section">

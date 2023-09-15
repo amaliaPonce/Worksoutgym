@@ -6,6 +6,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ExercisesPage from "./pages/ExercisesPage";
 import InfoExercisePage from "./pages/InfoExercisePage";
 import InfoUserPage from "./pages/InfoUserPage";
+
 import ListUserPage from "./pages/ListUserPage";
 import UsersPage from "./pages/UsersPage";
 
@@ -15,11 +16,13 @@ const RoutesApp = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+        
       <Route path="/usersPage" element={<UsersPage />} />
       <Route path="/usersPage/exercises" element={<ExercisesPage />} />
       <Route path="/usersPage/exercises/:id" element={<InfoExercisePage />} />
       <Route path="/usersPage/infoUser" element={<InfoUserPage />} />
       <Route path="/usersPage/listUsers" element={<ListUserPage />} />
+
     </Routes>
   );
 };

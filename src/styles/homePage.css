@@ -1,3 +1,7 @@
+.home-page {
+  background-color: #f0f0f0;
+}
+
 /* Estilos para el contenedor del banner */
 .banner {
   display: flex;
@@ -5,6 +9,7 @@
   justify-content: center;
   height: 100vh;
   color: #000000;
+  margin: 50px;
   padding: 20px;
   overflow: hidden;
 }
@@ -25,13 +30,15 @@
 .banner-subtitle {
   font-size: 48px;
   font-weight: bold;
-  margin: 20px 0;
+  margin: 30px 0;
   line-height: 1.2;
 }
 
 .banner-description {
   font-size: 24px;
   margin-bottom: 20px;
+  margin-top: 30px;
+
 }
 
 .banner-button {
@@ -43,6 +50,7 @@
   font-size: 24px;
   font-weight: bold;
   border-radius: 5px;
+  margin-top: 30px;
   transition: background-color 0.3s;
 }
 
@@ -64,22 +72,55 @@
   width: auto;
   height: auto;
 }
+/* Estilos para la sección "features" */
+.features {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+}
+
+.feature {
+  flex: 1;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.feature i {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #FF5722;
+}
+
+.feature h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.feature p {
+  font-size: 16px;
+  line-height: 1.5;
+}
 
 /* Estilos para pantallas medianas (entre 768px y 1024px de ancho) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .banner-subtitle {
-    font-size: 36px; /* Ajusta el tamaño de la subtítulo en pantallas medianas */
-    padding: 10px 0; /* Ajusta el espaciado del subtítulo en pantallas medianas */
+    font-size: 36px;
+    padding: 10px 0; 
   }
 }
 
 /* Estilos para pantallas pequeñas (menos de 768px de ancho) */
 @media (max-width: 768px) {
-  /* Ajustes para pantallas pequeñas */
+  
   .banner {
-    flex-direction: column-reverse; /* Coloca la imagen debajo del texto en pantallas pequeñas */
-    text-align: center; /* Centra el texto horizontalmente en pantallas pequeñas */
-    padding: 10px; /* Reduce el espaciado interior en pantallas pequeñas */
+    flex-direction: column-reverse; 
+    text-align: center; 
+    padding: 10px;
   }
 
   .banner-title {
