@@ -38,7 +38,7 @@ function LoginComponent() {
   };
 
   return (
-    <div className="login-container">
+    <section className="login-container">
       <h2 className="login-title">Iniciar Sesión</h2>
       <form onSubmit={handleLogin}>
         <input
@@ -70,7 +70,7 @@ function LoginComponent() {
         {error && <p className="login-error">{error}</p>}
         {isLoading && <p className="login-loading">Cargando...</p>}
       </form>
-    </div>
+    </section>
   );
 }
 

@@ -24,7 +24,7 @@ function RegisterComponent() {
   };
 
   return (
-    <div className="register-container">
+    <section className="register-container">
       <h2 className="register-title">Regístrate</h2>
       {registrationSuccess && (
         <p className="register-subtitle">
@@ -33,7 +33,7 @@ function RegisterComponent() {
       )}
       {error && <p className="register-error">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
+        <section>
           <label>Nombre:</label>
           <input
             className="register-input"
@@ -41,8 +41,8 @@ function RegisterComponent() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label>Email:</label>
           <input
             className="register-input"
@@ -50,8 +50,8 @@ function RegisterComponent() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label>Contraseña:</label>
           <input
             className="register-input"
@@ -59,7 +59,7 @@ function RegisterComponent() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
+        </section>
         <Button
           handleClick={handleSubmit}
           type="submit"
@@ -68,7 +68,7 @@ function RegisterComponent() {
           Registrarse
         </Button>
       </form>
-    </div>
+    </section>
   );
 }
 

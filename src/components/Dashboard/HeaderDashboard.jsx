@@ -20,13 +20,12 @@ function HeaderDashboard() {
   return (
     <header className={`header-dashboard ${menuActive ? "menu-active" : ""}`}>
       <h1>Administrador</h1>
-      <div className="menu-icon" onClick={toggleMenu}>
+      <span className="menu-icon" onClick={toggleMenu}>
         ☰
-      </div>
+      </span>
       <nav>
         <ul>
           <li>
-          
             <button onClick={handleLogout}>Cerrar Sesión</button>
           </li>
         </ul>

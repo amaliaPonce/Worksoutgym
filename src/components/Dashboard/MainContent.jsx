@@ -5,10 +5,10 @@ import Sidebar from "./Sidebar";
 
 function MainContent() {
   return (
-    <div className="app-container">
+    <section className="app-container">
       <HeaderDashboard />
       <Sidebar />
-      <div className="content-container">
+      <section className="content-container">
         <main className="main-content">
           <h2>Contenido Principal</h2>
           <p>
@@ -17,8 +17,8 @@ function MainContent() {
           </p>
           <Outlet />
         </main>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }
 

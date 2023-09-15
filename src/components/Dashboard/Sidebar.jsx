@@ -27,9 +27,9 @@ const Sidebar = () => {
           </li>
         </ul>
       </nav>
-      <div className="nav-footer">
+      <section className="nav-footer">
         <span className="copyright">&copy; 2023 </span>
-      </div>
+      </section>
     </aside>
   );
 };

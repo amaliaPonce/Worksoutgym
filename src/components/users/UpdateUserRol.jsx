@@ -47,10 +47,10 @@ function UpdateUserRole({ userId, userRole }) {
   };
 
   return (
-    <div className="user-details">
+    <section className="user-details">
       <h2>Editar Rol de Usuario</h2>
       <form onSubmit={handleSubmit}>
-        <div className="user-details">
+        <section className="user-details">
           <label>Usuario ID:</label>
           <input
             type="text"
@@ -59,8 +59,8 @@ function UpdateUserRole({ userId, userRole }) {
             onChange={handleChange}
             disabled
           />
-        </div>
-        <div className="user-details">
+        </section>
+        <section className="user-details">
           <label>Nuevo Rol:</label>
           <select
             name="userRole"
@@ -70,14 +70,14 @@ function UpdateUserRole({ userId, userRole }) {
             <option value="cliente">Cliente</option>
             <option value="admin">Administrador</option>
           </select>
-        </div>
+        </section>
         <Button handleClick={handleSubmit} type="submit">
           Guardar Cambios
         </Button>
       </form>
       {successMessage && <div>{successMessage}</div>}
       {errorMessage && <div>Error: {errorMessage}</div>}
-    </div>
+    </section>
   );
 }
 

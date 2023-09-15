@@ -6,16 +6,8 @@ import { AppContext } from "../context/AppContext";
 const InfoUserPage = () => {
   const { user } = useContext(AppContext);
 
-  const pageStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: "500px",
-  };
-
   return (
-    <div style={pageStyle}>
+    <div className="pages">
       <HeaderDashboard />
       <InfoUserComponent user={user} />
       <Sidebar />

@@ -4,13 +4,16 @@ import MainContent from "../components/Dashboard/MainContent";
 
 function UsersPage() {
   return (
-    <div>
-      <div>
+    <div className="pages">
+      <header className="header">
         <HeaderDashboard />
-        <h1>hola esto hay que quitarlo es para que baje el contenido</h1>
+      </header>
+      <main className="main-content">
         <MainContent />
+      </main>
+      <aside className="sidebar">
         <Sidebar />
-      </div>
+      </aside>
     </div>
   );
 }

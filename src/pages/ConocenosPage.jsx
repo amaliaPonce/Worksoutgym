@@ -7,7 +7,7 @@ import SusanaWeb from "../assets/Susana.mp4";
 
 const Data = () => {
   return (
-    <>
+    <div className="pages">
       <HeaderComponent />
       <main className="home-content">
         <section className="person-data">
@@ -37,9 +37,9 @@ const Data = () => {
           <h3 className="home-subtitle">Full Stack Developer</h3>
           <p className="home-description">
             Hi there! I'm a full-stack creative designer based in Córdoba. I'm
-            passionate about art and also the world of technology. Imagining
-            and creating are my favorite pastimes, and I pour all my energy
-            into every project I take on.
+            passionate about art and also the world of technology. Imagining and
+            creating are my favorite pastimes, and I pour all my energy into
+            every project I take on.
           </p>
         </section>
 
@@ -66,16 +66,16 @@ const Data = () => {
           </section>
           <h3 className="home-subtitle">Full Stack Developer</h3>
           <p className="home-description">
-            Hi there! I'm a full stack developer based in [tu ubicación]. I
-            have a passion for coding and creating innovative web applications.
-            I'm dedicated to building user-friendly and efficient software
+            Hi there! I'm a full stack developer based in [tu ubicación]. I have
+            a passion for coding and creating innovative web applications. I'm
+            dedicated to building user-friendly and efficient software
             solutions.
           </p>
         </section>
       </main>
 
       <FooterComponent className="footer" />
-    </>
+    </div>
   );
 };
 

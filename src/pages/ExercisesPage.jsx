@@ -7,20 +7,14 @@ import { AppContext } from "../context/AppContext";
 
 const ExercisesPage = () => {
   const { user } = useContext(AppContext);
-
-  const pageStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: "500px",
-  };
-
   return (
-    <div style={pageStyle}>
+    <div className="pages">
       <HeaderDashboard />
+
       <ExerciseListComponent />
+
       {user.role === "admin" && <AddExerciseComponent />}
+
       <Sidebar />
     </div>
   );

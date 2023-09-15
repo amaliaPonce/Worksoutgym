@@ -4,16 +4,8 @@ import HeaderDashboard from "../components/Dashboard/HeaderDashboard";
 import Sidebar from "../components/Dashboard/Sidebar";
 
 const ExercisesPage = () => {
-  const pageStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: "500px",
-  };
-
   return (
-    <div style={pageStyle}>
+    <div className="pages">
       <HeaderDashboard />
       <InfoExerciseComponent />
       <Sidebar />

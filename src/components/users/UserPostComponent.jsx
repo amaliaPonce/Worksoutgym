@@ -1,15 +1,15 @@
 const UserPostComponent = ({ user }) => {
   return (
-    <div className="user-card">
-      <div className="user-image">
+    <section className="user-card">
+      <section className="user-image">
         {user && user.photo && (
           <img
             src={`${process.env.REACT_APP_BACKEND}/uploads/${user.photo}`}
             alt={user.name}
           />
         )}
-      </div>
-      <div className="user-details">
+      </section>
+      <section className="user-details">
         <p className="user-title">
           <strong>Nombre:</strong> {user ? user.name : ""}
         </p>
@@ -28,8 +28,8 @@ const UserPostComponent = ({ user }) => {
         <p className="user-title">
           <strong>Biografía:</strong> {user ? user.biography : ""}
         </p>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 };
 
