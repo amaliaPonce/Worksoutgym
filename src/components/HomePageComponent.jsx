@@ -11,7 +11,8 @@ const HomePageComponent = () => {
           <h1 className="banner-title">Transforma Tu Cuerpo y Tu Vida</h1>
           <h2 className="banner-subtitle">¡Suda, Sonríe y Repite!</h2>
           <p className="banner-description">
-          En nuestro gimnasio virtual, encontrarás una diversidad incomparable de ejercicios. Desde intensos entrenamientos de resistencia que desafían tus límites hasta sesiones de acondicionamiento cardiovascular que mejoran tu resistencia y queman calorías de manera efectiva.           </p>
+            En nuestro gimnasio virtual, encontrarás una diversidad incomparable de ejercicios. Desde intensos entrenamientos de resistencia que desafían tus límites hasta sesiones de acondicionamiento cardiovascular que mejoran tu resistencia y queman calorías de manera efectiva.
+          </p>
           <Link to="/register" className="banner-button">
             Comienza Tu Viaje de Fitness
           </Link>
