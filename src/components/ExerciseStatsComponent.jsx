@@ -99,18 +99,22 @@ function ExerciseStatsComponent({ exercises }) {
           x: `${group}: ${percentage}%`,
           y: parseFloat(percentage),
         }))}
+        
         label={({ datum }) => datum.x}
         style={{
           labels: {
             fill: "black",
-            fontSize: 14,
+            fontSize: 8,
           },
         }}
-        innerRadius={50} // Ajusta el radio interno para hacerlo un gráfico de dona
-        colorScale={['#FF5733', '#3498DB', '#27AE60', '#F1C40F', '#E74C3C']} // Personaliza los colores
+        
+        width={150} 
+        height={150} 
+        colorScale={['#383E56', '#FB743E', '#9FB8AD']} 
+        
       />
 
-      <h3 className="section-heading">Porcentaje de ejercicios favoritos:</h3>
+      <h3 className="section-heading">Ejercicios favoritos:</h3>
       <VictoryPie
         data={[
           { x: "Favoritos", y: parseFloat(favoriteStats.percentage) },
@@ -120,13 +124,16 @@ function ExerciseStatsComponent({ exercises }) {
         style={{
           labels: {
             fill: "black",
-            fontSize: 14,
+            fontSize: 10,
           },
         }}
-        colorScale={['#3498DB', '#E74C3C']} // 
+        width={150} 
+        height={150} 
+      
+        colorScale={['#383E56', '#FB743E', '#9FB8AD']} // 
       />
       <p className="percentage-text">
-        Porcentaje de ejercicios favoritos: {favoriteStats.count} de {exercises.length}
+      Ejercicios favoritos: {favoriteStats.count} de {exercises.length}
       </p>
 
       <h3 className="section-heading">Porcentaje de ejercicios recomendados:</h3>
@@ -139,13 +146,15 @@ function ExerciseStatsComponent({ exercises }) {
         style={{
           labels: {
             fill: "black",
-            fontSize: 14,
+            fontSize: 5,
           },
         }}
-        colorScale={['#27AE60', '#E74C3C']} // Personaliza los colores
+        width={150} 
+        height={150} 
+        colorScale={['#383E56', '#FB743E', '#9FB8AD']} 
       />
       <p className="percentage-text">
-        Porcentaje de ejercicios recomendados: {recommendedStats.count} de {exercises.length}
+        Ejercicios recomendados: {recommendedStats.count} de {exercises.length}
       </p>
 
       <h3 className="section-heading">Últimos ejercicios creados:</h3>
@@ -153,7 +162,6 @@ function ExerciseStatsComponent({ exercises }) {
       <ul className="exercise-list">
         {lastCreatedExercises.map((exercise) => (
           <li key={exercise.id}>
-            {/* Agrega estilos CSS personalizados para los enlaces si es necesario */}
             <Link to={`/usersPage/exercises/${exercise.id}`} className="exercise-link">
               {exercise.name}
               <span className="info-text">Muscle Group: {exercise.muscleGroup}</span>
@@ -170,7 +178,6 @@ function ExerciseStatsComponent({ exercises }) {
           <ul className="exercise-list">
             {lastUpdatedExercises.map((exercise) => (
               <li key={exercise.id}>
-                {/* Agrega estilos CSS personalizados para los enlaces si es necesario */}
                 <Link to={`/usersPage/exercises/${exercise.id}`} className="exercise-link">
                   {exercise.name}
                   <span className="info-text">Muscle Group: {exercise.muscleGroup}</span>
