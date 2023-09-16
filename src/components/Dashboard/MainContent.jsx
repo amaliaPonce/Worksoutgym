@@ -1,9 +1,28 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
 import HeaderDashboard from "./HeaderDashboard";
 import Sidebar from "./Sidebar";
+import { ExercisesService } from "../../service/index";
+import ExerciseStatsComponent from "../ExerciseStatsComponent"; 
+import { AppContext } from "../../context/AppContext";
 
 function MainContent() {
+  const { user } = useContext(AppContext);
+
+  const [exercises, setExercises] = useState([]);
+
+  useEffect(() => {
+    async function fetchExercises() {
+      try {
+        const data = await ExercisesService(user.token);
+        setExercises(data);
+      } catch (error) {
+        console.error("Error al obtener los ejercicios:", error);
+      }
+    }
+
+    fetchExercises();
+  }, [user]);
+
   return (
     <div className="app-container">
       <HeaderDashboard />
@@ -15,7 +34,7 @@ function MainContent() {
             Bienvenido al panel de administración. Aquí puedes ver estadísticas,
             gestionar usuarios y configurar tu aplicación.
           </p>
-          <Outlet />
+          <ExerciseStatsComponent exercises={exercises} />
         </main>
       </div>
     </div>
