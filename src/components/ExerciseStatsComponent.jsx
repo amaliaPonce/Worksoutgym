@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; 
 
 function ExerciseStatsComponent({ exercises }) {
   const calculatePercentage = (filter) => {
@@ -54,6 +55,18 @@ function ExerciseStatsComponent({ exercises }) {
 
   const muscleGroupPercentages = calculateMuscleGroupPercentage();
 
+  const getLastCreatedExercises = (count) => {
+    if (!exercises || exercises.length === 0) {
+      return [];
+    }
+
+    const sortedExercises = [...exercises].sort((a, b) => b.created_at.localeCompare(a.created_at));
+
+    return sortedExercises.slice(0, count);
+  };
+
+  const lastCreatedExercises = getLastCreatedExercises(5);
+
   return (
     <div>
       <h3>Porcentaje de ejercicios por grupo muscular:</h3>
@@ -69,6 +82,15 @@ function ExerciseStatsComponent({ exercises }) {
       <p>
         Porcentaje de ejercicios recomendados: {recommendedStats.percentage}% ({recommendedStats.count} de {exercises.length})
       </p>
+
+      <h3>Últimos ejercicios creados:</h3>
+      <ul>
+        {lastCreatedExercises.map((exercise) => (
+          <li key={exercise.id}>
+            <Link to={`/usersPage/exercises/${exercise.id}`}>{exercise.name}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
