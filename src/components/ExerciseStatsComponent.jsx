@@ -1,6 +1,11 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
+import { VictoryPie } from 'victory';
+import "../styles/dashboard/main.css"
 function ExerciseStatsComponent({ exercises }) {
+  const { user } = useContext(AppContext);
+
   const calculatePercentage = (filter) => {
     if (!exercises || exercises.length === 0) {
       return {
@@ -20,7 +25,10 @@ function ExerciseStatsComponent({ exercises }) {
       }
     });
 
-    const percentage = ((filteredExercises.length / exercises.length) * 100).toFixed(2);
+    const percentage = (
+      (filteredExercises.length / exercises.length) *
+      100
+    ).toFixed(2);
 
     return {
       percentage,
@@ -46,7 +54,10 @@ function ExerciseStatsComponent({ exercises }) {
     const totalExercises = exercises.length;
     const percentages = {};
     for (const group in muscleGroupCounts) {
-      percentages[group] = ((muscleGroupCounts[group] / totalExercises) * 100).toFixed(2);
+      percentages[group] = (
+        (muscleGroupCounts[group] / totalExercises) *
+        100
+      ).toFixed(2);
     }
 
     return percentages;
@@ -54,22 +65,123 @@ function ExerciseStatsComponent({ exercises }) {
 
   const muscleGroupPercentages = calculateMuscleGroupPercentage();
 
-  return (
-    <div>
-      <h3>Porcentaje de ejercicios por grupo muscular:</h3>
-      {Object.keys(muscleGroupPercentages).map((group) => (
-        <p key={group}>
-          {group}: {muscleGroupPercentages[group]}%
-        </p>
-      ))}
+  const lastCreatedExercises = getLastCreatedExercises(5);
+  const lastUpdatedExercises = getLastUpdatedExercises(5);
 
-      <p>
-        Porcentaje de ejercicios favoritos: {favoriteStats.percentage}% ({favoriteStats.count} de {exercises.length})
+  function getLastCreatedExercises(count) {
+    if (!exercises || exercises.length === 0) {
+      return [];
+    }
+
+    const sortedExercises = [...exercises].sort((a, b) =>
+      b.created_at.localeCompare(a.created_at)
+    );
+
+    return sortedExercises.slice(0, count);
+  }
+
+  function getLastUpdatedExercises(count) {
+    if (!exercises || exercises.length === 0) {
+      return [];
+    }
+
+    const sortedExercises = [...exercises].sort((a, b) =>
+      b.updated_at.localeCompare(a.updated_at)
+    );
+
+    return sortedExercises.slice(0, count);
+  }
+
+  return (
+    <>
+      <VictoryPie
+        data={Object.entries(muscleGroupPercentages).map(([group, percentage]) => ({
+          x: `${group}: ${percentage}%`,
+          y: parseFloat(percentage),
+        }))}
+        label={({ datum }) => datum.x}
+        style={{
+          labels: {
+            fill: "black",
+            fontSize: 14,
+          },
+        }}
+        innerRadius={50} // Ajusta el radio interno para hacerlo un gráfico de dona
+        colorScale={['#FF5733', '#3498DB', '#27AE60', '#F1C40F', '#E74C3C']} // Personaliza los colores
+      />
+
+      <h3 className="section-heading">Porcentaje de ejercicios favoritos:</h3>
+      <VictoryPie
+        data={[
+          { x: "Favoritos", y: parseFloat(favoriteStats.percentage) },
+          { x: "Otros", y: 100 - parseFloat(favoriteStats.percentage) },
+        ]}
+        label={({ datum }) => `${datum.x}: ${datum.y.toFixed(2)}%`}
+        style={{
+          labels: {
+            fill: "black",
+            fontSize: 14,
+          },
+        }}
+        colorScale={['#3498DB', '#E74C3C']} // 
+      />
+      <p className="percentage-text">
+        Porcentaje de ejercicios favoritos: {favoriteStats.count} de {exercises.length}
       </p>
-      <p>
-        Porcentaje de ejercicios recomendados: {recommendedStats.percentage}% ({recommendedStats.count} de {exercises.length})
+
+      <h3 className="section-heading">Porcentaje de ejercicios recomendados:</h3>
+      <VictoryPie
+        data={[
+          { x: "Recomendados", y: parseFloat(recommendedStats.percentage) },
+          { x: "Otros", y: 100 - parseFloat(recommendedStats.percentage) },
+        ]}
+        label={({ datum }) => `${datum.x}: ${datum.y.toFixed(2)}%`}
+        style={{
+          labels: {
+            fill: "black",
+            fontSize: 14,
+          },
+        }}
+        colorScale={['#27AE60', '#E74C3C']} // Personaliza los colores
+      />
+      <p className="percentage-text">
+        Porcentaje de ejercicios recomendados: {recommendedStats.count} de {exercises.length}
       </p>
-    </div>
+
+      <h3 className="section-heading">Últimos ejercicios creados:</h3>
+
+      <ul className="exercise-list">
+        {lastCreatedExercises.map((exercise) => (
+          <li key={exercise.id}>
+            {/* Agrega estilos CSS personalizados para los enlaces si es necesario */}
+            <Link to={`/usersPage/exercises/${exercise.id}`} className="exercise-link">
+              {exercise.name}
+              <span className="info-text">Muscle Group: {exercise.muscleGroup}</span>
+              <span className="info-text">Created At: {exercise.created_at}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      {user?.role === "admin" && (
+        <>
+          <h3 className="section-heading">Últimos ejercicios actualizados:</h3>
+
+          <ul className="exercise-list">
+            {lastUpdatedExercises.map((exercise) => (
+              <li key={exercise.id}>
+                {/* Agrega estilos CSS personalizados para los enlaces si es necesario */}
+                <Link to={`/usersPage/exercises/${exercise.id}`} className="exercise-link">
+                  {exercise.name}
+                  <span className="info-text">Muscle Group: {exercise.muscleGroup}</span>
+                  <span className="info-text">Updated At: {exercise.updated_at}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </>
   );
 }
 

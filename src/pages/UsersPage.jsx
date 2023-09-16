@@ -9,6 +9,7 @@ function UsersPage() {
         <HeaderDashboard />
       </header>
       <main className="main-content">
+
         <MainContent />
       </main>
       <aside className="sidebar">

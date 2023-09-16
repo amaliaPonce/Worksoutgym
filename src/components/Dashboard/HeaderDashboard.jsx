@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
-import "../../styles/adminDashboard/headerAdmin.css";
+import "../../styles/dashboard/headerDashboard.css";
 import { AppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom"; // Importa useNavigate
 
 function HeaderDashboard() {
   const [menuActive, setMenuActive] = useState(false);
   const { logout } = useContext(AppContext);
-  const navigate = useNavigate(); // Obtiene la función de navegación
+  const navigate = useNavigate(); 
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -14,7 +14,7 @@ function HeaderDashboard() {
 
   const handleLogout = () => {
     logout();
-    navigate("/"); // Redirige al usuario a la página principal
+    navigate("/");
   };
 
   return (

@@ -17,6 +17,7 @@
     "react-scripts": "5.0.1",
     "safe-buffer": "^5.2.1",
     "safer-buffer": "^2.1.2",
+    "victory": "^36.6.11",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
