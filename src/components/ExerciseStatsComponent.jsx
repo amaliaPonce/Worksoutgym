@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-
+import { VictoryPie } from 'victory';
+import "../styles/dashboard/main.css"
 function ExerciseStatsComponent({ exercises }) {
   const { user } = useContext(AppContext);
 
@@ -64,7 +65,10 @@ function ExerciseStatsComponent({ exercises }) {
 
   const muscleGroupPercentages = calculateMuscleGroupPercentage();
 
-  const getLastCreatedExercises = (count) => {
+  const lastCreatedExercises = getLastCreatedExercises(5);
+  const lastUpdatedExercises = getLastUpdatedExercises(5);
+
+  function getLastCreatedExercises(count) {
     if (!exercises || exercises.length === 0) {
       return [];
     }
@@ -74,9 +78,9 @@ function ExerciseStatsComponent({ exercises }) {
     );
 
     return sortedExercises.slice(0, count);
-  };
+  }
 
-  const getLastUpdatedExercises = (count) => {
+  function getLastUpdatedExercises(count) {
     if (!exercises || exercises.length === 0) {
       return [];
     }
@@ -86,31 +90,49 @@ function ExerciseStatsComponent({ exercises }) {
     );
 
     return sortedExercises.slice(0, count);
-  };
-
-  const lastCreatedExercises = getLastCreatedExercises(5);
-  const lastUpdatedExercises = getLastUpdatedExercises(5);
+  }
 
   return (
     <>
       <h3 className="section-heading">Porcentaje de ejercicios por grupo muscular:</h3>
-      {Object.keys(muscleGroupPercentages).map((group) => (
-        <p key={group} className="percentage-text">
-          <span className="percentage-circle">{muscleGroupPercentages[group]}%</span>
-          {group}
-        </p>
-      ))}
+      
+      <VictoryPie
+        data={Object.entries(muscleGroupPercentages).map(([group, percentage]) => ({
+          x: `${group}: ${percentage}%`,
+          y: parseFloat(percentage)
+        }))}
+        label={({ datum }) => datum.x}
+        style={{ labels: { fill: "black" } }}
+      />
 
+      <h3 className="section-heading">Porcentaje de ejercicios favoritos:</h3>
+      <VictoryPie
+        data={[
+          { x: "Favoritos", y: parseFloat(favoriteStats.percentage) },
+          { x: "Otros", y: 100 - parseFloat(favoriteStats.percentage) }
+        ]}
+        label={({ datum }) => `${datum.x}: ${datum.y.toFixed(2)}%`}
+        style={{ labels: { fill: "black" } }}
+      />
       <p className="percentage-text">
-        <span className="percentage-circle green-circle">{favoriteStats.percentage}%</span>
         Porcentaje de ejercicios favoritos: {favoriteStats.count} de {exercises.length}
       </p>
+      
+      <h3 className="section-heading">Porcentaje de ejercicios recomendados:</h3>
+      <VictoryPie
+        data={[
+          { x: "Recomendados", y: parseFloat(recommendedStats.percentage) },
+          { x: "Otros", y: 100 - parseFloat(recommendedStats.percentage) }
+        ]}
+        label={({ datum }) => `${datum.x}: ${datum.y.toFixed(2)}%`}
+        style={{ labels: { fill: "black" } }}
+      />
       <p className="percentage-text">
-        <span className="percentage-circle blue-circle">{recommendedStats.percentage}%</span>
         Porcentaje de ejercicios recomendados: {recommendedStats.count} de {exercises.length}
       </p>
 
       <h3 className="section-heading">Últimos ejercicios creados:</h3>
+      
       <ul className="exercise-list">
         {lastCreatedExercises.map((exercise) => (
           <li key={exercise.id}>
@@ -122,9 +144,11 @@ function ExerciseStatsComponent({ exercises }) {
           </li>
         ))}
       </ul>
+      
       {user?.role === "admin" && (
         <>
           <h3 className="section-heading">Últimos ejercicios actualizados:</h3>
+          
           <ul className="exercise-list">
             {lastUpdatedExercises.map((exercise) => (
               <li key={exercise.id}>

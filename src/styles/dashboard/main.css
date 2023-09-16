@@ -1,9 +1,121 @@
+/* Estilos generales */
 .app-container {
   display: flex;
   overflow-x: hidden;
   margin: 50px;
 }
 
+/* Títulos */
+.section-heading {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+/* Texto de porcentaje */
+.percentage-text {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* Lista de ejercicios */
+.exercise-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.exercise-list li {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Enlaces de ejercicios */
+.exercise-link {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.exercise-link:hover {
+  background-color: #f0f0f0;
+}
+
+/* Texto informativo */
+.info-text {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Estilos para los elementos de gráficas de pastel */
+/* Estilos para las gráficas de pastel */
+.victory-pie {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+/* Estilo para el contenedor de los gráficos de pastel */
+.victory-pie-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* Estilo para cada gráfico de pastel */
+.victory-pie-chart {
+  flex: 1;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para las etiquetas del gráfico de pastel */
+.victory-pie-label {
+  font-size: 14px;
+  fill: black;
+  text-anchor: middle;
+}
+
+/* Estilo para el título de cada gráfico de pastel */
+.chart-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Estilo para el porcentaje dentro del gráfico de pastel */
+.chart-percentage {
+  font-size: 16px;
+  text-anchor: middle;
+  fill: #333;
+}
+
+/* Estilo para los colores de los segmentos del gráfico de pastel */
+.victory-pie-slice {
+  fill: transparent;
+  transition: fill 0.3s ease;
+}
+
+/* Estilo para los colores de los segmentos al hacer hover */
+.victory-pie-slice:hover {
+  fill: #4caf50; /* Cambia el color al hacer hover */
+  cursor: pointer;
+}
+
+/* Estilo para los colores de otros segmentos al hacer hover */
+.victory-pie-slice:not(:hover) {
+  fill: #ccc; /* Cambia el color de los otros segmentos al hacer hover en uno */
+}
+
+
+/* Estilos para el contenido principal */
 .main-content {
   margin-left: 125px;
   padding: var(--mb-2);
@@ -53,104 +165,5 @@
 
   .main-content div {
     margin-top: var(--mb-1);
-  }
-}
-/* Estilos generales del componente */
-.section-heading {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.percentage-text {
-  font-size: 1rem;
-  margin-top: 0.5rem;
-}
-
-.percentage-circle {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  background-color: #ccc;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 30px;
-  margin-right: 10px;
-  font-weight: bold;
-}
-
-.green-circle {
-  background-color: #4caf50;
-  color: #fff;
-}
-
-.blue-circle {
-  background-color: #2196F3;
-  color: #fff;
-}
-
-.info-text {
-  font-size: 0.8rem;
-  color: #777;
-}
-
-/* Estilos para la lista de ejercicios */
-.exercise-list {
-  list-style: none;
-  padding: 0;
-}
-
-.exercise-list li {
-  margin-bottom: 1rem;
-}
-
-.exercise-link {
-  display: block;
-  text-decoration: none;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  transition: background-color 0.3s ease;
-  color: #333;
-}
-
-.exercise-link:hover {
-  background-color: #f0f0f0;
-}
-
-/* Estilos para el gráfico de barras */
-.chart-container {
-  max-width: 500px; 
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Estilos para la versión móvil */
-@media (max-width: 768px) {
-  .section-heading {
-    font-size: 1.3rem;
-  }
-
-  .percentage-text {
-    font-size: 0.9rem;
-  }
-
-  .percentage-circle {
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-  }
-
-  .info-text {
-    font-size: 0.7rem;
-  }
-
-  .exercise-link {
-    padding: 0.7rem;
-    font-size: 0.9rem;
   }
 }
