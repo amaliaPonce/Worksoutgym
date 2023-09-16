@@ -3,10 +3,12 @@ import { AppContext } from "../../context/AppContext";
 import { updateRolUserService } from "../../service/index";
 import Button from "../Button";
 import useUser from "../../hooks/useUser";
+import { useTheme } from "../../context/ThemeContext";
 
 function UpdateUserRole({ userId, userRole }) {
   const { user } = useContext(AppContext);
   const { userInfo } = useUser(userId, user.token);
+  const theme = useTheme();
 
   const [formData, setFormData] = useState({
     userId: userId || "",
@@ -47,7 +49,7 @@ function UpdateUserRole({ userId, userRole }) {
   };
 
   return (
-    <section className="user-details">
+    <section className={`user-details ${theme}`}>
       <h2>Editar Rol de Usuario</h2>
       <form onSubmit={handleSubmit}>
         <section className="user-details">
@@ -71,7 +73,11 @@ function UpdateUserRole({ userId, userRole }) {
             <option value="admin">Administrador</option>
           </select>
         </section>
-        <Button handleClick={handleSubmit} type="submit">
+        <Button
+          handleClick={handleSubmit}
+          type="submit"
+          className={`buttons ${theme}`}
+        >
           Guardar Cambios
         </Button>
       </form>

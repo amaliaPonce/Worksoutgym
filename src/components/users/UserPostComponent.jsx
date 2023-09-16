@@ -1,6 +1,11 @@
+import React from "react";
+import { useTheme } from "../../context/ThemeContext";
+
 const UserPostComponent = ({ user }) => {
+  const theme = useTheme();
+
   return (
-    <section className="user-card">
+    <section className={`user-card ${theme}`}>
       <section className="user-image">
         {user && user.photo && (
           <img
@@ -9,23 +14,23 @@ const UserPostComponent = ({ user }) => {
           />
         )}
       </section>
-      <section className="user-details">
-        <p className="user-title">
+      <section className={`user-details ${theme}`}>
+        <p className={`user-title ${theme}`}>
           <strong>Nombre:</strong> {user ? user.name : ""}
         </p>
-        <p className="user-title">
+        <p className={`user-title ${theme}`}>
           <strong>Apellido:</strong> {user ? user.lastName : ""}
         </p>
-        <p className="user-title">
+        <p className={`user-title ${theme}`}>
           <strong>Fecha de Nacimiento:</strong> {user ? user.birthDate : ""}
         </p>
-        <p className="user-title">
+        <p className={`user-title ${theme}`}>
           <strong>Dirección:</strong> {user ? user.address : ""}
         </p>
-        <p className="user-title">
+        <p className={`user-title ${theme}`}>
           <strong>Teléfono:</strong> {user ? user.phone_number : ""}
         </p>
-        <p className="user-title">
+        <p className={`user-title ${theme}`}>
           <strong>Biografía:</strong> {user ? user.biography : ""}
         </p>
       </section>

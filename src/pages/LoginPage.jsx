@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import LoginComponent from "../components/users/LoginComponent";
 import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/FooterComponent";
+import { useTheme } from "../context/ThemeContext";
 
 import "../styles/login.css";
 
 function LoginPage() {
+  const theme = useTheme();
+
   return (
-    <div className="pages">
+    <div className={`pages ${theme}`}>
       <HeaderComponent />
       <main className="login-page">
         <section className="login-container">

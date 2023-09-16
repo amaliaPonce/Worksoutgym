@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import { VictoryPie } from 'victory';
-import "../styles/dashboard/main.css"
+import { VictoryPie } from "victory";
+import "../styles/dashboard/main.css";
+import { useTheme } from "../context/ThemeContext";
 function ExerciseStatsComponent({ exercises }) {
   const { user } = useContext(AppContext);
+  const theme = useTheme();
 
   const calculatePercentage = (filter) => {
     if (!exercises || exercises.length === 0) {
@@ -95,11 +97,12 @@ function ExerciseStatsComponent({ exercises }) {
   return (
     <>
       <VictoryPie
-        data={Object.entries(muscleGroupPercentages).map(([group, percentage]) => ({
-          x: `${group}: ${percentage}%`,
-          y: parseFloat(percentage),
-        }))}
-        
+        data={Object.entries(muscleGroupPercentages).map(
+          ([group, percentage]) => ({
+            x: `${group}: ${percentage}%`,
+            y: parseFloat(percentage),
+          })
+        )}
         label={({ datum }) => datum.x}
         style={{
           labels: {
@@ -107,14 +110,12 @@ function ExerciseStatsComponent({ exercises }) {
             fontSize: 8,
           },
         }}
-        
-        width={150} 
-        height={150} 
-        colorScale={['#383E56', '#FB743E', '#9FB8AD']} 
-        
+        width={150}
+        height={150}
+        colorScale={["#383E56", "#FB743E", "#9FB8AD"]}
       />
 
-      <h3 className="section-heading">Ejercicios favoritos:</h3>
+      <h3 className={`section-heading ${theme}`}>Ejercicios favoritos:</h3>
       <VictoryPie
         data={[
           { x: "Favoritos", y: parseFloat(favoriteStats.percentage) },
@@ -127,16 +128,17 @@ function ExerciseStatsComponent({ exercises }) {
             fontSize: 10,
           },
         }}
-        width={150} 
-        height={150} 
-      
-        colorScale={['#383E56', '#FB743E', '#9FB8AD']} // 
+        width={150}
+        height={150}
+        colorScale={["#383E56", "#FB743E", "#9FB8AD"]} //
       />
-      <p className="percentage-text">
-      Ejercicios favoritos: {favoriteStats.count} de {exercises.length}
+      <p className={`percentage-text ${theme}`}>
+        Ejercicios favoritos: {favoriteStats.count} de {exercises.length}
       </p>
 
-      <h3 className="section-heading">Porcentaje de ejercicios recomendados:</h3>
+      <h3 className={`section-heading ${theme}`}>
+        Porcentaje de ejercicios recomendados:
+      </h3>
       <VictoryPie
         data={[
           { x: "Recomendados", y: parseFloat(recommendedStats.percentage) },
@@ -149,23 +151,32 @@ function ExerciseStatsComponent({ exercises }) {
             fontSize: 5,
           },
         }}
-        width={150} 
-        height={150} 
-        colorScale={['#383E56', '#FB743E', '#9FB8AD']} 
+        width={150}
+        height={150}
+        colorScale={["#383E56", "#FB743E", "#9FB8AD"]}
       />
-      <p className="percentage-text">
+      <p className={`percentage-text ${theme}`}>
         Ejercicios recomendados: {recommendedStats.count} de {exercises.length}
       </p>
 
-      <h3 className="section-heading">Últimos ejercicios creados:</h3>
+      <h3 className={`section-heading ${theme}`}>
+        Últimos ejercicios creados:
+      </h3>
 
       <ul className="exercise-list">
         {lastCreatedExercises.map((exercise) => (
           <li key={exercise.id}>
-            <Link to={`/usersPage/exercises/${exercise.id}`} className="exercise-link">
+            <Link
+              to={`/usersPage/exercises/${exercise.id}`}
+              className="exercise-link"
+            >
               {exercise.name}
-              <span className="info-text">Muscle Group: {exercise.muscleGroup}</span>
-              <span className="info-text">Created At: {exercise.created_at}</span>
+              <span className="info-text">
+                Muscle Group: {exercise.muscleGroup}
+              </span>
+              <span className="info-text">
+                Created At: {exercise.created_at}
+              </span>
             </Link>
           </li>
         ))}
@@ -173,15 +184,24 @@ function ExerciseStatsComponent({ exercises }) {
 
       {user?.role === "admin" && (
         <>
-          <h3 className="section-heading">Últimos ejercicios actualizados:</h3>
+          <h3 className={`section-heading ${theme}`}>
+            Últimos ejercicios actualizados:
+          </h3>
 
           <ul className="exercise-list">
             {lastUpdatedExercises.map((exercise) => (
               <li key={exercise.id}>
-                <Link to={`/usersPage/exercises/${exercise.id}`} className="exercise-link">
+                <Link
+                  to={`/usersPage/exercises/${exercise.id}`}
+                  className="exercise-link"
+                >
                   {exercise.name}
-                  <span className="info-text">Muscle Group: {exercise.muscleGroup}</span>
-                  <span className="info-text">Updated At: {exercise.updated_at}</span>
+                  <span className="info-text">
+                    Muscle Group: {exercise.muscleGroup}
+                  </span>
+                  <span className="info-text">
+                    Updated At: {exercise.updated_at}
+                  </span>
                 </Link>
               </li>
             ))}

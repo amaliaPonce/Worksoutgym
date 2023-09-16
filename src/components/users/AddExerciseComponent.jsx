@@ -2,9 +2,12 @@ import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import "../../styles/addExercise.css";
 import { AddExerciseService } from "../../service/index";
+import { useTheme } from "../../context/ThemeContext";
+import Button from "../Button";
 
 function AddExercise() {
   const { user } = useContext(AppContext);
+  const theme = useTheme();
 
   const initialFormState = {
     name: "",
@@ -64,11 +67,11 @@ function AddExercise() {
   };
 
   return (
-    <section>
-      <button className="toggle-form-button" onClick={handleToggleForm}>
+    <section className={`add-exercise ${theme}`}>
+      {" "}
+      <Button className={`buttons ${theme}`} handleClick={handleToggleForm}>
         {isFormOpen ? "Cerrar Formulario" : "Añadir Ejercicio"}
-      </button>
-
+      </Button>
       {isFormOpen && (
         <section>
           <form className="add-exercise-form" onSubmit={handleAddExercise}>
@@ -136,13 +139,14 @@ function AddExercise() {
             {added ? (
               <p className="success-message">Ejercicio agregado con éxito.</p>
             ) : (
-              <button
+              <Button
+                handleClick={handleAddExercise}
                 type="submit"
                 disabled={loading}
-                className="add-exercise-button"
+                className={`buttons ${theme}`}
               >
                 {loading ? "Agregando..." : "Agregar Ejercicio"}
-              </button>
+              </Button>
             )}
           </form>
         </section>

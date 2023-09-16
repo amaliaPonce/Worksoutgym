@@ -4,24 +4,32 @@ import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/FooterComponent";
 import AmaliaWeb from "../assets/Amalia.mp4";
 import SusanaWeb from "../assets/Susana.mp4";
+import { useTheme } from "../context/ThemeContext";
 
 const Data = () => {
+  const theme = useTheme();
+
   return (
-    <div className="pages">
+    <div className={`pages ${theme}`}>
       <HeaderComponent />
-      <main className="home-content">
-        <section className="person-data">
-          <figure className="video-container">
-            <video className="home-video profile-animate" autoPlay loop muted>
+      <main className={`home-content ${theme}`}>
+        <section className={`person-data ${theme}`}>
+          <figure className={`video-container ${theme}`}>
+            <video
+              className={`home-video profile-animate ${theme}`}
+              autoPlay
+              loop
+              muted
+            >
               <source src={AmaliaWeb} type="video/mp4" />
               Tu navegador no soporta videos en formato MP4.
             </video>
           </figure>
-          <section className="person-info">
-            <h1 className="home-title">Amalia Ponce Toledo</h1>
+          <section className={`person-info ${theme}`}>
+            <h1 className={`home-title ${theme}`}>Amalia Ponce Toledo</h1>
             <a
               href="mailto:amaliaponcetoledo@gmail.com"
-              className="button button-flex"
+              className={`button button-flex ${theme}`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -34,8 +42,8 @@ const Data = () => {
               </svg>
             </a>
           </section>
-          <h3 className="home-subtitle">Full Stack Developer</h3>
-          <p className="home-description">
+          <h3 className={`home-subtitle ${theme}`}>Full Stack Developer</h3>
+          <p className={`home-description ${theme}`}>
             Hi there! I'm a full-stack creative designer based in Córdoba. I'm
             passionate about art and also the world of technology. Imagining and
             creating are my favorite pastimes, and I pour all my energy into
@@ -43,16 +51,24 @@ const Data = () => {
           </p>
         </section>
 
-        <section className="person-data">
-          <figure className="video-container">
-            <video className="home-video profile-animate" autoPlay loop muted>
+        <section className={`person-data ${theme}`}>
+          <figure className={`video-container ${theme}`}>
+            <video
+              className={`home-video profile-animate ${theme}`}
+              autoPlay
+              loop
+              muted
+            >
               <source src={SusanaWeb} type="video/mp4" />
               Tu navegador no soporta videos en formato MP4.
             </video>
           </figure>
-          <section className="person-info">
-            <h1 className="home-title">Susana Martínez Payá</h1>
-            <a href="mailto:susana@example.com" className="button button-flex">
+          <section className={`person-info ${theme}`}>
+            <h1 className={`home-title ${theme}`}>Susana Martínez Payá</h1>
+            <a
+              href="mailto:susana@example.com"
+              className={`button button-flex ${theme}`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -64,8 +80,8 @@ const Data = () => {
               </svg>
             </a>
           </section>
-          <h3 className="home-subtitle">Full Stack Developer</h3>
-          <p className="home-description">
+          <h3 className={`home-subtitle ${theme}`}>Full Stack Developer</h3>
+          <p className={`home-description ${theme}`}>
             Hi there! I'm a full stack developer based in [tu ubicación]. I have
             a passion for coding and creating innovative web applications. I'm
             dedicated to building user-friendly and efficient software
@@ -74,7 +90,7 @@ const Data = () => {
         </section>
       </main>
 
-      <FooterComponent className="footer" />
+      <FooterComponent className={`footer ${theme}`} />
     </div>
   );
 };

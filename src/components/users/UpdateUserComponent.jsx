@@ -3,11 +3,13 @@ import { AppContext } from "../../context/AppContext";
 import { updateUserService, getUserService } from "../../service/index";
 import Button from "../Button";
 import useUser from "../../hooks/useUser";
+import { useTheme } from "../../context/ThemeContext";
 
 function EditProfile() {
   const { user, login } = useContext(AppContext);
   const { userInfo } = useUser(user.id, user.token);
-  //console.log("UserInfo", userInfo);
+  const theme = useTheme();
+
   const [userData, setUserData] = useState(userInfo[0]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
@@ -75,7 +77,7 @@ function EditProfile() {
   }
 
   return (
-    <section>
+    <section className={`user-details ${theme}`}>
       <h2>Editar Perfil</h2>
       {message && <p>{message}</p>}
 
@@ -132,7 +134,11 @@ function EditProfile() {
             style={{ maxWidth: "200px" }}
           />
         )}
-        <Button handleClick={handleUpdateProfile} type="submit">
+        <Button
+          handleClick={handleUpdateProfile}
+          type="submit"
+          className={`buttons ${theme}`}
+        >
           Guardar Cambios
         </Button>
       </form>

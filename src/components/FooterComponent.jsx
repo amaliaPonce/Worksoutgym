@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { useTheme } from "../context/ThemeContext";
 import "../styles/footer.css";
 
 function FooterComponent() {
+  const theme = useTheme();
+
   return (
-    <footer className="footer">
+    <footer className={`footer ${theme}`}>
       <section className="footer-content">
         <section className="footer-section">
           <p>
@@ -15,7 +17,7 @@ function FooterComponent() {
         </section>
         <section className="footer-section">
           <p>
-            <Link className="conocenos-link" to="/aboutUs">
+            <Link className={`conocenos-link ${theme}`} to="/aboutUs">
               Conócenos
             </Link>
           </p>

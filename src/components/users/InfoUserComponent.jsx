@@ -5,6 +5,7 @@ import { updateUserService } from "../../service";
 import UserPostComponent from "./UserPostComponent";
 import Button from "../Button";
 import useUser from "../../hooks/useUser";
+import { useTheme } from "../../context/ThemeContext";
 
 function InfoUserComponent() {
   const { user } = useContext(AppContext);
@@ -22,6 +23,8 @@ function InfoUserComponent() {
     phone_number: "",
     photo: null,
   });
+
+  const theme = useTheme();
 
   useEffect(() => {
     if (userInfo && userInfo.length > 0) {
@@ -77,7 +80,12 @@ function InfoUserComponent() {
         <h2>Detalles del Usuario</h2>
         <UserPostComponent user={userData} />
         {user.id === userData.id && (
-          <Button handleClick={() => setEditMode(true)}>Editar perfil</Button>
+          <Button
+            handleClick={() => setEditMode(true)}
+            className={`buttons ${theme}`}
+          >
+            Editar perfil
+          </Button>
         )}
       </section>
       {editMode ? (
@@ -136,7 +144,11 @@ function InfoUserComponent() {
                 style={{ maxWidth: "200px" }}
               />
             )}
-            <Button handleClick={handleUpdateProfile} type="submit">
+            <Button
+              handleClick={handleUpdateProfile}
+              type="submit"
+              className={`buttons ${theme}`}
+            >
               Guardar Cambios
             </Button>
           </form>

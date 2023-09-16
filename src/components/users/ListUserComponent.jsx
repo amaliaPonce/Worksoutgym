@@ -4,6 +4,7 @@ import UserPostComponent from "../users/UserPostComponent";
 import { listUsersService } from "../../service/index";
 import UpdateUserRole from "./UpdateUserRol";
 import Button from "../Button";
+import { useTheme } from "../../context/ThemeContext";
 
 function UserList() {
   const { user } = useContext(AppContext);
@@ -11,6 +12,7 @@ function UserList() {
   const [error, setError] = useState(null);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [isUserRoleFormVisible, setIsUserRoleFormVisible] = useState(false);
+  const theme = useTheme();
 
   useEffect(() => {
     const loadUsers = async () => {
@@ -36,15 +38,18 @@ function UserList() {
   };
 
   return (
-    <section>
-      <h3>Lista de Usuarios</h3>
-      {error && <p>Error: {error}</p>}
-      <ul className="user-container">
+    <section className={`user-list-container ${theme}`}>
+      <h3 className={`user-list-title ${theme}`}>Lista de Usuarios</h3>
+      {error && <p className={`user-list-error ${theme}`}>Error: {error}</p>}
+      <ul className={`user-container ${theme}`}>
         {users.map((userItem) => (
-          <li className="user-card" key={userItem.id}>
+          <li className={`user-card ${theme}`} key={userItem.id}>
             <UserPostComponent user={userItem} />
 
-            <Button handleClick={() => handleToggleUserRoleForm(userItem.id)}>
+            <Button
+              handleClick={() => handleToggleUserRoleForm(userItem.id)}
+              className={`buttons ${theme}`}
+            >
               Cambiar Rol
             </Button>
           </li>

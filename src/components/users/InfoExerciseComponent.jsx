@@ -8,6 +8,7 @@ import {
 } from "../../service/index";
 import ExercisePostComponent from "./ExercisePostComponent";
 import Button from "../Button";
+import { useTheme } from "../../context/ThemeContext";
 
 function InfoExerciseComponent() {
   const { user } = useContext(AppContext);
@@ -54,12 +55,14 @@ function InfoExerciseComponent() {
     }
   };
 
+  const theme = useTheme();
+
   if (err) {
     return <p>{err}</p>;
   }
 
   return (
-    <section>
+    <section className={`info-exercise ${theme}`}>
       {loading ? (
         <p>Cargando información del ejercicio...</p>
       ) : error ? (
@@ -75,10 +78,16 @@ function InfoExerciseComponent() {
             />
             {user?.role === "admin" && (
               <>
-                <Button handleClick={handleDeleteExercise}>
+                <Button
+                  handleClick={handleDeleteExercise}
+                  className={`buttons ${theme}`}
+                >
                   Borrar ejercicio
                 </Button>
-                <Button handleClick={() => setEditMode(true)}>
+                <Button
+                  handleClick={() => setEditMode(true)}
+                  className={`buttons ${theme}`}
+                >
                   Editar ejercicio
                 </Button>
               </>
@@ -132,7 +141,10 @@ function InfoExerciseComponent() {
                   }
                 />
               </fieldset>
-              <Button handleClick={handleUpdateExercise}>
+              <Button
+                handleClick={handleUpdateExercise}
+                className={`buttons ${theme}`}
+              >
                 Guardar Cambios
               </Button>
             </section>
