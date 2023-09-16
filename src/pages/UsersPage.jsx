@@ -4,12 +4,17 @@ import MainContent from "../components/Dashboard/MainContent";
 
 function UsersPage() {
   return (
-    <div>
-      <div>
+    <div className="pages">
+      <header className="header">
         <HeaderDashboard />
+      </header>
+      <main className="main-content">
+
         <MainContent />
+      </main>
+      <aside className="sidebar">
         <Sidebar />
-      </div>
+      </aside>
     </div>
   );
 }

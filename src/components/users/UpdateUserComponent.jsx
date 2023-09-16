@@ -75,7 +75,7 @@ function EditProfile() {
   }
 
   return (
-    <div>
+    <section>
       <h2>Editar Perfil</h2>
       {message && <p>{message}</p>}
 
@@ -136,7 +136,7 @@ function EditProfile() {
           Guardar Cambios
         </Button>
       </form>
-    </div>
+    </section>
   );
 }
 

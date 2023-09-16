@@ -3,7 +3,7 @@ import { AppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 
-function LogOutSesion() {
+function LogOutSession() {
   const { logout } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -13,10 +13,10 @@ function LogOutSesion() {
   };
 
   return (
-    <div>
+    <div className="logout-session">
       <Button handleClick={handleLogout}>Cerrar Sesión</Button>
     </div>
   );
 }
 
-export default LogOutSesion;
+export default LogOutSession;

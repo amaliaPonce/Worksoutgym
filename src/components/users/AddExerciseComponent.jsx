@@ -64,7 +64,7 @@ function AddExercise() {
   };
 
   return (
-    <>
+    <section>
       <button className="toggle-form-button" onClick={handleToggleForm}>
         {isFormOpen ? "Cerrar Formulario" : "Añadir Ejercicio"}
       </button>
@@ -147,7 +147,7 @@ function AddExercise() {
           </form>
         </section>
       )}
-    </>
+    </section>
   );
 }
 

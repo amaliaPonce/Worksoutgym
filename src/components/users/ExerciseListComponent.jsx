@@ -26,20 +26,19 @@ function ExerciseListComponent() {
         const filteredExercises = data.filter((exercise) => {
           const nameMatch =
             exercise.name.toLowerCase().includes(filters.name.toLowerCase()) ||
-            exercise.description.toLowerCase().includes(filters.name.toLowerCase());
+            exercise.description
+              .toLowerCase()
+              .includes(filters.name.toLowerCase());
           const muscleGroupMatch =
             filters.muscleGroup === "" ||
-            exercise.muscleGroup.toLowerCase() === filters.muscleGroup.toLowerCase();
+            exercise.muscleGroup.toLowerCase() ===
+              filters.muscleGroup.toLowerCase();
           const recommendedMatch =
             !filters.recommended || exercise.is_recommended;
-          const favoriteMatch =
-            !filters.favorite || exercise.is_favorite;
+          const favoriteMatch = !filters.favorite || exercise.is_favorite;
 
           return (
-            nameMatch &&
-            muscleGroupMatch &&
-            recommendedMatch &&
-            favoriteMatch
+            nameMatch && muscleGroupMatch && recommendedMatch && favoriteMatch
           );
         });
 
@@ -52,7 +51,6 @@ function ExerciseListComponent() {
     };
 
     fetchExercises();
-    
   }, [user, filters]);
 
   const handleFilterChange = (e) => {

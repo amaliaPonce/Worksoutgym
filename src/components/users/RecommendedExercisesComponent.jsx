@@ -50,13 +50,13 @@ const RecommendedExerciseComponent = ({ exercise }) => {
   };
 
   return (
-    <div>
+    <section>
       <Button handleClick={handleToggleRecommendation}>
         {isRecommended
           ? "Desmarcar como recomendado"
           : "Marcar como recomendado"}
       </Button>
-    </div>
+    </section>
   );
 };
 

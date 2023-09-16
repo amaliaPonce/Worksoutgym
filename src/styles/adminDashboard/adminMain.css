@@ -1,0 +1,56 @@
+.app-container {
+  display: flex;
+  overflow-x: hidden;
+  margin: 50px;
+}
+
+.main-content {
+  margin-left: 120px;
+  padding: 20px;
+  width: calc(100% - 125px);
+  box-sizing: border-box;
+}
+
+.main-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.main-content p {
+  font-size: 16px;
+}
+
+.main-content div {
+  margin-top: 20px;
+}
+
+/* Estilos para la versión móvil de .main-content */
+@media (max-width: 768px) {
+  .app-container {
+    display: flex;
+    overflow-x: hidden;
+    margin: 50px 0;
+  }
+
+  .main-content {
+    padding: 20px;
+    width: calc(100% - 60px);
+    box-sizing: border-box;
+    margin-left: 60px;
+    margin-right: 0;
+  }
+
+  .main-content h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .main-content p {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .main-content div {
+    margin-top: 10px;
+  }
+}

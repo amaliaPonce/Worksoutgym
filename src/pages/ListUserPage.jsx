@@ -6,16 +6,9 @@ import { AppContext } from "../context/AppContext";
 
 const ListUserPage = () => {
   const { user } = useContext(AppContext);
-  const pageStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: "500px",
-  };
 
   return (
-    <div style={pageStyle}>
+    <div className="pages">
       <HeaderDashboard />
       {user.role === "admin" && <ListUserComponent />}
       <Sidebar />

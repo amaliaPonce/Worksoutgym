@@ -24,10 +24,10 @@ function MainContent() {
   }, [user]);
 
   return (
-    <div className="app-container">
+    <section className="app-container">
       <HeaderDashboard />
       <Sidebar />
-      <div className="content-container">
+      <section className="content-container">
         <main className="main-content">
           <h2>Contenido Principal</h2>
           <p>
@@ -36,8 +36,8 @@ function MainContent() {
           </p>
           <ExerciseStatsComponent exercises={exercises} />
         </main>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }
 
