@@ -1,6 +1,6 @@
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
-import "../../styles/adminDashboard/sidebar.css";
+import "../../styles/dashboard/sidebar.css";
 
 const Sidebar = () => {
   return (

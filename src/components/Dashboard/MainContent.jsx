@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 import { ExercisesService } from "../../service/index";
 import ExerciseStatsComponent from "../ExerciseStatsComponent"; 
 import { AppContext } from "../../context/AppContext";
-
+import "../../styles/dashboard/main.css"
 function MainContent() {
   const { user } = useContext(AppContext);
 

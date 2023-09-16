@@ -7,7 +7,6 @@ function UsersPage() {
     <div>
       <div>
         <HeaderDashboard />
-        <h1>hola esto hay que quitarlo es para que baje el contenido</h1>
         <MainContent />
         <Sidebar />
       </div>
