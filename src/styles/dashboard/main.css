@@ -47,6 +47,7 @@
   padding: 20px;
   font-size: 1.2em;
   font-weight: bold;
+  margin-top: 15px;
 
 
 }
@@ -79,31 +80,57 @@
 }
 
 @media (max-width: 768px) {
+  /* Reduce el margen de .app-container para un mejor uso del espacio */
   .app-container {
     display: flex;
     overflow-x: hidden;
-    margin: 30px;
+    margin: 20px;
   }
 
+  /* Aumenta el espacio entre los elementos de .main-content */
   .main-content {
     padding: var(--mb-1);
     width: calc(100% - 30px);
     box-sizing: border-box;
-    margin: 30px 20px;
+    margin: auto;
+    margin-top: 30px;
   }
 
+  /* Ajusta el tamaño de la fuente de h2 y p */
   .main-content h2 {
-    font-size: var(--h2-font-size);
+    font-size: 1.5em; 
+    margin-bottom: 30px; /* Ajusta el espacio inferior */
   }
 
   .main-content p {
-    font-size: 17px;
+    font-size: 16px; /* Cambia el tamaño de fuente según tus necesidades */
+    margin-top: var(--mb-1); /* Ajusta el espacio entre los párrafos */
   }
 
-  .main-content div {
-    margin-top: var(--mb-1);
+ 
+
+  .section-heading {
+    font-size: 1.5em;
+    color: #333;
+   
   }
 
+  /* Reduce el margen inferior y el margen izquierdo de los elementos de .exercise-list li */
+  .exercise-list li {
+  
+    margin: 30px auto 10px; /* Ajusta el margen inferior y el margen izquierdo */
+    padding:15px;
+   
+  }
+
+  .exercise-link {
+    text-decoration: none;
+    color: #f86032;
+    display: block;
+    font-size: 18px;
+  }
+
+  /* Centra el contenido en .circle-container */
   .circle-container {
     display: flex;
     flex-direction: column;
