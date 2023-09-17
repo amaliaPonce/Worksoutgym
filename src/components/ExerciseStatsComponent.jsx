@@ -294,7 +294,7 @@ function ExerciseStatsComponent({ exercises }) {
                   name: `Otros: ${Math.round(
                     100 - recommendedStats.percentage
                   )}%`,
-                  symbol: { fill: colorScale[2] },
+                  symbol: { fill: colorScale[1] },
                 },
               ]}
             />
