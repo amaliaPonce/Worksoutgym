@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme, useSetTheme } from "../../context/ThemeContext";
 import Button from "../Button";
-
+import "../../index.css";
 const ThemeSwitcher = () => {
   const theme = useTheme();
   const setTheme = useSetTheme();
@@ -11,7 +11,7 @@ const ThemeSwitcher = () => {
   };
 
   return (
-    <div className="theme-switcher">
+    <section className="theme-switcher">
       <Button
         className={`theme-button ${theme === "theme2" ? "active" : ""}`}
         handleClick={() => handleThemeChange("theme2")}
@@ -30,7 +30,7 @@ const ThemeSwitcher = () => {
       >
         🌸
       </Button>
-    </div>
+    </section>
   );
 };
 
