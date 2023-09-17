@@ -43,7 +43,7 @@ const ExerciseFavoriteComponent = ({ exercise }) => {
   };
 
   return (
-    <Button onClick={handleToggleFavorite} className={`buttons ${theme}`}>
+    <Button handleClick={handleToggleFavorite} className={`buttons ${theme}`}>
       {isFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
     </Button>
   );

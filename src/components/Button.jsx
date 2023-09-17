@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
-import { useState } from "react";
 
 const Button = ({ handleClick, children }) => {
   const theme = useTheme();
@@ -12,15 +12,14 @@ const Button = ({ handleClick, children }) => {
     setIsActive(!isActive);
   };
 
-  const buttonClassName = `buttons ${theme} ${isActive ? "active" : ""}`;
-
   return (
-    <button onClick={handleButtonClick} className={buttonClassName}>
+    <button
+      onClick={handleButtonClick}
+      className={`buttons ${theme} ${isActive ? "active" : ""}`}
+    >
       {children}
     </button>
   );
 };
 
 export default Button;
-
-// pendiente actualizar todos los botones <button handleButtonClick = {nombre del boton de cada componente} className={buttonClassName}>

@@ -61,7 +61,7 @@
   --body-color: #faf1e4;
   --container-color: #cedebd;
 }
-.theme-button.active {
+.theme2-button.active {
   --header-height: 3rem;
   --title-color: #435334;
   --title-color-dark: #435334;
@@ -81,7 +81,7 @@
   --body-color: #f5efe7;
   --container-color: #d8c4b6;
 }
-.theme-button.active {
+.theme3-button.active {
   --header-height: 3rem;
   --title-color: #213555;
   --title-color-dark: #213555;
@@ -102,7 +102,7 @@
   --body-color: #ffaec6;
   --container-color: #d2849e;
 }
-.theme-button.active {
+.theme4-button.active {
   --header-height: 3rem;
   --title-color: #4b0626;
   --title-color-dark: #4b0626;
@@ -175,7 +175,7 @@ a {
 }
 /* Buttons */
 
-.button {
+.buttons {
   display: inline-block;
   background-color: var(--title-color);
   color: var(--container-color);
@@ -184,23 +184,23 @@ a {
   font-weight: var(--font-medium);
   font-size: 1rem;
 }
-.button:hover {
+.buttons:hover {
   background-color: var(--title-color-dark);
 }
-.button__icon {
+.buttons__icon {
   margin-left: var(--mb-0-5);
 }
-.button--flex {
+.buttons--flex {
   display: inline-flex;
   align-items: center;
 }
-.button--flex .button__icon {
+.buttons--flex .button__icon {
   margin-left: 0.5rem;
   width: 20px;
   height: 20px;
 }
 
-.button.button--flex span {
+.buttons.button--flex span {
   white-space: nowrap;
   margin-right: 10px;
 }

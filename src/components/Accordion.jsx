@@ -8,7 +8,11 @@ function Accordion({ children, title }) {
 
   return (
     <div className={`accordion ${theme}`}>
-      <Button onClick={() => setShow(!show)} className={`buttons ${theme}`}>
+      <Button
+        handleClick={() => setShow(!show)}
+        isActive={show}
+        className={`buttons ${theme}`}
+      >
         {show ? "Ocultar todo " : "Mostrar todo "}
         {title}
       </Button>

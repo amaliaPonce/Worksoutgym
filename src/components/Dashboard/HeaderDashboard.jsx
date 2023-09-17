@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "../../styles/dashboard/headerDashboard.css";
 import { AppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
-import ThemeSwitcher from "../users/ThemeSwitcher";
+import ThemeSwitcher from "../ThemeSwitcher";
 import Button from "../Button";
 import { useTheme } from "../../context/ThemeContext";
 
@@ -30,7 +30,7 @@ function HeaderDashboard() {
       <nav>
         <ul>
           <li>
-            <ThemeSwitcher />
+            <ThemeSwitcher className="theme-switcher" />
           </li>
           <li>
             <Button handleClick={handleLogout} className={`buttons ${theme}`}>

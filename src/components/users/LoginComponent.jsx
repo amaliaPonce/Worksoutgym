@@ -16,7 +16,10 @@ function LoginComponent() {
   const theme = useTheme();
 
   const handleLogin = async (event) => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
+
     setError("");
     setIsLoading(true);
 

@@ -23,7 +23,7 @@ const HomePageComponent = () => {
             cardiovascular que mejoran tu resistencia y queman calorías de
             manera efectiva.
           </p>
-          <Link to="/register" className={`banner-button ${theme}`}>
+          <Link to="/register" className={`buttons ${theme}`}>
             Comienza Tu Viaje de Fitness
           </Link>
         </section>

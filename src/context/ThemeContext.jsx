@@ -1,4 +1,5 @@
 import { useState, useContext, createContext } from "react";
+import { theme2, theme3, theme4 } from "../components/Themes";
 
 const ThemeContext = createContext();
 
@@ -6,7 +7,20 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState("");
 
   const changeTheme = (newTheme) => {
-    setTheme(newTheme);
+    switch (newTheme) {
+      case "theme2":
+        setTheme(theme2);
+        break;
+      case "theme3":
+        setTheme(theme3);
+        break;
+      case "theme4":
+        setTheme(theme4);
+        break;
+      default:
+        setTheme("");
+        break;
+    }
   };
 
   return (
