@@ -10,7 +10,7 @@ const App = () => {
     <React.StrictMode>
       <BrowserRouter>
         <AppProvider>
-          <ThemeProvider>
+          <ThemeProvider value={""}>
             <AppRoutes />
           </ThemeProvider>
         </AppProvider>

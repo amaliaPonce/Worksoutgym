@@ -1,12 +1,10 @@
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import "../../styles/dashboard/sidebar.css";
-import { useTheme } from "../../context/ThemeContext";
 
 const Sidebar = () => {
-  const theme = useTheme();
   return (
-    <aside className={`aside ${theme}`}>
+    <aside className={`aside`}>
       <Link to="/" className="nav-logo">
         <img src={Logo} alt="" />
       </Link>

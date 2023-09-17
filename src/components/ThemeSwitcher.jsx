@@ -1,50 +1,29 @@
-import React from "react";
+import { useContext } from "react";
 import Button from "./Button";
 import "../index.css";
-import { useTheme, useSetTheme } from "../context/ThemeContext";
+import { ThemeContext } from "../context/ThemeContext";
 import { theme2, theme3, theme4 } from "../components/Themes";
 
 const ThemeSwitcher = () => {
-  const theme = useTheme();
-  const setTheme = useSetTheme();
-
-  const handleThemeChange = (newTheme) => {
-    setTheme(newTheme);
-  };
-
-  const clearActiveClass = () => {
-    const buttons = document.querySelectorAll(".theme-button");
-    buttons.forEach((button) => {
-      button.classList.remove("active");
-    });
-  };
+  const { theme, changeTheme } = useContext(ThemeContext);
 
   return (
-    <section className="theme-switcher">
+    <section>
       <Button
-        className={`theme2-button ${theme === theme2 ? "active" : ""}`}
-        handleClick={() => {
-          clearActiveClass();
-          handleThemeChange(theme2);
-        }}
+        className={`theme-button ${theme === theme2 ? "active" : ""}`}
+        handleClick={() => changeTheme(theme2)}
       >
         🌊
       </Button>
       <Button
-        className={`theme3-button ${theme === theme3 ? "active" : ""}`}
-        handleClick={() => {
-          clearActiveClass();
-          handleThemeChange(theme3);
-        }}
+        className={`theme-button ${theme === theme3 ? "active" : ""}`}
+        handleClick={() => changeTheme(theme3)}
       >
         🌵
       </Button>
       <Button
-        className={`theme4-button ${theme === theme4 ? "active" : ""}`}
-        handleClick={() => {
-          clearActiveClass();
-          handleThemeChange(theme4);
-        }}
+        className={`theme-button ${theme === theme4 ? "active" : ""}`}
+        handleClick={() => changeTheme(theme4)}
       >
         🌸
       </Button>

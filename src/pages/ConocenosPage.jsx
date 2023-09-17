@@ -4,19 +4,16 @@ import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/FooterComponent";
 import AmaliaWeb from "../assets/Amalia.mp4";
 import SusanaWeb from "../assets/Susana.mp4";
-import { useTheme } from "../context/ThemeContext";
 
 const Data = () => {
-  const theme = useTheme();
-
   return (
-    <div className={`pages ${theme}`}>
+    <div>
       <HeaderComponent />
-      <main className={`home-content ${theme}`}>
-        <section className={`person-data ${theme}`}>
-          <figure className={`video-container ${theme}`}>
+      <main className={`home-content `}>
+        <section className={`person-data `}>
+          <figure className={`video-container `}>
             <video
-              className={`home-video profile-animate ${theme}`}
+              className={`home-video profile-animate `}
               autoPlay
               loop
               muted
@@ -25,11 +22,11 @@ const Data = () => {
               Tu navegador no soporta videos en formato MP4.
             </video>
           </figure>
-          <section className={`person-info ${theme}`}>
-            <h1 className={`home-title ${theme}`}>Amalia Ponce Toledo</h1>
+          <section className={`person-info `}>
+            <h1 className={`home-title `}>Amalia Ponce Toledo</h1>
             <a
               href="mailto:amaliaponcetoledo@gmail.com"
-              className={`button button-flex ${theme}`}
+              className={`button button-flex `}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +39,8 @@ const Data = () => {
               </svg>
             </a>
           </section>
-          <h3 className={`home-subtitle ${theme}`}>Full Stack Developer</h3>
-          <p className={`home-description ${theme}`}>
+          <h3 className={`home-subtitle `}>Full Stack Developer</h3>
+          <p className={`home-description `}>
             Hi there! I'm a full-stack creative designer based in Córdoba. I'm
             passionate about art and also the world of technology. Imagining and
             creating are my favorite pastimes, and I pour all my energy into
@@ -51,10 +48,10 @@ const Data = () => {
           </p>
         </section>
 
-        <section className={`person-data ${theme}`}>
-          <figure className={`video-container ${theme}`}>
+        <section className={`person-data `}>
+          <figure className={`video-container `}>
             <video
-              className={`home-video profile-animate ${theme}`}
+              className={`home-video profile-animate `}
               autoPlay
               loop
               muted
@@ -63,11 +60,11 @@ const Data = () => {
               Tu navegador no soporta videos en formato MP4.
             </video>
           </figure>
-          <section className={`person-info ${theme}`}>
-            <h1 className={`home-title ${theme}`}>Susana Martínez Payá</h1>
+          <section className={`person-info`}>
+            <h1 className={`home-title`}>Susana Martínez Payá</h1>
             <a
               href="mailto:susana@example.com"
-              className={`button button-flex ${theme}`}
+              className={`button button-flex`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -80,8 +77,8 @@ const Data = () => {
               </svg>
             </a>
           </section>
-          <h3 className={`home-subtitle ${theme}`}>Full Stack Developer</h3>
-          <p className={`home-description ${theme}`}>
+          <h3 className={`home-subtitle `}>Full Stack Developer</h3>
+          <p className={`home-description `}>
             Hi there! I'm a full stack developer based in [tu ubicación]. I have
             a passion for coding and creating innovative web applications. I'm
             dedicated to building user-friendly and efficient software
@@ -90,7 +87,7 @@ const Data = () => {
         </section>
       </main>
 
-      <FooterComponent className={`footer ${theme}`} />
+      <FooterComponent />
     </div>
   );
 };

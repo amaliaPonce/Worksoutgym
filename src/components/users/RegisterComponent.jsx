@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { registerService } from "../../service/index";
 import Button from "../Button";
 import "../../styles/register.css";
-import { useTheme } from "../../context/ThemeContext";
 
 function RegisterComponent() {
   const [name, setName] = useState("");
@@ -12,7 +11,6 @@ function RegisterComponent() {
   const [error, setError] = useState("");
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const navigate = useNavigate();
-  const theme = useTheme();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +24,7 @@ function RegisterComponent() {
   };
 
   return (
-    <section className={`register-container ${theme}`}>
+    <section className={`register-container `}>
       <h2 className="register-title">Regístrate</h2>
       {registrationSuccess && (
         <p className="register-subtitle">
@@ -38,7 +36,7 @@ function RegisterComponent() {
         <section>
           <label>Nombre:</label>
           <input
-            className={`register-input ${theme}`}
+            className={`register-input `}
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -47,7 +45,7 @@ function RegisterComponent() {
         <section>
           <label>Email:</label>
           <input
-            className={`register-input ${theme}`}
+            className={`register-input `}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -56,17 +54,13 @@ function RegisterComponent() {
         <section>
           <label>Contraseña:</label>
           <input
-            className={`register-input ${theme}`}
+            className={`register-input `}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </section>
-        <Button
-          handleClick={handleSubmit}
-          type="submit"
-          className={`buttons ${theme}`}
-        >
+        <Button handleClick={handleSubmit} type="submit" className={`buttons `}>
           Registrarse
         </Button>
       </form>

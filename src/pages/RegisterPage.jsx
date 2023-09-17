@@ -3,15 +3,11 @@ import { Link } from "react-router-dom";
 import RegisterComponent from "../components/users/RegisterComponent";
 import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/FooterComponent";
-import { useTheme } from "../context/ThemeContext";
-
 import "../styles/login.css";
 
 function RegisterPage() {
-  const theme = useTheme();
-
   return (
-    <div className={`pages ${theme}`}>
+    <div>
       <HeaderComponent />
 
       <main className="login-page">

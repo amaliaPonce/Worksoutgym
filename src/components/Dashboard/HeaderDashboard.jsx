@@ -4,13 +4,11 @@ import { AppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import ThemeSwitcher from "../ThemeSwitcher";
 import Button from "../Button";
-import { useTheme } from "../../context/ThemeContext";
 
 function HeaderDashboard() {
   const [menuActive, setMenuActive] = useState(false);
   const { logout } = useContext(AppContext);
   const navigate = useNavigate();
-  const theme = useTheme();
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -30,10 +28,10 @@ function HeaderDashboard() {
       <nav>
         <ul>
           <li>
-            <ThemeSwitcher className="theme-switcher" />
+            <ThemeSwitcher />
           </li>
           <li>
-            <Button handleClick={handleLogout} className={`buttons ${theme}`}>
+            <Button handleClick={handleLogout} className={`buttons `}>
               Cerrar Sesión
             </Button>
           </li>

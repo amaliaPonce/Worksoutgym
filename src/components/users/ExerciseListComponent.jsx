@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { ExercisesService } from "../../service/index";
 import ExercisePostComponent from "./ExercisePostComponent";
-import { useTheme } from "../../context/ThemeContext";
 
 function ExerciseListComponent() {
   const { user } = useContext(AppContext);
@@ -15,7 +14,6 @@ function ExerciseListComponent() {
     favorite: false,
     recommended: false,
   });
-  const theme = useTheme();
 
   useEffect(() => {
     const fetchExercises = async () => {
@@ -62,7 +60,7 @@ function ExerciseListComponent() {
   };
 
   return (
-    <section className={`exercise-list ${theme}`}>
+    <section className={`exercise-list`}>
       <h2>Lista de Ejercicios</h2>
       <form className="filter-form">
         <section>

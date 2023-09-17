@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useTheme } from "../context/ThemeContext";
+import React, { useState, useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Button = ({ handleClick, children }) => {
-  const theme = useTheme();
+  const { theme, changeTheme } = useContext(ThemeContext);
   const [isActive, setIsActive] = useState(false);
 
   const handleButtonClick = () => {
@@ -10,12 +10,13 @@ const Button = ({ handleClick, children }) => {
       handleClick();
     }
     setIsActive(!isActive);
+    changeTheme();
   };
 
   return (
     <button
       onClick={handleButtonClick}
-      className={`buttons ${theme} ${isActive ? "active" : ""}`}
+      className={`buttons ${theme || "default"} ${isActive ? "active" : ""}`}
     >
       {children}
     </button>

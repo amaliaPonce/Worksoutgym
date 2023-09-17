@@ -1,47 +1,36 @@
-import { useState, useContext, createContext } from "react";
+import { useState, createContext, useEffect, useMemo } from "react";
 import { theme2, theme3, theme4 } from "../components/Themes";
 
-const ThemeContext = createContext();
+export const ThemeContext = createContext();
 
-export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("");
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState(null);
 
-  const changeTheme = (newTheme) => {
-    switch (newTheme) {
-      case "theme2":
-        setTheme(theme2);
-        break;
-      case "theme3":
-        setTheme(theme3);
-        break;
-      case "theme4":
-        setTheme(theme4);
-        break;
-      default:
-        setTheme("");
-        break;
-    }
+  const themes = useMemo(() => [null, theme2, theme3, theme4], []);
+
+  const changeTheme = () => {
+    setTheme((prevTheme) => {
+      const currentIndex = themes.indexOf(prevTheme);
+      const nextIndex = (currentIndex + 1) % themes.length;
+      return themes[nextIndex];
+    });
   };
+
+  useEffect(() => {
+    const storedTheme = JSON.parse(localStorage.getItem("theme"));
+    if (storedTheme && themes.includes(storedTheme)) {
+      setTheme(storedTheme);
+    } else {
+      setTheme(null);
+    }
+  }, [themes]);
+  useEffect(() => {
+    localStorage.setItem("theme", JSON.stringify(theme));
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, changeTheme }}>
       {children}
     </ThemeContext.Provider>
   );
-};
-
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error("useTheme debe utilizarse dentro de un ThemeProvider");
-  }
-  return context.theme;
-};
-
-export const useSetTheme = () => {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error("useSetTheme debe utilizarse dentro de un ThemeProvider");
-  }
-  return context.changeTheme;
-};
+}

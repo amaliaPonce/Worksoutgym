@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import { useTheme } from "../context/ThemeContext";
 import Button from "./Button";
 
 function Accordion({ children, title }) {
   const [show, setShow] = useState(false);
-  const theme = useTheme();
 
   return (
-    <div className={`accordion ${theme}`}>
+    <div className={`accordion`}>
       <Button
         handleClick={() => setShow(!show)}
         isActive={show}
-        className={`buttons ${theme}`}
+        className={`buttons `}
       >
         {show ? "Ocultar todo " : "Mostrar todo "}
         {title}

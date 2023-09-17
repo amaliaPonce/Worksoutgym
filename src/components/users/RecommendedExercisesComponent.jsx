@@ -2,11 +2,10 @@ import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { MarkRecommendedService } from "../../service/index";
 import Button from "../Button";
-import { useTheme } from "../../context/ThemeContext";
+
 const RecommendedExerciseComponent = ({ exercise }) => {
   const [isRecommended, setIsRecommended] = useState(false);
   const { user } = useContext(AppContext);
-  const theme = useTheme();
   useEffect(() => {
     const checkIfRecommended = async () => {
       try {
@@ -52,10 +51,7 @@ const RecommendedExerciseComponent = ({ exercise }) => {
 
   return (
     <section>
-      <Button
-        handleClick={handleToggleRecommendation}
-        className={`buttons ${theme}`}
-      >
+      <Button handleClick={handleToggleRecommendation} className={`buttons`}>
         {isRecommended
           ? "Desmarcar como recomendado"
           : "Marcar como recomendado"}

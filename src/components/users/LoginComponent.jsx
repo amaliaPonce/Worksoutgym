@@ -4,7 +4,6 @@ import { loginServise } from "../../service/index";
 import "../../styles/login.css";
 import { AppContext } from "../../context/AppContext";
 import Button from "../Button";
-import { useTheme } from "../../context/ThemeContext";
 
 function LoginComponent() {
   const navigate = useNavigate();
@@ -13,7 +12,6 @@ function LoginComponent() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const theme = useTheme();
 
   const handleLogin = async (event) => {
     if (event) {
@@ -44,8 +42,8 @@ function LoginComponent() {
   };
 
   return (
-    <section className={`login-container ${theme}`}>
-      <h2 className={`login-title ${theme}`}>Iniciar Sesión</h2>
+    <section className={`login-container `}>
+      <h2 className={`login-title `}>Iniciar Sesión</h2>
       <form onSubmit={handleLogin}>
         <input
           className={`login-input ${error && "error"}`}
@@ -68,13 +66,13 @@ function LoginComponent() {
         <Button
           handleClick={handleLogin}
           type="submit"
-          className={`buttons ${theme}`}
+          className={`buttons`}
           disabled={isLoading}
         >
           <span>{isLoading ? "Cargando..." : "Iniciar Sesión"}</span>
         </Button>
-        {error && <p className={`login-error ${theme}`}>{error}</p>}
-        {isLoading && <p className={`login-loading ${theme}`}>Cargando...</p>}
+        {error && <p className={`login-error `}>{error}</p>}
+        {isLoading && <p className={`login-loading `}>Cargando...</p>}
       </form>
     </section>
   );

@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { VictoryPie } from "victory";
 import "../styles/dashboard/main.css";
-import { useTheme } from "../context/ThemeContext";
 function ExerciseStatsComponent({ exercises }) {
   const { user } = useContext(AppContext);
-  const theme = useTheme();
 
   const calculatePercentage = (filter) => {
     if (!exercises || exercises.length === 0) {
@@ -115,7 +113,7 @@ function ExerciseStatsComponent({ exercises }) {
         colorScale={["#383E56", "#FB743E", "#9FB8AD"]}
       />
 
-      <h3 className={`section-heading ${theme}`}>Ejercicios favoritos:</h3>
+      <h3 className={`section-heading`}>Ejercicios favoritos:</h3>
       <VictoryPie
         data={[
           { x: "Favoritos", y: parseFloat(favoriteStats.percentage) },
@@ -132,11 +130,11 @@ function ExerciseStatsComponent({ exercises }) {
         height={150}
         colorScale={["#383E56", "#FB743E", "#9FB8AD"]} //
       />
-      <p className={`percentage-text ${theme}`}>
+      <p className={`percentage-text `}>
         Ejercicios favoritos: {favoriteStats.count} de {exercises.length}
       </p>
 
-      <h3 className={`section-heading ${theme}`}>
+      <h3 className={`section-heading `}>
         Porcentaje de ejercicios recomendados:
       </h3>
       <VictoryPie
@@ -155,13 +153,11 @@ function ExerciseStatsComponent({ exercises }) {
         height={150}
         colorScale={["#383E56", "#FB743E", "#9FB8AD"]}
       />
-      <p className={`percentage-text ${theme}`}>
+      <p className={`percentage-text `}>
         Ejercicios recomendados: {recommendedStats.count} de {exercises.length}
       </p>
 
-      <h3 className={`section-heading ${theme}`}>
-        Últimos ejercicios creados:
-      </h3>
+      <h3 className={`section-heading`}>Últimos ejercicios creados:</h3>
 
       <ul className="exercise-list">
         {lastCreatedExercises.map((exercise) => (
@@ -184,7 +180,7 @@ function ExerciseStatsComponent({ exercises }) {
 
       {user?.role === "admin" && (
         <>
-          <h3 className={`section-heading ${theme}`}>
+          <h3 className={`section-heading`}>
             Últimos ejercicios actualizados:
           </h3>
 

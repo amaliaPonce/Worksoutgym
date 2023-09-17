@@ -1,13 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { markFavoriteService } from "../../service/index";
-import { useTheme } from "../../context/ThemeContext";
 import Button from "../Button";
 
 const ExerciseFavoriteComponent = ({ exercise }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const { user } = useContext(AppContext);
-  const theme = useTheme();
 
   useEffect(() => {
     const checkIfFavorite = async () => {
@@ -43,7 +41,7 @@ const ExerciseFavoriteComponent = ({ exercise }) => {
   };
 
   return (
-    <Button handleClick={handleToggleFavorite} className={`buttons ${theme}`}>
+    <Button handleClick={handleToggleFavorite} className={`buttons `}>
       {isFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
     </Button>
   );

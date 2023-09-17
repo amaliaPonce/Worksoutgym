@@ -5,7 +5,6 @@ import { markFavoriteService } from "../../service/index";
 import { MarkRecommendedService } from "../../service/index";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
-import { useTheme } from "../../context/ThemeContext";
 
 const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   const { user } = useContext(AppContext);
@@ -13,7 +12,6 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   const [exerciseIsRecommended, setExerciseIsRecommended] =
     useState(isRecommended);
   const navigate = useNavigate();
-  const theme = useTheme();
 
   const handleToggleFavorite = async () => {
     try {
@@ -55,9 +53,8 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   };
 
   return (
-    <section className={`exercise-card ${theme}`}>
+    <section className={`exercise-card `}>
       {" "}
-      {/* Aplica el tema al contenedor principal */}
       <section className="exercise-image">
         <img
           src={`${process.env.REACT_APP_BACKEND}/uploads/${exercise.photoName}`}
@@ -77,23 +74,17 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
         <p className="exercise-details">
           <strong>Grupo Muscular:</strong> {exercise.muscleGroup}
         </p>
-        <Button
-          handleClick={handleToggleFavorite}
-          className={`buttons ${theme}`}
-        >
+        <Button handleClick={handleToggleFavorite} className={`buttons `}>
           {exerciseIsFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
         </Button>
-        <Button
-          handleClick={handleToggleRecommendation}
-          className={`buttons ${theme}`}
-        >
+        <Button handleClick={handleToggleRecommendation} className={`buttons `}>
           {exerciseIsRecommended
             ? "Desmarcar como recomendado"
             : "Marcar como recomendado"}
         </Button>
         <Button
           handleClick={() => navigate(`/usersPage/exercises/${exercise.id}`)}
-          className={`buttons ${theme}`}
+          className={`buttons `}
         >
           Ver detalles
         </Button>
