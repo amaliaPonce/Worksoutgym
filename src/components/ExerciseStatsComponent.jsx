@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import { VictoryPie } from 'victory';
-import "../styles/dashboard/main.css"
+import { VictoryPie, VictoryLegend } from "victory";
+import "../styles/dashboard/main.css";
+
 function ExerciseStatsComponent({ exercises }) {
   const { user } = useContext(AppContext);
 
@@ -92,80 +93,246 @@ function ExerciseStatsComponent({ exercises }) {
     return sortedExercises.slice(0, count);
   }
 
+  const colorScale = ["#383E56", "#FB743E", "#9FB8AD"];
+
   return (
-    <>
-      <VictoryPie
-        data={Object.entries(muscleGroupPercentages).map(([group, percentage]) => ({
-          x: `${group}: ${percentage}%`,
-          y: parseFloat(percentage),
-        }))}
-        
-        label={({ datum }) => datum.x}
-        style={{
-          labels: {
-            fill: "black",
-            fontSize: 8,
-          },
-        }}
-        
-        width={150} 
-        height={150} 
-        colorScale={['#383E56', '#FB743E', '#9FB8AD']} 
-        
-      />
+    <div className="exercise-stats">
+      <div className="circle-container">
+        <div className="circle">
+          <div className="chart-container">
+            {/* Gráfico de pastel 1 */}
+            <VictoryPie
+              data={Object.entries(muscleGroupPercentages).map(
+                ([group, percentage]) => ({
+                  x: `${group}: ${percentage}%`,
+                  y: parseFloat(percentage),
+                })
+              )}
+              innerRadius={50}
+              style={{
+                labels: {
+                  display: "none",
+                },
+                data: {
+                  stroke: "#fff",
+                  strokeWidth: 1,
+                  opacity: ({ active }) => (active ? 1 : 0.8),
+                },
+              }}
+              events={[
+                {
+                  target: "data",
+                  eventHandlers: {
+                    onMouseOver: () => {
+                      return [
+                        {
+                          target: "data",
+                          mutation: () => ({ active: true }),
+                        },
+                      ];
+                    },
+                    onMouseOut: () => {
+                      return [
+                        {
+                          target: "data",
+                          mutation: () => ({ active: false }),
+                        },
+                      ];
+                    },
+                  },
+                },
+              ]}
+              width={150}
+              height={150}
+              colorScale={colorScale}
+            />
+            {/* Leyenda para el primer gráfico de pastel */}
+            <VictoryLegend
+              orientation="vertical"
+              gutter={10}
+              style={{ labels: { fontSize: 25, fontFamily: "Montserrat" } }} // Añade la fuente aquí
+              data={Object.entries(muscleGroupPercentages).map(
+                ([group, percentage], index) => ({
+                  name: `${group}: ${Math.round(percentage)}%`,
+                  symbol: { fill: colorScale[index % colorScale.length] },
+                })
+              )}
+            />
+          </div>
+        </div>
 
-      <h3 className="section-heading">Ejercicios favoritos:</h3>
-      <VictoryPie
-        data={[
-          { x: "Favoritos", y: parseFloat(favoriteStats.percentage) },
-          { x: "Otros", y: 100 - parseFloat(favoriteStats.percentage) },
-        ]}
-        label={({ datum }) => `${datum.x}: ${datum.y.toFixed(2)}%`}
-        style={{
-          labels: {
-            fill: "black",
-            fontSize: 10,
-          },
-        }}
-        width={150} 
-        height={150} 
-      
-        colorScale={['#383E56', '#FB743E', '#9FB8AD']} // 
-      />
-      <p className="percentage-text">
-      Ejercicios favoritos: {favoriteStats.count} de {exercises.length}
-      </p>
+        <div className="circle">
+          <div className="chart-container">
+            {/* Gráfico de pastel 2 */}
+            <VictoryPie
+              innerRadius={50}
+              data={[
+                { x: "Favoritos", y: parseFloat(favoriteStats.percentage) },
+                { x: "Otros", y: 100 - parseFloat(favoriteStats.percentage) },
+              ]}
+              style={{
+                labels: {
+                  display: "none", // Oculta las etiquetas
+                },
+                data: {
+                  stroke: "#fff",
+                  strokeWidth: 1,
+                  opacity: ({ active }) => (active ? 1 : 0.8),
+                },
+              }}
+              events={[
+                {
+                  target: "data",
+                  eventHandlers: {
+                    onMouseOver: () => {
+                      return [
+                        {
+                          target: "data",
+                          mutation: () => ({ active: true }),
+                        },
+                      ];
+                    },
+                    onMouseOut: () => {
+                      return [
+                        {
+                          target: "data",
+                          mutation: () => ({ active: false }),
+                        },
+                      ];
+                    },
+                  },
+                },
+              ]}
+              width={150}
+              height={150}
+              colorScale={colorScale}
+            />
+            {/* Leyenda para el segundo gráfico de pastel */}
+            <VictoryLegend
+              orientation="vertical"
+              gutter={10}
+              style={{ labels: { fontSize: 25, fontFamily: "Montserrat" } }} // Añade la fuente aquí
+              data={[
+                {
+                  name: `Favoritos: ${Math.round(favoriteStats.percentage)}%`,
+                  symbol: { fill: colorScale[0] },
+                },
+                {
+                  name: `Otros: ${Math.round(100 - favoriteStats.percentage)}%`,
+                  symbol: { fill: colorScale[1] },
+                },
+              ]}
+            />
+          </div>
+        </div>
 
-      <h3 className="section-heading">Porcentaje de ejercicios recomendados:</h3>
-      <VictoryPie
-        data={[
-          { x: "Recomendados", y: parseFloat(recommendedStats.percentage) },
-          { x: "Otros", y: 100 - parseFloat(recommendedStats.percentage) },
-        ]}
-        label={({ datum }) => `${datum.x}: ${datum.y.toFixed(2)}%`}
-        style={{
-          labels: {
-            fill: "black",
-            fontSize: 5,
-          },
-        }}
-        width={150} 
-        height={150} 
-        colorScale={['#383E56', '#FB743E', '#9FB8AD']} 
-      />
-      <p className="percentage-text">
-        Ejercicios recomendados: {recommendedStats.count} de {exercises.length}
-      </p>
+        <div className="circle">
+          <div className="chart-container">
+            {/* Gráfico de pastel 3 */}
+            <VictoryPie
+              data={[
+                {
+                  x: "Recomendados",
+                  y: parseFloat(recommendedStats.percentage),
+                },
+                {
+                  x: "Otros",
+                  y: 100 - parseFloat(recommendedStats.percentage),
+                },
+              ]}
+              innerRadius={50}
+              style={{
+                labels: {
+                  display: "none",
+                },
+                data: {
+                  stroke: "#fff",
+                  strokeWidth: 1,
+                  opacity: ({ active }) => (active ? 1 : 0.8),
+                },
+              }}
+              events={[
+                {
+                  target: "data",
+                  eventHandlers: {
+                    onMouseOver: () => {
+                      return [
+                        {
+                          target: "data",
+                          mutation: () => ({ active: true }),
+                        },
+                      ];
+                    },
+                    onMouseOut: () => {
+                      return [
+                        {
+                          target: "data",
+                          mutation: () => ({ active: false }),
+                        },
+                      ];
+                    },
+                  },
+                },
+              ]}
+              width={150}
+              height={150}
+              colorScale={colorScale}
+            />
+
+            <VictoryLegend
+              orientation="vertical"
+              gutter={10}
+              style={{ labels: { fontSize: 25, fontFamily: "Montserrat" } }} 
+              data={[
+                {
+                  name: `Recomendados: ${Math.round(
+                    recommendedStats.percentage
+                  )}%`,
+                  symbol: { fill: colorScale[0] },
+                },
+                {
+                  name: `Otros: ${Math.round(
+                    100 - recommendedStats.percentage
+                  )}%`,
+                  symbol: { fill: colorScale[2] },
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="legend">
+        {Object.entries(muscleGroupPercentages).map(
+          ([group, percentage], index) => (
+            <div key={index} className="legend-item">
+              <span
+                className="legend-color"
+                style={{
+                  backgroundColor: colorScale[index % colorScale.length],
+                }}
+              />
+            </div>
+          )
+        )}
+      </div>
 
       <h3 className="section-heading">Últimos ejercicios creados:</h3>
 
       <ul className="exercise-list">
         {lastCreatedExercises.map((exercise) => (
           <li key={exercise.id}>
-            <Link to={`/usersPage/exercises/${exercise.id}`} className="exercise-link">
+            <Link
+              to={`/usersPage/exercises/${exercise.id}`}
+              className="exercise-link"
+            >
               {exercise.name}
-              <span className="info-text">Muscle Group: {exercise.muscleGroup}</span>
-              <span className="info-text">Created At: {exercise.created_at}</span>
+              <span className="info-text">
+                Muscle Group: {exercise.muscleGroup}
+              </span>
+              <span className="info-text">
+                Creado: {exercise.created_at}
+              </span>
             </Link>
           </li>
         ))}
@@ -178,17 +345,24 @@ function ExerciseStatsComponent({ exercises }) {
           <ul className="exercise-list">
             {lastUpdatedExercises.map((exercise) => (
               <li key={exercise.id}>
-                <Link to={`/usersPage/exercises/${exercise.id}`} className="exercise-link">
+                <Link
+                  to={`/usersPage/exercises/${exercise.id}`}
+                  className="exercise-link"
+                >
                   {exercise.name}
-                  <span className="info-text">Muscle Group: {exercise.muscleGroup}</span>
-                  <span className="info-text">Updated At: {exercise.updated_at}</span>
+                  <span className="info-text">
+                    Muscle Group: {exercise.muscleGroup}
+                  </span>
+                  <span className="info-text">
+                    Actualizado: {exercise.updated_at}
+                  </span>
                 </Link>
               </li>
             ))}
           </ul>
         </>
       )}
-    </>
+    </div>
   );
 }
 

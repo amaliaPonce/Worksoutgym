@@ -2,33 +2,57 @@
 .app-container {
   display: flex;
   overflow-x: hidden;
-  margin: 50px;
+  margin: 100px;
 }
 
-/* Títulos */
+/* Estilos para el contenido principal */
+.main-content {
+  padding: var(--mb-2);
+  margin: auto;
+}
+
+.main-content h2 {
+  font-size: var(--h2-font-size);
+  margin-bottom: var(--mb-2);
+}
+
+.main-content p {
+  font-size: var(--normal-font-size);
+  margin-top: var(--mb-1);
+}
+
+.main-content div {
+  margin-top: var(--mb-2);
+}
 .section-heading {
-  font-size: 24px;
-  margin: 20px 0;
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-/* Texto de porcentaje */
-.percentage-text {
-  font-size: 18px;
-  margin: 10px 0;
-}
-
-/* Lista de ejercicios */
 .exercise-list {
   list-style-type: none;
   padding: 0;
 }
 
 .exercise-list li {
-  margin: 10px 0;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+.exercise-link {
+  text-decoration: none;
+  color: #333;
+}
+
+.info-text {
+  display: block;
+  font-size: 0.9em;
+  color: #666;
+}
+
 
 /* Enlaces de ejercicios */
 .exercise-link {
@@ -48,28 +72,16 @@
   color: #888;
 }
 
+/* Estadisticas  */
 
-/* Estilos para el contenido principal */
-.main-content {
-  margin-left: 125px;
-  padding: var(--mb-2);
-  width: calc(100% - 125px);
-  box-sizing: border-box;
+.circle-container {
+  display: flex;
 }
 
-.main-content h2 {
-  font-size: var(--h2-font-size);
-  margin-bottom: var(--mb-2);
+.circle {
+  flex: 1; 
 }
 
-.main-content p {
-  font-size: var(--normal-font-size);
-  margin-top: var(--mb-1);
-}
-
-.main-content div {
-  margin-top: var(--mb-2);
-}
 
 /* Estilos para la versión móvil de .main-content */
 @media (max-width: 768px) {
