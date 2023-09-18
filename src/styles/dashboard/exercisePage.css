@@ -135,7 +135,7 @@
   position: relative;
   top: 0;
   left: 0;
-  height: 24px; /* Ajusta el tamaño del pulgar según tus preferencias */
+  height: 34px; /* Ajusta el tamaño del pulgar según tus preferencias */
   width: 24px;
   transition: all 0.3s;
 }
@@ -166,6 +166,9 @@
   cursor: pointer;
   user-select: none;
   margin: 20px 40px;
+  border: none;
+  outline: none;
+
 
 }
 
@@ -181,7 +184,7 @@
 }
 
 .heart-button input:checked ~ svg {
-  fill: #e10909;
+  fill: #919191;
 }
 
 .heart-button svg:hover {
@@ -189,7 +192,7 @@
 }
 
 .heart-button input ~ svg {
-  fill: #666; 
+  fill: #ff0000; 
 }
 
 /* CSS para el botón "Recommended" */
@@ -201,12 +204,16 @@
   width: 0;
 }
 
+
 .recommended-button {
   display: inline-block;
   position: relative;
   cursor: pointer;
   user-select: none;
   margin: 20px 40px;
+  border: none;
+  outline: none;
+
 
 }
 
@@ -220,7 +227,7 @@
 }
 
 .recommended-button input:checked ~ svg {
-  fill: #948e8e; 
+  fill: #002b81; 
 }
 
 .recommended-button svg:hover {
@@ -228,7 +235,7 @@
 }
 
 .recommended-button input ~ svg {
-  fill: #075f88; 
+  fill: #888888; 
 }
 
 /* CSS para el botón de toggle */
@@ -352,6 +359,7 @@ fieldset {
   font-weight: bold;
   font-size: 1rem;
   width: 100%;
+  outline: none; /* Esta línea quitará el borde gris */
 }
 
 .add-exercise-button:disabled {
