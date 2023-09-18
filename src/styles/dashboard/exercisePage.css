@@ -1,9 +1,10 @@
 /* Estilos para el contenedor principal */
+/* Estilos para el contenedor principal */
 .exercise-page-container {
   display: flex;
   overflow-x: hidden;
-  padding: 2rem;
-  margin: 100px;
+margin: auto;
+margin-top: 100px;;
 }
 
 /* Estilos para el contenedor de ejercicios */
@@ -14,7 +15,7 @@
   justify-content: center;
   max-width: 1200px;
   width: 100%;
-  margin: 30px auto;
+  margin: 20px auto;
 }
 
 /* Estilos para cada tarjeta de ejercicio */
@@ -389,4 +390,69 @@ fieldset {
 
 .add-exercise-button:hover {
   background-color: #543bf8;
+}
+/* Estilos para el formulario de filtros */
+.filter-form {
+  background-color: #f7f7f7;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.filter-form label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.filter-form input[type="text"],
+.filter-form select {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s;
+  flex: 1;
+  height: 2.5rem;
+  margin-bottom: 0.5rem;
+  align-self: stretch;
+  font-family: 'Montserrat', sans-serif; 
+}
+
+.filter-form input[type="checkbox"] {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 0;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s;
+  flex: 0;
+  align-self: center;
+}
+
+
+.filter-form input[type="text"]:hover,
+.filter-form select:hover,
+.filter-form input[type="checkbox"]:hover {
+  background-color: #ddd;
+}
+
+.filter-form input[type="text"]:focus,
+.filter-form select:focus,
+.filter-form input[type="checkbox"]:focus {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  border-color: #555;
 }
