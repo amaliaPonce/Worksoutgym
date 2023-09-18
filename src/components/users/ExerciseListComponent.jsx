@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { ExercisesService } from "../../service/index";
 import ExercisePostComponent from "./ExercisePostComponent";
-
+import "../../styles/dashboard/exercisePage.css"
 function ExerciseListComponent() {
   const { user } = useContext(AppContext);
   const [exercises, setExercises] = useState([]);

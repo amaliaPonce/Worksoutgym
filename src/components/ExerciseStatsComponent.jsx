@@ -282,7 +282,7 @@ function ExerciseStatsComponent({ exercises }) {
             <VictoryLegend
               orientation="vertical"
               gutter={10}
-              style={{ labels: { fontSize: 25, fontFamily: "Montserrat" } }}
+              style={{ labels: { fontSize: 25, fontFamily: "Montserrat" } }} 
               data={[
                 {
                   name: `Recomendados: ${Math.round(
@@ -330,7 +330,9 @@ function ExerciseStatsComponent({ exercises }) {
               <span className="info-text">
                 Muscle Group: {exercise.muscleGroup}
               </span>
-              <span className="info-text">Creado: {exercise.created_at}</span>
+              <span className="info-text">
+                Creado: {exercise.created_at}
+              </span>
             </Link>
           </li>
         ))}
@@ -365,3 +367,4 @@ function ExerciseStatsComponent({ exercises }) {
 }
 
 export default ExerciseStatsComponent;
+
