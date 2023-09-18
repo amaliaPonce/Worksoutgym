@@ -60,7 +60,7 @@ function ExerciseListComponent() {
   };
 
   return (
-    <section className={`exercise-list`}>
+    <section className="exercise-list">
       <h2>Lista de Ejercicios</h2>
       <form className="filter-form">
         <section>

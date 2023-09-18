@@ -59,7 +59,7 @@ function InfoExerciseComponent() {
   }
 
   return (
-    <section className={`info-exercise`}>
+    <section className="info-exercise">
       {loading ? (
         <p>Cargando información del ejercicio...</p>
       ) : error ? (

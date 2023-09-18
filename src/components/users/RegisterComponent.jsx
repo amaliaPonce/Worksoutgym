@@ -24,7 +24,7 @@ function RegisterComponent() {
   };
 
   return (
-    <section className={`register-container `}>
+    <section className="register-container">
       <h2 className="register-title">Regístrate</h2>
       {registrationSuccess && (
         <p className="register-subtitle">
@@ -36,7 +36,7 @@ function RegisterComponent() {
         <section>
           <label>Nombre:</label>
           <input
-            className={`register-input `}
+            className="register-input"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -45,7 +45,7 @@ function RegisterComponent() {
         <section>
           <label>Email:</label>
           <input
-            className={`register-input `}
+            className="register-input"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -54,7 +54,7 @@ function RegisterComponent() {
         <section>
           <label>Contraseña:</label>
           <input
-            className={`register-input `}
+            className="register-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

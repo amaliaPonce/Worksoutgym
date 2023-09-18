@@ -47,7 +47,7 @@ function UpdateUserRole({ userId, userRole }) {
   };
 
   return (
-    <section className={`user-details `}>
+    <section className="user-details">
       <h2>Editar Rol de Usuario</h2>
       <form onSubmit={handleSubmit}>
         <section className="user-details">

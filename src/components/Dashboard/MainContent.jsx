@@ -5,7 +5,6 @@ import { ExercisesService } from "../../service/index";
 import ExerciseStatsComponent from "../ExerciseStatsComponent";
 import { AppContext } from "../../context/AppContext";
 import "../../styles/dashboard/main.css";
-
 function MainContent() {
   const { user } = useContext(AppContext);
 
@@ -25,13 +24,13 @@ function MainContent() {
   }, [user]);
 
   return (
-    <section className={`app-container`}>
+    <section className="app-container">
       <HeaderDashboard />
       <Sidebar />
-      <section className={`content-container `}>
-        <main className={`main-content `}>
-          <h2 className={`main-title `}>Contenido Principal</h2>
-          <p className={`main-description`}>
+      <section className="content-container">
+        <main className="main-content">
+          <h2>Contenido Principal</h2>
+          <p>
             Bienvenido al panel de administración. Aquí puedes ver estadísticas,
             gestionar usuarios y configurar tu aplicación.
           </p>

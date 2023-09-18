@@ -4,7 +4,7 @@ import "../../styles/dashboard/sidebar.css";
 
 const Sidebar = () => {
   return (
-    <aside className={`aside`}>
+    <aside className="aside">
       <Link to="/" className="nav-logo">
         <img src={Logo} alt="" />
       </Link>

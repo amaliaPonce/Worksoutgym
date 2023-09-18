@@ -5,7 +5,7 @@ function Accordion({ children, title }) {
   const [show, setShow] = useState(false);
 
   return (
-    <div className={`accordion`}>
+    <div className="accordion">
       <Button
         handleClick={() => setShow(!show)}
         isActive={show}

@@ -77,9 +77,7 @@ function InfoUserComponent() {
         <h2>Detalles del Usuario</h2>
         <UserPostComponent user={userData} />
         {user.id === userData.id && (
-          <Button handleClick={() => setEditMode(true)} className={`buttons `}>
-            Editar perfil
-          </Button>
+          <Button handleClick={() => setEditMode(true)}>Editar perfil</Button>
         )}
       </section>
       {editMode ? (
@@ -138,11 +136,7 @@ function InfoUserComponent() {
                 style={{ maxWidth: "200px" }}
               />
             )}
-            <Button
-              handleClick={handleUpdateProfile}
-              type="submit"
-              className={`buttons `}
-            >
+            <Button handleClick={handleUpdateProfile} type="submit">
               Guardar Cambios
             </Button>
           </form>

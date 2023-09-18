@@ -65,9 +65,8 @@ function AddExercise() {
   };
 
   return (
-    <section className={`add-exercise `}>
-      {" "}
-      <Button className={`buttons `} handleClick={handleToggleForm}>
+    <section className="add-exercise-container">
+      <Button className={`buttons`} handleClick={handleToggleForm}>
         {isFormOpen ? "Cerrar Formulario" : "Añadir Ejercicio"}
       </Button>
       {isFormOpen && (

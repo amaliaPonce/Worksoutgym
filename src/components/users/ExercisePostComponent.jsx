@@ -53,7 +53,7 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   };
 
   return (
-    <section className={`exercise-card `}>
+    <section className="exercise-card">
       {" "}
       <section className="exercise-image">
         <img

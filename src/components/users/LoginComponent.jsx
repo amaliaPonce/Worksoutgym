@@ -42,8 +42,8 @@ function LoginComponent() {
   };
 
   return (
-    <section className={`login-container `}>
-      <h2 className={`login-title `}>Iniciar Sesión</h2>
+    <section className="login-container">
+      <h2 className="login-title">Iniciar Sesión</h2>
       <form onSubmit={handleLogin}>
         <input
           className={`login-input ${error && "error"}`}
