@@ -76,19 +76,77 @@
   margin: 0;
 }
 
-/* Estilos para los botones (ESTO ES PARA CAMBIAR POR EL COMPONENTE BUTTON) */
-.exercise-card button {
-  background-color: #7257fa;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+/* CSS para el botón con el corazón */
+.heart-button input {
+  position: absolute;
+  opacity: 0;
   cursor: pointer;
-  margin-top: 1rem;
-  transition: background-color 0.2s;
+  height: 0;
+  width: 0;
 }
 
-.exercise-card button:hover {
-  background-color: #543bf8;
+.heart-button {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
 }
 
+.heart-button svg {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  transition: all 0.3s;
+  fill: #E3474F;
+}
+
+.heart-button input:checked ~ svg {
+  fill: #8c8c8c;
+}
+
+.heart-button svg:hover {
+  transform: scale(1.1);
+}
+
+.heart-button input ~ svg {
+  fill: #ff0101;
+}
+
+/* CSS para el botón "Recommended" */
+.recommended-button input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.recommended-button {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.recommended-button svg {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 24px; /* Ajusta el tamaño del pulgar según tus preferencias */
+  width: 24px;
+  transition: all 0.3s;
+}
+
+.recommended-button input:checked ~ svg {
+  fill: #075f88;
+}
+
+.recommended-button svg:hover {
+  transform: scale(1.1);
+}
+
+.recommended-button input ~ svg {
+  fill: #838383;
+}
