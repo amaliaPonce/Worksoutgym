@@ -141,7 +141,7 @@ function AddExercise() {
                 type="submit"
                 disabled={loading}
                 className={`buttons`}
-              >
+              >n
                 {loading ? "Agregando..." : "Agregar Ejercicio"}
               </Button>
             )}
