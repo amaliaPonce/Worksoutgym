@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import "../../styles/dashboard/exercisePage.css";
+import "../../styles/addExercise.css";
 import { AddExerciseService } from "../../service/index";
 import Button from "../Button";
 
@@ -70,10 +70,10 @@ function AddExercise() {
         {isFormOpen ? "Cerrar Formulario" : "Añadir Ejercicio"}
       </Button>
       {isFormOpen && (
-        <section>
+        <div>
           <form className="add-exercise-form" onSubmit={handleAddExercise}>
             {error && <p className="error-message">Error: {error}</p>}
-            <fieldset className="form-group">
+            <div className="form-group">
               <label htmlFor="name" className="add-exercise-label">
                 Nombre:
               </label>
@@ -86,8 +86,8 @@ function AddExercise() {
                 className="add-exercise-input"
                 required
               />
-            </fieldset>
-            <fieldset className="form-group">
+            </div>
+            <div className="form-group">
               <label htmlFor="description" className="add-exercise-label">
                 Descripción:
               </label>
@@ -99,8 +99,8 @@ function AddExercise() {
                 className="add-exercise-textarea"
                 required
               ></textarea>
-            </fieldset>
-            <fieldset className="form-group">
+            </div>
+            <div className="form-group">
               <label htmlFor="muscleGroup" className="add-exercise-label">
                 Grupo Muscular:
               </label>
@@ -115,11 +115,11 @@ function AddExercise() {
                 <option value="">Seleccionar</option>
                 <option value="Tren superior">Tren superior</option>
                 <option value="Tren inferior">Tren inferior</option>
-                <option value="core">Core</option>
+                <option value="Core">Core</option>
                 <option value="Full body">Full body</option>
               </select>
-            </fieldset>
-            <fieldset className="form-group">
+            </div>
+            <div className="form-group">
               <label htmlFor="photo" className="add-exercise-label">
                 Foto:
               </label>
@@ -132,7 +132,7 @@ function AddExercise() {
                 className="add-exercise-file-input"
                 required
               />
-            </fieldset>
+            </div>
             {added ? (
               <p className="success-message">Ejercicio agregado con éxito.</p>
             ) : (
@@ -146,7 +146,7 @@ function AddExercise() {
               </Button>
             )}
           </form>
-        </section>
+        </div>
       )}
     </section>
   );
