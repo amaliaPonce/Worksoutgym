@@ -71,7 +71,7 @@ function InfoUserComponent() {
   }
 
   return (
-    <section>
+    <section className="info-exercise">
       {message && <p>{message}</p>}
       <section>
         <h2>Detalles del Usuario</h2>
@@ -81,54 +81,79 @@ function InfoUserComponent() {
         )}
       </section>
       {editMode ? (
-        <section>
+        <section className="add-exercise-container">
           <h3>Formulario de edición</h3>
-          <form onSubmit={handleUpdateProfile}>
-            <label>Nombre:</label>
+          <form className="add-exercise-form" onSubmit={handleUpdateProfile}>
+            <label htmlFor="name" className="add-exercise-label">
+              Nombre:
+            </label>
             <input
+              className="add-exercise-input"
               type="text"
               name="name"
               value={userProfileData.name}
               onChange={handleChange}
               required
             />
-            <label>Biografía:</label>
+            <label htmlFor="biography" className="add-exercise-label">
+              Biografía:
+            </label>
             <input
+              className="add-exercise-input"
               type="text"
               name="biography"
               value={userProfileData.biography}
               onChange={handleChange}
             />
-            <label>Apellidos:</label>
+            <label htmlFor="lastName" className="add-exercise-label">
+              Apellidos:
+            </label>
             <input
+              className="add-exercise-input"
               type="text"
               name="lastName"
               value={userProfileData.lastName}
               onChange={handleChange}
             />
-            <label>Fecha de cumpleaños:</label>
+            <label htmlFor="birthday" className="add-exercise-label">
+              Fecha de cumpleaños:
+            </label>
             <input
+              className="add-exercise-input"
               type="text"
               name="birthDate"
               value={userProfileData.birthDate}
               onChange={handleChange}
             />
-            <label>Dirección:</label>
+            <label htmlFor="address" className="add-exercise-label">
+              Dirección:
+            </label>
             <input
+              className="add-exercise-input"
               type="text"
               name="address"
               value={userProfileData.address}
               onChange={handleChange}
             />
-            <label>Teléfono:</label>
+            <label htmlFor="phone_number" className="add-exercise-label">
+              Teléfono:
+            </label>
             <input
+              className="add-exercise-input"
               type="text"
               name="phone_number"
               value={userProfileData.phone_number}
               onChange={handleChange}
             />
-            <label>Foto:</label>
-            <input type="file" name="photo" onChange={handleFileChange} />
+            <label htmlFor="photo" className="add-exercise-label">
+              Foto:
+            </label>
+            <input
+              type="file"
+              name="photo"
+              className="add-exercise-file-input"
+              onChange={handleFileChange}
+            />
             {userProfileData.photo && (
               <img
                 src={URL.createObjectURL(userProfileData.photo)}
@@ -136,7 +161,11 @@ function InfoUserComponent() {
                 style={{ maxWidth: "200px" }}
               />
             )}
-            <Button handleClick={handleUpdateProfile} type="submit">
+            <Button
+              handleClick={handleUpdateProfile}
+              type="submit"
+              className={`buttons`}
+            >
               Guardar Cambios
             </Button>
           </form>

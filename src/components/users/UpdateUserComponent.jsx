@@ -73,7 +73,7 @@ function EditProfile() {
   }
 
   return (
-    <section className="user-details">
+    <section className="exercise-details">
       <h2>Editar Perfil</h2>
       {message && <p>{message}</p>}
 
