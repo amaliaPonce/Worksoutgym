@@ -12,8 +12,8 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   justify-content: center;
-  width: 100%;
   max-width: 1200px;
+  width: 100%;
   margin: 30px auto;
 }
 
@@ -21,7 +21,7 @@
 .exercise-card {
   background-color: #f1f1f3;
   border-radius: 0.75rem;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.03);
   cursor: pointer;
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -31,9 +31,10 @@
 
 .exercise-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0px 12px 16px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.1);
 }
 
+/* Estilos para el número de ejercicio */
 .exercise-id {
   position: absolute;
   top: 10px;
@@ -45,18 +46,48 @@
   font-size: 0.8rem;
 }
 
-/* Estilos para la imagen del ejercicio */
+/* Estilos para el contenedor de imagen de ejercicio */
+/* Establecer una relación de aspecto 1:1 para el contenedor de imágenes */
 .exercise-image-container {
+  position: relative;
   width: 100%;
-  height: auto;
+  padding-top: 100%; /* 1:1 relación de aspecto */
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
+  overflow: hidden;
 }
 
-.exercise-image img {
+/* Estilos para la imagen de ejercicio */
+.exercise-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Estilos para la imagen dentro del contenedor */
+.exercise-image-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Esto mantiene la relación de aspecto y ajusta la imagen sin cortar */
+}
+
+
+/* Estilos para el número de ejercicio */
+.exercise-id {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #7257fa;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  z-index: 1;
 }
 
 /* Estilos para el contenido del ejercicio */
@@ -100,7 +131,7 @@
   height: 24px;
   width: 24px;
   transition: all 0.3s;
-  fill: #E3474F;
+  fill: #e3474f;
 }
 
 .heart-button input:checked ~ svg {
@@ -135,7 +166,7 @@
   position: relative;
   top: 0;
   left: 0;
-  height: 34px; /* Ajusta el tamaño del pulgar según tus preferencias */
+  height: 34px;
   width: 24px;
   transition: all 0.3s;
 }
@@ -151,6 +182,7 @@
 .recommended-button input ~ svg {
   fill: #838383;
 }
+
 /* CSS para el botón con el corazón */
 .heart-button input {
   position: absolute;
@@ -161,15 +193,13 @@
 }
 
 .heart-button {
-  display: inline-block; 
+  display: inline-block;
   position: relative;
   cursor: pointer;
   user-select: none;
   margin: 20px 40px;
   border: none;
   outline: none;
-
-
 }
 
 .heart-button svg {
@@ -179,7 +209,7 @@
   height: 24px;
   width: 24px;
   transition: all 0.3s;
-  fill: #E3474F; 
+  fill: #e3474f;
   pointer-events: none;
 }
 
@@ -192,7 +222,7 @@
 }
 
 .heart-button input ~ svg {
-  fill: #ff0000; 
+  fill: #ff0000;
 }
 
 /* CSS para el botón "Recommended" */
@@ -204,7 +234,6 @@
   width: 0;
 }
 
-
 .recommended-button {
   display: inline-block;
   position: relative;
@@ -213,8 +242,6 @@
   margin: 20px 40px;
   border: none;
   outline: none;
-
-
 }
 
 .recommended-button svg {
@@ -227,7 +254,7 @@
 }
 
 .recommended-button input:checked ~ svg {
-  fill: #002b81; 
+  fill: #002b81;
 }
 
 .recommended-button svg:hover {
@@ -235,7 +262,7 @@
 }
 
 .recommended-button input ~ svg {
-  fill: #888888; 
+  fill: #888888;
 }
 
 /* CSS para el botón de toggle */
@@ -254,9 +281,6 @@
   background-color: #543bf8;
 }
 
-
-
-
 /* Estilos para el contenedor del formulario */
 .add-exercise-container {
   background-color: #f7f7f7;
@@ -268,7 +292,6 @@
   text-align: left;
   transition: transform 0.2s, box-shadow 0.2s;
   position: relative;
-  
 }
 
 .add-exercise-container:hover {
@@ -307,18 +330,15 @@
   color: #333;
   cursor: pointer;
   transition: background-color 0.2s, box-shadow 0.2s;
-  margin:5px 0;
+  margin: 5px 0;
   margin-bottom: 20px;
-
 }
 
-
 /* Elimina el borde alrededor de los elementos de formulario */
-
-
 fieldset {
   border: none; /* Elimina el borde */
 }
+
 .add-exercise-select {
   appearance: none;
   background: transparent;

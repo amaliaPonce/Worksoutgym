@@ -8,6 +8,7 @@ import {
 } from "../../service/index";
 import ExercisePostComponent from "./ExercisePostComponent";
 import Button from "../Button";
+import "../../styles/dashboard/exercisePage.css"
 
 function InfoExerciseComponent() {
   const { user } = useContext(AppContext);
@@ -69,10 +70,10 @@ function InfoExerciseComponent() {
           <section>
             <h2>Detalles del Ejercicio</h2>
             <ExercisePostComponent
-              exercise={exercise}
-              isFavorite={exercise.isFavorite}
-              isRecommended={exercise.isRecommended}
-            />
+  exercise={exercise}
+  isFavorite={exercise.isFavorite}
+  isRecommended={exercise.isRecommended}
+/>
             {user?.role === "admin" && (
               <>
                 <Button

@@ -61,12 +61,15 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   return (
     <div className="exercise-card" onClick={redirectToDetailsPage}>
       <div className="exercise-id">{exercise.id}</div>
-      <section className="exercise-image">
-        <img
-          src={`${process.env.REACT_APP_BACKEND}/uploads/${exercise.photoName}`}
-          alt={exercise.name}
-        />
-      </section>
+      <section className="exercise-image-container">
+  <div className="exercise-image-overlay">
+    <img
+      src={`${process.env.REACT_APP_BACKEND}/uploads/${exercise.photoName}`}
+      alt={exercise.name}
+    />
+  </div>
+</section>
+
       <section className="exercise-details">
         <p className="exercise-title">
           <strong>Nombre:</strong> {exercise.name}
