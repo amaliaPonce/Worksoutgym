@@ -8,7 +8,7 @@ const ListUserPage = () => {
   const { user } = useContext(AppContext);
 
   return (
-    <div className="pages">
+    <div>
       <HeaderDashboard />
       {user.role === "admin" && <ListUserComponent />}
       <Sidebar />

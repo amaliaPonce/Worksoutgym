@@ -1,54 +1,54 @@
 /* Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,600&family=Poppins:wght@300&family=Raleway:wght@100;300;700&family=Roboto:ital,wght@1,400;1,700&display=swap");
 
+/* Grupo de colores principales */
 :root {
-
   --header-height: 3rem;
   --title-color: #ffffff;
   --title-color-dark: #000000;
-  --text-color:#9FB8AD ;
-  --text-color-dark: #383E56;
-  --button-color:#FB743E;
-  --body-color: #f0f0f0; 
-  --container-color: #ffffff; 
+  --text-color: #9fb8ad;
+  --text-color-dark: #383e56;
+  --button-color: #fb743e;
+  --body-color: #f0f0f0;
+  --container-color: #ffffff;
 
-    /* Font and typography */
+  /* Font and typography */
 
-    --body-font: "Montserrat", sans-serif;
-  
-    /* .5rem = 8px | 1rem = 16px */
-  
-    --big-font-size: 3.5rem;
-    --h1-font-size: 2rem;
-    --h2-font-size: 1.5rem;
-    --h3-font-size: 1.25rem;
-    --normal-font-size: 1rem;
-    --small-font-size: 0.875rem;
-    --smaller-font-size: 0.813rem;
-    --tiny-font-size: 0.625rem;
-  
-    /* Font weight */
-    --font-normal: 400;
-    --font-medium: 800;
-    --font-semi-bold: 600;
-  
-    /* Margenes Bottom */
-    /* .5rem = 8px | 1rem = 16px */
-    --mb-0-25: 0.25rem;
-    --mb-0-5: 0.5rem;
-    --mb-0-75: 0.75rem;
-    --mb-1: 1rem;
-    --mb-1-5: 1.5rem;
-    --mb-2: 2rem;
-    --mb-2-5: 2.5rem;
-    --mb-3: 3rem;
-  
-    /* Z-index */
-  
-    --z-tooltip: 10;
-    --z-fixed: 100;
-    --z-modal: 1000;
-  }
+  --body-font: "Montserrat", sans-serif;
+
+  /* .5rem = 8px | 1rem = 16px */
+
+  --big-font-size: 3.5rem;
+  --h1-font-size: 2rem;
+  --h2-font-size: 1.5rem;
+  --h3-font-size: 1.25rem;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+  --smaller-font-size: 0.813rem;
+  --tiny-font-size: 0.625rem;
+
+  /* Font weight */
+  --font-normal: 400;
+  --font-medium: 800;
+  --font-semi-bold: 600;
+
+  /* Margenes Bottom */
+  /* .5rem = 8px | 1rem = 16px */
+  --mb-0-25: 0.25rem;
+  --mb-0-5: 0.5rem;
+  --mb-0-75: 0.75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  --mb-3: 3rem;
+
+  /* Z-index */
+
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
 
 /* BASE */
 * {
@@ -74,9 +74,7 @@ body {
 h1,
 h2,
 h3 {
-  
   font-weight: var(--font-semi-bold);
-  
 }
 ul {
   list-style: none;
@@ -85,120 +83,110 @@ a {
   text-decoration: none;
 }
 
-
 /* Responsive typography */
 
-  /* REUSABLE CSS CLASSES */
+/* REUSABLE CSS CLASSES */
 
-  .section {
-    padding: 8rem 0 2rem;
+.section {
+  padding: 8rem 0 2rem;
+}
 
-  }
+.section__title {
+  font-size: var(--h1-font-size);
+  color: var(--title-color);
+}
 
-  .section__title {
-    font-size: var(--h1-font-size);
-    color: var(--title-color);
-  }
+.section__subtitle {
+  display: block;
+  font-size: var(--small-font-size);
+  margin-bottom: 4rem;
+}
 
-  .section__subtitle {
-    display: block;
-    font-size: var(--small-font-size);
-    margin-bottom: 4rem;
-  }
+.section__title,
+.section__subtitle {
+  text-align: center;
+}
+/* Layout */
+.container {
+  max-width: 968px;
+  margin: auto;
+}
+/* Buttons */
 
-  .section__title,
-  .section__subtitle {
-    text-align: center;
-  }
-  /* Layout */
-  .container {
-    max-width: 968px;
-    margin: auto;
-  }
-  /* Buttons */
+.buttons {
+  display: inline-block;
+  background-color: var(--title-color);
+  color: var(--container-color);
+  padding: 0.75rem 1.25rem;
+  border-radius: 1rem;
+  font-weight: var(--font-medium);
+  font-size: 1rem;
+}
+.buttons:hover {
+  background-color: var(--title-color-dark);
+}
+.buttons__icon {
+  margin-left: var(--mb-0-5);
+}
+.buttons--flex {
+  display: inline-flex;
+  align-items: center;
+}
+.buttons--flex .button__icon {
+  margin-left: 0.5rem;
+  width: 20px;
+  height: 20px;
+}
 
-  .button {
-    display: inline-block;
-    background-color: var(--title-color);
-    color: var(--container-color);
-    padding: 0.75rem 1.25rem;
-    border-radius: 1rem;
-    font-weight: var(--font-medium);
-    font-size: 1rem;
-   
-  }
-  .button:hover {
-    background-color: var(--title-color-dark);
-  }
-  .button__icon {
-    margin-left: var(--mb-0-5);
-    
-  }
-  .button--flex {
-    display: inline-flex;
-    align-items: center;
-    
-  }
-  .button--flex .button__icon {
-    margin-left: 0.5rem;
-    width: 20px; 
-    height: 20px; 
-    
-  }
-  
-  .button.button--flex span {
-    white-space: nowrap;
-    margin-right: 10px; 
-  }
-  /* BREAKPOINTS */
-  
+.buttons.button--flex span {
+  white-space: nowrap;
+  margin-right: 10px;
+}
+/* BREAKPOINTS */
+
 /* For large devices */
 
-  @media screen and (max-width: 992px) {
-    :root {
-      --big-font-size: 2.75rem;
-      --h1-font-size: 1rem;
-      --h2-font-size: 1.25rem;
-      --h3-font-size: 1rem;
-      --normal-font-size: 0.938rem;
-      --small-font-size: 0.813rem;
-      --smaller-font-size: 0.75rem;
-    }
-  
+@media screen and (max-width: 992px) {
+  :root {
+    --big-font-size: 2.75rem;
+    --h1-font-size: 1rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+    --smaller-font-size: 0.75rem;
+  }
+
   .container {
-      margin-left: var(--mb-1-5);
-      margin-right: var(--mb-1-5);
-    }
-    .button {
-      padding: 1rem 1.75rem;
-    }
-    .button__icon{
-      width: 22px;
-      height: 22px;
-    }
+    margin-left: var(--mb-1-5);
+    margin-right: var(--mb-1-5);
   }
-  /* For medium devices */
-  @media screen and (max-width:768px){
-    body{
-      margin: 0 0 var(--header-height) 0;
-    }
-    .section{
-      padding: 2rem 0 4rem;
-    }
-    .section__subtitle{
-      margin-bottom: var(--mb-3);
-    }
-
+  .button {
+    padding: 1rem 1.75rem;
   }
-  @media screen and (max-width:576px){
-
+  .button__icon {
+    width: 22px;
+    height: 22px;
   }
-  /* For small devices */
-  @media screen and (max-width: 350px) {
-    .container {
-      margin-left: var(--mb-1);
-      margin-right: var(--mb-1);
-    }
+}
+/* For medium devices */
+@media screen and (max-width: 768px) {
+  body {
+    margin: 0 0 var(--header-height) 0;
   }
-  
-  
+  .section {
+    padding: 2rem 0 4rem;
+  }
+  .section__subtitle {
+    margin-bottom: var(--mb-3);
+  }
+}
+@media screen and (max-width: 576px) {
+}
+/* For small devices */
+@media screen and (max-width: 350px) {
+  .container {
+    margin-left: var(--mb-1);
+    margin-right: var(--mb-1);
+  }
+}

@@ -367,3 +367,4 @@ function ExerciseStatsComponent({ exercises }) {
 }
 
 export default ExerciseStatsComponent;
+

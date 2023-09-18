@@ -17,7 +17,7 @@ const HomePageComponent = () => {
             cardiovascular que mejoran tu resistencia y queman calorías de
             manera efectiva.
           </p>
-          <Link to="/register" className="banner-button">
+          <Link to="/register" className={`buttons `}>
             Comienza Tu Viaje de Fitness
           </Link>
         </section>
@@ -28,8 +28,8 @@ const HomePageComponent = () => {
       <section className="features">
         <article className="feature">
           <i className="uil uil-user"></i>
-          <h3>Entrenadores Profesionales</h3>
-          <p>
+          <h3 className="feature-title">Entrenadores Profesionales</h3>
+          <p className="feature-description">
             Nuestros entrenadores certificados te guiarán en tu viaje de
             fitness. Te proporcionarán orientación experta y motivación
             constante para alcanzar tus metas de acondicionamiento físico.
@@ -37,8 +37,8 @@ const HomePageComponent = () => {
         </article>
         <article className="feature">
           <i className="uil uil-dumbbell"></i>
-          <h3>Variedad de Ejercicios</h3>
-          <p>
+          <h3 className="feature-title">Variedad de Ejercicios</h3>
+          <p className="feature-description">
             Ofrecemos una amplia gama de ejercicios para satisfacer tus
             necesidades. Desde entrenamientos de resistencia hasta clases de
             yoga relajantes, tenemos algo para todos los niveles y preferencias.
@@ -46,8 +46,8 @@ const HomePageComponent = () => {
         </article>
         <article className="feature">
           <i className="uil uil-trophy"></i>
-          <h3>Resultados Garantizados</h3>
-          <p>
+          <h3 className="feature-title">Resultados Garantizados</h3>
+          <p className="feature-description">
             Nuestra comunidad ha logrado resultados impresionantes. ¡Únete a
             nosotros! Aquí, no solo te ayudaremos a alcanzar tus objetivos de
             fitness, sino que también te convertirás en una parte valiosa de

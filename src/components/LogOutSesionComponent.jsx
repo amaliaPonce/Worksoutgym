@@ -14,7 +14,9 @@ function LogOutSession() {
 
   return (
     <div className="logout-session">
-      <Button handleClick={handleLogout}>Cerrar Sesión</Button>
+      <Button handleClick={handleLogout} className={`buttons`}>
+        Cerrar Sesión
+      </Button>
     </div>
   );
 }

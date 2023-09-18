@@ -54,13 +54,13 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
 
   return (
     <section className="exercise-card">
+      {" "}
       <section className="exercise-image">
         <img
           src={`${process.env.REACT_APP_BACKEND}/uploads/${exercise.photoName}`}
           alt={exercise.name}
         />
       </section>
-
       <section className="exercise-details">
         <p className="exercise-title">
           <strong>ID:</strong> {exercise.id}
@@ -74,16 +74,17 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
         <p className="exercise-details">
           <strong>Grupo Muscular:</strong> {exercise.muscleGroup}
         </p>
-        <Button handleClick={handleToggleFavorite}>
+        <Button handleClick={handleToggleFavorite} className={`buttons `}>
           {exerciseIsFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
         </Button>
-        <Button handleClick={handleToggleRecommendation}>
+        <Button handleClick={handleToggleRecommendation} className={`buttons `}>
           {exerciseIsRecommended
             ? "Desmarcar como recomendado"
             : "Marcar como recomendado"}
         </Button>
         <Button
           handleClick={() => navigate(`/usersPage/exercises/${exercise.id}`)}
+          className={`buttons `}
         >
           Ver detalles
         </Button>

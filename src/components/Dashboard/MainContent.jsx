@@ -2,9 +2,9 @@ import React, { useEffect, useState, useContext } from "react";
 import HeaderDashboard from "./HeaderDashboard";
 import Sidebar from "./Sidebar";
 import { ExercisesService } from "../../service/index";
-import ExerciseStatsComponent from "../ExerciseStatsComponent"; 
+import ExerciseStatsComponent from "../ExerciseStatsComponent";
 import { AppContext } from "../../context/AppContext";
-import "../../styles/dashboard/main.css"
+import "../../styles/dashboard/main.css";
 function MainContent() {
   const { user } = useContext(AppContext);
 

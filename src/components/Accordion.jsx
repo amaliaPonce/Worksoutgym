@@ -1,14 +1,19 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import Button from "./Button";
 
 function Accordion({ children, title }) {
   const [show, setShow] = useState(false);
 
   return (
     <div className="accordion">
-      <button onClick={() => setShow(!show)}>
+      <Button
+        handleClick={() => setShow(!show)}
+        isActive={show}
+        className={`buttons `}
+      >
         {show ? "Ocultar todo " : "Mostrar todo "}
         {title}
-      </button>
+      </Button>
       {show && children}
     </div>
   );

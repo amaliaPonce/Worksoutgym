@@ -4,6 +4,7 @@ import { loginServise } from "../../service/index";
 import "../../styles/login.css";
 import { AppContext } from "../../context/AppContext";
 import Button from "../Button";
+
 function LoginComponent() {
   const navigate = useNavigate();
   const { login } = useContext(AppContext);
@@ -13,7 +14,10 @@ function LoginComponent() {
   const [error, setError] = useState("");
 
   const handleLogin = async (event) => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
+
     setError("");
     setIsLoading(true);
 
@@ -62,13 +66,13 @@ function LoginComponent() {
         <Button
           handleClick={handleLogin}
           type="submit"
-          className="login-button"
+          className={`buttons`}
           disabled={isLoading}
         >
           <span>{isLoading ? "Cargando..." : "Iniciar Sesión"}</span>
         </Button>
-        {error && <p className="login-error">{error}</p>}
-        {isLoading && <p className="login-loading">Cargando...</p>}
+        {error && <p className={`login-error `}>{error}</p>}
+        {isLoading && <p className={`login-loading `}>Cargando...</p>}
       </form>
     </section>
   );

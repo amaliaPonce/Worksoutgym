@@ -59,7 +59,7 @@ function InfoExerciseComponent() {
   }
 
   return (
-    <section>
+    <section className="info-exercise">
       {loading ? (
         <p>Cargando información del ejercicio...</p>
       ) : error ? (
@@ -75,10 +75,16 @@ function InfoExerciseComponent() {
             />
             {user?.role === "admin" && (
               <>
-                <Button handleClick={handleDeleteExercise}>
+                <Button
+                  handleClick={handleDeleteExercise}
+                  className={`buttons `}
+                >
                   Borrar ejercicio
                 </Button>
-                <Button handleClick={() => setEditMode(true)}>
+                <Button
+                  handleClick={() => setEditMode(true)}
+                  className={`buttons `}
+                >
                   Editar ejercicio
                 </Button>
               </>
@@ -132,7 +138,7 @@ function InfoExerciseComponent() {
                   }
                 />
               </fieldset>
-              <Button handleClick={handleUpdateExercise}>
+              <Button handleClick={handleUpdateExercise} className={`buttons `}>
                 Guardar Cambios
               </Button>
             </section>

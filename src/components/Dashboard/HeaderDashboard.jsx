@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import "../../styles/dashboard/headerDashboard.css";
 import { AppContext } from "../../context/AppContext";
-import { useNavigate } from "react-router-dom"; // Importa useNavigate
+import { useNavigate } from "react-router-dom";
 
 function HeaderDashboard() {
   const [menuActive, setMenuActive] = useState(false);
   const { logout } = useContext(AppContext);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);

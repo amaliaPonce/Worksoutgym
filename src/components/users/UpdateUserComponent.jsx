@@ -7,13 +7,11 @@ import useUser from "../../hooks/useUser";
 function EditProfile() {
   const { user, login } = useContext(AppContext);
   const { userInfo } = useUser(user.id, user.token);
-  //console.log("UserInfo", userInfo);
   const [userData, setUserData] = useState(userInfo[0]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Obtener los datos del usuario al cargar el componente
     const fetchUserData = async () => {
       try {
         if (!user || !user.token) {
@@ -75,7 +73,7 @@ function EditProfile() {
   }
 
   return (
-    <section>
+    <section className="user-details">
       <h2>Editar Perfil</h2>
       {message && <p>{message}</p>}
 
@@ -132,7 +130,11 @@ function EditProfile() {
             style={{ maxWidth: "200px" }}
           />
         )}
-        <Button handleClick={handleUpdateProfile} type="submit">
+        <Button
+          handleClick={handleUpdateProfile}
+          type="submit"
+          className={`buttons`}
+        >
           Guardar Cambios
         </Button>
       </form>

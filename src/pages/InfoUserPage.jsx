@@ -1,15 +1,13 @@
-import { useContext } from "react";
+import React from "react";
 import InfoUserComponent from "../components/users/InfoUserComponent";
 import HeaderDashboard from "../components/Dashboard/HeaderDashboard";
 import Sidebar from "../components/Dashboard/Sidebar";
-import { AppContext } from "../context/AppContext";
-const InfoUserPage = () => {
-  const { user } = useContext(AppContext);
 
+const InfoUserPage = () => {
   return (
-    <div className="pages">
+    <div>
       <HeaderDashboard />
-      <InfoUserComponent user={user} />
+      <InfoUserComponent />
       <Sidebar />
     </div>
   );

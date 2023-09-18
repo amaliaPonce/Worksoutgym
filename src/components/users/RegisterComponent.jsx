@@ -60,11 +60,7 @@ function RegisterComponent() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </section>
-        <Button
-          handleClick={handleSubmit}
-          type="submit"
-          className="register-button"
-        >
+        <Button handleClick={handleSubmit} type="submit" className={`buttons `}>
           Registrarse
         </Button>
       </form>

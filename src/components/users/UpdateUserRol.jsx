@@ -71,7 +71,7 @@ function UpdateUserRole({ userId, userRole }) {
             <option value="admin">Administrador</option>
           </select>
         </section>
-        <Button handleClick={handleSubmit} type="submit">
+        <Button handleClick={handleSubmit} type="submit" className={`buttons `}>
           Guardar Cambios
         </Button>
       </form>
