@@ -2,7 +2,8 @@
 .exercise-page-container {
   display: flex;
   overflow-x: hidden;
-  padding: 1rem;
+  padding: 2rem;
+  margin: 100px;
 }
 
 /* Estilos para el contenedor de ejercicios */
@@ -25,7 +26,7 @@
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
   position: relative;
-  padding: 1rem; /* Agregamos padding para el contenido */
+  padding: 1rem;
 }
 
 .exercise-card:hover {
@@ -134,7 +135,7 @@
   position: relative;
   top: 0;
   left: 0;
-  height: 24px; /* Ajusta el tamaño del pulgar según tus preferencias */
+  height: 34px; /* Ajusta el tamaño del pulgar según tus preferencias */
   width: 24px;
   transition: all 0.3s;
 }
@@ -149,4 +150,223 @@
 
 .recommended-button input ~ svg {
   fill: #838383;
+}
+/* CSS para el botón con el corazón */
+.heart-button input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.heart-button {
+  display: inline-block; 
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  margin: 20px 40px;
+  border: none;
+  outline: none;
+
+
+}
+
+.heart-button svg {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  transition: all 0.3s;
+  fill: #E3474F; 
+  pointer-events: none;
+}
+
+.heart-button input:checked ~ svg {
+  fill: #919191;
+}
+
+.heart-button svg:hover {
+  transform: scale(1.1);
+}
+
+.heart-button input ~ svg {
+  fill: #ff0000; 
+}
+
+/* CSS para el botón "Recommended" */
+.recommended-button input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+
+.recommended-button {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  margin: 20px 40px;
+  border: none;
+  outline: none;
+
+
+}
+
+.recommended-button svg {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  transition: all 0.3s;
+}
+
+.recommended-button input:checked ~ svg {
+  fill: #002b81; 
+}
+
+.recommended-button svg:hover {
+  transform: scale(1.1);
+}
+
+.recommended-button input ~ svg {
+  fill: #888888; 
+}
+
+/* CSS para el botón de toggle */
+.toggle-form-button {
+  background-color: #7257fa;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background-color 0.2s;
+}
+
+.toggle-form-button:hover {
+  background-color: #543bf8;
+}
+
+
+
+
+/* Estilos para el contenedor del formulario */
+.add-exercise-container {
+  background-color: #f7f7f7;
+  border-radius: 0.5rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  
+}
+
+.add-exercise-container:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el formulario de añadir ejercicio */
+.add-exercise-form {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.add-exercise-label {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Estilos para los elementos de formulario sin una clase específica */
+.add-exercise-form input,
+.add-exercise-form textarea,
+.add-exercise-form select,
+.add-exercise-file-input {
+  background-color: #eee;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  font-size: 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  margin:5px 0;
+  margin-bottom: 20px;
+
+}
+
+
+/* Elimina el borde alrededor de los elementos de formulario */
+
+
+fieldset {
+  border: none; /* Elimina el borde */
+}
+.add-exercise-select {
+  appearance: none;
+  background: transparent;
+  background-position: right center;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+  cursor: pointer;
+}
+
+.add-exercise-file-input {
+  cursor: pointer;
+}
+
+/* Estilos para los mensajes de éxito y error */
+.success-message,
+.error-message {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #333;
+}
+
+.error-message {
+  color: #e10909;
+}
+
+/* Estilos para el botón de agregar ejercicio */
+.add-exercise-button {
+  background-color: #7257fa;
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 100%;
+  outline: none; /* Esta línea quitará el borde gris */
+}
+
+.add-exercise-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.add-exercise-button:hover {
+  background-color: #543bf8;
 }
