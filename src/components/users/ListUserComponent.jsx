@@ -36,12 +36,11 @@ function UserList() {
   };
 
   return (
-    <section className="user-list-container">
-      <h3 className="user-list-title">Lista de Usuarios</h3>
-      {error && <p className="user-list-error">Error: {error}</p>}
+    <section className="exercise-container">
+      {error && <p>Error: {error}</p>}
       <ul className="user-container ">
         {users.map((userItem) => (
-          <li className={`user-card `} key={userItem.id}>
+          <li className="exercise-card" key={userItem.id}>
             <UserPostComponent user={userItem} />
 
             <Button

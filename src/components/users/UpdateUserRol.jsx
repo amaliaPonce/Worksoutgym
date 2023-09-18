@@ -47,10 +47,10 @@ function UpdateUserRole({ userId, userRole }) {
   };
 
   return (
-    <section className="user-details">
+    <section className="exercise-details">
       <h2>Editar Rol de Usuario</h2>
       <form onSubmit={handleSubmit}>
-        <section className="user-details">
+        <section className="exercise-details">
           <label>Usuario ID:</label>
           <input
             type="text"
@@ -60,7 +60,7 @@ function UpdateUserRole({ userId, userRole }) {
             disabled
           />
         </section>
-        <section className="user-details">
+        <section className="exercise-details">
           <label>Nuevo Rol:</label>
           <select
             name="userRole"
