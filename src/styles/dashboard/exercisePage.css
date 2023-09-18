@@ -1,110 +1,94 @@
-/* Estilos para el contenedor(LAYOUT) de la página de ejercicios */
-
+/* Estilos para el contenedor principal */
 .exercise-page-container {
-  display: block;
-  align-items: center;
-  margin-left: 200px;
-  margin-top: 60px;
+  display: flex;
+  overflow-x: hidden;
+  padding: 1rem;
 }
-@media (max-width: 768px) {
-  .exercise-page-container {
-    display: block;
-    align-items: center;
-    margin-left: 100px;
-    margin-top: 60px;
-  }
-  .exercise-container {
-    display: block; 
-  }
 
-  .exercise-card {
-    width: 100%; 
-    padding: 1rem;
-    cursor: pointer;
-    border-radius: 0.75rem;
-    background: #f1f1f3;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.03);
-    text-align: center;
-    margin-bottom: 1rem;
-    position: relative;
-  }
-
-  .exercise-card .exercise-image-container {
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-  }
-
-  .exercise-card .exercise-details {
-    color: #6e6b80;
-    font-size: 0.86rem;
-    padding: 0 1rem;
-  }
-
-  .exercise-card .exercise-title {
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin: 0;
-  }
-
-  .exercise-card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 0.75rem;
-  }
-
-  .exercise-card .exercise-arrow {
-    position: absolute;
-    background: #7257fa;
-    padding: 0.4rem;
-    border-top-left-radius: 0.75rem;
-    border-bottom-right-radius: 0.75rem;
-    bottom: 0;
-    right: 0;
-    transition: 0.2s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .exercise-card .exercise-arrow > i {
-    transition: 0.2s;
-    color: #ffffff;
-  }
-  /* añadir  */
-  .add-exercise-container {
-    display: block;
-    width: 80%;
-    overflow-x: hidden; 
-
-
-  }
-
-  .add-exercise-title {
-    font-size: 20px;
-  }
-
-  .add-exercise-subtitle {
-    font-size: 14px;
-    margin-bottom: 15px;
-  }
-
-  .add-exercise-label {
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-
-  .add-exercise-input {
-   
-
-  }
-
-  .add-exercise-button {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
-
-  .add-exercise-signup {
-    font-size: 14px;
-  }
+/* Estilos para el contenedor de ejercicios */
+.exercise-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 30px auto;
 }
+
+/* Estilos para cada tarjeta de ejercicio */
+.exercise-card {
+  background-color: #f1f1f3;
+  border-radius: 0.75rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  padding: 1rem; /* Agregamos padding para el contenido */
+}
+
+.exercise-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 12px 16px 0px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-id {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #7257fa;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+}
+
+/* Estilos para la imagen del ejercicio */
+.exercise-image-container {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+}
+
+.exercise-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Estilos para el contenido del ejercicio */
+.exercise-details {
+  padding: 1rem;
+}
+
+.exercise-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0;
+  color: #7257fa;
+}
+
+.exercise-details p {
+  font-size: 0.86rem;
+  color: #6e6b80;
+  margin: 0;
+}
+
+/* Estilos para los botones (ESTO ES PARA CAMBIAR POR EL COMPONENTE BUTTON) */
+.exercise-card button {
+  background-color: #7257fa;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+
+.exercise-card button:hover {
+  background-color: #543bf8;
+}
+

@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import "../../styles/exerciseList.css";
 import { AppContext } from "../../context/AppContext";
 import { markFavoriteService } from "../../service/index";
 import { MarkRecommendedService } from "../../service/index";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
+
 
 const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   const { user } = useContext(AppContext);
