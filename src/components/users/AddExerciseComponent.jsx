@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import "../../styles/addExercise.css";
+import "../../styles/dashboard/exercisePage.css";
 import { AddExerciseService } from "../../service/index";
 import Button from "../Button";
 

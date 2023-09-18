@@ -13,12 +13,15 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
 
   const handleToggleFavorite = async () => {
     try {
+      // Envia una solicitud al servidor para marcar/desmarcar como favorito
       const result = await markFavoriteService(
         exercise.id,
         !exerciseIsFavorite, // Cambia el estado contrario al actual
         user
       );
+
       if (result.success) {
+        // Actualiza el estado local si la solicitud al servidor fue exitosa
         setExerciseIsFavorite(!exerciseIsFavorite);
         console.log(result.message);
       } else {
@@ -31,12 +34,15 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
 
   const handleToggleRecommendation = async () => {
     try {
+      // Envia una solicitud al servidor para marcar/desmarcar como recomendado
       const result = await MarkRecommendedService(
         exercise.id,
         !exerciseIsRecommended, // Cambia el estado contrario al actual
         user
       );
+
       if (result.success) {
+        // Actualiza el estado local si la solicitud al servidor fue exitosa
         setExerciseIsRecommended(!exerciseIsRecommended);
         console.log(result.message);
       } else {
