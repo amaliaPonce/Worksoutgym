@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import "../../styles/dashboard/headerDashboard.css";
 import { AppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
-import Button from "../Button";
 
 function HeaderDashboard() {
   const [menuActive, setMenuActive] = useState(false);
@@ -27,9 +26,7 @@ function HeaderDashboard() {
       <nav>
         <ul>
           <li>
-            <Button onClick={handleLogout} className="buttons">
-              Cerrar Sesión
-            </Button>
+            <button onClick={handleLogout}>Cerrar Sesión</button>
           </li>
         </ul>
       </nav>
@@ -38,3 +35,4 @@ function HeaderDashboard() {
 }
 
 export default HeaderDashboard;
+
