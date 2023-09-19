@@ -8,7 +8,7 @@ import {
 } from "../../service/index";
 import ExercisePostComponent from "./ExercisePostComponent";
 import Button from "../Button";
-import "../../styles/dashboard/exercisePage.css"
+import "../../styles/dashboard/infoExercise.css";
 
 function InfoExerciseComponent() {
   const { user } = useContext(AppContext);
@@ -70,21 +70,21 @@ function InfoExerciseComponent() {
           <section>
             <h2>Detalles del Ejercicio</h2>
             <ExercisePostComponent
-  exercise={exercise}
-  isFavorite={exercise.isFavorite}
-  isRecommended={exercise.isRecommended}
-/>
+              exercise={exercise}
+              isFavorite={exercise.isFavorite}
+              isRecommended={exercise.isRecommended}
+            />
             {user?.role === "admin" && (
               <>
                 <Button
                   handleClick={handleDeleteExercise}
-                  className={`buttons `}
+                  className={`buttons`}
                 >
                   Borrar ejercicio
                 </Button>
                 <Button
                   handleClick={() => setEditMode(true)}
-                  className={`buttons `}
+                  className={`buttons`}
                 >
                   Editar ejercicio
                 </Button>
@@ -139,7 +139,7 @@ function InfoExerciseComponent() {
                   }
                 />
               </fieldset>
-              <Button handleClick={handleUpdateExercise} className={`buttons `}>
+              <Button handleClick={handleUpdateExercise} className={`buttons`}>
                 Guardar Cambios
               </Button>
             </section>
