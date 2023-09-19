@@ -32,13 +32,13 @@ function UserList() {
 
   const handleToggleUserRoleForm = (userId) => {
     setSelectedUserId(userId);
-    setIsUserRoleFormVisible(true);
+    setIsUserRoleFormVisible(!isUserRoleFormVisible); // Alternar la visibilidad
   };
 
   return (
-    <section className="exercise-container">
+    <section>
       {error && <p>Error: {error}</p>}
-      <ul className="user-container ">
+      <ul className="exercise-container">
         {users.map((userItem) => (
           <li className="exercise-card" key={userItem.id}>
             <UserPostComponent user={userItem} />
@@ -47,15 +47,17 @@ function UserList() {
               handleClick={() => handleToggleUserRoleForm(userItem.id)}
               className={`buttons `}
             >
-              Cambiar Rol
+              {isUserRoleFormVisible ? "Cerrar Formulario" : "Cambiar Rol"}
             </Button>
+
+            {isUserRoleFormVisible && selectedUserId === userItem.id && (
+              <div>
+                <UpdateUserRole userId={selectedUserId} />
+              </div>
+            )}
           </li>
         ))}
       </ul>
-
-      {isUserRoleFormVisible && selectedUserId && (
-        <UpdateUserRole userId={selectedUserId} />
-      )}
     </section>
   );
 }
