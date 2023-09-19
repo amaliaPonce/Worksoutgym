@@ -112,35 +112,35 @@ a {
 }
 /* Buttons */
 
+/* Estilos para el componente Button */
+/* Estilos para el componente Button */
 .buttons {
   display: inline-block;
-  background-color: var(--title-color);
-  color: var(--container-color);
-  padding: 0.75rem 1.25rem;
-  border-radius: 1rem;
-  font-weight: var(--font-medium);
-  font-size: 1rem;
-}
-.buttons:hover {
-  background-color: var(--title-color-dark);
-}
-.buttons__icon {
-  margin-left: var(--mb-0-5);
-}
-.buttons--flex {
-  display: inline-flex;
-  align-items: center;
-}
-.buttons--flex .button__icon {
-  margin-left: 0.5rem;
-  width: 20px;
-  height: 20px;
+  padding: 0.5rem 1rem;
+  background-color:var(--button-color); /* Color de fondo principal */
+  color: #fff; /* Color de texto principal */
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+  font-family: 'Montserrat', sans-serif; /* Utiliza tu fuente deseada */
+  outline: none;
 }
 
-.buttons.button--flex span {
-  white-space: nowrap;
-  margin-right: 10px;
+.buttons:hover {
+  background-color: var(--text-color-dark) /* Cambia el color de fondo en hover */
 }
+
+.buttons:focus {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Agrega un borde al enfocar el botón */
+}
+
+
+
+
 /* BREAKPOINTS */
 
 /* For large devices */
@@ -168,6 +168,7 @@ a {
     height: 22px;
   }
 }
+
 /* For medium devices */
 @media screen and (max-width: 768px) {
   body {

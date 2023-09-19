@@ -1,9 +1,10 @@
 /* Estilos para el contenedor principal */
+/* Estilos para el contenedor principal */
 .exercise-page-container {
   display: flex;
   overflow-x: hidden;
-  padding: 2rem;
-  margin: 100px;
+margin: auto;
+margin-top: 100px;;
 }
 
 /* Estilos para el contenedor de ejercicios */
@@ -12,16 +13,16 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   justify-content: center;
-  width: 100%;
   max-width: 1200px;
-  margin: 30px auto;
+  width: 100%;
+  margin: 20px auto;
 }
 
 /* Estilos para cada tarjeta de ejercicio */
 .exercise-card {
   background-color: #f1f1f3;
   border-radius: 0.75rem;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.03);
   cursor: pointer;
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -31,9 +32,10 @@
 
 .exercise-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0px 12px 16px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.1);
 }
 
+/* Estilos para el número de ejercicio */
 .exercise-id {
   position: absolute;
   top: 10px;
@@ -45,18 +47,48 @@
   font-size: 0.8rem;
 }
 
-/* Estilos para la imagen del ejercicio */
+/* Estilos para el contenedor de imagen de ejercicio */
+/* Establecer una relación de aspecto 1:1 para el contenedor de imágenes */
 .exercise-image-container {
+  position: relative;
   width: 100%;
-  height: auto;
+  padding-top: 100%; /* 1:1 relación de aspecto */
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
+  overflow: hidden;
 }
 
-.exercise-image img {
+/* Estilos para la imagen de ejercicio */
+.exercise-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Estilos para la imagen dentro del contenedor */
+.exercise-image-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Esto mantiene la relación de aspecto y ajusta la imagen sin cortar */
+}
+
+
+/* Estilos para el número de ejercicio */
+.exercise-id {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #7257fa;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  z-index: 1;
 }
 
 /* Estilos para el contenido del ejercicio */
@@ -75,44 +107,6 @@
   font-size: 0.86rem;
   color: #6e6b80;
   margin: 0;
-}
-
-/* CSS para el botón con el corazón */
-.heart-button input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-.heart-button {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  user-select: none;
-}
-
-.heart-button svg {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 24px;
-  width: 24px;
-  transition: all 0.3s;
-  fill: #E3474F;
-}
-
-.heart-button input:checked ~ svg {
-  fill: #8c8c8c;
-}
-
-.heart-button svg:hover {
-  transform: scale(1.1);
-}
-
-.heart-button input ~ svg {
-  fill: #ff0101;
 }
 
 /* CSS para el botón "Recommended" */
@@ -135,7 +129,7 @@
   position: relative;
   top: 0;
   left: 0;
-  height: 34px; /* Ajusta el tamaño del pulgar según tus preferencias */
+  height: 34px;
   width: 24px;
   transition: all 0.3s;
 }
@@ -161,15 +155,10 @@
 }
 
 .heart-button {
-  display: inline-block; 
+  display: inline-block;
   position: relative;
   cursor: pointer;
   user-select: none;
-  margin: 20px 40px;
-  border: none;
-  outline: none;
-
-
 }
 
 .heart-button svg {
@@ -179,64 +168,23 @@
   height: 24px;
   width: 24px;
   transition: all 0.3s;
-  fill: #E3474F; 
-  pointer-events: none;
+  fill: #070505; /* Color por defecto del icono (gris oscuro) */
 }
 
 .heart-button input:checked ~ svg {
-  fill: #919191;
+  fill: #ae2323; /* Color cuando está marcado (rojo) */
 }
 
 .heart-button svg:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Efecto de escala al pasar el cursor */
 }
 
 .heart-button input ~ svg {
-  fill: #ff0000; 
+  fill: #2e2e2e; /* Color cuando no está marcado (gris) */
 }
 
-/* CSS para el botón "Recommended" */
-.recommended-button input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
+/* Puedes ajustar los colores según tus preferencias */
 
-
-.recommended-button {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  user-select: none;
-  margin: 20px 40px;
-  border: none;
-  outline: none;
-
-
-}
-
-.recommended-button svg {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 24px;
-  width: 24px;
-  transition: all 0.3s;
-}
-
-.recommended-button input:checked ~ svg {
-  fill: #002b81; 
-}
-
-.recommended-button svg:hover {
-  transform: scale(1.1);
-}
-
-.recommended-button input ~ svg {
-  fill: #888888; 
-}
 
 /* CSS para el botón de toggle */
 .toggle-form-button {
@@ -254,9 +202,6 @@
   background-color: #543bf8;
 }
 
-
-
-
 /* Estilos para el contenedor del formulario */
 .add-exercise-container {
   background-color: #f7f7f7;
@@ -268,7 +213,6 @@
   text-align: left;
   transition: transform 0.2s, box-shadow 0.2s;
   position: relative;
-  
 }
 
 .add-exercise-container:hover {
@@ -307,18 +251,15 @@
   color: #333;
   cursor: pointer;
   transition: background-color 0.2s, box-shadow 0.2s;
-  margin:5px 0;
+  margin: 5px 0;
   margin-bottom: 20px;
-
 }
 
-
 /* Elimina el borde alrededor de los elementos de formulario */
-
-
 fieldset {
   border: none; /* Elimina el borde */
 }
+
 .add-exercise-select {
   appearance: none;
   background: transparent;
@@ -369,4 +310,69 @@ fieldset {
 
 .add-exercise-button:hover {
   background-color: #543bf8;
+}
+/* Estilos para el formulario de filtros */
+.filter-form {
+  background-color: #f7f7f7;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.filter-form label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.filter-form input[type="text"],
+.filter-form select {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s;
+  flex: 1;
+  height: 2.5rem;
+  margin-bottom: 0.5rem;
+  align-self: stretch;
+  font-family: 'Montserrat', sans-serif; 
+}
+
+.filter-form input[type="checkbox"] {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 0;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s;
+  flex: 0;
+  align-self: center;
+}
+
+
+.filter-form input[type="text"]:hover,
+.filter-form select:hover,
+.filter-form input[type="checkbox"]:hover {
+  background-color: #ddd;
+}
+
+.filter-form input[type="text"]:focus,
+.filter-form select:focus,
+.filter-form input[type="checkbox"]:focus {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  border-color: #555;
 }

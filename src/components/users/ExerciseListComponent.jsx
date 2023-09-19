@@ -118,11 +118,11 @@ function ExerciseListComponent() {
         ) : exercises.length > 0 ? (
           exercises.map((exercise) => (
             <section key={exercise.id} className="exercise-card">
-              <ExercisePostComponent
-                exercise={exercise}
-                isRecommended={exercise.is_recommended}
-                isFavorite={exercise.is_favorite}
-              />
+                <ExercisePostComponent
+                  exercise={exercise}
+                  isRecommended={exercise.is_recommended}
+                  isFavorite={exercise.is_favorite}
+                />
             </section>
           ))
         ) : (
