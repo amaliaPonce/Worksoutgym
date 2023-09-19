@@ -109,44 +109,6 @@ margin-top: 100px;;
   margin: 0;
 }
 
-/* CSS para el botón con el corazón */
-.heart-button input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-.heart-button {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  user-select: none;
-}
-
-.heart-button svg {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 24px;
-  width: 24px;
-  transition: all 0.3s;
-  fill: #e3474f;
-}
-
-.heart-button input:checked ~ svg {
-  fill: #8c8c8c;
-}
-
-.heart-button svg:hover {
-  transform: scale(1.1);
-}
-
-.heart-button input ~ svg {
-  fill: #ff0101;
-}
-
 /* CSS para el botón "Recommended" */
 .recommended-button input {
   position: absolute;
@@ -183,7 +145,6 @@ margin-top: 100px;;
 .recommended-button input ~ svg {
   fill: #838383;
 }
-
 /* CSS para el botón con el corazón */
 .heart-button input {
   position: absolute;
@@ -198,9 +159,6 @@ margin-top: 100px;;
   position: relative;
   cursor: pointer;
   user-select: none;
-  margin: 20px 40px;
-  border: none;
-  outline: none;
 }
 
 .heart-button svg {
@@ -210,61 +168,23 @@ margin-top: 100px;;
   height: 24px;
   width: 24px;
   transition: all 0.3s;
-  fill: #e3474f;
-  pointer-events: none;
+  fill: #070505; /* Color por defecto del icono (gris oscuro) */
 }
 
 .heart-button input:checked ~ svg {
-  fill: #919191;
+  fill: #ae2323; /* Color cuando está marcado (rojo) */
 }
 
 .heart-button svg:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Efecto de escala al pasar el cursor */
 }
 
 .heart-button input ~ svg {
-  fill: #ff0000;
+  fill: #2e2e2e; /* Color cuando no está marcado (gris) */
 }
 
-/* CSS para el botón "Recommended" */
-.recommended-button input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
+/* Puedes ajustar los colores según tus preferencias */
 
-.recommended-button {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  user-select: none;
-  margin: 20px 40px;
-  border: none;
-  outline: none;
-}
-
-.recommended-button svg {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 24px;
-  width: 24px;
-  transition: all 0.3s;
-}
-
-.recommended-button input:checked ~ svg {
-  fill: #002b81;
-}
-
-.recommended-button svg:hover {
-  transform: scale(1.1);
-}
-
-.recommended-button input ~ svg {
-  fill: #888888;
-}
 
 /* CSS para el botón de toggle */
 .toggle-form-button {

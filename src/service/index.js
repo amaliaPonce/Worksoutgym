@@ -173,8 +173,8 @@ export const markFavoriteService = async (idExercise, isFavorite, user) => {
 
     if (response.ok) {
       const message = isFavorite
-        ? "Ejercicio eliminado de favoritos"
-        : "Ejercicio añadido a favoritos";
+        ? "Ejercicio marcado como favorito"
+        : "Ejercicio desmarcado como favorito";
       return { success: true, message };
     } else {
       return { success: false, message: "Error al realizar la acción" };
