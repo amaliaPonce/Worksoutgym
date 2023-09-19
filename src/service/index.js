@@ -185,24 +185,28 @@ export const markFavoriteService = async (idExercise, isFavorite, user) => {
 };
 
 export const AddExerciseService = async (userToken, formData) => {
-  const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/exercises/newExercise`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: ` ${userToken}`,
-      },
-      body: formData,
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND}/exercises/newExercise`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: ` ${userToken}`,
+        },
+        body: formData,
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    } else {
+      return await response.json();
     }
-  );
-  const json = await response.json();
-
-  if (!response.ok) {
-    throw new Error(json.message);
+  } catch (error) {
+    console.error('Ha habido un problema con las operaciones fetch ' + error.message);
   }
-
-  return json.data;
 };
+
 export const deleteExerciseService = async (exerciseId, userToken) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/exercises/deleteExercise/${exerciseId}`,

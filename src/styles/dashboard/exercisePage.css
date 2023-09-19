@@ -109,6 +109,20 @@ margin-top: 100px;;
   margin: 0;
 }
 
+/* Estilo de los botones */
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centra verticalmente los botones */
+  text-align: center; /* Para mantener el contenido centrado en caso de que haya texto dentro de los botones */
+}
+
+/* Estilo para ambos botones */
+.button-container .recommended-button,
+.button-container .heart-button {
+  margin: 20px;
+}
+
 /* CSS para el botón "Recommended" */
 .recommended-button input {
   position: absolute;
@@ -145,6 +159,7 @@ margin-top: 100px;;
 .recommended-button input ~ svg {
   fill: #838383;
 }
+
 /* CSS para el botón con el corazón */
 .heart-button input {
   position: absolute;
@@ -168,11 +183,11 @@ margin-top: 100px;;
   height: 24px;
   width: 24px;
   transition: all 0.3s;
-  fill: #070505; /* Color por defecto del icono (gris oscuro) */
+  fill: #070505;
 }
 
 .heart-button input:checked ~ svg {
-  fill: #ae2323; /* Color cuando está marcado (rojo) */
+  fill: #ff0303; /* Color cuando está marcado (rojo) */
 }
 
 .heart-button svg:hover {
@@ -183,23 +198,10 @@ margin-top: 100px;;
   fill: #2e2e2e; /* Color cuando no está marcado (gris) */
 }
 
-/* Puedes ajustar los colores según tus preferencias */
-
-
-/* CSS para el botón de toggle */
-.toggle-form-button {
-  background-color: #7257fa;
-  color: #fff;
+/* Eliminar borde y otros estilos de los botones */
+button {
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  margin-bottom: 1rem;
-  transition: background-color 0.2s;
-}
-
-.toggle-form-button:hover {
-  background-color: #543bf8;
+  outline: none;
 }
 
 /* Estilos para el contenedor del formulario */

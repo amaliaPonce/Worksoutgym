@@ -37,14 +37,19 @@ function AddExercise() {
       formData.append("muscleGroup", formState.muscleGroup);
       formData.append("photo", formState.photo);
 
-      const result = await AddExerciseService(user.token, formData);
+      if (user && user.token) {
+        const result = await AddExerciseService(user.token, formData);
+        if (result && result.status === "ok") {
+          console.log("Ejercicio agregado exitosamente");
+          setAdded(true);
+          setFormState(initialFormState);
+          window.location.reload(); 
 
-      if (result.status === "ok") {
-        console.log("Ejercicio agregado exitosamente");
-        setAdded(true);
-        setFormState(initialFormState);
+        } else if (result && result.status !== "ok") {
+          console.error("Error al agregar el ejercicio");
+        }
       } else {
-        console.error("Error al agregar el ejercicio");
+        console.error("Token de usuario no válido");
       }
     } catch (error) {
       console.error("Error de red", error);
@@ -63,7 +68,6 @@ function AddExercise() {
       [name]: newValue,
     });
   };
-
   return (
     <section className="add-exercise-container">
       <Button className={`buttons`} handleClick={handleToggleForm}>
