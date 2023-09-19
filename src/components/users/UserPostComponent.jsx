@@ -4,7 +4,7 @@ import "../../styles/dashboard/exercisePage.css";
 const UserPostComponent = ({ user }) => {
   return (
     <section className="exercise-container">
-      <section className="exercise-card">
+      <section className="exercise-card custom">
         <section className="exercise-image">
           {user && user.photo && (
             <img
