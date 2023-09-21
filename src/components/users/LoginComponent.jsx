@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginServise } from "../../service/index";
-import "../../styles/login.css";
 import { AppContext } from "../../context/AppContext";
+import { loginService } from "../../service/index";
 import Button from "../Button";
+import "../../styles/login.css";
 
 function LoginComponent() {
   const navigate = useNavigate();
   const { login } = useContext(AppContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -21,8 +22,16 @@ function LoginComponent() {
     setError("");
     setIsLoading(true);
 
+    if (!email || !password) {
+      setError("Por favor, ingresa tu correo y contraseña.");
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      const data = await loginServise({ email, password });
+      const data = await loginService({ email, password });
+
+      console.log("Respuesta del servicio:", data);
 
       if (data.status === "ok") {
         login({
@@ -31,11 +40,31 @@ function LoginComponent() {
           id: data.data.id,
         });
         navigate("/usersPage");
-      } else {
-        setError(data.message || "Error al iniciar sesión");
+      } else if (data.status === "error") {
+        if (data.message === "La contraseña o el email no son correctos.") {
+          setError(
+            "Credenciales incorrectas. Por favor, verifica tu correo y contraseña."
+          );
+        } else {
+          setError(data.message || "Error al iniciar sesión");
+        }
       }
     } catch (error) {
-      setError(error.message);
+      console.error("Error en el manejo de la solicitud:", error);
+
+      if (error.message.includes("Network Error")) {
+        setError(
+          "Error de conexión. Por favor, verifica tu conexión a Internet."
+        );
+      } else if (error.message.includes("403 Forbidden")) {
+        setError(
+          "Credenciales incorrectas. Por favor, verifica tu correo y contraseña."
+        );
+      } else {
+        setError(
+          "Ha ocurrido un error al iniciar sesión. Por favor, inténtalo de nuevo más tarde."
+        );
+      }
     } finally {
       setIsLoading(false);
     }
@@ -45,24 +74,27 @@ function LoginComponent() {
     <section className="login-container">
       <h2 className="login-title">Iniciar Sesión</h2>
       <form onSubmit={handleLogin}>
-        <input
-          className={`login-input ${error && "error"}`}
-          type="email"
-          placeholder="Correo Electrónico"
-          value={email}
-          required
-          onChange={(e) => setEmail(e.target.value)}
-          autoComplete="username"
-        />
-        <input
-          className={`login-input ${error && "error"}`}
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          required
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
-        />
+        <fieldset>
+          <legend>Login Information</legend>
+          <label htmlFor="email">Correo Electrónico:</label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            autoComplete="username"
+          />
+          <label htmlFor="password">Contraseña:</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
+          />
+        </fieldset>
         <Button
           handleClick={handleLogin}
           type="submit"

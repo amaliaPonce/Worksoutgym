@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import "../../styles/addExercise.css";
 import { AddExerciseService } from "../../service/index";
 import Button from "../Button";
+import "../../styles/dashboard/exercisePage.css";
 
 function AddExercise() {
   const { user } = useContext(AppContext);
@@ -14,16 +14,19 @@ function AddExercise() {
     photo: null,
   };
 
+  // Estados.
   const [formState, setFormState] = useState(initialFormState);
   const [added, setAdded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
+  // Apertura/cierre del formulario.
   const handleToggleForm = () => {
     setIsFormOpen(!isFormOpen);
   };
 
+  // Agregar un ejercicio.
   const handleAddExercise = async (e) => {
     e.preventDefault();
 
@@ -31,34 +34,58 @@ function AddExercise() {
       setLoading(true);
       setError(null);
 
+      // Validación del formulario.
+      if (
+        !formState.name ||
+        !formState.description ||
+        !formState.muscleGroup ||
+        !formState.photo
+      ) {
+        setError("Por favor, completa todos los campos.");
+        setLoading(false);
+        return;
+      }
+
+      // Enviamos los datos con formData.
       const formData = new FormData();
       formData.append("name", formState.name);
       formData.append("description", formState.description);
       formData.append("muscleGroup", formState.muscleGroup);
       formData.append("photo", formState.photo);
 
+      // Comprobación de usuario y token.
       if (user && user.token) {
         const result = await AddExerciseService(user.token, formData);
         if (result && result.status === "ok") {
           console.log("Ejercicio agregado exitosamente");
           setAdded(true);
           setFormState(initialFormState);
-          window.location.reload(); 
-
-        } else if (result && result.status !== "ok") {
-          console.error("Error al agregar el ejercicio");
+        } else {
+          console.error(
+            "Error al agregar el ejercicio:",
+            result.error || "Error desconocido"
+          );
+          setError(
+            "No se pudo agregar el ejercicio. Por favor, inténtalo de nuevo más tarde."
+          );
         }
       } else {
         console.error("Token de usuario no válido");
+        setError(
+          "No se pudo agregar el ejercicio. Por favor, inicia sesión nuevamente."
+        );
       }
     } catch (error) {
-      console.error("Error de red", error);
-      setError(error.message);
+      console.error("Error de red:", error);
+      setError(
+        "Se produjo un error inesperado. Por favor, inténtalo de nuevo más tarde."
+      );
     } finally {
       setLoading(false);
     }
   };
 
+  // Manejamos los cambios del formulario.
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target;
     const newValue = type === "file" ? files[0] : value;
@@ -68,19 +95,20 @@ function AddExercise() {
       [name]: newValue,
     });
   };
+
   return (
     <section className="add-exercise-container">
       <Button className={`buttons`} handleClick={handleToggleForm}>
         {isFormOpen ? "Cerrar Formulario" : "Añadir Ejercicio"}
       </Button>
       {isFormOpen && (
-        <div>
-          <form className="add-exercise-form" onSubmit={handleAddExercise}>
-            {error && <p className="error-message">Error: {error}</p>}
-            <div className="form-group">
-              <label htmlFor="name" className="add-exercise-label">
-                Nombre:
-              </label>
+        <form className="add-exercise-form" onSubmit={handleAddExercise}>
+          {error && <p className="error-message">{error}</p>}
+          <fieldset>
+            {/* Campos del formulario */}
+            <legend>Datos del Ejercicio</legend>
+            <label htmlFor="name" className="add-exercise-label">
+              Nombre:
               <input
                 type="text"
                 id="name"
@@ -90,11 +118,9 @@ function AddExercise() {
                 className="add-exercise-input"
                 required
               />
-            </div>
-            <div className="form-group">
-              <label htmlFor="description" className="add-exercise-label">
-                Descripción:
-              </label>
+            </label>
+            <label htmlFor="description" className="add-exercise-label">
+              Descripción:
               <textarea
                 id="description"
                 name="description"
@@ -103,11 +129,9 @@ function AddExercise() {
                 className="add-exercise-textarea"
                 required
               ></textarea>
-            </div>
-            <div className="form-group">
-              <label htmlFor="muscleGroup" className="add-exercise-label">
-                Grupo Muscular:
-              </label>
+            </label>
+            <label htmlFor="muscleGroup" className="add-exercise-label">
+              Grupo Muscular:
               <select
                 id="muscleGroup"
                 name="muscleGroup"
@@ -122,11 +146,9 @@ function AddExercise() {
                 <option value="Core">Core</option>
                 <option value="Full body">Full body</option>
               </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="photo" className="add-exercise-label">
-                Foto:
-              </label>
+            </label>
+            <label htmlFor="photo" className="add-exercise-label">
+              Foto:
               <input
                 id="photo"
                 name="photo"
@@ -136,21 +158,21 @@ function AddExercise() {
                 className="add-exercise-file-input"
                 required
               />
-            </div>
-            {added ? (
-              <p className="success-message">Ejercicio agregado con éxito.</p>
-            ) : (
-              <Button
-                handleClick={handleAddExercise}
-                type="submit"
-                disabled={loading}
-                className={`buttons`}
-              >
-                {loading ? "Agregando..." : "Agregar Ejercicio"}
-              </Button>
-            )}
-          </form>
-        </div>
+            </label>
+          </fieldset>
+          {added ? (
+            <p className="success-message">Ejercicio agregado con éxito.</p>
+          ) : (
+            <Button
+              handleClick={handleAddExercise}
+              type="submit"
+              disabled={loading}
+              className={`buttons`}
+            >
+              {loading ? "Agregando..." : "Agregar Ejercicio"}
+            </Button>
+          )}
+        </form>
       )}
     </section>
   );

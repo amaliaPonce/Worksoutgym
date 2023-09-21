@@ -17,6 +17,7 @@ function ExerciseListComponent() {
   });
 
   useEffect(() => {
+    //  Obtener los ejercicios filtrados.
     const fetchExercises = async () => {
       try {
         setLoading(true);
@@ -24,6 +25,7 @@ function ExerciseListComponent() {
 
         const data = await ExercisesService(user.token);
 
+        // Filtrar ejercicios.
         const filteredExercises = data.filter((exercise) => {
           const nameMatch =
             exercise.name.toLowerCase().includes(filters.name.toLowerCase()) ||
@@ -43,6 +45,7 @@ function ExerciseListComponent() {
           );
         });
 
+        // Actualizamos el estado con los ejercicios filtrados.
         setExercises(filteredExercises);
         setLoading(false);
       } catch (error) {
@@ -57,6 +60,8 @@ function ExerciseListComponent() {
   const handleFilterChange = (e) => {
     const { name, value, type } = e.target;
     const sanitizedValue = type === "checkbox" ? e.target.checked : value;
+
+    // Actualizamos el estado de los filtros.
     setFilters((prevFilters) => ({ ...prevFilters, [name]: sanitizedValue }));
   };
 
@@ -64,7 +69,8 @@ function ExerciseListComponent() {
     <section>
       <h2>Lista de Ejercicios</h2>
       <form className="filter-form">
-        <section>
+        <fieldset>
+          <legend>Filtrar Ejercicios</legend>
           <label htmlFor="name">Filtrar por Nombre:</label>
           <input
             type="text"
@@ -73,8 +79,6 @@ function ExerciseListComponent() {
             value={filters.name}
             onChange={handleFilterChange}
           />
-        </section>
-        <section>
           <label htmlFor="muscleGroup">Filtrar por Grupo Muscular:</label>
           <select
             id="muscleGroup"
@@ -87,8 +91,6 @@ function ExerciseListComponent() {
             <option value="Tren inferior">Tren inferior</option>
             <option value="core">Core</option>
           </select>
-        </section>
-        <section>
           <label htmlFor="recommended">Recomendados:</label>
           <input
             type="checkbox"
@@ -97,8 +99,6 @@ function ExerciseListComponent() {
             checked={filters.recommended}
             onChange={handleFilterChange}
           />
-        </section>
-        <section>
           <label htmlFor="favorite">Favoritos:</label>
           <input
             type="checkbox"
@@ -107,7 +107,7 @@ function ExerciseListComponent() {
             checked={filters.favorite}
             onChange={handleFilterChange}
           />
-        </section>
+        </fieldset>
       </form>
 
       <section className="exercise-container">
@@ -117,13 +117,13 @@ function ExerciseListComponent() {
           <p>Error: {error.message}</p>
         ) : exercises.length > 0 ? (
           exercises.map((exercise) => (
-            <section key={exercise.id} className="exercise-card">
-                <ExercisePostComponent
-                  exercise={exercise}
-                  isRecommended={exercise.is_recommended}
-                  isFavorite={exercise.is_favorite}
-                />
-            </section>
+            <article key={exercise.id} className="exercise-card">
+              <ExercisePostComponent
+                exercise={exercise}
+                isRecommended={exercise.is_recommended}
+                isFavorite={exercise.is_favorite}
+              />
+            </article>
           ))
         ) : (
           <p>No hay ejercicios disponibles</p>

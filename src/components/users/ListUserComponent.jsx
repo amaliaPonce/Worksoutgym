@@ -1,21 +1,25 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import UserPostComponent from "../users/UserPostComponent";
-//import { listUsersService } from "../../service/index";
 import UpdateUserRole from "./UpdateUserRol";
 import Button from "../Button";
 import useUserList from "../../hooks/UseUserList";
 
 function ListUserComponent() {
   const { user } = useContext(AppContext);
+
+  // Estado para el ID de usuario y visibilidad del formulario.
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [isUserRoleFormVisible, setIsUserRoleFormVisible] = useState(false);
+
+  // Obtener la lista de usuarios.
   const { users, error, updateUserRole } = useUserList(user);
 
   const handleToggleUserRoleForm = (userId) => {
     setSelectedUserId(userId);
-    setIsUserRoleFormVisible(!isUserRoleFormVisible); // Alternar la visibilidad
+    setIsUserRoleFormVisible(!isUserRoleFormVisible);
   };
+
   return (
     <section>
       {error && <p>Error: {error}</p>}
@@ -25,18 +29,18 @@ function ListUserComponent() {
             <UserPostComponent user={userItem} />
             <Button
               handleClick={() => handleToggleUserRoleForm(userItem.id)}
-              className={buttons }
+              className={`buttons`}
             >
               {isUserRoleFormVisible ? "Cerrar Formulario" : "Cambiar Rol"}
             </Button>
             {isUserRoleFormVisible && selectedUserId === userItem.id && (
-              <div>
+              <>
                 <UpdateUserRole
                   user={user}
                   userId={selectedUserId}
                   updateUserRole={updateUserRole}
                 />
-              </div>
+              </>
             )}
           </li>
         ))}
