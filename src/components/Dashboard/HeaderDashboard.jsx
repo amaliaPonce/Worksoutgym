@@ -1,12 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "../../styles/dashboard/headerDashboard.css";
 import { AppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import useUser from "../../hooks/useUser";
+import Button from "../Button";
 
 function HeaderDashboard() {
+  const { user } = useContext(AppContext);
   const [menuActive, setMenuActive] = useState(false);
   const { logout } = useContext(AppContext);
   const navigate = useNavigate();
+  const { userInfo, loading, error } = useUser(user.id, user.token);
+  const [userData, setUserData] = useState(userInfo[0]);
+  useEffect(() => {
+    if (userInfo && userInfo.length > 0) {
+      setUserData(userInfo[0]);
+    }
+  }, [userInfo]);
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -19,16 +29,22 @@ function HeaderDashboard() {
 
   return (
     <header className={`header-dashboard ${menuActive ? "menu-active" : ""}`}>
-      <h1>Administrador</h1>
+      {loading ? (
+        <p>Cargando...</p>
+      ) : error ? (
+        <p>Error: {error}</p>
+      ) : userInfo ? (
+        <h1>Bienvenido - {userData.name}</h1>
+      ) : null}
       <span className="menu-icon" onClick={toggleMenu}>
         ☰
       </span>
       <nav>
         <ul>
           <li>
-            <button onClick={handleLogout} className="buttons">
+            <Button handleClick={handleLogout} className="buttons">
               Cerrar Sesión
-            </button>
+            </Button>
           </li>
         </ul>
       </nav>
@@ -37,4 +53,3 @@ function HeaderDashboard() {
 }
 
 export default HeaderDashboard;
-

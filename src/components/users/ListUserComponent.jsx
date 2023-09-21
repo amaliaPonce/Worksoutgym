@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import UserPostComponent from "../users/UserPostComponent";
-//import { listUsersService } from "../../service/index";
 import UpdateUserRole from "./UpdateUserRol";
 import Button from "../Button";
 import useUserList from "../../hooks/UseUserList";
@@ -25,7 +24,7 @@ function ListUserComponent() {
             <UserPostComponent user={userItem} />
             <Button
               handleClick={() => handleToggleUserRoleForm(userItem.id)}
-              className={buttons }
+              className={"buttons"}
             >
               {isUserRoleFormVisible ? "Cerrar Formulario" : "Cambiar Rol"}
             </Button>

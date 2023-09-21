@@ -21,7 +21,6 @@ function InfoUserComponent() {
     birthDate: "",
     address: "",
     phone_number: "",
-   
   });
 
   useEffect(() => {
@@ -88,7 +87,10 @@ function InfoUserComponent() {
           {editMode ? (
             <section className="add-exercise-container">
               <h3>Formulario de edición</h3>
-              <form className="add-exercise-form" onSubmit={handleUpdateProfile}>
+              <form
+                className="add-exercise-form"
+                onSubmit={handleUpdateProfile}
+              >
                 <label htmlFor="name" className="add-exercise-label">
                   Nombre:
                 </label>
