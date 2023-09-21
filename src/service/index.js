@@ -293,23 +293,22 @@ export const updateUserService = async (userid, usertoken, userData) => {
   }
 };
 
-export const updateRolUserService = async (id, usertoken) => {
+export const updateRolUserService = async (data, usertoken) => {
   const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/users/updateUserRole/${id}`,
-
+    `${process.env.REACT_APP_BACKEND}/users/updateUserRole/${data.userId}`,
     {
       method: "PUT",
       headers: {
         Authorization: ` ${usertoken}`,
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify(data),
     }
   );
   const json = await response.json();
-
   if (!response.ok) {
     throw new Error(json.message);
   }
-
   return json.data;
 };
 

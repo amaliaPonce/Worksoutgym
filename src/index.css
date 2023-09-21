@@ -117,7 +117,7 @@ a {
 .buttons {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background-color:var(--button-color); /* Color de fondo principal */
+  background-color: var(--button-color); /* Color de fondo principal */
   color: #fff; /* Color de texto principal */
   border: none;
   border-radius: 0.25rem;
@@ -126,20 +126,19 @@ a {
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
-  font-family: 'Montserrat', sans-serif; /* Utiliza tu fuente deseada */
+  font-family: "Montserrat", sans-serif; /* Utiliza tu fuente deseada */
   outline: none;
 }
 
 .buttons:hover {
-  background-color: var(--text-color-dark) /* Cambia el color de fondo en hover */
+  background-color: var(
+    --text-color-dark
+  ); /* Cambia el color de fondo en hover */
 }
 
 .buttons:focus {
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Agrega un borde al enfocar el botón */
 }
-
-
-
 
 /* BREAKPOINTS */
 

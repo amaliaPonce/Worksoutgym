@@ -25,7 +25,7 @@ function ListUserComponent() {
             <UserPostComponent user={userItem} />
             <Button
               handleClick={() => handleToggleUserRoleForm(userItem.id)}
-              className={`buttons `}
+              className={buttons }
             >
               {isUserRoleFormVisible ? "Cerrar Formulario" : "Cambiar Rol"}
             </Button>

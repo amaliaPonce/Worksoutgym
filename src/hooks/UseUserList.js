@@ -24,7 +24,7 @@ export const useUserList = (user) => {
     };
     loadUsers();
   }, [user]);
- 
+
   const updateUserRole = async (data) => {
     try {
       console.log(data);
