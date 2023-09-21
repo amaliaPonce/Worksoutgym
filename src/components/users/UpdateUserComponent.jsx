@@ -38,13 +38,6 @@ function EditProfile() {
     }));
   };
 
-  const handleFileChange = (e) => {
-    setUserData({
-      ...userData,
-      photo: e.target.files[0],
-    });
-  };
-
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
 
@@ -76,7 +69,7 @@ function EditProfile() {
     <section className="exercise-details">
       <h2>Editar Perfil</h2>
       {message && <p>{message}</p>}
-
+  
       <form onSubmit={handleUpdateProfile}>
         <label>Nombre:</label>
         <input
@@ -121,15 +114,6 @@ function EditProfile() {
           value={userData.phone_number}
           onChange={handleChange}
         />
-        <label>Foto:</label>
-        <input type="file" name="photo" onChange={handleFileChange} />
-        {userData.photo && (
-          <img
-            src={URL.createObjectURL(userData.photo)}
-            alt="Foto de perfil"
-            style={{ maxWidth: "200px" }}
-          />
-        )}
         <Button
           handleClick={handleUpdateProfile}
           type="submit"

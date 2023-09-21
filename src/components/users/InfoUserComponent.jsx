@@ -5,7 +5,8 @@ import { updateUserService } from "../../service";
 import UserPostComponent from "./UserPostComponent";
 import Button from "../Button";
 import useUser from "../../hooks/useUser";
-import "../../styles/users.css"
+import "../../styles/users.css";
+
 function InfoUserComponent() {
   const { user } = useContext(AppContext);
   const { id } = useParams();
@@ -20,7 +21,7 @@ function InfoUserComponent() {
     birthDate: "",
     address: "",
     phone_number: "",
-    photo: null,
+   
   });
 
   useEffect(() => {
@@ -35,13 +36,6 @@ function InfoUserComponent() {
       ...prevUserData,
       [name]: value,
     }));
-  };
-
-  const handleFileChange = (e) => {
-    setUserProfileData({
-      ...userProfileData,
-      photo: e.target.files[0],
-    });
   };
 
   const handleUpdateProfile = async (e) => {
@@ -78,27 +72,23 @@ function InfoUserComponent() {
   return (
     <section className="exercise-page-container">
       <section className="exercise-container">
-      <section className="info-exercise custom">
+        <section className="info-exercise custom">
           {message && <p>{message}</p>}
           <section>
             <h2>Detalles del Usuario</h2>
             <UserPostComponent user={userData} />
             {user.id === userData.id && (
               <div className="button-container">
-
-              <Button handleClick={handleToggleEditMode}>
-                {editMode ? "Cancelar Edición" : "Editar perfil"}
-              </Button>
+                <Button handleClick={handleToggleEditMode}>
+                  {editMode ? "Cancelar Edición" : "Editar perfil"}
+                </Button>
               </div>
             )}
           </section>
           {editMode ? (
             <section className="add-exercise-container">
               <h3>Formulario de edición</h3>
-              <form
-                className="add-exercise-form"
-                onSubmit={handleUpdateProfile}
-              >
+              <form className="add-exercise-form" onSubmit={handleUpdateProfile}>
                 <label htmlFor="name" className="add-exercise-label">
                   Nombre:
                 </label>
@@ -160,32 +150,15 @@ function InfoUserComponent() {
                   value={userProfileData.phone_number}
                   onChange={handleChange}
                 />
-                <label htmlFor="photo" className="add-exercise-label">
-                  Foto:
-                </label>
-                <input
-                  type="file"
-                  name="photo"
-                  className="add-exercise-file-input"
-                  onChange={handleFileChange}
-                />
-                {userProfileData.photo && (
-                  <img
-                    src={URL.createObjectURL(userProfileData.photo)}
-                    alt="Foto de perfil"
-                    style={{ maxWidth: "200px" }}
-                  />
-                )}
-<div className="button-container">
-  <Button
-    handleClick={handleUpdateProfile}
-    type="submit"
-    className={`buttons`}
-  >
-    Guardar Cambios
-  </Button>
-</div>
-
+                <div className="button-container">
+                  <Button
+                    handleClick={handleUpdateProfile}
+                    type="submit"
+                    className={`buttons`}
+                  >
+                    Guardar Cambios
+                  </Button>
+                </div>
               </form>
             </section>
           ) : null}
