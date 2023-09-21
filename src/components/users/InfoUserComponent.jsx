@@ -7,6 +7,7 @@ import Button from "../Button";
 import useUser from "../../hooks/useUser";
 import "../../styles/users.css";
 
+
 function InfoUserComponent() {
   const { user } = useContext(AppContext);
   const { id } = useParams();
@@ -24,12 +25,14 @@ function InfoUserComponent() {
   });
 
   useEffect(() => {
+    // Actualizamos userData cuando userInfo cambia.
     if (userInfo && userInfo.length > 0) {
       setUserData(userInfo[0]);
     }
   }, [userInfo]);
 
   const handleChange = (e) => {
+    // Manejamos los cambios en el perfil.
     const { name, value } = e.target;
     setUserProfileData((prevUserData) => ({
       ...prevUserData,
@@ -46,6 +49,7 @@ function InfoUserComponent() {
     }
 
     try {
+      // Actualizar el perfil.
       await updateUserService(user.id, user.token, userProfileData);
 
       setMessage("Perfil actualizado con éxito.");
@@ -56,8 +60,10 @@ function InfoUserComponent() {
   };
 
   const handleToggleEditMode = () => {
-    setEditMode(!editMode); // Alternar el modo de edición
-    setMessage(""); // Limpiar el mensaje de error o éxito
+    // Alternar el modo de edición
+    setEditMode(!editMode);
+    // Limpiar el mensaje de error o éxito
+    setMessage("");
   };
 
   if (loading) {
@@ -152,7 +158,7 @@ function InfoUserComponent() {
                   value={userProfileData.phone_number}
                   onChange={handleChange}
                 />
-                <div className="button-container">
+                <section className="button-container">
                   <Button
                     handleClick={handleUpdateProfile}
                     type="submit"
@@ -160,7 +166,7 @@ function InfoUserComponent() {
                   >
                     Guardar Cambios
                   </Button>
-                </div>
+                </section>
               </form>
             </section>
           ) : null}

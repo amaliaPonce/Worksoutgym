@@ -1,7 +1,7 @@
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import useExercise from "../../hooks/useExercise";
 import { AppContext } from "../../context/AppContext";
+import useExercise from "../../hooks/useExercise";
 import {
   deleteExerciseService,
   updateExerciseService,
@@ -17,6 +17,8 @@ function InfoExerciseComponent() {
   const [err, setErr] = useState(null);
   const navigate = useNavigate();
 
+  // Almacenar los datos del ejercicio en el estado.
+
   const [editMode, setEditMode] = useState(false);
   const [exerciseData, setExerciseData] = useState({
     id: exercise?.id || "",
@@ -26,6 +28,7 @@ function InfoExerciseComponent() {
   });
 
   useEffect(() => {
+    // Actualiza los datos del ejercicio
     setExerciseData({
       id: exercise?.id || "",
       name: exercise?.name || "",
@@ -34,6 +37,7 @@ function InfoExerciseComponent() {
     });
   }, [exercise]);
 
+  // Eliminar ejercicio.
   const handleDeleteExercise = async () => {
     try {
       await deleteExerciseService(id, user?.token);
@@ -43,13 +47,12 @@ function InfoExerciseComponent() {
     }
   };
 
+  // Actualizar ejercicio.
   const handleUpdateExercise = async () => {
     try {
       await updateExerciseService(id, user?.token, exerciseData);
       console.log("Ejercicio actualizado:", exerciseData);
       setEditMode(false);
-
-      window.location.reload();
     } catch (error) {
       setErr(error.message);
     }

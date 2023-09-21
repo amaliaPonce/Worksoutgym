@@ -26,7 +26,7 @@ export const registerService = async (name, email, password) => {
     throw new Error("Error en el registro: " + error.message);
   }
 };
-export const loginServise = async (body) => {
+export const loginService = async (body) => {
   try {
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND}/users/login`,

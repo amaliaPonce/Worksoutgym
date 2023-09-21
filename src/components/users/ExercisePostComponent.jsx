@@ -7,14 +7,17 @@ import "../../styles/dashboard/exercisePage.css";
 
 const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
   const { user } = useContext(AppContext);
+
+  // Estado para controlar si el ejercicio es favorito y recomendado.
   const [exerciseIsFavorite, setExerciseIsFavorite] = useState(isFavorite);
-  const [exerciseIsRecommended, setExerciseIsRecommended] = useState(
-    isRecommended
-  );
+  const [exerciseIsRecommended, setExerciseIsRecommended] =
+    useState(isRecommended);
+
   const navigate = useNavigate();
 
+  // Marcar o desmarcar favorito.
   const handleToggleFavorite = async (e) => {
-    e.stopPropagation(); // Evita la propagación del evento al contenedor padre
+    e.stopPropagation();
     try {
       const result = await markFavoriteService(
         exercise.id,
@@ -32,8 +35,9 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
     }
   };
 
+  // Marcar o desmarcar recomendado.
   const handleToggleRecommendation = async (e) => {
-    e.stopPropagation(); // Evita la propagación del evento al contenedor padre
+    e.stopPropagation();
     try {
       const result = await MarkRecommendedService(
         exercise.id,
@@ -54,20 +58,21 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
     }
   };
 
+  // Navegación a la página del ejercicio clickado.
   const redirectToDetailsPage = () => {
     navigate(`/usersPage/exercises/${exercise.id}`);
   };
 
   return (
-    <div className="exercise-card" onClick={redirectToDetailsPage}>
-      <div className="exercise-id">{exercise.id}</div>
+    <article className="exercise-card" onClick={redirectToDetailsPage}>
+      <p className="exercise-id">{exercise.id}</p>
       <section className="exercise-image-container">
-        <div className="exercise-image-overlay">
+        <figure className="exercise-image-overlay">
           <img
             src={`${process.env.REACT_APP_BACKEND}/uploads/${exercise.photoName}`}
             alt={exercise.name}
           />
-        </div>
+        </figure>
       </section>
 
       <section className="exercise-details">
@@ -82,11 +87,7 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
         </p>
         <div className="button-container">
           <button className="heart-button" onClick={handleToggleFavorite}>
-            <input
-              type="checkbox"
-              checked={exerciseIsFavorite}
-              readOnly
-            />
+            <input type="checkbox" checked={exerciseIsFavorite} readOnly />
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
@@ -98,12 +99,11 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
               <path d="M16.4,4C14.6,4,13,4.9,12,6.3C11,4.9,9.4,4,7.6,4C4.5,4,2,6.5,2,9.6C2,14,12,22,12,22s10-8,10-12.4C22,6.5,19.5,4,16.4,4z"></path>
             </svg>
           </button>
-          <button className="recommended-button" onClick={handleToggleRecommendation}>
-            <input
-              type="checkbox"
-              checked={exerciseIsRecommended}
-              readOnly
-            />
+          <button
+            className="recommended-button"
+            onClick={handleToggleRecommendation}
+          >
+            <input type="checkbox" checked={exerciseIsRecommended} readOnly />
             <svg
               viewBox="0 0 512 512"
               height="1em"
@@ -115,7 +115,7 @@ const ExercisePostComponent = ({ exercise, isFavorite, isRecommended }) => {
           </button>
         </div>
       </section>
-    </div>
+    </article>
   );
 };
 
