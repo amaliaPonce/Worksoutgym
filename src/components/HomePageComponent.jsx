@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/homePage.css";
 import FamiliaImage from "../assets/familia.png";
+import "../styles/homePage.css";
 
 const HomePageComponent = () => {
   return (
