@@ -75,7 +75,6 @@ function LoginComponent() {
       <h2 className="login-title">Iniciar Sesión</h2>
       <form onSubmit={handleLogin}>
         <fieldset>
-          <legend>Login Information</legend>
           <label htmlFor="email">Correo Electrónico:</label>
           <input
             id="email"
