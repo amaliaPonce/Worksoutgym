@@ -29,7 +29,10 @@ function MainContent() {
       <Sidebar />
       <section className="content-container">
         <main className="main-content">
-          <h2>Contenido Principal</h2>
+          <h2>
+            <i class="bx bx-dumbbell"></i> WORKS OUT GYM
+            <i class="bx bx-dumbbell"></i>
+          </h2>
           <p>
             Bienvenido al panel de administración. Aquí puedes ver estadísticas,
             gestionar usuarios y configurar tu aplicación.

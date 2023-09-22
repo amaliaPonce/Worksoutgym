@@ -5,11 +5,17 @@ import "../../styles/dashboard/sidebar.css";
 const Sidebar = () => {
   return (
     <aside className="aside">
-      <Link to="/" className="nav-logo">
+      <section className="nav-logo">
         <img src={Logo} alt="" />
-      </Link>
+      </section>
       <nav className="nav">
         <ul className="nav-list">
+          <li className="nav-item">
+            <Link to="/usersPage" className="nav-link">
+              <i class="bx bx-line-chart"></i>
+            </Link>
+          </li>
+
           <li className="nav-item">
             <Link to="/usersPage/exercises" className="nav-link">
               <i className="uil uil-fire"></i>
