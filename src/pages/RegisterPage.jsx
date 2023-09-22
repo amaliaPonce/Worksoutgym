@@ -10,16 +10,16 @@ function RegisterPage() {
     <>
       <HeaderComponent />
 
-      <div className="login-page">
-        <div className="login-container">
+      <main className="login-page">
+        <section className="login-container">
           <h2 className="login-title">¡Únete a nuestra comunidad fitness!</h2>
           <p className="login-subtitle">Comienza tu entrenamiento</p>
           <RegisterComponent />
           <p className="login-signup">
             ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
           </p>
-        </div>
-      </div>
+        </section>
+      </main>
       <FooterComponent />
     </>
   );

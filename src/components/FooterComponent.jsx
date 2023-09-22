@@ -13,7 +13,7 @@ function FooterComponent() {
         </section>
         <section className="footer-section">
           <p>
-            <a className="conocenos-link" href="/conocenos" target="_blank">
+            <a className="conocenos-link" href="/aboutUs" target="_blank">
               Conócenos
             </a>
           </p>

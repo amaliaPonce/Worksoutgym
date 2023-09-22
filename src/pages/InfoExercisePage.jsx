@@ -4,11 +4,11 @@ import HeaderDashboard from "../components/Dashboard/HeaderDashboard";
 import Sidebar from "../components/Dashboard/Sidebar";
 const ExercisesPage = () => {
   return (
-    <div>
+    <main>
       <HeaderDashboard />
       <InfoExerciseComponent />
       <Sidebar />
-    </div>
+    </main>
   );
 };
 

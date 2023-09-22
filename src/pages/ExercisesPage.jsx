@@ -8,22 +8,24 @@ import "../styles/dashboard/exercisePage.css";
 
 const ExercisesPage = () => {
   const { user } = useContext(AppContext);
-  return (
-    <div className="page-container">
-      <div className="exercise-page-container">
-        <HeaderDashboard />
 
+  return (
+    <main className="page-container">
+      <section className="exercise-page-container">
+        <HeaderDashboard />
         <ExerciseListComponent />
-      </div>
+      </section>
 
       {user.role === "admin" && (
-        <div className="add-exercise-container">
+        <aside className="add-exercise-container">
           <AddExerciseComponent />
-        </div>
+        </aside>
       )}
 
-      <Sidebar />
-    </div>
+      <aside className="sidebar">
+        <Sidebar />
+      </aside>
+    </main>
   );
 };
 

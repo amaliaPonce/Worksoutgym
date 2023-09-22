@@ -5,11 +5,11 @@ import FooterComponent from "../components/FooterComponent";
 
 function HomePage() {
   return (
-    <div>
+    <main>
       <HeaderComponent />
       <HomePageComponent />
       <FooterComponent />
-    </div>
+    </main>
   );
 }
 

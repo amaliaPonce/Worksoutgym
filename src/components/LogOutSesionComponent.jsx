@@ -13,11 +13,11 @@ function LogOutSession() {
   };
 
   return (
-    <div className="logout-session">
+    <section className="logout-session">
       <Button handleClick={handleLogout} className={`buttons`}>
         Cerrar Sesión
       </Button>
-    </div>
+    </section>
   );
 }
 

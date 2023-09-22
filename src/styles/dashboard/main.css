@@ -19,10 +19,6 @@
   margin-top: var(--mb-1);
 }
 
-.main-content div {
-  margin-top: var(--mb-2);
-}
-
 .section-heading {
   font-size: 2em;
   color: #333;

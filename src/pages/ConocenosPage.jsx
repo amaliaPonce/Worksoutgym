@@ -7,7 +7,7 @@ import SusanaWeb from "../assets/Susana.mp4";
 
 const Data = () => {
   return (
-    <div>
+    <article>
       <HeaderComponent />
       <main className="home-content">
         <section className="person-data">
@@ -75,7 +75,7 @@ const Data = () => {
       </main>
 
       <FooterComponent />
-    </div>
+    </article>
   );
 };
 

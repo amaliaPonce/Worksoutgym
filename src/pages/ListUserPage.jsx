@@ -8,11 +8,11 @@ const ListUserPage = () => {
   const { user } = useContext(AppContext);
 
   return (
-    <div className="exercise-page-container">
+    <main className="exercise-page-container">
       <HeaderDashboard />
       {user.role === "admin" && <ListUserComponent />}
       <Sidebar />
-    </div>
+    </main>
   );
 };
 

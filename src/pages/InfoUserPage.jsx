@@ -5,11 +5,11 @@ import Sidebar from "../components/Dashboard/Sidebar";
 
 const InfoUserPage = () => {
   return (
-    <div>
+    <main>
       <HeaderDashboard />
       <InfoUserComponent />
       <Sidebar />
-    </div>
+    </main>
   );
 };
 

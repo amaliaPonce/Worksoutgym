@@ -5,11 +5,11 @@ import MainContent from "../components/Dashboard/MainContent";
 
 function UsersPage() {
   return (
-    <div>
+    <main>
       <HeaderDashboard />
       <MainContent />
       <Sidebar />
-    </div>
+    </main>
   );
 }
 

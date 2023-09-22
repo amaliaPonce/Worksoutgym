@@ -7,7 +7,6 @@ import Button from "../Button";
 import useUser from "../../hooks/useUser";
 import "../../styles/users.css";
 
-
 function InfoUserComponent() {
   const { user } = useContext(AppContext);
   const { id } = useParams();
@@ -75,24 +74,24 @@ function InfoUserComponent() {
   }
 
   return (
-    <section className="exercise-page-container">
-      <section className="exercise-container">
-        <section className="info-exercise custom">
+    <article className="exercise-page-container">
+      <article className="exercise-container">
+        <article className="info-exercise custom">
           {message && <p>{message}</p>}
-          <section>
+          <article>
             <h2>Detalles del Usuario</h2>
             <UserPostComponent user={userData} />
             {user.id === userData.id && (
-              <div className="button-container">
+              <section className="button-container">
                 <Button handleClick={handleToggleEditMode}>
                   {editMode ? "Cancelar Edición" : "Editar perfil"}
                 </Button>
-              </div>
+              </section>
             )}
-          </section>
+          </article>
           {editMode ? (
-            <section className="add-exercise-container">
-              <h3>Formulario de edición</h3>
+            <fieldset className="add-exercise-container">
+              <legend>Formulario de edición</legend>
               <form
                 className="add-exercise-form"
                 onSubmit={handleUpdateProfile}
@@ -168,11 +167,11 @@ function InfoUserComponent() {
                   </Button>
                 </section>
               </form>
-            </section>
+            </fieldset>
           ) : null}
-        </section>
-      </section>
-    </section>
+        </article>
+      </article>
+    </article>
   );
 }
 
