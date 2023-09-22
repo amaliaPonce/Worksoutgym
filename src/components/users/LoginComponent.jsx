@@ -83,6 +83,7 @@ function LoginComponent() {
             required
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="username"
+            className="register-input"
           />
           <label htmlFor="password">Contraseña:</label>
           <input
@@ -92,6 +93,7 @@ function LoginComponent() {
             required
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
+            className="register-input"
           />
         </fieldset>
         <Button

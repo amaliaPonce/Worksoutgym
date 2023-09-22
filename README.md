@@ -13,7 +13,13 @@ terminal frontend: npm install, cd frontend, npm start
 
 _Componentes:_
 
-- _Navbar:_ Un componente que mostrará la barra de navegación en la parte superior de la aplicación. Puede contener opciones como "Inicio", "Ejercicios", "Favoritos", etc.
+- _Dashboard:_ Componente que mostrará dos barras de navegación una en la parte superior de la aplicación y otra en el lateral.
+
+  - _HeaderDashboard:_ Contiene un mensaje de bienvenida con el nombre de usuario que esta conectado y el boton de cerrar sesion de la aplicación.
+  - _Sidebar:_ Contiene los botones que navegan por las diferentes páginas.
+    📈:_ Este boton te lleva al contenido principal de la página de los usuarios.
+    🔥;_ Este boton te muestra la lista de los ejercicios.
+
 - _ExerciseCard:_ Un componente que muestra la información básica de un ejercicio, como nombre, descripción y grupo muscular. Puede tener un botón para marcar o desmarcar el ejercicio como favorito.
 - _ExerciseDetail:_ Un componente para mostrar los detalles completos de un ejercicio, incluida su imagen y descripción detallada.
 - _ExerciseList:_ Un componente que renderiza una lista de _ExerciseCard_ para mostrar todos los ejercicios disponibles. Puede incluir opciones de filtrado por grupo muscular y búsqueda por nombre.
