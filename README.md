@@ -13,19 +13,67 @@ terminal frontend: npm install, cd frontend, npm start
 
 _Componentes:_
 
+- _RegisterComponent:_ Formulario para que los nuevos usuarios se registren en la aplicación.
+
+        ¿Quieres registrarte? Aquí te muestro un ejermplo:
+
+          Nombre: Ejemplo.
+          Email: ejemplo@ejemplo.com
+          contraseña: ******
+
+- _LoginComponent:_ Formulario para que los usuarios inicien sesión en la aplicación.
+
+        ¿Ya te has registrado? Introduce tu:
+
+          Email: ejemplo@ejemplo.com
+          contraseña: ******
+
 - _Dashboard:_ Componente que mostrará dos barras de navegación una en la parte superior de la aplicación y otra en el lateral.
 
   - _HeaderDashboard:_ Contiene un mensaje de bienvenida con el nombre de usuario que esta conectado y el boton de cerrar sesion de la aplicación.
-  - _Sidebar:_ Contiene los botones que navegan por las diferentes páginas.
-    📈:_ Este boton te lleva al contenido principal de la página de los usuarios.
-    🔥;_ Este boton te muestra la lista de los ejercicios.
 
-- _ExerciseCard:_ Un componente que muestra la información básica de un ejercicio, como nombre, descripción y grupo muscular. Puede tener un botón para marcar o desmarcar el ejercicio como favorito.
-- _ExerciseDetail:_ Un componente para mostrar los detalles completos de un ejercicio, incluida su imagen y descripción detallada.
-- _ExerciseList:_ Un componente que renderiza una lista de _ExerciseCard_ para mostrar todos los ejercicios disponibles. Puede incluir opciones de filtrado por grupo muscular y búsqueda por nombre.
-- _FavoriteExercises:_ Un componente para mostrar la lista de ejercicios marcados como favoritos por el usuario.
-- _Login:_ Un formulario para que los usuarios inicien sesión en la aplicación.
-- _Register:_ Un formulario para que los nuevos usuarios se registren en la aplicación.
+  - _Sidebar:_ Contiene los botones que navegan por las diferentes páginas.
+
+    📈:_ Este boton te lleva al contenido principal de la página de los usuarios.
+    🔥:_ Este boton te muestra la lista de los ejercicios.
+    🧑🏻:_ Este boton te muestra tu perfil de usuario.
+    ⚙️:_ Este boton muestra la lista de usuarios (solo para administradores).
+
+  - _MainContent:_ Es el apartado dónde se iran desplegando las diferentes páginas, principalmente muestra el panel de las estadísticas, ultimos ejercicios agregados entre otros.
+
+- _ExerciseList:_ Componente que muestra la lista de todos los ejercicios disponibles. En la cual podrás filtar los ejercicios, por nombre, grupo muscular, favoritos o los ejercicios recomendados por todos los usuarios.
+
+  - _InfoExerciseComponent:_ Componente que muestra los detalles del ejercicio, foto, nombre, descripción y grupo muscular. Tiene un botón para marcar o desmarcar el ejercicio de favoritos, y otro para marcar o desmarcar de recomendados.
+
+  - _ExercisesPostComponent:_ Componente reutilizable para mostrar cada ejercicio en el mismo formato con los botones de ❤️ (marcar o desmarcar de favorito) y 👍 (marcar o desmarcar de recomendados).
+
+  - _AddExerciseComponent:_ Componente para agregar un ejercicio, nombre, descripción, seleccionar un grupo muscular y agegarle una fotográfia.
+
+        ¿Quieres agregar uno? Aquí te muestro un ejermplo:
+
+          Nombre: Thruster.
+          Descripción: Movimiento que combina una sentadilla frontal (front squat) seguido de un push press (empuje de hombros) realizado sin una pausa entre ambos.
+          Grupo muscular: Full body
+          Foto: https://i.ytimg.com/vi/L219ltL15zk/maxresdefault.jpg Descarga la fotográfia para poder añadirla o usa imagenes propias.
+
+- _ListUserComponent:_ Componente que muestra la lista de los usuarios al administrador y dónde el administrador podrá cambiar el rol a los usuarios.
+
+  - _UpdateUserRole:_ Componente en el que el administrador podrá cambiar el rol a los usuarios y que pasen de cliente a admin o viceversa.
+
+  - _UserPostComponent:_ Componente reutilizable para mostrar la información de cada usuario en el mismo formato.
+
+  - _InfoUserComponent:_ Componente que muestra la información de un usuario, dónde podra editar su perfil y añadir información adicional.
+
+        ¿Quieres saber cómo? Aquí te muestro un ejemplo:
+
+          Nombre: María
+          Biografía: Apasionada por el deporte.
+          Apellidos: De la Torre Martínez
+          Fecha de cumpleaños: 1987-11-18
+          Dirección: C/ Manuel de Falla 27
+          Teléfono: 123456789
+
+    No es necesario añadir todos los campos, aunque el nombre es obligatorío.
 
 _Hooks:_
 
@@ -48,39 +96,9 @@ _Services:_
 
 PALETAS DE COLORES
 
-- Gama de colores principal
-
 https://colorhunt.co/palette/c5d7bd9fb8ad383e56fb743e
 
 #C5D7BD
 #9FB8AD
 #383E56
 #FB743E
-
-- Theme2
-
-https://colorhunt.co/palette/faf1e4cedebd9eb384435334
-
-#FAF1E4
-#CEDEBD
-#9EB384
-#435334
-
-- Theme3
-
-https://colorhunt.co/palette/f5efe7d8c4b64f709c213555
-
-#F5EFE7
-#D8C4B6
-#4F709C
-#213555
-
--Theme4
-
-https://paletadecolores.com.mx/paleta/ffaec6/d2849e/a55a76/78304e/4b0626/
-
-#ffaec6
-#d2849e
-#a55a76
-#78304e
-#4b0626
