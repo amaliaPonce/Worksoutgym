@@ -16,8 +16,12 @@
 
 .main-content p {
   font-size: var(--normal-font-size);
-  margin-top: var(--mb-1);
+  margin-top: var(--mb-2);
   text-align: center;
+}
+.content-container{
+margin-top: 20px;
+margin-left: 20px;
 }
 
 .section-heading {
@@ -28,6 +32,7 @@
 .exercise-stats{
   width: 80%;
   margin: 0 auto;
+  
 }
 .exercise-list {
   list-style-type: none;
