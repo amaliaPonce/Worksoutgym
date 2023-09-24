@@ -67,10 +67,9 @@ function ExerciseListComponent() {
 
   return (
     <section>
-      <h2>Lista de Ejercicios</h2>
+      <h1>Lista de Ejercicios</h1>
       <form className="filter-form">
         <fieldset>
-          <legend>Filtrar Ejercicios</legend>
           <label htmlFor="name">Filtrar por Nombre:</label>
           <input
             type="text"

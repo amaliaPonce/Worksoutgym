@@ -43,11 +43,6 @@
   --mb-2-5: 2.5rem;
   --mb-3: 3rem;
 
-  /* Z-index */
-
-  --z-tooltip: 10;
-  --z-fixed: 100;
-  --z-modal: 1000;
 }
 
 /* BASE */
@@ -69,7 +64,11 @@ body {
   background-color: var(--body-color);
   color: var(--text-color);
 }
-
+h1{
+  font-size: var(--h1-font-size);
+  text-align: center;
+  margin: var(--mb-0-5);
+}
 h1,
 h2,
 h3 {
@@ -81,14 +80,18 @@ ul {
 a {
   text-decoration: none;
 }
+button {
+  border: none;
+  outline: none;
+}
+fieldset {
+  border: none; /* Elimina el borde */
+}
 
 /* Responsive typography */
 
 /* REUSABLE CSS CLASSES */
 
-.section {
-  padding: 8rem 0 2rem;
-}
 
 .section__title {
   font-size: var(--h1-font-size);
@@ -105,14 +108,9 @@ a {
 .section__subtitle {
   text-align: center;
 }
-/* Layout */
-.container {
-  max-width: 968px;
-  margin: auto;
-}
+
 /* Buttons */
 
-/* Estilos para el componente Button */
 /* Estilos para el componente Button */
 .buttons {
   display: inline-block;
@@ -126,7 +124,8 @@ a {
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
-  font-family: "Montserrat", sans-serif; /* Utiliza tu fuente deseada */
+  font-family: "Montserrat", sans-serif;
+  margin: 0 auto;
   outline: none;
 }
 
@@ -142,7 +141,6 @@ a {
 
 /* BREAKPOINTS */
 
-/* For large devices */
 
 @media screen and (max-width: 992px) {
   :root {
@@ -155,10 +153,6 @@ a {
     --smaller-font-size: 0.75rem;
   }
 
-  .container {
-    margin-left: var(--mb-1-5);
-    margin-right: var(--mb-1-5);
-  }
   .button {
     padding: 1rem 1.75rem;
   }
@@ -167,25 +161,6 @@ a {
     height: 22px;
   }
 }
-
-/* For medium devices */
-@media screen and (max-width: 768px) {
-  body {
-    margin: 0 0 var(--header-height) 0;
-  }
-  .section {
-    padding: 2rem 0 4rem;
-  }
-  .section__subtitle {
-    margin-bottom: var(--mb-3);
-  }
-}
-@media screen and (max-width: 576px) {
-}
-/* For small devices */
-@media screen and (max-width: 350px) {
-  .container {
-    margin-left: var(--mb-1);
-    margin-right: var(--mb-1);
-  }
+.error-message {
+  color: #e10909;
 }

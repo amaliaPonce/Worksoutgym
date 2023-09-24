@@ -1,13 +1,12 @@
 /* Estilos para el contenedor principal */
-/* Estilos para el contenedor principal */
 .exercise-page-container {
   display: flex;
   overflow-x: hidden;
-margin: auto;
-margin-top: 100px;;
+  margin: auto;
+  margin-top: 100px;
 }
 
-/* Estilos para el contenedor de ejercicios */
+/* Estilos para la lista-contenedor de ejercicios */
 .exercise-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -35,24 +34,11 @@ margin-top: 100px;;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para el número de ejercicio */
-.exercise-id {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #7257fa;
-  color: #fff;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.8rem;
-}
-
 /* Estilos para el contenedor de imagen de ejercicio */
-/* Establecer una relación de aspecto 1:1 para el contenedor de imágenes */
 .exercise-image-container {
   position: relative;
   width: 100%;
-  padding-top: 100%; /* 1:1 relación de aspecto */
+  padding-top: 100%;
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
   overflow: hidden;
@@ -70,20 +56,19 @@ margin-top: 100px;;
   background-repeat: no-repeat;
 }
 
-/* Estilos para la imagen dentro del contenedor */
 .exercise-image-overlay img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Esto mantiene la relación de aspecto y ajusta la imagen sin cortar */
+  object-fit: contain;
 }
-
 
 /* Estilos para el número de ejercicio */
 .exercise-id {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: #7257fa;
+  background-color: var(--button-color);
+  font-weight: bold;
   color: #fff;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
@@ -97,24 +82,21 @@ margin-top: 100px;;
 }
 
 .exercise-title {
-  font-size: 1.3rem;
   font-weight: bold;
-  margin: 0;
-  color: #7257fa;
 }
 
 .exercise-details p {
   font-size: 0.86rem;
-  color: #6e6b80;
+  color: var(--text-color-dark);
   margin: 0;
 }
 
-/* Estilo de los botones */
+/* Estilo de los botones recommended y favorites */
 .button-container {
   display: flex;
   justify-content: center;
-  align-items: center; /* Centra verticalmente los botones */
-  text-align: center; /* Para mantener el contenido centrado en caso de que haya texto dentro de los botones */
+  align-items: center;
+  text-align: center;
 }
 
 /* Estilo para ambos botones */
@@ -123,8 +105,8 @@ margin-top: 100px;;
   margin: 20px;
 }
 
-/* CSS para el botón "Recommended" */
-.recommended-button input {
+/* Estilos comunes para los botones */
+.button-container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -132,76 +114,47 @@ margin-top: 100px;;
   width: 0;
 }
 
-.recommended-button {
+.button-container {
   display: inline-block;
   position: relative;
   cursor: pointer;
   user-select: none;
 }
 
-.recommended-button svg {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 34px;
-  width: 24px;
-  transition: all 0.3s;
-}
-
-.recommended-button input:checked ~ svg {
-  fill: #075f88;
-}
-
-.recommended-button svg:hover {
-  transform: scale(1.1);
-}
-
-.recommended-button input ~ svg {
-  fill: #838383;
-}
-
-/* CSS para el botón con el corazón */
-.heart-button input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-.heart-button {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  user-select: none;
-}
-
-.heart-button svg {
+.button-container svg {
   position: relative;
   top: 0;
   left: 0;
   height: 24px;
   width: 24px;
   transition: all 0.3s;
+}
+
+.button-container input:checked ~ svg {
+  fill: #075f88;
+}
+
+.button-container svg:hover {
+  transform: scale(1.1);
+}
+
+.button-container input ~ svg {
+  fill: #828181;
+}
+
+/* Estilos para el botón "Recommended" */
+.recommended-button svg {
+  height: 34px;
+}
+
+/* Estilos para el botón con el corazón */
+.heart-button svg {
+  height: 24px;
   fill: #070505;
 }
 
 .heart-button input:checked ~ svg {
-  fill: #ff0303; /* Color cuando está marcado (rojo) */
-}
-
-.heart-button svg:hover {
-  transform: scale(1.1); /* Efecto de escala al pasar el cursor */
-}
-
-.heart-button input ~ svg {
-  fill: #2e2e2e; /* Color cuando no está marcado (gris) */
-}
-
-/* Eliminar borde y otros estilos de los botones */
-button {
-  border: none;
-  outline: none;
+  fill: #ff0303;
 }
 
 /* Estilos para el contenedor del formulario */
@@ -230,6 +183,7 @@ button {
   padding: 2rem;
   max-width: 100%;
   margin: 0 auto;
+  margin-top: 20px;
 }
 
 .add-exercise-label {
@@ -258,11 +212,8 @@ button {
 }
 
 /* Elimina el borde alrededor de los elementos de formulario */
-fieldset {
-  border: none; /* Elimina el borde */
-}
-
-.add-exercise-select {
+.add-exercise-select,
+.add-exercise-file-input {
   appearance: none;
   background: transparent;
   background-position: right center;
@@ -271,110 +222,235 @@ fieldset {
   cursor: pointer;
 }
 
-.add-exercise-file-input {
-  cursor: pointer;
-}
-
-/* Estilos para los mensajes de éxito y error */
-.success-message,
-.error-message {
-  font-size: 1rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  text-align: center;
-  color: #333;
-}
-
-.error-message {
-  color: #e10909;
-}
-
-/* Estilos para el botón de agregar ejercicio */
-.add-exercise-button {
-  background-color: #7257fa;
-  color: #fff;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-weight: bold;
-  font-size: 1rem;
-  width: 100%;
-  outline: none; /* Esta línea quitará el borde gris */
-}
-
-.add-exercise-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.add-exercise-button:hover {
-  background-color: #543bf8;
-}
 /* Estilos para el formulario de filtros */
-.filter-form {
-  background-color: #f7f7f7;
-  border-radius: 0.5rem;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+.filter-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
 }
 
+.filter-form {
+  padding: 1rem;
+  text-align: center;
+  max-width: 100%;
+
+}
+
+/* Estilos para la leyenda */
+.filter-form legend {
+  font-weight: bold;
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Estilos para las etiquetas de los campos */
 .filter-form label {
   font-weight: bold;
-  color: #333;
+  color: #555;
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
   display: block;
 }
 
+/* Estilos para los campos de entrada de texto y select */
 .filter-form input[type="text"],
 .filter-form select {
-  background-color: #eee;
+  background-color: #f2f2f2;
   border: 1px solid #ccc;
   outline: none;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   font-size: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   color: #333;
   cursor: pointer;
   transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s;
-  flex: 1;
-  height: 2.5rem;
-  margin-bottom: 0.5rem;
-  align-self: stretch;
-  font-family: 'Montserrat', sans-serif; 
+  width: 100%;
+  margin-bottom: 1rem;
+  font-family: "Montserrat", sans-serif;
 }
 
+/* Estilos para las casillas de verificación */
 .filter-form input[type="checkbox"] {
-  background-color: #eee;
+  background-color: transparent;
   border: 1px solid #ccc;
   outline: none;
-  padding: 0;
+  padding: 0.5rem;
   font-size: 1rem;
+  border-radius: 0.25rem;
+  color: #555;
   cursor: pointer;
   transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s;
-  flex: 0;
-  align-self: center;
+  margin-right: 0.5rem;
 }
-
 
 .filter-form input[type="text"]:hover,
 .filter-form select:hover,
 .filter-form input[type="checkbox"]:hover {
-  background-color: #ddd;
+  background-color: #e0e0e0;
 }
 
+/* Estilos para el foco de los campos de entrada */
 .filter-form input[type="text"]:focus,
 .filter-form select:focus,
 .filter-form input[type="checkbox"]:focus {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
   border-color: #555;
+}
+
+/* Estilos para el botón de búsqueda */
+.filter-form button[type="submit"] {
+  background-color: #7257fa;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: bold;
+  margin-top: 1rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.filter-form label[for="recommended"],
+.filter-form label[for="favorite"] {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+/* Media query para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+  h1{
+    margin-left: 50px;
+    font-size: var(--h1-font-size);
+  }
+  button.buttons {
+    margin: 10px 50px;
+  }
+
+  .exercise-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: auto;
+    margin-top: 100px;
+    margin-left: 90px;
+    max-width: 70%;
+  }
+
+  .exercise-card {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .exercise-title {
+    font-size: 1rem;
+  }
+
+  .exercise-details p {
+    font-size: 0.8rem;
+  }
+
+  .recommended-button,
+  .heart-button {
+    margin: 10px;
+  }
+
+  /* Estilos para el formulario de añadir ejercicio */
+  .add-exercise-container {
+    width: 70%;
+    max-width: none;
+    margin: 30px auto;
+    margin-right: 25px;
+    padding: 1rem;
+  }
+
+  section.add-exercise-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .add-exercise-form {
+    max-width: none;
+    padding: 1rem;
+  }
+
+  /* Estilos para los elementos de formulario */
+  .add-exercise-form input,
+  .add-exercise-form textarea,
+  .add-exercise-form select,
+  .add-exercise-file-input {
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: 10px;
+  }
+
+  .add-exercise-label {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Estilos para el formulario de filtrar */
+  form.filter-form {
+    margin-top: 3rem;
+  }
+
+  .filter-form {
+    padding: 1rem;
+    margin-left: 65px;
+    text-align: center;
+    max-width: 80%;
+  }
+
+  /* Estilos para la leyenda */
+  .filter-form legend {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Estilos para las etiquetas de los campos */
+  .filter-form label {
+    font-weight: bold;
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+
+  /* Estilos para los campos de entrada de texto y select */
+  .filter-form input[type="text"],
+  .filter-form select {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    outline: none;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    border-radius: 0.25rem;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Estilos para las casillas de verificación */
+  .filter-form input[type="checkbox"] {
+    background-color: transparent;
+    outline: none;
+    padding: 0.25rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-right: 0.25rem;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .add-exercise-container {
+    margin-right: 140px;
+    margin-top: var(--mb-2-5);
+  }
 }
