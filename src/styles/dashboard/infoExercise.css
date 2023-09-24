@@ -60,4 +60,44 @@
     text-align: center;
     font-style: italic;
   }
+  .button-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; 
   
+  }
+
+
+
+  /* Estilos para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+  .info-exercise {
+    width: 80vw; 
+    margin: 70px 0; 
+    margin-left: 60px;
+    padding: 20px;
+  }
+
+  .info-exercise h2 {
+    font-size: var(--h2-font-size); 
+    margin-bottom: 12px; 
+  }
+
+  .info-exercise label {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .info-exercise input[type="text"],
+  .info-exercise textarea {
+    padding: 8px;
+    margin-bottom: 12px;
+    border-radius: 2px;
+  }
+
+ 
+
+
+
+}

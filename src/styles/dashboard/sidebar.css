@@ -1,4 +1,3 @@
-/* Estilos generales del aside */
 .aside {
   position: fixed;
   left: 0;
@@ -42,7 +41,6 @@
   .aside {
     width: 60px;
     padding: auto;
-    margin: 40px auto;
     align-items: center;
   }
 

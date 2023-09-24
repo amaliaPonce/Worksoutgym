@@ -1,18 +1,18 @@
 /* Estilos para el componente HeaderDashboard */
+
 .header-dashboard {
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-  background-color: #333; /* Cambia el color de fondo según tus preferencias */
+  background-color: #333; 
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
 }
 
-/* Estilos para la lista de navegación en pantalla grande */
 .header-dashboard ul {
   list-style-type: none;
   display: flex;
@@ -21,81 +21,65 @@
   padding: 0;
 }
 
-/* Estilos para los elementos de la lista de navegación */
 .header-dashboard li {
-  font-weight: bold; /* Cambia la fuente según tus preferencias */
+  font-weight: bold;
 }
 
-/* Estilos para los enlaces de navegación */
 .header-dashboard a {
   text-decoration: none;
-  color: #fff; /* Cambia el color de texto según tus preferencias */
-  font-weight: bold; /* Cambia la fuente según tus preferencias */
+  color: #fff; 
+  font-weight: bold; 
   transition: 0.3s;
 }
 
-/* Estilo para el título */
 .header-dashboard h1 {
-  color: #fff; /* Cambia el color de texto según tus preferencias */
-  font-weight: bold; /* Cambia la fuente según tus preferencias */
+  color: #fff;
+  font-weight: bold; 
 }
 
 /* Estilo para el enlace activo o en estado de hover */
 .header-dashboard a.active-link,
 .header-dashboard a:hover {
-  color: #f1f1f3; /* Cambia el color de texto al estado activo o en hover según tus preferencias */
+  color: #f1f1f3; 
 }
 
 /* Estilos para el icono del menú en pantalla pequeña */
 .menu-icon {
   cursor: pointer;
-  font-size: 1.5rem; /* Ajusta el tamaño del ícono según tus preferencias */
-  color: #fff; /* Cambia el color del ícono según tus preferencias */
+  font-size: 1.5rem;
+  color: #fff;
   padding: 10px;
   position: absolute;
-  top: 10px; /* Ajusta la posición del icono del menú según tus necesidades */
-  right: 20px; /* Ajusta la posición del icono del menú según tus necesidades */
+  top: 10px;
+  right: 20px;
   display: none;
 }
 
 /* Estilos para los enlaces del menú en pantalla pequeña */
-/* Estilos para los enlaces del menú en pantalla pequeña */
 @media screen and (max-width: 768px) {
-  /* Ocultar la lista de navegación en pantalla pequeña */
   .header-dashboard ul {
     display: none;
   }
 
-  /* Estilo para el título en pantalla pequeña */
   .header-dashboard h1 {
-    font-size: 1.5rem; /* Ajusta el tamaño de fuente para dispositivos móviles según tus preferencias */
+    font-size: 1rem; 
     margin: 0;
   }
 
-  /* Mostrar el icono del menú en pantalla pequeña */
   .menu-icon {
     display: block;
   }
 
-  /* Estilos para el menú desplegable en pantalla pequeña */
   .menu-active ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333; /* Cambia el color de fondo del menú según tus preferencias */
+    background-color: #333;
     padding: 10px;
     position: absolute;
-    top: 70px; /* Ajusta la posición del menú desplegable según tus necesidades */
+    top: 55px;
     left: 0;
     right: 0;
   }
 
-  /* Estilos para los elementos del menú desplegable */
-  .menu-active a {
-    text-decoration: none;
-    color: #fff; /* Cambia el color de texto según tus preferencias */
-    font-weight: bold; /* Cambia la fuente según tus preferencias */
-    padding: 10px;
-    margin: 0 10px; /* Ajusta el margen entre elementos del menú según tus preferencias */
-  }
 }

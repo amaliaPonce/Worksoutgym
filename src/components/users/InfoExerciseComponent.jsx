@@ -79,6 +79,7 @@ function InfoExerciseComponent() {
             />
             {user?.role === "admin" && (
               <>
+              <section className='button-mobile'>
                 <Button
                   handleClick={handleDeleteExercise}
                   className={`buttons`}
@@ -91,7 +92,9 @@ function InfoExerciseComponent() {
                 >
                   Editar ejercicio
                 </Button>
-              </>
+                </section>
+                </>
+              
             )}
           </section>
           {editMode ? (

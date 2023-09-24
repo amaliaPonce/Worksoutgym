@@ -163,14 +163,15 @@ function AddExercise() {
           {added ? (
             <p className="success-message">Ejercicio agregado con éxito.</p>
           ) : (
-            <Button
-              handleClick={handleAddExercise}
-              type="submit"
-              disabled={loading}
-              className={`buttons`}
-            >
-              {loading ? "Agregando..." : "Agregar Ejercicio"}
-            </Button>
+<Button
+  handleClick={handleAddExercise}
+  type="submit"
+  disabled={loading}
+  className={`buttons`}
+>
+  {loading ? "Agregando..." : "Agregar Ejercicio"}
+</Button>
+
           )}
         </form>
       )}

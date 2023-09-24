@@ -64,6 +64,9 @@ body {
   background-color: var(--body-color);
   color: var(--text-color);
 }
+input{
+  font-family: "Montserrat", sans-serif;
+}
 h1{
   font-size: var(--h1-font-size);
   text-align: center;

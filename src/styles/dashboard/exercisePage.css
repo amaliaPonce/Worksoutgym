@@ -323,13 +323,12 @@
 
 /* Media query para dispositivos móviles */
 @media only screen and (max-width: 768px) {
-  h1{
+  
+ section h1{
     margin-left: 50px;
     font-size: var(--h1-font-size);
   }
-  button.buttons {
-    margin: 10px 50px;
-  }
+
 
   .exercise-container {
     grid-template-columns: 1fr;
