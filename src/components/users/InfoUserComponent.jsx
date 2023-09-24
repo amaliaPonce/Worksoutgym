@@ -74,11 +74,10 @@ function InfoUserComponent() {
   }
 
   return (
-    <article className="exercise-page-container">
-      <article className="exercise-container">
+    <article className="user-page-container">
+      <article className="user-container">
         <article className="info-exercise custom">
           {message && <p>{message}</p>}
-          <article>
             <h2>Detalles del Usuario</h2>
             <UserPostComponent user={userData} />
             {user.id === userData.id && (
@@ -88,7 +87,6 @@ function InfoUserComponent() {
                 </Button>
               </section>
             )}
-          </article>
           {editMode ? (
             <fieldset className="add-exercise-container">
               <legend>Formulario de edición</legend>

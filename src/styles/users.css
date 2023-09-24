@@ -2,25 +2,25 @@
 /* Css para la tarjeta de usuarios */
 
 .info-exercise.custom {
-    width: 50vw; 
-    margin: 0 auto; 
+    width: 70vw; 
     max-width: 100%; 
   }
 
   .button-container {
+    display: flex;
     text-align: center; 
-    margin: 20px; 
+    margin:  0 auto; 
   }
   
-  .button-container .buttons {
-    display: inline-block;
-  }
+
   
   h2,
   h3{
     text-align: center;
   }
-.exercise-card.custom{
+section.exercise-card.custom{
     cursor:auto;
 }
-
+.user-container{
+margin:0 auto;
+}

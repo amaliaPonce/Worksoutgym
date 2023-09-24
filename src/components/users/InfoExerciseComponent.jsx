@@ -133,18 +133,22 @@ function InfoExerciseComponent() {
                 />
               </fieldset>
               <fieldset>
-                <label htmlFor="muscleGroup">Grupo Muscular</label>
-                <input
-                  type="text"
-                  value={exerciseData.muscleGroup}
-                  onChange={(e) =>
-                    setExerciseData({
-                      ...exerciseData,
-                      muscleGroup: e.target.value,
-                    })
-                  }
-                />
-              </fieldset>
+  <label htmlFor="muscleGroup">Grupo Muscular</label>
+  <select
+    value={exerciseData.muscleGroup}
+    onChange={(e) =>
+      setExerciseData({
+        ...exerciseData,
+        muscleGroup: e.target.value,
+      })
+    }
+  >
+    <option value="Tren superior">Tren superior</option>
+    <option value="Tren inferior">Tren inferior</option>
+    <option value="Core">Core</option>
+    <option value="Full Body">Full Body</option>
+  </select>
+</fieldset>
               <Button handleClick={handleUpdateExercise} className={`buttons`}>
                 Guardar Cambios
               </Button>

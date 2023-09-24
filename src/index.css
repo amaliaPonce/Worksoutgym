@@ -76,6 +76,7 @@ h1,
 h2,
 h3 {
   font-weight: var(--font-semi-bold);
+  color:var(--text-color-dark);
 }
 ul {
   list-style: none;
@@ -128,7 +129,7 @@ fieldset {
   font-weight: bold;
   transition: background-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
   font-family: "Montserrat", sans-serif;
-  margin: 0 auto;
+  margin: 10px auto;
   outline: none;
 }
 
