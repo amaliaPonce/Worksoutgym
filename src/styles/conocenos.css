@@ -126,4 +126,13 @@ body {
     margin: 5px;
   }
 
+  /* Ajustes para evitar que el video se superponga al footer */
+  .footer {
+    z-index: 1000; /* Asegura que el footer esté por encima del video */
+    position: relative; /* Cambia la posición a relativa */
+  }
+  .header{
+    z-index: 1000; /* Asegura que el footer esté por encima del video */
+    position: relative; /* Cambia la posición a relativa */
+  }
 }

@@ -40,6 +40,9 @@
     .footer {
       padding: 20px 0; 
       margin-top: 100px;
+      z-index: 1000 ;
+      position: relative;
+  
     }
   
     .footer-content {
@@ -58,5 +61,5 @@
       margin: 10px 0; 
     }
   }
-  
+
   
