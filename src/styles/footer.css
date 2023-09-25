@@ -38,7 +38,8 @@
 
   @media (max-width: 768px) {
     .footer {
-      padding: 20px 0; /* Reduce el espacio interno superior e inferior */
+      padding: 20px 0; 
+      margin-top: 100px;
     }
   
     .footer-content {
