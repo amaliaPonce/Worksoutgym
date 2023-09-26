@@ -33,6 +33,10 @@ _Dependencias:_
     "victory": "^36.6.11",
     "web-vitals": "^2.1.4"
 
+_index.js:_ Este es el archivo de la entrada principal de una aplicación web React que utiliza React Router y un contexto llamado AppProvider para proporcionar enrutamiento y gestión de estado. Utiliza ReactDOM para renderizar la aplicación en el elemento con el ID "root" en el documento HTML.
+
+_RoutesApp.js:_ Este es el archivo que define las rutas principales de la aplicación utilizando React Router. Cada ruta se asigna a un componente de página correspondiente, lo que facilita la navegación y la visualización de diferentes páginas en la aplicación. Estas rutas incluyen páginas como la página de inicio, inicio de sesión, registro, información de usuarios, ejercicios y más. También permite la visualización detallada de ejercicios y la lista de usuarios.
+
 _Componentes:_
 
 - _RegisterComponent:_ Formulario para que los nuevos usuarios se registren en la aplicación.
@@ -180,4 +184,4 @@ Luego hemos creado archivos independientes para definir los estilos de las difer
 
     - _Susana Martínez Payá:_
 
-      https://www.linkedin.com/in/susanamart%C3%ADnezpay%C3%A1/
+      https://www.linkedin.com/in/susanamartinezpaya/
