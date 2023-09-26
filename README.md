@@ -1,14 +1,37 @@
 🏋️‍♀️🏋️‍♀️ WorksOutGym 🏋️‍♀️🏋️‍♀️
 
-Creando una aplicación de un gimnasio con React.
+_Descripción:_
 
-Instrucciones:
+WorksOutGym es una aplicación web desarrollada en React que ayuda a los entusiastas del fitness a realizar un seguimiento de sus rutinas de ejercicio. Ofrece funciones de registro e inicio de sesión, gestión de ejercicios y usuarios, y una interfaz de usuario atractiva. Junto con el proyecto del backend. La aplicación permite a los usuarios registrar ejercicios, ver detalles, buscar y gestionar perfiles de usuario, incluyendo roles de administrador.
+
+_Instrucciones:_
 
 Abrir los dos proyectos, frontend y backend.
 
-Terminal backend: npm run dev desde la carpeta raíz.
+Terminal backend: npm run dev desde la carpeta raíz. Bajo les facilitamos el enlace del proyecto del Backend:
+
+    https://github.com/Susanistikis/WorkOutGym-
 
 Terminal frontend: npm install, cd frontend, npm start.
+
+_Dependencias:_
+
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.7",
+    "@mui/system": "^5.14.7",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "fetch": "^1.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "5.0.1",
+    "safe-buffer": "^5.2.1",
+    "safer-buffer": "^2.1.2",
+    "victory": "^36.6.11",
+    "web-vitals": "^2.1.4"
 
 _Componentes:_
 
@@ -116,12 +139,15 @@ _Páginas:_
 
 - _RegisterPage:_ La página representa la vista de registro de la aplicación. Incluye un encabezado (HeaderComponent), un formulario de registro (RegisterComponent), y un enlace que redirige a los usuarios que ya tienen una cuenta a la página de inicio de sesión (/login). Esta página permite a los usuarios nuevos registrarse en la aplicación y unirse a la comunidad de fitness.
 
-_Services:_
+_Service:_
 
-- _AuthService:_ Un servicio para manejar la autenticación, como el inicio de sesión y registro.
-- _ExerciseService:_ Un servicio para interactuar con la API relacionada con los ejercicios, como obtener la lista de ejercicios, marcar/desmarcar ejercicios como favoritos, etc.
+- _Index.js:_ Es el fichero dónde se hacen las peticiones al backend, usando una variable de entorno y los diferentes endpoints.
 
-PALETAS DE COLORES
+_Styles:_
+
+- _Index.css:_ Es el archivo principal que define la apariencia, contiene definiciones de fuentes, colores, tamaños de fuente, clases reutilizables y estilos para botones, así como reglas de diseño responsivo para adaptarse a diferentes tamaños de pantalla. También establece variables personalizadas para colores y tamaños de fuente que se utilizan en toda la página, lo que facilita la consistencia y la gestión de estilos en el sitio web.
+
+  - _Paleta de colores:_
 
 https://colorhunt.co/palette/c5d7bd9fb8ad383e56fb743e
 
@@ -129,3 +155,29 @@ https://colorhunt.co/palette/c5d7bd9fb8ad383e56fb743e
 #9FB8AD
 #383E56
 #FB743E
+
+Luego hemos creado archivos independientes para definir los estilos de las diferentes páginas y componentes:
+
+- _ExercisePage.css:_
+- _HeaderDashboard.css:_
+- _InfoExercise.css:_
+- _Main.css:_
+- _Sidebar.css:_
+- _addExercise.css:_
+- _Conocenos.css:_
+- _footer.css:_
+- _Header.css:_
+- _HomePage.css:_
+- _Login.css:_
+- _Register.css:_
+- _Users.css:_
+
+  - _Creado por:_
+
+    - _Amalia Divina Ponce Toledo:_
+
+      https://www.linkedin.com/in/amaliadivinaponcetoledo/
+
+    - _Susana Martínez Payá:_
+
+      https://www.linkedin.com/in/susanamart%C3%ADnezpay%C3%A1/
