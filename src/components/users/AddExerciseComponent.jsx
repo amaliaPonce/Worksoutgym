@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import { AddExerciseService } from "../../service/index";
+//import { AddExerciseService } from '../../service/index';
 import Button from "../Button";
 import "../../styles/dashboard/exercisePage.css";
 
-function AddExercise() {
+function AddExercise({ addExercise }) {
   const { user } = useContext(AppContext);
 
   const initialFormState = {
@@ -55,7 +55,7 @@ function AddExercise() {
 
       // Comprobación de usuario y token.
       if (user && user.token) {
-        const result = await AddExerciseService(user.token, formData);
+        const result = await addExercise(user.token, formData);
         if (result && result.status === "ok") {
           console.log("Ejercicio agregado exitosamente");
           setAdded(true);
@@ -163,15 +163,14 @@ function AddExercise() {
           {added ? (
             <p className="success-message">Ejercicio agregado con éxito.</p>
           ) : (
-<Button
-  handleClick={handleAddExercise}
-  type="submit"
-  disabled={loading}
-  className={`buttons`}
->
-  {loading ? "Agregando..." : "Agregar Ejercicio"}
-</Button>
-
+            <Button
+              handleClick={handleAddExercise}
+              type="submit"
+              disabled={loading}
+              className={`buttons`}
+            >
+              {loading ? "Agregando..." : "Agregar Ejercicio"}
+            </Button>
           )}
         </form>
       )}

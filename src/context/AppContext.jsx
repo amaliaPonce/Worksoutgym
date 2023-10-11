@@ -6,15 +6,7 @@ export const AppContext = createContext();
 
 // export del provider del contexto
 export const AppProvider = ({ children }) => {
-  const [user, setUser] = useState(() => {
-    const sessionData = JSON.parse(localStorage.getItem("session"));
-    return {
-      userRole: sessionData?.userRole || null,
-      token: sessionData?.token || null,
-      id: sessionData?.id || null, 
-
-    };
-  });
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("session")));
 
   useEffect(() => {
     localStorage.setItem("session", JSON.stringify(user));

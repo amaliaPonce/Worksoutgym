@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
-import { ExercisesService } from "../../service/index";
+//import { ExercisesService } from '../../service/index';
 import ExercisePostComponent from "./ExercisePostComponent";
 import "../../styles/dashboard/exercisePage.css";
 
-function ExerciseListComponent() {
+function ExerciseListComponent({ exercisesList }) {
   const { user } = useContext(AppContext);
-  const [exercises, setExercises] = useState([]);
+  const [exercises, setExercises] = useState(exercisesList);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filters, setFilters] = useState({
@@ -23,10 +23,10 @@ function ExerciseListComponent() {
         setLoading(true);
         setError(null);
 
-        const data = await ExercisesService(user.token);
+        // const data = await ExercisesService(user.token);
 
         // Filtrar ejercicios.
-        const filteredExercises = data.filter((exercise) => {
+        const filteredExercises = exercisesList.filter((exercise) => {
           const nameMatch =
             exercise.name.toLowerCase().includes(filters.name.toLowerCase()) ||
             exercise.description
@@ -55,7 +55,7 @@ function ExerciseListComponent() {
     };
 
     fetchExercises();
-  }, [user, filters]);
+  }, [user, filters, exercisesList]);
 
   const handleFilterChange = (e) => {
     const { name, value, type } = e.target;

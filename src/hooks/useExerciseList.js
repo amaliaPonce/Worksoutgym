@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ExercisesService } from "../service/index";
+import { AddExerciseService, ExercisesService } from "../service/index";
 
 export const useExerciseList = (userToken) => {
   const [exercises, setExercises] = useState([]);
@@ -22,8 +22,12 @@ export const useExerciseList = (userToken) => {
 
     loadExercises();
   }, [userToken]);
-  const addExercise = (data) => {
-    setExercises([data, ...exercises]);
+  const addExercise = async (token, data) => {
+    // setExercises([data, ...exercises]);
+    const result = await AddExerciseService(token, data);
+    const allNewExercisesList = await ExercisesService(userToken);
+    setExercises(allNewExercisesList);
+    return result;
   };
 
   const removeExercise = (id) => {
