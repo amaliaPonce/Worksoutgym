@@ -10,7 +10,7 @@ import "../../styles/users.css";
 function InfoUserComponent() {
   const { user } = useContext(AppContext);
   const { id } = useParams();
-  const { userInfo, error, loading } = useUser(id || user.id, user.token);
+  const { userInfo, error, loading, refetchUser } = useUser(id || user.id, user.token);
   const [userData, setUserData] = useState(userInfo[0]);
   const [message, setMessage] = useState("");
   const [editMode, setEditMode] = useState(false);
@@ -24,19 +24,41 @@ function InfoUserComponent() {
   });
 
   useEffect(() => {
-    // Actualizamos userData cuando userInfo cambia.
     if (userInfo && userInfo.length > 0) {
-      setUserData(userInfo[0]);
+      const user = userInfo[0];
+      setUserData(user);
+      setUserProfileData({
+        name: user.name,
+        biography: user.biography,
+        lastName: user.lastName,
+        birthDate: formatDate(user.birthDate), // Formatear fecha aquí
+        address: user.address,
+        phone_number: user.phone_number,
+      });
     }
   }, [userInfo]);
 
+  // Función para formatear la fecha de nacimiento (YYYY-MM-DD)
+  const formatDate = (date) => {
+    const formattedDate = new Date(date).toISOString().split('T')[0];
+    return formattedDate;
+  };
+
   const handleChange = (e) => {
-    // Manejamos los cambios en el perfil.
     const { name, value } = e.target;
-    setUserProfileData((prevUserData) => ({
-      ...prevUserData,
-      [name]: value,
-    }));
+
+    // Formatear la fecha de cumpleaños al formato deseado (YYYY-MM-DD)
+    if (name === "birthDate") {
+      setUserProfileData((prevUserData) => ({
+        ...prevUserData,
+        [name]: formatDate(value),
+      }));
+    } else {
+      setUserProfileData((prevUserData) => ({
+        ...prevUserData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleUpdateProfile = async (e) => {
@@ -48,10 +70,10 @@ function InfoUserComponent() {
     }
 
     try {
-      // Actualizar el perfil.
       await updateUserService(user.id, user.token, userProfileData);
 
       setMessage("Perfil actualizado con éxito.");
+      refetchUser();
     } catch (error) {
       setMessage("Error al actualizar el perfil.");
       console.error("Error al actualizar el perfil:", error.message);
@@ -59,9 +81,7 @@ function InfoUserComponent() {
   };
 
   const handleToggleEditMode = () => {
-    // Alternar el modo de edición
     setEditMode(!editMode);
-    // Limpiar el mensaje de error o éxito
     setMessage("");
   };
 
@@ -78,22 +98,19 @@ function InfoUserComponent() {
       <article className="user-container">
         <article className="info-exercise custom">
           {message && <p>{message}</p>}
-            <h2>Detalles del Usuario</h2>
-            <UserPostComponent user={userData} />
-            {user.id === userData.id && (
-              <section className="button-container">
-                <Button handleClick={handleToggleEditMode}>
-                  {editMode ? "Cancelar Edición" : "Editar perfil"}
-                </Button>
-              </section>
-            )}
+          <h2>Detalles del Usuario</h2>
+          <UserPostComponent user={userData} />
+          {user.id === userData.id && (
+            <section className="button-container">
+              <Button handleClick={handleToggleEditMode}>
+                {editMode ? "Cancelar Edición" : "Editar perfil"}
+              </Button>
+            </section>
+          )}
           {editMode ? (
             <fieldset className="add-exercise-container">
               <legend>Formulario de edición</legend>
-              <form
-                className="add-exercise-form"
-                onSubmit={handleUpdateProfile}
-              >
+              <form className="add-exercise-form" onSubmit={handleUpdateProfile}>
                 <label htmlFor="name" className="add-exercise-label">
                   Nombre:
                 </label>
@@ -125,8 +142,8 @@ function InfoUserComponent() {
                   value={userProfileData.lastName}
                   onChange={handleChange}
                 />
-                <label htmlFor="birthday" className="add-exercise-label">
-                  Fecha de cumpleaños:
+                <label htmlFor="birthDate" className="add-exercise-label">
+                  Fecha de cumpleaños (YYYY-MM-DD):
                 </label>
                 <input
                   className="add-exercise-input"
@@ -134,6 +151,8 @@ function InfoUserComponent() {
                   name="birthDate"
                   value={userProfileData.birthDate}
                   onChange={handleChange}
+                  placeholder="YYYY-MM-DD"
+                  required
                 />
                 <label htmlFor="address" className="add-exercise-label">
                   Dirección:

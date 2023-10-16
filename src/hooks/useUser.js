@@ -6,24 +6,27 @@ const useUser = (id, token) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const fetchUser = async (id, token) => {
+    try {
+      setLoading(true);
+      const data = await getUserService(id, token);
+      setUserInfo(data);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const loadUser = async () => {
-      try {
-        setLoading(true);
-        const data = await getUserService(id, token);
-
-        setUserInfo(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadUser();
+    fetchUser(id, token);
   }, [id, token]);
 
-  return { userInfo, error, loading };
+  const refetchUser = () => {
+    fetchUser(id, token);
+  };
+
+  return { userInfo, error, loading, refetchUser };
 };
 
 export default useUser;
