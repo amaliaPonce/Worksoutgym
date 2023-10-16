@@ -13,11 +13,9 @@ import "../../styles/dashboard/infoExercise.css";
 function InfoExerciseComponent() {
   const { user } = useContext(AppContext);
   const { id } = useParams();
-  const { exercise, loading, error } = useExercise(id, user?.token);
+  const { exercise, loading, error, refetch } = useExercise(id, user?.token);
   const [err, setErr] = useState(null);
   const navigate = useNavigate();
-
-  // Almacenar los datos del ejercicio en el estado.
 
   const [editMode, setEditMode] = useState(false);
   const [exerciseData, setExerciseData] = useState({
@@ -28,7 +26,6 @@ function InfoExerciseComponent() {
   });
 
   useEffect(() => {
-    // Actualiza los datos del ejercicio
     setExerciseData({
       id: exercise?.id || "",
       name: exercise?.name || "",
@@ -37,7 +34,6 @@ function InfoExerciseComponent() {
     });
   }, [exercise]);
 
-  // Eliminar ejercicio.
   const handleDeleteExercise = async () => {
     try {
       await deleteExerciseService(id, user?.token);
@@ -47,16 +43,18 @@ function InfoExerciseComponent() {
     }
   };
 
-  // Actualizar ejercicio.
   const handleUpdateExercise = async () => {
     try {
       await updateExerciseService(id, user?.token, exerciseData);
       console.log("Ejercicio actualizado:", exerciseData);
       setEditMode(false);
+      refetch();
     } catch (error) {
       setErr(error.message);
+      console.error("Error al actualizar el ejercicio:", error);
     }
   };
+  
 
   if (err) {
     return <p>{err}</p>;
@@ -79,22 +77,21 @@ function InfoExerciseComponent() {
             />
             {user?.role === "admin" && (
               <>
-              <section className='button-mobile'>
-                <Button
-                  handleClick={handleDeleteExercise}
-                  className={`buttons`}
-                >
-                  Borrar ejercicio
-                </Button>
-                <Button
-                  handleClick={() => setEditMode(true)}
-                  className={`buttons`}
-                >
-                  Editar ejercicio
-                </Button>
+                <section className='button-mobile'>
+                  <Button
+                    handleClick={handleDeleteExercise}
+                    className={`buttons`}
+                  >
+                    Borrar ejercicio
+                  </Button>
+                  <Button
+                    handleClick={() => setEditMode(true)}
+                    className={`buttons`}
+                  >
+                    Editar ejercicio
+                  </Button>
                 </section>
-                </>
-              
+              </>
             )}
           </section>
           {editMode ? (
@@ -133,22 +130,22 @@ function InfoExerciseComponent() {
                 />
               </fieldset>
               <fieldset>
-  <label htmlFor="muscleGroup">Grupo Muscular</label>
-  <select
-    value={exerciseData.muscleGroup}
-    onChange={(e) =>
-      setExerciseData({
-        ...exerciseData,
-        muscleGroup: e.target.value,
-      })
-    }
-  >
-    <option value="Tren superior">Tren superior</option>
-    <option value="Tren inferior">Tren inferior</option>
-    <option value="Core">Core</option>
-    <option value="Full Body">Full Body</option>
-  </select>
-</fieldset>
+                <label htmlFor="muscleGroup">Grupo Muscular</label>
+                <select
+                  value={exerciseData.muscleGroup}
+                  onChange={(e) =>
+                    setExerciseData({
+                      ...exerciseData,
+                      muscleGroup: e.target.value,
+                    })
+                  }
+                >
+                  <option value="Tren superior">Tren superior</option>
+                  <option value="Tren inferior">Tren inferior</option>
+                  <option value="Core">Core</option>
+                  <option value="Full Body">Full Body</option>
+                </select>
+              </fieldset>
               <Button handleClick={handleUpdateExercise} className={`buttons`}>
                 Guardar Cambios
               </Button>
