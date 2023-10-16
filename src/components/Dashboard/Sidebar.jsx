@@ -12,7 +12,7 @@ const Sidebar = () => {
         <ul className="nav-list">
           <li className="nav-item">
             <Link to="/usersPage" className="nav-link">
-              <i class="bx bx-line-chart"></i>
+              <i className="bx bx-line-chart"></i>
             </Link>
           </li>
 
