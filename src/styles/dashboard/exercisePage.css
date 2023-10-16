@@ -363,7 +363,6 @@
     width: 70%;
     max-width: none;
     margin: 30px auto;
-    margin-right: 25px;
     padding: 1rem;
   }
 
@@ -448,8 +447,16 @@
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .add-exercise-container {
-    margin-right: 140px;
-    margin-top: var(--mb-2-5);
+  aside.add-exercise-container {
+    margin-left: 65px;
+
   }
+  .filter-form {
+    margin-left: 65px;
+  }
+ .exercise-container{
+  margin-left: 65px;
+ }
+
+
 }
